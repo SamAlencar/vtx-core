@@ -55,8 +55,8 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "agents/*.md para os 7 papéis do núcleo + agents/especialistas.md"
   - id: VTX-010
-    titulo: "Pesquisar fluxo de trabalho entre agentes"
+    titulo: "Fluxo de trabalho entre agentes (SOP)"
     area: "Base de Conhecimento"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-pesquisador"
     notas: "ROADMAP #1: SOP, handoffs, artefatos, Definition of Ready/Done."
