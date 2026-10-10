@@ -34,6 +34,8 @@ tarefas:
 ## Regras
 - **Status efetivo** de uma tarefa = o do diário mais recente que cita o id; se nenhum cita, vale o do mestre.
 - Tarefas novas entram primeiro no mestre (com id, fase e prioridade); depois são citadas nos diários.
+- A ordem de execução é a `prioridade`, não o id (ex.: F9 vem antes de F8). A ordem das fases no painel segue a lista `fases`.
+- Após editar o mestre, rodar `python scripts/gerar_roadmap.py` para atualizar `knowledge/ROADMAP.md`.
 - `titulo`, `area` e `fase` são publicados no painel: **nunca** colocar dados sensíveis neles.
 - Exportado por `scripts/exportar_painel.py`: projeto (id, titulo, fase, area, prioridade, status) e diários (data, id, titulo, area, status).
 

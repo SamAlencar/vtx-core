@@ -1,7 +1,8 @@
 # Roadmap da Base de Conhecimento
 
-Fonte da verdade: `backlog/projeto.yaml`. Uma tarefa por sessão diária, em ordem de prioridade (id).
-Próxima tarefa: `python scripts/proxima_tarefa.py`. Ao concluir um documento, adicioná-lo ao `INDEX.md`.
+Gerado por `scripts/gerar_roadmap.py` a partir de `backlog/projeto.yaml` (fonte da verdade).
+Uma tarefa por sessão diária, em ordem de prioridade. Próxima: `python scripts/proxima_tarefa.py`.
+Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 
 
 ## F1 — Processo e operação de agentes
@@ -62,11 +63,27 @@ Próxima tarefa: `python scripts/proxima_tarefa.py`. Ao concluir um documento, a
 36. **VTX-045** Diretrizes do agente DevOps/SRE → `knowledge/diretrizes/devops-sre.md`
 37. **VTX-046** Diretrizes dos especialistas sob demanda → `knowledge/diretrizes/especialistas.md`
 
+## F9 — Integração com o Cursor e operação
+
+38. **VTX-053** AGENTS.md raiz com diretrizes gerais dos agentes → `AGENTS.md`
+39. **VTX-054** Regra sempre ativa: fluxo entre papéis, DoD e aprovações → `.cursor/rules/vtx-base.mdc`
+40. **VTX-055** Regras por papel: Orquestrador, Produto e Arquiteto → `.cursor/rules/papeis/planejamento.mdc`
+41. **VTX-056** Regras por papel: Devs, QA e DevOps/SRE → `.cursor/rules/papeis/execucao.mdc`
+42. **VTX-057** Regras por assunto com globs: testes e APIs → `.cursor/rules/assuntos/testes-api.mdc`
+43. **VTX-058** Regras por assunto com globs: frontend/mobile e segurança → `.cursor/rules/assuntos/frontend-seguranca.mdc`
+44. **VTX-059** Estratégia de consulta sob demanda e índice para agentes → `knowledge/index.yaml`
+45. **VTX-060** Template de repositório de projeto → `templates/projeto/`
+46. **VTX-061** Sincronização de regras e script de bootstrap de projetos → `scripts/bootstrap_projeto.sh`
+47. **VTX-062** Ambiente dos agentes de nuvem (environment.json, segredos, permissões) → `.cursor/environment.json`
+48. **VTX-063** Orquestração com issues, PRs e agentes de nuvem por papel → `knowledge/processos/orquestracao-cursor.md`
+49. **VTX-064** Pontos de aprovação do Samuel (branch protegida, revisões, release) → `knowledge/processos/pontos-de-aprovacao.md`
+50. **VTX-065** Teste de validação da integração com o Cursor → `projects/validacao-cursor/`
+
 ## F8 — Consolidação e validação
 
-38. **VTX-047** Glossário técnico → `knowledge/glossario.md`
-39. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
-40. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
-41. **VTX-050** Projeto piloto: definição e PRD → `projects/piloto/`
-42. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/piloto/`
-43. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/piloto/`
+51. **VTX-047** Glossário técnico → `knowledge/glossario.md`
+52. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
+53. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
+54. **VTX-050** Projeto piloto: definição e PRD → `projects/piloto/`
+55. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/piloto/`
+56. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/piloto/`
