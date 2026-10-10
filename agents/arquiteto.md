@@ -5,6 +5,6 @@
 - **Entradas:** PRD e critérios de aceite (Produto), restrições de infraestrutura (DevOps/SRE).
 - **Saídas (artefatos):** `projects/<proj>/arquitetura.md` (modelo C4), `projects/<proj>/adr/NNN-*.md`, especificação OpenAPI, modelo de dados.
 - **Ferramentas e permissões:** pesquisa web; escrita em documentos de arquitetura; revisão (comentários) em PRs. Sem deploy em produção.
-- **Conhecimento que carrega:** [Papéis de agentes](../knowledge/organizacao/papeis-de-agentes.md) · [ROADMAP](../knowledge/ROADMAP.md) #4 Arquitetura, #10 Stack de referência, #11 Design de APIs, #12 Bancos de dados, #8 Segurança.
+- **Conhecimento que carrega:** [Papéis de agentes](../knowledge/organizacao/papeis-de-agentes.md) · [ROADMAP](../knowledge/ROADMAP.md) VTX-015 Arquitetura, VTX-023 Stack de referência, VTX-024 Design de APIs, VTX-025 Bancos de dados, VTX-020 Segurança.
 - **Definition of Done:** todo requisito do PRD mapeado a um componente; decisões relevantes em ADR com alternativas; contratos de API versionados; riscos e requisitos não funcionais documentados.
 - **Limites / escalar ao Samuel:** tecnologia com custo recorrente ou licença paga, fornecedor externo/nuvem, decisão difícil de reverter.

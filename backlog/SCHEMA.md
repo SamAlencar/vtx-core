@@ -1,22 +1,43 @@
-# Formato do Backlog Diário
+# Formato do Backlog
 
-Um arquivo por dia: `backlog/AAAA-MM-DD.yaml`.
+Dois tipos de arquivo:
+
+## 1. Backlog mestre — `backlog/projeto.yaml` (plano completo)
 
 ```yaml
-data: "2026-10-10"          # obrigatório, AAAA-MM-DD (igual ao nome do arquivo)
+projeto: "Nome do projeto"
+fases:
+  - {id: F1, nome: "Processo e operação de agentes"}
 tarefas:
-  - id: VTX-001             # obrigatório, único e sequencial no projeto
-    titulo: "Texto curto"   # obrigatório — PÚBLICO (vai para o painel)
-    area: "Infraestrutura"  # obrigatório — PÚBLICO
-    status: "concluído"     # obrigatório — PÚBLICO: "a fazer" | "em andamento" | "concluído"
-    responsavel: "agente-x" # obrigatório — PRIVADO
-    notas: "detalhes"       # opcional — PRIVADO
+  - id: VTX-010            # único, estável, nunca reutilizado
+    titulo: "Texto curto"  # PÚBLICO
+    fase: F1               # PÚBLICO
+    area: "Base de Conhecimento"  # PÚBLICO
+    prioridade: 10         # PÚBLICO — menor = antes (ordem de execução)
+    status: "a fazer"      # PÚBLICO — valor base
+    entregavel: "knowledge/..."   # PRIVADO
 ```
 
-## Áreas sugeridas
-Infraestrutura, Organização, Base de Conhecimento, Produto, Arquitetura, Desenvolvimento, Qualidade, Segurança, DevOps, Gestão.
+## 2. Diário — `backlog/AAAA-MM-DD.yaml` (o que foi feito no dia)
+
+```yaml
+data: "2026-10-10"
+tarefas:
+  - id: VTX-010
+    titulo: "Texto curto"   # PÚBLICO
+    area: "Base de Conhecimento"  # PÚBLICO
+    status: "concluído"     # PÚBLICO: "a fazer" | "em andamento" | "concluído"
+    responsavel: "agente-x" # PRIVADO
+    notas: "detalhes"       # PRIVADO
+```
 
 ## Regras
-- Uma tarefa que continua no dia seguinte é repetida no novo arquivo com o mesmo `id` e o status atualizado.
-- **Nunca** colocar dados sensíveis em `titulo` ou `area`: esses campos são publicados no painel público.
-- Apenas `data`, `id`, `titulo`, `area` e `status` são exportados por `scripts/exportar_painel.py`.
+- **Status efetivo** de uma tarefa = o do diário mais recente que cita o id; se nenhum cita, vale o do mestre.
+- Tarefas novas entram primeiro no mestre (com id, fase e prioridade); depois são citadas nos diários.
+- `titulo`, `area` e `fase` são publicados no painel: **nunca** colocar dados sensíveis neles.
+- Exportado por `scripts/exportar_painel.py`: projeto (id, titulo, fase, area, prioridade, status) e diários (data, id, titulo, area, status).
+
+## Rotina diária
+1. `python scripts/proxima_tarefa.py` → mostra a tarefa em andamento ou a próxima "a fazer" de menor prioridade.
+2. Executar a tarefa (um documento por sessão) e atualizar `knowledge/INDEX.md`.
+3. Criar/atualizar `backlog/AAAA-MM-DD.yaml` citando o id com o novo status e fazer push → o painel atualiza sozinho.

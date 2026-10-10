@@ -2,43 +2,42 @@
 """Exporta o backlog para o painel público, SOMENTE com campos sanitizados.
 
 Uso: python scripts/exportar_painel.py <dir_backlog> <arquivo_saida.json>
-Campos exportados: data, id, titulo, area, status. Todo o resto é descartado.
+Projeto: id, titulo, fase, area, prioridade, status. Dias: data, id, titulo, area, status.
+Notas, responsáveis e entregáveis (caminhos) NUNCA são exportados.
 """
-import glob
 import json
 import os
 import sys
 from datetime import datetime, timezone
 
-import yaml
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from backlog_lib import _status, carregar  # noqa: E402
 
-STATUS_VALIDOS = {"a fazer", "em andamento", "concluído"}
 
-
-def main(dir_backlog: str, saida: str) -> None:
-    dias = []
-    for caminho in sorted(glob.glob(os.path.join(dir_backlog, "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].yaml"))):
-        with open(caminho, encoding="utf-8") as f:
-            doc = yaml.safe_load(f) or {}
-        data = str(doc.get("data") or os.path.basename(caminho)[:10])
-        tarefas = []
-        for t in doc.get("tarefas") or []:
-            status = str(t.get("status", "")).strip().lower()
-            if status not in STATUS_VALIDOS:
-                status = "a fazer"
-            tarefas.append({
-                "id": str(t.get("id", "")),
-                "titulo": str(t.get("titulo", "")),
-                "area": str(t.get("area", "")),
-                "status": status,
-            })
-        dias.append({"data": data, "tarefas": tarefas})
-    dias.sort(key=lambda d: d["data"], reverse=True)
-    out = {"gerado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"), "dias": dias}
+def main(dir_backlog, saida):
+    projeto, dias = carregar(dir_backlog)
+    out = {
+        "gerado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "projeto": {
+            "nome": str(projeto.get("projeto", "")),
+            "fases": [{"id": str(f["id"]), "nome": str(f["nome"])} for f in projeto.get("fases", [])],
+            "tarefas": [
+                {k: (int(t[k]) if k == "prioridade" else str(t[k])) for k in ("id", "titulo", "fase", "area", "prioridade", "status")}
+                for t in sorted(projeto.get("tarefas", []), key=lambda t: int(t["prioridade"]))
+            ],
+        },
+        "dias": [
+            {"data": d["data"], "tarefas": [
+                {"id": str(t.get("id", "")), "titulo": str(t.get("titulo", "")),
+                 "area": str(t.get("area", "")), "status": _status(t.get("status"))}
+                for t in d["tarefas"]]}
+            for d in sorted(dias, key=lambda d: d["data"], reverse=True)
+        ],
+    }
     os.makedirs(os.path.dirname(saida) or ".", exist_ok=True)
     with open(saida, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
-    print(f"Exportados {len(dias)} dia(s) para {saida}")
+    print(f"Exportados {len(out['projeto']['tarefas'])} tarefas do projeto e {len(dias)} dia(s) para {saida}")
 
 
 if __name__ == "__main__":

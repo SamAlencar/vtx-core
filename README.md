@@ -21,9 +21,9 @@ knowledge/        Base de conhecimento (um tema por arquivo Markdown curto)
   INDEX.md        Índice de todos os documentos
   ROADMAP.md      Próximos temas a pesquisar, em ordem de prioridade
 agents/           Definições dos papéis de agentes (a preencher)
-backlog/          Backlog diário (AAAA-MM-DD.yaml) + SCHEMA.md
+backlog/          Backlog mestre (projeto.yaml) + diário (AAAA-MM-DD.yaml) + SCHEMA.md
 projects/         Projetos de clientes / produtos (um subdiretório por projeto)
-scripts/          Automação (ex.: exportação sanitizada para o painel)
+scripts/          Exportação sanitizada para o painel e próxima tarefa (proxima_tarefa.py)
 .github/workflows Sincronização automática do painel (ativa)
 ```
 
