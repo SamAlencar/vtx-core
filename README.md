@@ -24,7 +24,7 @@ agents/           Definições dos papéis de agentes (a preencher)
 backlog/          Backlog diário (AAAA-MM-DD.yaml) + SCHEMA.md
 projects/         Projetos de clientes / produtos (um subdiretório por projeto)
 scripts/          Automação (ex.: exportação sanitizada para o painel)
-ci/              Workflow de sincronização do painel (ver ci/README.md para ativar)
+.github/workflows Sincronização automática do painel (ativa)
 ```
 
 ## Princípio de economia de tokens
