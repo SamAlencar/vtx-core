@@ -1,0 +1,8 @@
+data: "2026-10-11"
+tarefas:
+  - id: VTX-066
+    titulo: "Guia de classificação e triagem de projetos (inclui híbridos)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/triagem.md: 6 tipos, 5 perguntas de decisão, regras para híbridos, modelo de ficha do projeto, checklist."
