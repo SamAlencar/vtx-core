@@ -1,0 +1,8 @@
+data: "2026-10-12"
+tarefas:
+  - id: VTX-067
+    titulo: "Fluxo de projeto: sistema web / plataforma SaaS"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/sistema-web-saas.md: 9 etapas com papéis, artefatos e portões; 4 aprovações do Samuel; itens SaaS (tenancy, cobrança, LGPD); riscos; exemplo; checklist."
