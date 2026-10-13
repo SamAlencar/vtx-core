@@ -111,7 +111,7 @@ tarefas:
   fase: F1
   area: Base de Conhecimento
   prioridade: 13
-  status: a fazer
+  status: "concluído"
   entregavel: knowledge/processos/fluxos/app-mobile.md
   depende_de:
   - VTX-010
