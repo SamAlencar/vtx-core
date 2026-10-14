@@ -1,0 +1,8 @@
+data: "2026-10-14"
+tarefas:
+  - id: VTX-069
+    titulo: "Fluxo de projeto: API e integrações"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/api-integracoes.md: 8 etapas com papéis, artefatos e portões; 4 aprovações do Samuel; contrato primeiro (OpenAPI/AsyncAPI), idempotência, Problem Details, retentativa/circuit breaker/DLQ, webhooks assinados, OAuth (RFC 9700), versionamento e depreciação; riscos; exemplo; checklist."
