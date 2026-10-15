@@ -1,0 +1,8 @@
+data: "2026-10-15"
+tarefas:
+  - id: VTX-070
+    titulo: "Fluxo de projeto: site / landing page"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/site-landing-page.md: 9 etapas com papéis, artefatos e portões; 4 aprovações do Samuel; conteúdo primeiro, Core Web Vitals, SEO técnico, formulário/anti-spam/LGPD, Lighthouse CI; riscos; exemplo; checklist."

@@ -133,7 +133,7 @@ tarefas:
   fase: F1
   area: Base de Conhecimento
   prioridade: 15
-  status: a fazer
+  status: concluído
   entregavel: knowledge/processos/fluxos/site-landing-page.md
   depende_de:
   - VTX-010
