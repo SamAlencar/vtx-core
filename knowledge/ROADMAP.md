@@ -94,3 +94,6 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 61. **VTX-050** Projeto piloto: definição, triagem do tipo e PRD → `projects/piloto/`
 62. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/piloto/`
 63. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/piloto/`
+64. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
+65. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
+66. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`

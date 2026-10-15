@@ -559,3 +559,27 @@ tarefas:
   prioridade: 72
   status: a fazer
   entregavel: projects/piloto/
+- id: VTX-073
+  titulo: 'Validação automática do backlog no CI (ids, campos, status, dependências)'
+  fase: F8
+  area: Qualidade
+  prioridade: 73
+  status: a fazer
+  entregavel: scripts/validar_backlog.py
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. Hoje um status digitado errado (ex.: "concluido" sem acento) vira "a fazer" silenciosamente no painel. Validar ids únicos, campos obrigatórios, status permitido, fase existente e depende_de apontando para ids existentes; falhar o CI. Reavaliar prioridade (pode subir).'
+- id: VTX-074
+  titulo: 'Verificação automática de links e fontes da base de conhecimento'
+  fase: F8
+  area: Qualidade
+  prioridade: 74
+  status: a fazer
+  entregavel: .github/workflows/links.yml
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. Checar links internos (INDEX.md, entre documentos) e externos das seções Fontes; apoia VTX-048.'
+- id: VTX-075
+  titulo: 'ROADMAP gerado com status efetivo (só tarefas pendentes)'
+  fase: F8
+  area: Gestão
+  prioridade: 75
+  status: a fazer
+  entregavel: scripts/gerar_roadmap.py
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. gerar_roadmap.py lê só o mestre e lista também tarefas já concluídas nos diários; usar backlog_lib.carregar e listar só pendentes.'

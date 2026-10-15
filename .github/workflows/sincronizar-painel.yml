@@ -6,6 +6,7 @@ on:
     paths:
       - "backlog/**"
       - "scripts/exportar_painel.py"
+      - "scripts/backlog_lib.py"
   schedule:
     - cron: "0 9 * * *"   # diariamente às 06:00 (horário de Brasília)
   workflow_dispatch:
