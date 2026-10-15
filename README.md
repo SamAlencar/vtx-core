@@ -12,7 +12,7 @@ Este repositório **privado** concentra o código, a base de conhecimento técni
 | Pasta "VTX - Empresa de Agentes IA" | Google Drive (conta VTX) | Gestão, projetos, documentos e relatórios |
 
 Fluxo: `backlog/AAAA-MM-DD.yaml` → GitHub Action `sincronizar-painel` → `vtx_painel/data/backlog.json` → GitHub Pages.
-A exportação leva **somente** `data`, `titulo`, `area` e `status`. Notas, responsáveis, caminhos e código nunca saem deste repositório.
+A exportação leva o projeto (`id`, `titulo`, `fase`, `area`, `prioridade`, `status`) e os diários (`data`, `id`, `titulo`, `area`, `status`). Notas, responsáveis, caminhos e código nunca saem deste repositório.
 
 ## Estrutura
 
@@ -20,10 +20,11 @@ A exportação leva **somente** `data`, `titulo`, `area` e `status`. Notas, resp
 knowledge/        Base de conhecimento (um tema por arquivo Markdown curto)
   INDEX.md        Índice de todos os documentos
   ROADMAP.md      Próximos temas a pesquisar, em ordem de prioridade
-agents/           Definições dos papéis de agentes (a preencher)
+agents/           Definições dos 7 papéis do núcleo + especialistas
 backlog/          Backlog mestre (projeto.yaml) + diário (AAAA-MM-DD.yaml) + SCHEMA.md
 projects/         Projetos de clientes / produtos (um subdiretório por projeto)
 scripts/          Exportação sanitizada para o painel e próxima tarefa (proxima_tarefa.py)
+tests/            Testes dos scripts do backlog (unittest)
 .github/workflows Sincronização automática do painel (ativa)
 ```
 
