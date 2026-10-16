@@ -1,0 +1,8 @@
+data: "2026-10-16"
+tarefas:
+  - id: VTX-071
+    titulo: "Fluxo de projeto: manutenção e evolução de sistema existente"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/manutencao-evolucao.md: 4 tipos ISO 14764; 9 etapas com papéis, artefatos e portões; atalho de hotfix; 4 aprovações do Samuel; testes de caracterização, Strangler Fig, flags, rollback, linha de base, DORA, dependências/CVEs, LGPD; riscos; exemplo; checklist."
