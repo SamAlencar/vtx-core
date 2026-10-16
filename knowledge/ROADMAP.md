@@ -97,3 +97,14 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 64. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
 65. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
 66. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`
+
+## F10 — Arsenal de scripts e papéis administrativos
+
+67. **VTX-076** Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts → `scripts/arsenal/INVENTARIO.md`
+68. **VTX-077** Script de estrutura inicial de projeto por tipo → `scripts/arsenal/scaffold.py`
+69. **VTX-078** Script de checklist automatizado de revisão de código e qualidade → `scripts/arsenal/revisao.py`
+70. **VTX-079** Script de verificações de segurança (dependências e segredos) → `scripts/arsenal/seguranca.py`
+71. **VTX-080** Script de verificação de prontidão para deploy → `scripts/arsenal/prontidao_deploy.py`
+72. **VTX-081** Skills: receitas curtas que usam o arsenal de scripts → `skills/`
+73. **VTX-082** Adotar o formato-fonte de agentes e os exportadores compartilhados → `agentes/`
+74. **VTX-083** Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD) → `knowledge/papeis/administrativos/`
