@@ -12,3 +12,4 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 5 | [Fluxo de projeto: app mobile](processos/fluxos/app-mobile.md) | Processos | v1 | 2026-10-13 |
 | 6 | [Fluxo de projeto: API e integrações](processos/fluxos/api-integracoes.md) | Processos | v1 | 2026-10-14 |
 | 7 | [Fluxo de projeto: site / landing page](processos/fluxos/site-landing-page.md) | Processos | v1 | 2026-10-15 |
+| 8 | [Fluxo de projeto: manutenção e evolução de sistema existente](processos/fluxos/manutencao-evolucao.md) | Processos | v1 | 2026-10-16 |
