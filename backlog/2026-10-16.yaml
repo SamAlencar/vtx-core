@@ -6,3 +6,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "knowledge/processos/fluxos/manutencao-evolucao.md: 4 tipos ISO 14764; 9 etapas com papéis, artefatos e portões; atalho de hotfix; 4 aprovações do Samuel; testes de caracterização, Strangler Fig, flags, rollback, linha de base, DORA, dependências/CVEs, LGPD; riscos; exemplo; checklist."
+  - id: VTX-084
+    titulo: "Fluxo de entrevista com o cliente (descoberta)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/entrevista-cliente.md: teoria x prática por etapa (preparação, abertura, JTBD/Mom Test, personas, metas, Lean Inception, restrições, modelo de negócio, riscos, MoSCoW, fechamento); síntese, validação, artefatos, portões e papéis; roteiro em 10 blocos; modo assíncrono por chat; checklist; fontes. Furou a fila a pedido do Samuel para o piloto plataforma-projetos."

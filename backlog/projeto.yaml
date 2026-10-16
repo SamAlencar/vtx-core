@@ -152,6 +152,16 @@ tarefas:
   - VTX-010
   - VTX-066
   notas: 'Cobrir: etapas, papéis envolvidos, entregáveis/artefatos por etapa, pontos de aprovação do Samuel, riscos típicos, critérios de conclusão.'
+- id: VTX-084
+  titulo: 'Fluxo de entrevista com o cliente (descoberta)'
+  fase: F1
+  area: Base de Conhecimento
+  prioridade: 16
+  status: a fazer
+  entregavel: knowledge/processos/fluxos/entrevista-cliente.md
+  depende_de:
+  - VTX-066
+  notas: 'Pedido do Samuel em 2026-10-16: furar a fila (antes do VTX-072) para aplicar a entrevista a ele e iniciar o piloto plataforma-projetos. Prioridade 16 empata com VTX-071 (já concluída), evitando renumerar as demais.'
 - id: VTX-072
   titulo: 'Fluxo de projeto: MVP / prova de conceito'
   fase: F1
