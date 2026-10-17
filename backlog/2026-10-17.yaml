@@ -24,3 +24,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Pedido do Samuel. Plano v2; F11 com 18 tarefas (prioridades 83 a 100); F8/F10 +5 (101 a 117)."
+  - id: VTX-119
+    titulo: "Bibliotecas e recursos para agentes: processo e registro"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Pedido do Samuel. knowledge/ferramentas/bibliotecas-e-recursos.md + recursos.yaml (impeccable em avaliação); F12 ganha VTX-119 a VTX-129 (prioridades 52 a 62); prioridades >= 52 deslocadas +11."

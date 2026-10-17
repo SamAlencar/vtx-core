@@ -17,3 +17,4 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 10 | [Fluxo de projeto: MVP / prova de conceito](processos/fluxos/mvp-poc.md) | Processos | v1 | 2026-10-17 |
 | 11 | [Projeto interno: plataforma de acompanhamento](projetos-internos/plataforma-acompanhamento.md) | Projetos internos | v1 | 2026-10-17 |
 | 12 | [Catálogo de ferramentas](ferramentas/README.md) | Ferramentas | v1 | 2026-10-17 |
+| 13 | [Bibliotecas e recursos para agentes](ferramentas/bibliotecas-e-recursos.md) | Ferramentas | v1 | 2026-10-17 |

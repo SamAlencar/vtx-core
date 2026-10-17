@@ -1,0 +1,114 @@
+# Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
+# status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
+# Verificado em 2026-10-17 (estrelas aproximadas, licença pela API do GitHub).
+recursos:
+  - id: impeccable
+    nome: Impeccable
+    area: frontend-design
+    tipo: skill
+    link: https://github.com/pbakaus/impeccable
+    licenca: Apache-2.0
+    status: em avaliação
+    uso_agentes: "Skill com 24 comandos (/impeccable init, shape, critique, audit, polish...) e 59 regras determinísticas; instala em .cursor via npx impeccable install."
+    riscos: "Baixa um binário no 1º uso e instala hooks no projeto: revisar, fixar versão, testar em sandbox (VTX-127)."
+    responsavel: dev-frontend-mobile
+    revisado_em: "2026-10-17"
+  - id: anthropic-skills
+    nome: Anthropic Skills (inclui frontend-design)
+    area: skills-agentes
+    tipo: skill
+    link: https://github.com/anthropics/skills
+    licenca: "varia por skill (sem licença única no repositório)"
+    status: em avaliação
+    uso_agentes: "Referência do formato SKILL.md; base do impeccable."
+    riscos: "Conferir a licença de cada skill antes de copiar."
+    responsavel: orquestrador
+    revisado_em: "2026-10-17"
+  - id: vercel-agent-skills
+    nome: Vercel Agent Skills
+    area: skills-agentes
+    tipo: skill
+    link: https://github.com/vercel-labs/agent-skills
+    licenca: "não declarada na API (verificar)"
+    status: em avaliação
+    uso_agentes: "Skills de React/Next.js e deploy; casa com VTX-099 (Vercel)."
+    riscos: "Licença a confirmar."
+    responsavel: dev-frontend-mobile
+    revisado_em: "2026-10-17"
+  - id: awesome-cursorrules
+    nome: awesome-cursorrules
+    area: regras-cursor
+    tipo: lista
+    link: https://github.com/PatrickJS/awesome-cursorrules
+    licenca: CC0-1.0
+    status: em avaliação
+    uso_agentes: "Fonte de ideias para as regras da F9; adaptar, não copiar em bloco."
+    riscos: "Qualidade irregular; revisar cada regra."
+    responsavel: orquestrador
+    revisado_em: "2026-10-17"
+  - id: mcp-registry
+    nome: MCP Registry oficial
+    area: mcp
+    tipo: lista
+    link: https://registry.modelcontextprotocol.io
+    licenca: "repositório com licença mista (github.com/modelcontextprotocol/registry)"
+    status: em avaliação
+    uso_agentes: "Fonte primária para descobrir servidores MCP."
+    riscos: "Servidor listado não é servidor auditado."
+    responsavel: devops-sre
+    revisado_em: "2026-10-17"
+  - id: awesome-mcp-servers
+    nome: awesome-mcp-servers
+    area: mcp
+    tipo: lista
+    link: https://github.com/punkpeye/awesome-mcp-servers
+    licenca: MIT
+    status: em avaliação
+    uso_agentes: "Lista comunitária de servidores MCP por categoria."
+    riscos: "Sem curadoria de segurança."
+    responsavel: devops-sre
+    revisado_em: "2026-10-17"
+  - id: github-mcp-server
+    nome: GitHub MCP Server
+    area: mcp
+    tipo: mcp
+    link: https://github.com/github/github-mcp-server
+    licenca: MIT
+    status: adotado
+    uso_agentes: "Já em uso pelos agentes (issues, PRs, CI)."
+    riscos: "Token com escopo mínimo."
+    responsavel: devops-sre
+    revisado_em: "2026-10-17"
+  - id: playwright-mcp
+    nome: Playwright MCP
+    area: testes-qa
+    tipo: mcp
+    link: https://github.com/microsoft/playwright-mcp
+    licenca: Apache-2.0
+    status: em avaliação
+    uso_agentes: "Agente QA navega e testa a interface no navegador."
+    riscos: "Rodar só contra ambientes de teste."
+    responsavel: qa
+    revisado_em: "2026-10-17"
+  - id: shadcn-ui
+    nome: shadcn/ui
+    area: frontend-design
+    tipo: componentes
+    link: https://github.com/shadcn-ui/ui
+    licenca: MIT
+    status: em avaliação
+    uso_agentes: "Componentes copiados para o projeto (sem dependência fechada); candidato a padrão web no stack de referência (VTX-023)."
+    riscos: "Baixo."
+    responsavel: dev-frontend-mobile
+    revisado_em: "2026-10-17"
+  - id: owasp-cheatsheets
+    nome: OWASP Cheat Sheet Series
+    area: seguranca
+    tipo: referência
+    link: https://github.com/OWASP/CheatSheetSeries
+    licenca: CC-BY-SA-4.0
+    status: adotado
+    uso_agentes: "Consulta do AppSec e dos devs; citar e resumir, sem copiar em bloco (CC-BY-SA exige atribuição)."
+    riscos: "Nenhum."
+    responsavel: especialistas
+    revisado_em: "2026-10-17"

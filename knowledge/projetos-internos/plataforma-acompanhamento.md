@@ -112,7 +112,7 @@ Papéis: Orquestrador (fluxo e registros), Produto (PRD), Arquiteto (formatos, A
 - Consome VTX-014, 038, 063, 064 e 073. Lições voltam à base na retrospectiva.
 
 ## 11. Posição no backlog
-A F11 fica entre a F9 e a F8, prioridades 83 a 100. A F8 e a F10 vão de 101 a 117, mantendo a ordem relativa. A F12 (catálogo) vem antes, nas prioridades 36 a 51, o que atende à dependência. Se a F9 for antecipada, a F11 continua logo depois dela.
+A F11 fica entre a F9 e a F8, prioridades 94 a 111. A F8 e a F10 vão de 112 a 128, mantendo a ordem relativa. A F12 (catálogo e recursos) vem antes, nas prioridades 36 a 62, o que atende à dependência. Se a F9 for antecipada, a F11 continua logo depois dela.
 
 ## Fontes
 - Base VTX: [SOP](../processos/fluxo-entre-agentes.md), [MVP/PoC](../processos/fluxos/mvp-poc.md), [catálogo de ferramentas](../ferramentas/README.md), [SCHEMA](../../backlog/SCHEMA.md).

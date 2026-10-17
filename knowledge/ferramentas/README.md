@@ -6,6 +6,7 @@
 - Um arquivo por ferramenta: `knowledge/ferramentas/<categoria>/<ferramenta>.md` (ex.: `hospedagem/vercel.md`).
 - Quando duas ferramentas concorrem pelo mesmo uso, elas ficam em um arquivo comparativo (ex.: `pagamentos/stripe-mercado-pago.md`).
 - Cada ferramenta adotada tem um **registro de adoção** (§4) no próprio arquivo.
+- Bibliotecas, skills, regras e servidores MCP usados pelos agentes: [bibliotecas-e-recursos.md](bibliotecas-e-recursos.md) e [recursos.yaml](recursos.yaml).
 - Status: `adotada` (padrão VTX), `em avaliação`, `alternativa` (só com motivo), `descontinuada`.
 
 ## 2. Categorias

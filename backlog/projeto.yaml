@@ -1,7 +1,7 @@
 # Backlog mestre do projeto (plano completo). Ver backlog/SCHEMA.md.
 # Status aqui é o valor base; o arquivo diário mais recente que citar o id prevalece.
 # Ordem de execução = prioridade (não o id). F9 vem antes de F8 porque o piloto roda pelos agentes do Cursor.
-# F12 (catálogo de ferramentas) vem logo após F4: o stack de referência (VTX-023) escolhe, o catálogo ensina a usar; F9, F10 e o piloto precisam dele.
+# F12 (catálogo de ferramentas) vem logo após F4: o stack de referência (VTX-023) escolhe, o catálogo ensina a usar; F9, F10 e o piloto precisam dele. Bibliotecas/recursos (VTX-119+) fecham a F12, antes das regras e skills da F9/F10.
 # F11 (plataforma de acompanhamento) fica entre F9 e F8: depende das convenções de issues/PRs da F9 e serve para acompanhar o piloto.
 projeto: Criação da base de conhecimento e documentação de diretrizes
 fases:
@@ -309,203 +309,203 @@ tarefas:
   titulo: Gestão de projetos, riscos e comunicação com cliente
   fase: F5
   area: Base de Conhecimento
-  prioridade: 52
+  prioridade: 63
   status: a fazer
   entregavel: knowledge/gestao/gestao-de-projetos.md
 - id: VTX-030
   titulo: Estimativas e planejamento
   fase: F5
   area: Base de Conhecimento
-  prioridade: 53
+  prioridade: 64
   status: a fazer
   entregavel: knowledge/gestao/estimativas.md
 - id: VTX-031
   titulo: LGPD e compliance
   fase: F5
   area: Base de Conhecimento
-  prioridade: 54
+  prioridade: 65
   status: a fazer
   entregavel: knowledge/seguranca/lgpd-compliance.md
 - id: VTX-032
   titulo: Documentação técnica (docs-as-code)
   fase: F5
   area: Base de Conhecimento
-  prioridade: 55
+  prioridade: 66
   status: a fazer
   entregavel: knowledge/gestao/documentacao-tecnica.md
 - id: VTX-033
   titulo: Template de PRD
   fase: F6
   area: Templates
-  prioridade: 56
+  prioridade: 67
   status: a fazer
   entregavel: knowledge/templates/prd.md
 - id: VTX-034
   titulo: Template de história de usuário e critérios de aceite
   fase: F6
   area: Templates
-  prioridade: 57
+  prioridade: 68
   status: a fazer
   entregavel: knowledge/templates/historia-de-usuario.md
 - id: VTX-035
   titulo: Template de ADR
   fase: F6
   area: Templates
-  prioridade: 58
+  prioridade: 69
   status: a fazer
   entregavel: knowledge/templates/adr.md
 - id: VTX-036
   titulo: Template de plano e relatório de testes
   fase: F6
   area: Templates
-  prioridade: 59
+  prioridade: 70
   status: a fazer
   entregavel: knowledge/templates/plano-de-testes.md
 - id: VTX-037
   titulo: Template de runbook e postmortem
   fase: F6
   area: Templates
-  prioridade: 60
+  prioridade: 71
   status: a fazer
   entregavel: knowledge/templates/runbook-postmortem.md
 - id: VTX-038
   titulo: Template de relatório diário e de sprint
   fase: F6
   area: Templates
-  prioridade: 61
+  prioridade: 72
   status: a fazer
   entregavel: knowledge/templates/relatorios.md
 - id: VTX-039
   titulo: Diretrizes do agente Orquestrador
   fase: F7
   area: Diretrizes
-  prioridade: 62
+  prioridade: 73
   status: a fazer
   entregavel: knowledge/diretrizes/orquestrador.md
 - id: VTX-040
   titulo: Diretrizes do agente Produto
   fase: F7
   area: Diretrizes
-  prioridade: 63
+  prioridade: 74
   status: a fazer
   entregavel: knowledge/diretrizes/produto.md
 - id: VTX-041
   titulo: Diretrizes do agente Arquiteto
   fase: F7
   area: Diretrizes
-  prioridade: 64
+  prioridade: 75
   status: a fazer
   entregavel: knowledge/diretrizes/arquiteto.md
 - id: VTX-042
   titulo: Diretrizes do agente Dev Backend
   fase: F7
   area: Diretrizes
-  prioridade: 65
+  prioridade: 76
   status: a fazer
   entregavel: knowledge/diretrizes/dev-backend.md
 - id: VTX-043
   titulo: Diretrizes do agente Dev Frontend/Mobile
   fase: F7
   area: Diretrizes
-  prioridade: 66
+  prioridade: 77
   status: a fazer
   entregavel: knowledge/diretrizes/dev-frontend-mobile.md
 - id: VTX-044
   titulo: Diretrizes do agente QA
   fase: F7
   area: Diretrizes
-  prioridade: 67
+  prioridade: 78
   status: a fazer
   entregavel: knowledge/diretrizes/qa.md
 - id: VTX-045
   titulo: Diretrizes do agente DevOps/SRE
   fase: F7
   area: Diretrizes
-  prioridade: 68
+  prioridade: 79
   status: a fazer
   entregavel: knowledge/diretrizes/devops-sre.md
 - id: VTX-046
   titulo: Diretrizes dos especialistas sob demanda
   fase: F7
   area: Diretrizes
-  prioridade: 69
+  prioridade: 80
   status: a fazer
   entregavel: knowledge/diretrizes/especialistas.md
 - id: VTX-053
   titulo: AGENTS.md raiz com diretrizes gerais dos agentes
   fase: F9
   area: Integração Cursor
-  prioridade: 70
+  prioridade: 81
   status: a fazer
   entregavel: AGENTS.md
 - id: VTX-054
   titulo: 'Regra sempre ativa: fluxo entre papéis, DoD e aprovações'
   fase: F9
   area: Integração Cursor
-  prioridade: 71
+  prioridade: 82
   status: a fazer
   entregavel: .cursor/rules/vtx-base.mdc
 - id: VTX-055
   titulo: 'Regras por papel: Orquestrador, Produto e Arquiteto'
   fase: F9
   area: Integração Cursor
-  prioridade: 72
+  prioridade: 83
   status: a fazer
   entregavel: .cursor/rules/papeis/planejamento.mdc
 - id: VTX-056
   titulo: 'Regras por papel: Devs, QA e DevOps/SRE'
   fase: F9
   area: Integração Cursor
-  prioridade: 73
+  prioridade: 84
   status: a fazer
   entregavel: .cursor/rules/papeis/execucao.mdc
 - id: VTX-057
   titulo: 'Regras por assunto com globs: testes e APIs'
   fase: F9
   area: Integração Cursor
-  prioridade: 74
+  prioridade: 85
   status: a fazer
   entregavel: .cursor/rules/assuntos/testes-api.mdc
 - id: VTX-058
   titulo: 'Regras por assunto com globs: frontend/mobile e segurança'
   fase: F9
   area: Integração Cursor
-  prioridade: 75
+  prioridade: 86
   status: a fazer
   entregavel: .cursor/rules/assuntos/frontend-seguranca.mdc
 - id: VTX-059
   titulo: Estratégia de consulta sob demanda e índice para agentes
   fase: F9
   area: Integração Cursor
-  prioridade: 76
+  prioridade: 87
   status: a fazer
   entregavel: knowledge/index.yaml
 - id: VTX-060
   titulo: Template de repositório de projeto
   fase: F9
   area: Integração Cursor
-  prioridade: 77
+  prioridade: 88
   status: a fazer
   entregavel: templates/projeto/
 - id: VTX-061
   titulo: Sincronização de regras e script de bootstrap de projetos
   fase: F9
   area: Integração Cursor
-  prioridade: 78
+  prioridade: 89
   status: a fazer
   entregavel: scripts/bootstrap_projeto.sh
 - id: VTX-062
   titulo: Ambiente dos agentes de nuvem (environment.json, segredos, permissões)
   fase: F9
   area: Integração Cursor
-  prioridade: 79
+  prioridade: 90
   status: a fazer
   entregavel: .cursor/environment.json
 - id: VTX-063
   titulo: Orquestração com issues, PRs e agentes de nuvem por papel e tipo de projeto
   fase: F9
   area: Integração Cursor
-  prioridade: 80
+  prioridade: 91
   status: a fazer
   entregavel: knowledge/processos/orquestracao-cursor.md
   depende_de: &id001
@@ -521,42 +521,42 @@ tarefas:
   titulo: Pontos de aprovação do Samuel (branch protegida, revisões, release)
   fase: F9
   area: Integração Cursor
-  prioridade: 81
+  prioridade: 92
   status: a fazer
   entregavel: knowledge/processos/pontos-de-aprovacao.md
 - id: VTX-065
   titulo: Teste de validação da integração com o Cursor
   fase: F9
   area: Integração Cursor
-  prioridade: 82
+  prioridade: 93
   status: a fazer
   entregavel: projects/validacao-cursor/
 - id: VTX-047
   titulo: Glossário técnico
   fase: F8
   area: Base de Conhecimento
-  prioridade: 101
+  prioridade: 112
   status: a fazer
   entregavel: knowledge/glossario.md
 - id: VTX-048
   titulo: Revisão geral da base (consistência, links, fontes)
   fase: F8
   area: Qualidade
-  prioridade: 102
+  prioridade: 113
   status: a fazer
   entregavel: knowledge/
 - id: VTX-049
   titulo: Índice final e guia de navegação para agentes
   fase: F8
   area: Base de Conhecimento
-  prioridade: 103
+  prioridade: 114
   status: a fazer
   entregavel: knowledge/INDEX.md
 - id: VTX-050
   titulo: 'Projeto piloto: definição, triagem do tipo e PRD'
   fase: F8
   area: Validação
-  prioridade: 104
+  prioridade: 115
   status: a fazer
   entregavel: projects/piloto/
   depende_de: *id001
@@ -565,7 +565,7 @@ tarefas:
   titulo: 'Projeto piloto: execução do fluxo completo'
   fase: F8
   area: Validação
-  prioridade: 105
+  prioridade: 116
   status: a fazer
   entregavel: projects/piloto/
   depende_de: *id001
@@ -574,14 +574,14 @@ tarefas:
   titulo: 'Projeto piloto: retrospectiva e ajustes na base'
   fase: F8
   area: Validação
-  prioridade: 106
+  prioridade: 117
   status: a fazer
   entregavel: projects/piloto/
 - id: VTX-073
   titulo: 'Validação automática do backlog no CI (ids, campos, status, dependências)'
   fase: F8
   area: Qualidade
-  prioridade: 107
+  prioridade: 118
   status: a fazer
   entregavel: scripts/validar_backlog.py
   notas: 'Proposta da manutenção quinzenal 2026-10-15. Hoje um status digitado errado (ex.: "concluido" sem acento) vira "a fazer" silenciosamente no painel. Validar ids únicos, campos obrigatórios, status permitido, fase existente e depende_de apontando para ids existentes; falhar o CI. Reavaliar prioridade (pode subir).'
@@ -589,7 +589,7 @@ tarefas:
   titulo: 'Verificação automática de links e fontes da base de conhecimento'
   fase: F8
   area: Qualidade
-  prioridade: 108
+  prioridade: 119
   status: a fazer
   entregavel: .github/workflows/links.yml
   notas: 'Proposta da manutenção quinzenal 2026-10-15. Checar links internos (INDEX.md, entre documentos) e externos das seções Fontes; apoia VTX-048.'
@@ -597,7 +597,7 @@ tarefas:
   titulo: 'ROADMAP gerado com status efetivo (só tarefas pendentes)'
   fase: F8
   area: Gestão
-  prioridade: 109
+  prioridade: 120
   status: a fazer
   entregavel: scripts/gerar_roadmap.py
   notas: 'Proposta da manutenção quinzenal 2026-10-15. gerar_roadmap.py lê só o mestre e lista também tarefas já concluídas nos diários; usar backlog_lib.carregar e listar só pendentes.'
@@ -605,7 +605,7 @@ tarefas:
   titulo: 'Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts'
   fase: F10
   area: Automação
-  prioridade: 110
+  prioridade: 121
   status: a fazer
   entregavel: scripts/arsenal/INVENTARIO.md
   notas: 'Adaptação do tek-team (acordo com Tek em 2026-10-16). Listar tarefas recorrentes que devem virar scripts testados, reaproveitando bibliotecas abertas; priorizar por frequência e economia de tokens.'
@@ -613,7 +613,7 @@ tarefas:
   titulo: 'Script de estrutura inicial de projeto por tipo'
   fase: F10
   area: Automação
-  prioridade: 111
+  prioridade: 122
   status: a fazer
   entregavel: scripts/arsenal/scaffold.py
   depende_de:
@@ -623,7 +623,7 @@ tarefas:
   titulo: 'Script de checklist automatizado de revisão de código e qualidade'
   fase: F10
   area: Automação
-  prioridade: 112
+  prioridade: 123
   status: a fazer
   entregavel: scripts/arsenal/revisao.py
   depende_de:
@@ -633,7 +633,7 @@ tarefas:
   titulo: 'Script de verificações de segurança (dependências e segredos)'
   fase: F10
   area: Automação
-  prioridade: 113
+  prioridade: 124
   status: a fazer
   entregavel: scripts/arsenal/seguranca.py
   depende_de:
@@ -643,7 +643,7 @@ tarefas:
   titulo: 'Script de verificação de prontidão para deploy'
   fase: F10
   area: Automação
-  prioridade: 114
+  prioridade: 125
   status: a fazer
   entregavel: scripts/arsenal/prontidao_deploy.py
   depende_de:
@@ -653,7 +653,7 @@ tarefas:
   titulo: 'Skills: receitas curtas que usam o arsenal de scripts'
   fase: F10
   area: Integração Cursor
-  prioridade: 115
+  prioridade: 126
   status: a fazer
   entregavel: skills/
   depende_de:
@@ -666,7 +666,7 @@ tarefas:
   titulo: 'Adotar o formato-fonte de agentes e os exportadores compartilhados'
   fase: F10
   area: Integração Cursor
-  prioridade: 116
+  prioridade: 127
   status: a fazer
   entregavel: agentes/
   depende_de:
@@ -676,7 +676,7 @@ tarefas:
   titulo: 'Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD)'
   fase: F10
   area: Papéis
-  prioridade: 117
+  prioridade: 128
   status: a fazer
   entregavel: knowledge/papeis/administrativos/
   notas: 'Só executar quando a VTX estiver perto de atender o primeiro cliente; até lá, pular. Adaptar os papéis genéricos do tek-team. Assinaturas, atos jurídicos, pagamentos e obrigações fiscais ficam sempre com o Samuel.'
@@ -847,7 +847,7 @@ tarefas:
   titulo: 'Planejamento da plataforma de acompanhamento'
   fase: F11
   area: Planejamento
-  prioridade: 83
+  prioridade: 94
   status: concluído
   entregavel: 'knowledge/projetos-internos/plataforma-acompanhamento.md'
   notas: 'v1: objetivos, módulos, fontes, arquitetura, segurança. Repo privado SamAlencar/vtx-acompanhamento.'
@@ -855,7 +855,7 @@ tarefas:
   titulo: 'Plataforma: revisão do plano (ferramentas, conexões, Cursor primeiro)'
   fase: F11
   area: Planejamento
-  prioridade: 84
+  prioridade: 95
   status: concluído
   entregavel: 'knowledge/projetos-internos/plataforma-acompanhamento.md'
   depende_de:
@@ -865,7 +865,7 @@ tarefas:
   titulo: 'Plataforma: PRD do MVP, hipóteses e critérios de sucesso'
   fase: F11
   area: Plataforma interna
-  prioridade: 85
+  prioridade: 96
   status: a fazer
   entregavel: 'vtx-acompanhamento/docs/prd-mvp.md'
   depende_de:
@@ -875,7 +875,7 @@ tarefas:
   titulo: 'Formatos de registro: eventos, handoffs, decisões e custos'
   fase: F11
   area: Plataforma interna
-  prioridade: 86
+  prioridade: 97
   status: a fazer
   entregavel: 'registro/ + backlog/SCHEMA.md'
   depende_de:
@@ -885,7 +885,7 @@ tarefas:
   titulo: 'Formato da fila de aprovações do Samuel'
   fase: F11
   area: Plataforma interna
-  prioridade: 87
+  prioridade: 98
   status: a fazer
   entregavel: 'registro/aprovacoes.yaml + backlog/SCHEMA.md'
   depende_de:
@@ -895,7 +895,7 @@ tarefas:
   titulo: 'Esquema do manifesto de conexões por projeto'
   fase: F11
   area: Plataforma interna
-  prioridade: 88
+  prioridade: 99
   status: a fazer
   entregavel: 'projects/CONEXOES.md + projects/<p>/conexoes.yaml'
   depende_de:
@@ -906,7 +906,7 @@ tarefas:
   titulo: 'Gerador de dados da plataforma (JSON privado único)'
   fase: F11
   area: Plataforma interna
-  prioridade: 89
+  prioridade: 100
   status: a fazer
   entregavel: 'vtx-acompanhamento/gerador/'
   depende_de:
@@ -918,7 +918,7 @@ tarefas:
   titulo: 'Verificador de status das conexões (somente leitura)'
   fase: F11
   area: Plataforma interna
-  prioridade: 90
+  prioridade: 101
   status: a fazer
   entregavel: 'vtx-acompanhamento/verificador/'
   depende_de:
@@ -929,7 +929,7 @@ tarefas:
   titulo: 'Painel Markdown (semana 1): portfólio, fases e progresso'
   fase: F11
   area: Plataforma interna
-  prioridade: 91
+  prioridade: 102
   status: a fazer
   entregavel: 'vtx-acompanhamento/painel/'
   depende_de:
@@ -938,7 +938,7 @@ tarefas:
   titulo: 'Painel Markdown: conexões por projeto e alertas de conexão'
   fase: F11
   area: Plataforma interna
-  prioridade: 92
+  prioridade: 103
   status: a fazer
   entregavel: 'vtx-acompanhamento/painel/conexoes.md'
   depende_de:
@@ -949,7 +949,7 @@ tarefas:
   titulo: 'Plataforma: ADR da interface web com acesso restrito'
   fase: F11
   area: Plataforma interna
-  prioridade: 93
+  prioridade: 104
   status: a fazer
   entregavel: 'vtx-acompanhamento/docs/adr/'
   depende_de:
@@ -959,7 +959,7 @@ tarefas:
   titulo: 'Interface web: estrutura, login restrito e portfólio'
   fase: F11
   area: Plataforma interna
-  prioridade: 94
+  prioridade: 105
   status: a fazer
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
@@ -969,7 +969,7 @@ tarefas:
   titulo: 'Interface web: atividade dos agentes e handoffs'
   fase: F11
   area: Plataforma interna
-  prioridade: 95
+  prioridade: 106
   status: a fazer
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
@@ -978,7 +978,7 @@ tarefas:
   titulo: 'Interface web: fila de aprovações e registro de decisões'
   fase: F11
   area: Plataforma interna
-  prioridade: 96
+  prioridade: 107
   status: a fazer
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
@@ -988,7 +988,7 @@ tarefas:
   titulo: 'Interface web: ferramentas e conexões por projeto'
   fase: F11
   area: Plataforma interna
-  prioridade: 97
+  prioridade: 108
   status: a fazer
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
@@ -1000,7 +1000,7 @@ tarefas:
   titulo: 'Interface web: métricas, custos e alertas'
   fase: F11
   area: Plataforma interna
-  prioridade: 98
+  prioridade: 109
   status: a fazer
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
@@ -1012,7 +1012,7 @@ tarefas:
   titulo: 'Plataforma: uso real por uma semana e decisão continuar ou pivotar'
   fase: F11
   area: Plataforma interna
-  prioridade: 99
+  prioridade: 110
   status: a fazer
   entregavel: 'vtx-acompanhamento/docs/relatorio-mvp.md'
   depende_de:
@@ -1022,9 +1022,123 @@ tarefas:
   titulo: 'Plataforma: incluir projetos de cliente e outros repositórios'
   fase: F11
   area: Plataforma interna
-  prioridade: 100
+  prioridade: 111
   status: a fazer
   entregavel: 'vtx-acompanhamento/gerador/'
   depende_de:
   - VTX-094
   notas: 'Projetos por código/apelido, sem dados pessoais (LGPD).'
+- id: VTX-119
+  titulo: 'Bibliotecas e recursos para agentes: processo e registro'
+  fase: F12
+  area: Ferramentas
+  prioridade: 52
+  status: concluído
+  entregavel: 'knowledge/ferramentas/bibliotecas-e-recursos.md'
+  notas: 'Processo de descoberta/avaliação/registro; recursos.yaml com 10 itens; teste tests/test_recursos.py.'
+- id: VTX-120
+  titulo: 'Pesquisa de recursos: frontend, UI e design'
+  fase: F12
+  area: Ferramentas
+  prioridade: 53
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+  notas: 'Skills de design (impeccable), componentes, acessibilidade.'
+- id: VTX-121
+  titulo: 'Pesquisa de recursos: backend e APIs'
+  fase: F12
+  area: Ferramentas
+  prioridade: 54
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+- id: VTX-122
+  titulo: 'Pesquisa de recursos: testes e QA'
+  fase: F12
+  area: Ferramentas
+  prioridade: 55
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+  notas: 'Inclui Playwright MCP.'
+- id: VTX-123
+  titulo: 'Pesquisa de recursos: segurança e cadeia de suprimentos'
+  fase: F12
+  area: Ferramentas
+  prioridade: 56
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+  notas: 'Inclui checklist de revisão de skills/hooks antes de instalar.'
+- id: VTX-124
+  titulo: 'Pesquisa de recursos: documentação'
+  fase: F12
+  area: Ferramentas
+  prioridade: 57
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+- id: VTX-125
+  titulo: 'Pesquisa de recursos: skills de agentes e regras do Cursor'
+  fase: F12
+  area: Ferramentas
+  prioridade: 58
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+  notas: 'Alinhar com tek-team (VTX-082): VTX registra o que usar; tek-team define o formato.'
+- id: VTX-126
+  titulo: 'Pesquisa de recursos: servidores MCP'
+  fase: F12
+  area: Ferramentas
+  prioridade: 59
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/recursos.yaml'
+  depende_de:
+  - VTX-119
+  notas: 'Fontes: MCP Registry oficial e listas; só leitura/escopo mínimo.'
+- id: VTX-127
+  titulo: 'Piloto do impeccable em uma tela de teste (fluxo frontend)'
+  fase: F12
+  area: Ferramentas
+  prioridade: 60
+  status: a fazer
+  entregavel: 'projects/sandbox-impeccable/'
+  depende_de:
+  - VTX-120
+  - VTX-123
+  notas: 'Sandbox, versão fixada, revisar binário e hooks; medir ganho e custo em tokens; decidir adotar ou descartar.'
+- id: VTX-128
+  titulo: 'Integrar o registro de recursos às definições dos agentes e aos fluxos'
+  fase: F12
+  area: Ferramentas
+  prioridade: 61
+  status: a fazer
+  entregavel: 'agents/ + knowledge/processos/fluxos/'
+  depende_de:
+  - VTX-120
+  - VTX-121
+  - VTX-122
+  - VTX-123
+  - VTX-124
+  - VTX-125
+  - VTX-126
+  notas: 'Seção Recursos por papel, filtrada por area.'
+- id: VTX-129
+  titulo: 'Varredura periódica de recursos na manutenção quinzenal e revisão trimestral'
+  fase: F12
+  area: Ferramentas
+  prioridade: 62
+  status: a fazer
+  entregavel: 'knowledge/ferramentas/revisao-periodica.md'
+  depende_de:
+  - VTX-113
+  - VTX-119
+  notas: 'Rodízio de 1 a 2 áreas por ciclo, máx. 3 candidatos; reavaliar adotados por trimestre.'
