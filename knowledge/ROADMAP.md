@@ -87,25 +87,41 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 57. **VTX-064** Pontos de aprovação do Samuel (branch protegida, revisões, release) → `knowledge/processos/pontos-de-aprovacao.md`
 58. **VTX-065** Teste de validação da integração com o Cursor → `projects/validacao-cursor/`
 
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+59. **VTX-085** Planejamento da plataforma de acompanhamento → `knowledge/projetos-internos/plataforma-acompanhamento.md`
+60. **VTX-086** Plataforma: PRD do MVP, hipóteses e critérios de sucesso → `vtx-acompanhamento/docs/prd-mvp.md`
+61. **VTX-087** Formatos de registro: eventos, handoffs, decisões e custos → `registro/ + backlog/SCHEMA.md`
+62. **VTX-088** Formato da fila de aprovações do Samuel → `registro/aprovacoes.yaml + backlog/SCHEMA.md`
+63. **VTX-089** Gerador de dados da plataforma (JSON privado único) → `vtx-acompanhamento/gerador/`
+64. **VTX-090** Painel privado: portfólio, fases e progresso → `vtx-acompanhamento/painel/`
+65. **VTX-091** Painel privado: atividade dos agentes e handoffs → `vtx-acompanhamento/painel/agentes.md`
+66. **VTX-092** Painel privado: fila de aprovações e registro de decisões → `vtx-acompanhamento/painel/aprovacoes.md`
+67. **VTX-093** Painel privado: métricas, custos e alertas no resumo diário → `vtx-acompanhamento/painel/metricas.md`
+68. **VTX-094** Plataforma: uso real por uma semana e decisão continuar ou pivotar → `vtx-acompanhamento/docs/relatorio-mvp.md`
+69. **VTX-095** Plataforma: ADR da interface web com acesso restrito → `vtx-acompanhamento/docs/adr/`
+70. **VTX-096** Plataforma: interface web interativa sobre o mesmo JSON → `vtx-acompanhamento/web/`
+71. **VTX-097** Plataforma: incluir projetos de cliente e outros repositórios → `vtx-acompanhamento/gerador/`
+
 ## F8 — Consolidação e validação
 
-59. **VTX-047** Glossário técnico → `knowledge/glossario.md`
-60. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
-61. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
-62. **VTX-050** Projeto piloto: definição, triagem do tipo e PRD → `projects/piloto/`
-63. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/piloto/`
-64. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/piloto/`
-65. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
-66. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
-67. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`
+72. **VTX-047** Glossário técnico → `knowledge/glossario.md`
+73. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
+74. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
+75. **VTX-050** Projeto piloto: definição, triagem do tipo e PRD → `projects/piloto/`
+76. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/piloto/`
+77. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/piloto/`
+78. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
+79. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
+80. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`
 
 ## F10 — Arsenal de scripts e papéis administrativos
 
-68. **VTX-076** Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts → `scripts/arsenal/INVENTARIO.md`
-69. **VTX-077** Script de estrutura inicial de projeto por tipo → `scripts/arsenal/scaffold.py`
-70. **VTX-078** Script de checklist automatizado de revisão de código e qualidade → `scripts/arsenal/revisao.py`
-71. **VTX-079** Script de verificações de segurança (dependências e segredos) → `scripts/arsenal/seguranca.py`
-72. **VTX-080** Script de verificação de prontidão para deploy → `scripts/arsenal/prontidao_deploy.py`
-73. **VTX-081** Skills: receitas curtas que usam o arsenal de scripts → `skills/`
-74. **VTX-082** Adotar o formato-fonte de agentes e os exportadores compartilhados → `agentes/`
-75. **VTX-083** Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD) → `knowledge/papeis/administrativos/`
+81. **VTX-076** Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts → `scripts/arsenal/INVENTARIO.md`
+82. **VTX-077** Script de estrutura inicial de projeto por tipo → `scripts/arsenal/scaffold.py`
+83. **VTX-078** Script de checklist automatizado de revisão de código e qualidade → `scripts/arsenal/revisao.py`
+84. **VTX-079** Script de verificações de segurança (dependências e segredos) → `scripts/arsenal/seguranca.py`
+85. **VTX-080** Script de verificação de prontidão para deploy → `scripts/arsenal/prontidao_deploy.py`
+86. **VTX-081** Skills: receitas curtas que usam o arsenal de scripts → `skills/`
+87. **VTX-082** Adotar o formato-fonte de agentes e os exportadores compartilhados → `agentes/`
+88. **VTX-083** Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD) → `knowledge/papeis/administrativos/`

@@ -6,3 +6,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "knowledge/processos/fluxos/mvp-poc.md: PoC x protótipo x MVP x piloto; hipóteses com Test Card e critérios definidos antes; apetite (prazo fixo, escopo variável); tipos de MVP sem código pesado; arquitetura sacrificial; 8 etapas com papéis, artefatos e portões; 4 aprovações do Samuel; métricas acionáveis, qualidade mínima, LGPD; riscos; exemplo com o piloto plataforma-projetos; checklist; fontes."
+  - id: VTX-085
+    titulo: "Planejamento da plataforma de acompanhamento"
+    area: "Planejamento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Pedido do Samuel. knowledge/projetos-internos/plataforma-acompanhamento.md; fase F11 (VTX-085 a VTX-097) entre F9 e F8; F8/F10 deslocadas +13 na prioridade; repo privado SamAlencar/vtx-acompanhamento."

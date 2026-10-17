@@ -15,3 +15,4 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 8 | [Fluxo de projeto: manutenção e evolução de sistema existente](processos/fluxos/manutencao-evolucao.md) | Processos | v1 | 2026-10-16 |
 | 9 | [Fluxo de entrevista com o cliente (descoberta)](processos/fluxos/entrevista-cliente.md) | Processos | v1 | 2026-10-16 |
 | 10 | [Fluxo de projeto: MVP / prova de conceito](processos/fluxos/mvp-poc.md) | Processos | v1 | 2026-10-17 |
+| 11 | [Projeto interno: plataforma de acompanhamento](projetos-internos/plataforma-acompanhamento.md) | Projetos internos | v1 | 2026-10-17 |
