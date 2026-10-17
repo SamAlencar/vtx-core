@@ -1,0 +1,8 @@
+data: "2026-10-17"
+tarefas:
+  - id: VTX-072
+    titulo: "Fluxo de projeto: MVP / prova de conceito"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/fluxos/mvp-poc.md: PoC x protótipo x MVP x piloto; hipóteses com Test Card e critérios definidos antes; apetite (prazo fixo, escopo variável); tipos de MVP sem código pesado; arquitetura sacrificial; 8 etapas com papéis, artefatos e portões; 4 aprovações do Samuel; métricas acionáveis, qualidade mínima, LGPD; riscos; exemplo com o piloto plataforma-projetos; checklist; fontes."
