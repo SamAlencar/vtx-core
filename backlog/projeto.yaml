@@ -535,28 +535,28 @@ tarefas:
   titulo: Glossário técnico
   fase: F8
   area: Base de Conhecimento
-  prioridade: 96
+  prioridade: 101
   status: a fazer
   entregavel: knowledge/glossario.md
 - id: VTX-048
   titulo: Revisão geral da base (consistência, links, fontes)
   fase: F8
   area: Qualidade
-  prioridade: 97
+  prioridade: 102
   status: a fazer
   entregavel: knowledge/
 - id: VTX-049
   titulo: Índice final e guia de navegação para agentes
   fase: F8
   area: Base de Conhecimento
-  prioridade: 98
+  prioridade: 103
   status: a fazer
   entregavel: knowledge/INDEX.md
 - id: VTX-050
   titulo: 'Projeto piloto: definição, triagem do tipo e PRD'
   fase: F8
   area: Validação
-  prioridade: 99
+  prioridade: 104
   status: a fazer
   entregavel: projects/piloto/
   depende_de: *id001
@@ -565,7 +565,7 @@ tarefas:
   titulo: 'Projeto piloto: execução do fluxo completo'
   fase: F8
   area: Validação
-  prioridade: 100
+  prioridade: 105
   status: a fazer
   entregavel: projects/piloto/
   depende_de: *id001
@@ -574,14 +574,14 @@ tarefas:
   titulo: 'Projeto piloto: retrospectiva e ajustes na base'
   fase: F8
   area: Validação
-  prioridade: 101
+  prioridade: 106
   status: a fazer
   entregavel: projects/piloto/
 - id: VTX-073
   titulo: 'Validação automática do backlog no CI (ids, campos, status, dependências)'
   fase: F8
   area: Qualidade
-  prioridade: 102
+  prioridade: 107
   status: a fazer
   entregavel: scripts/validar_backlog.py
   notas: 'Proposta da manutenção quinzenal 2026-10-15. Hoje um status digitado errado (ex.: "concluido" sem acento) vira "a fazer" silenciosamente no painel. Validar ids únicos, campos obrigatórios, status permitido, fase existente e depende_de apontando para ids existentes; falhar o CI. Reavaliar prioridade (pode subir).'
@@ -589,7 +589,7 @@ tarefas:
   titulo: 'Verificação automática de links e fontes da base de conhecimento'
   fase: F8
   area: Qualidade
-  prioridade: 103
+  prioridade: 108
   status: a fazer
   entregavel: .github/workflows/links.yml
   notas: 'Proposta da manutenção quinzenal 2026-10-15. Checar links internos (INDEX.md, entre documentos) e externos das seções Fontes; apoia VTX-048.'
@@ -597,7 +597,7 @@ tarefas:
   titulo: 'ROADMAP gerado com status efetivo (só tarefas pendentes)'
   fase: F8
   area: Gestão
-  prioridade: 104
+  prioridade: 109
   status: a fazer
   entregavel: scripts/gerar_roadmap.py
   notas: 'Proposta da manutenção quinzenal 2026-10-15. gerar_roadmap.py lê só o mestre e lista também tarefas já concluídas nos diários; usar backlog_lib.carregar e listar só pendentes.'
@@ -605,7 +605,7 @@ tarefas:
   titulo: 'Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts'
   fase: F10
   area: Automação
-  prioridade: 105
+  prioridade: 110
   status: a fazer
   entregavel: scripts/arsenal/INVENTARIO.md
   notas: 'Adaptação do tek-team (acordo com Tek em 2026-10-16). Listar tarefas recorrentes que devem virar scripts testados, reaproveitando bibliotecas abertas; priorizar por frequência e economia de tokens.'
@@ -613,7 +613,7 @@ tarefas:
   titulo: 'Script de estrutura inicial de projeto por tipo'
   fase: F10
   area: Automação
-  prioridade: 106
+  prioridade: 111
   status: a fazer
   entregavel: scripts/arsenal/scaffold.py
   depende_de:
@@ -623,7 +623,7 @@ tarefas:
   titulo: 'Script de checklist automatizado de revisão de código e qualidade'
   fase: F10
   area: Automação
-  prioridade: 107
+  prioridade: 112
   status: a fazer
   entregavel: scripts/arsenal/revisao.py
   depende_de:
@@ -633,7 +633,7 @@ tarefas:
   titulo: 'Script de verificações de segurança (dependências e segredos)'
   fase: F10
   area: Automação
-  prioridade: 108
+  prioridade: 113
   status: a fazer
   entregavel: scripts/arsenal/seguranca.py
   depende_de:
@@ -643,7 +643,7 @@ tarefas:
   titulo: 'Script de verificação de prontidão para deploy'
   fase: F10
   area: Automação
-  prioridade: 109
+  prioridade: 114
   status: a fazer
   entregavel: scripts/arsenal/prontidao_deploy.py
   depende_de:
@@ -653,7 +653,7 @@ tarefas:
   titulo: 'Skills: receitas curtas que usam o arsenal de scripts'
   fase: F10
   area: Integração Cursor
-  prioridade: 110
+  prioridade: 115
   status: a fazer
   entregavel: skills/
   depende_de:
@@ -666,7 +666,7 @@ tarefas:
   titulo: 'Adotar o formato-fonte de agentes e os exportadores compartilhados'
   fase: F10
   area: Integração Cursor
-  prioridade: 111
+  prioridade: 116
   status: a fazer
   entregavel: agentes/
   depende_de:
@@ -676,139 +676,10 @@ tarefas:
   titulo: 'Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD)'
   fase: F10
   area: Papéis
-  prioridade: 112
+  prioridade: 117
   status: a fazer
   entregavel: knowledge/papeis/administrativos/
   notas: 'Só executar quando a VTX estiver perto de atender o primeiro cliente; até lá, pular. Adaptar os papéis genéricos do tek-team. Assinaturas, atos jurídicos, pagamentos e obrigações fiscais ficam sempre com o Samuel.'
-- id: VTX-085
-  titulo: 'Planejamento da plataforma de acompanhamento'
-  fase: F11
-  area: Planejamento
-  prioridade: 83
-  status: concluído
-  entregavel: 'knowledge/projetos-internos/plataforma-acompanhamento.md'
-  notas: 'Objetivos, usuários, funcionalidades, fontes, arquitetura (recomendada: painel privado em Markdown), segurança, MVP. Repositório privado SamAlencar/vtx-acompanhamento criado com README e docs/visao.md.'
-- id: VTX-086
-  titulo: 'Plataforma: PRD do MVP, hipóteses e critérios de sucesso'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 84
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/docs/prd-mvp.md'
-  depende_de:
-  - VTX-085
-  notas: 'Etapas 1 a 3 do fluxo mvp-poc com Test Cards e apetite. Portão: Samuel aprova hipóteses e critérios.'
-- id: VTX-087
-  titulo: 'Formatos de registro: eventos, handoffs, decisões e custos'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 85
-  status: a fazer
-  entregavel: 'registro/ + backlog/SCHEMA.md'
-  depende_de:
-  - VTX-085
-  notas: 'Criar no vtx-core registro/eventos/AAAA-MM-DD.yaml, registro/decisoes.yaml e registro/custos.yaml com campos PÚBLICO/PRIVADO e teste de validação.'
-- id: VTX-088
-  titulo: 'Formato da fila de aprovações do Samuel'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 86
-  status: a fazer
-  entregavel: 'registro/aprovacoes.yaml + backlog/SCHEMA.md'
-  depende_de:
-  - VTX-087
-  notas: 'Portões dos fluxos e do SOP §5; alinhar com VTX-064 (rótulo aprovacao-samuel em issues/PRs).'
-- id: VTX-089
-  titulo: 'Gerador de dados da plataforma (JSON privado único)'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 87
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/gerador/'
-  depende_de:
-  - VTX-087
-  - VTX-088
-  notas: 'Reaproveitar scripts/backlog_lib.py; somente leitura do vtx-core; testes de sanitização.'
-- id: VTX-090
-  titulo: 'Painel privado: portfólio, fases e progresso'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 88
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/painel/'
-  depende_de:
-  - VTX-089
-  notas: 'Markdown gerado por workflow agendado; token de leitura com escopo mínimo em secret.'
-- id: VTX-091
-  titulo: 'Painel privado: atividade dos agentes e handoffs'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 89
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/painel/agentes.md'
-  depende_de:
-  - VTX-090
-  notas: 'Linha do tempo por papel a partir de registro/eventos e PRs/issues.'
-- id: VTX-092
-  titulo: 'Painel privado: fila de aprovações e registro de decisões'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 90
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/painel/aprovacoes.md'
-  depende_de:
-  - VTX-090
-- id: VTX-093
-  titulo: 'Painel privado: métricas, custos e alertas no resumo diário'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 91
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/painel/metricas.md'
-  depende_de:
-  - VTX-091
-  - VTX-092
-  notas: 'Vazão, lead time, retrabalho, CI, cota de tokens; alertas de tarefa parada, aprovação vencida, CI vermelha, cota > 80%.'
-- id: VTX-094
-  titulo: 'Plataforma: uso real por uma semana e decisão continuar ou pivotar'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 92
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/docs/relatorio-mvp.md'
-  depende_de:
-  - VTX-093
-  notas: 'Etapas 5 a 6 do mvp-poc. Portão: Samuel decide continuar/pivotar/parar.'
-- id: VTX-095
-  titulo: 'Plataforma: ADR da interface web com acesso restrito'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 93
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/docs/adr/'
-  depende_de:
-  - VTX-094
-  notas: 'Opções e custos (ex.: Cloudflare Pages + Access). Serviço externo novo = aprovação do Samuel.'
-- id: VTX-096
-  titulo: 'Plataforma: interface web interativa sobre o mesmo JSON'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 94
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/web/'
-  depende_de:
-  - VTX-095
-  notas: 'Só após aprovação do ADR.'
-- id: VTX-097
-  titulo: 'Plataforma: incluir projetos de cliente e outros repositórios'
-  fase: F11
-  area: Plataforma interna
-  prioridade: 95
-  status: a fazer
-  entregavel: 'vtx-acompanhamento/gerador/'
-  depende_de:
-  - VTX-094
-  notas: 'Projetos por código/apelido, sem dados pessoais (LGPD).'
 - id: VTX-098
   titulo: 'Base do catálogo de ferramentas (estrutura, modelo, critérios, matriz)'
   fase: F12
@@ -972,3 +843,188 @@ tarefas:
   depende_de:
   - VTX-098
   notas: 'Trimestral, dentro da manutenção quinzenal: custos, limites, versões, segurança, ferramentas sem uso.'
+- id: VTX-085
+  titulo: 'Planejamento da plataforma de acompanhamento'
+  fase: F11
+  area: Planejamento
+  prioridade: 83
+  status: concluído
+  entregavel: 'knowledge/projetos-internos/plataforma-acompanhamento.md'
+  notas: 'v1: objetivos, módulos, fontes, arquitetura, segurança. Repo privado SamAlencar/vtx-acompanhamento.'
+- id: VTX-114
+  titulo: 'Plataforma: revisão do plano (ferramentas, conexões, Cursor primeiro)'
+  fase: F11
+  area: Planejamento
+  prioridade: 84
+  status: concluído
+  entregavel: 'knowledge/projetos-internos/plataforma-acompanhamento.md'
+  depende_de:
+  - VTX-085
+  notas: 'v2: módulo de conexões por projeto, premissa Cursor primeiro, interface web restrita antecipada.'
+- id: VTX-086
+  titulo: 'Plataforma: PRD do MVP, hipóteses e critérios de sucesso'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 85
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/docs/prd-mvp.md'
+  depende_de:
+  - VTX-114
+  notas: 'Etapas 1 a 3 do mvp-poc. Portão: Samuel aprova hipóteses e critérios.'
+- id: VTX-087
+  titulo: 'Formatos de registro: eventos, handoffs, decisões e custos'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 86
+  status: a fazer
+  entregavel: 'registro/ + backlog/SCHEMA.md'
+  depende_de:
+  - VTX-086
+  notas: 'Campos PÚBLICO/PRIVADO e teste de validação.'
+- id: VTX-088
+  titulo: 'Formato da fila de aprovações do Samuel'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 87
+  status: a fazer
+  entregavel: 'registro/aprovacoes.yaml + backlog/SCHEMA.md'
+  depende_de:
+  - VTX-087
+  notas: 'Alinhar com VTX-064 (rótulo aprovacao-samuel).'
+- id: VTX-115
+  titulo: 'Esquema do manifesto de conexões por projeto'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 88
+  status: a fazer
+  entregavel: 'projects/CONEXOES.md + projects/<p>/conexoes.yaml'
+  depende_de:
+  - VTX-086
+  - VTX-098
+  notas: 'Ferramenta = id do catálogo F12; só referência de segredo (segredo_ref), nunca valor; validação no CI; manifestos de vtx-core e plataforma-projetos.'
+- id: VTX-089
+  titulo: 'Gerador de dados da plataforma (JSON privado único)'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 89
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/gerador/'
+  depende_de:
+  - VTX-087
+  - VTX-088
+  - VTX-115
+  notas: 'Reaproveitar scripts/backlog_lib.py; somente leitura; testes de sanitização.'
+- id: VTX-116
+  titulo: 'Verificador de status das conexões (somente leitura)'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 90
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/verificador/'
+  depende_de:
+  - VTX-115
+  - VTX-089
+  notas: 'Workflow agendado; etapa 1 sem segredos novos: API GitHub, HTTP, TLS, domínio, DNS. Token novo em serviço = aprovação do Samuel.'
+- id: VTX-090
+  titulo: 'Painel Markdown (semana 1): portfólio, fases e progresso'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 91
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/painel/'
+  depende_de:
+  - VTX-089
+- id: VTX-117
+  titulo: 'Painel Markdown: conexões por projeto e alertas de conexão'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 92
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/painel/conexoes.md'
+  depende_de:
+  - VTX-116
+  - VTX-090
+  notas: 'Alertas: quebrada, sem verificação > 48 h, expirando em 30 dias.'
+- id: VTX-095
+  titulo: 'Plataforma: ADR da interface web com acesso restrito'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 93
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/docs/adr/'
+  depende_de:
+  - VTX-117
+  notas: 'Antecipado. Site estático + login (ex.: Cloudflare Pages + Access ou Vercel com proteção); limites, termos e cartão. Portão: Samuel aprova serviço e qualquer custo.'
+- id: VTX-096
+  titulo: 'Interface web: estrutura, login restrito e portfólio'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 94
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/web/'
+  depende_de:
+  - VTX-095
+  notas: 'Lê o mesmo JSON; sem backend; sem login = bloqueio.'
+- id: VTX-091
+  titulo: 'Interface web: atividade dos agentes e handoffs'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 95
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/web/'
+  depende_de:
+  - VTX-096
+- id: VTX-092
+  titulo: 'Interface web: fila de aprovações e registro de decisões'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 96
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/web/'
+  depende_de:
+  - VTX-096
+  notas: 'Links para aprovar no GitHub; sem ações na plataforma.'
+- id: VTX-118
+  titulo: 'Interface web: ferramentas e conexões por projeto'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 97
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/web/'
+  depende_de:
+  - VTX-096
+  - VTX-117
+  - VTX-112
+  notas: 'Filtros por projeto, ferramenta, ambiente e estado; link para o doc do catálogo.'
+- id: VTX-093
+  titulo: 'Interface web: métricas, custos e alertas'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 98
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/web/'
+  depende_de:
+  - VTX-091
+  - VTX-092
+  - VTX-118
+  notas: 'Vazão, lead time, retrabalho, CI, cota de tokens, planos ativos.'
+- id: VTX-094
+  titulo: 'Plataforma: uso real por uma semana e decisão continuar ou pivotar'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 99
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/docs/relatorio-mvp.md'
+  depende_de:
+  - VTX-093
+  notas: 'Etapas 5 a 6 do mvp-poc. Portão: Samuel decide. Avaliar se Supabase + auth se justifica.'
+- id: VTX-097
+  titulo: 'Plataforma: incluir projetos de cliente e outros repositórios'
+  fase: F11
+  area: Plataforma interna
+  prioridade: 100
+  status: a fazer
+  entregavel: 'vtx-acompanhamento/gerador/'
+  depende_de:
+  - VTX-094
+  notas: 'Projetos por código/apelido, sem dados pessoais (LGPD).'
