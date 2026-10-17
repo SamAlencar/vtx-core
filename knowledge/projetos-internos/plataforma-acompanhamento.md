@@ -90,7 +90,7 @@ Papéis: Orquestrador (dono do fluxo e dos registros), Produto (PRD e hipóteses
 - Lições do MVP voltam para a base na retrospectiva (como na VTX-052).
 
 ## 10. Posição no backlog
-Fase **F11** entre F9 (integração com o Cursor) e F8 (consolidação e piloto), prioridades 67 a 79. F8 e F10 passaram a 80 a 96, sem mudança na ordem relativa entre elas. Motivos: a atividade dos agentes depende das convenções de issues/PRs da F9 (VTX-063/064), e o piloto (F8) ganha com a plataforma pronta para ser acompanhado. Se F9 for antecipada (decisão do resumo semanal de 16/10), F11 continua logo depois dela.
+Fase **F11** entre F9 (integração com o Cursor) e F8 (consolidação e piloto), prioridades 83 a 95 (após a entrada da F12 em 17/10). F8 e F10 ficam em 96 a 112, sem mudança na ordem relativa entre elas. Motivos: a atividade dos agentes depende das convenções de issues/PRs da F9 (VTX-063/064), e o piloto (F8) ganha com a plataforma pronta para ser acompanhado. Se F9 for antecipada (decisão do resumo semanal de 16/10), F11 continua logo depois dela.
 
 ## Checklist
 - [x] Objetivos, usuários, funcionalidades, fontes, arquitetura, segurança, MVP

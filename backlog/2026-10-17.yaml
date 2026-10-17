@@ -12,3 +12,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Pedido do Samuel. knowledge/projetos-internos/plataforma-acompanhamento.md; fase F11 (VTX-085 a VTX-097) entre F9 e F8; F8/F10 deslocadas +13 na prioridade; repo privado SamAlencar/vtx-acompanhamento."
+  - id: VTX-098
+    titulo: "Base do catálogo de ferramentas (estrutura, modelo, critérios, matriz)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Pedido do Samuel. knowledge/ferramentas/README.md; fase F12 (VTX-098 a VTX-113) após F4; prioridades >= 36 deslocadas +16."
