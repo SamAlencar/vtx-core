@@ -1,0 +1,14 @@
+data: "2026-10-18"
+tarefas:
+  - id: VTX-011
+    titulo: "Engenharia de requisitos"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/engenharia-de-requisitos.md: níveis e tipos de requisito; 5 atividades com donos; história INVEST, Gherkin, EARS, NFR mensurável (ISO 25010); estrutura mínima do PRD; regras anti-alucinação para agentes; rastreabilidade leve; gestão de mudanças; exemplo; checklist; fontes."
+  - id: VTX-012
+    titulo: "Scrum e Kanban adaptados a agentes"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/scrum-kanban-agentes.md: Scrumban VTX (incremento semanal + fluxo puxado), papéis (Samuel PO, Orquestrador gestor de fluxo), eventos como artefatos, WIP 1/agente, DoR/DoD, sem story points, métricas (throughput, idade, retrabalho, cota), previsão do próprio backlog; checklist; fontes."
