@@ -112,3 +112,14 @@ recursos:
     riscos: "Nenhum."
     responsavel: especialistas
     revisado_em: "2026-10-17"
+  - id: graphify
+    nome: Graphify
+    area: skills-agentes
+    tipo: skill
+    link: https://github.com/Graphify-Labs/graphify
+    licenca: Apache-2.0
+    status: em avaliação
+    uso_agentes: "Skill /graphify (Cursor, Claude Code etc.): grafo local da codebase via AST (tree-sitter); gera graph.html + GRAPH_REPORT.md + graph.json. Relevante para economia de tokens (consulta o grafo em vez de grep). Avaliar em VTX-125; piloto possível no vtx-core."
+    riscos: "Instala skill e regra always-on (.cursor/rules/graphify.mdc); pacote PyPI graphifyy; revisar e testar em sandbox antes de adotar."
+    responsavel: orquestrador
+    revisado_em: "2026-10-18"
