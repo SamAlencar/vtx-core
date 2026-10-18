@@ -145,3 +145,25 @@ recursos:
     riscos: "Popularidade ≠ qualidade; auditorias do site não substituem revisão. Telemetria de install no CLI."
     responsavel: orquestrador
     revisado_em: 2026-10-18
+  - id: superpowers-writing-plans
+    nome: "Superpowers — writing-plans"
+    area: skills-agentes
+    tipo: skill
+    link: "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/writing-plans"
+    licenca: MIT
+    status: adotado
+    uso_agentes: "Planos de implementação passo a passo antes de executar tarefas do backlog (fatiar VTX-xxx em passos verificáveis). Em .cursor/skills/writing-plans, fixado em bb92a77741419a4ab5f06e711a283343f1ada0c3."
+    riscos: "Só SKILL.md (sem scripts). Atualizar apenas por nova revisão com novo pin."
+    responsavel: orquestrador
+    revisado_em: 2026-10-18
+  - id: superpowers-brainstorming
+    nome: "Superpowers — brainstorming"
+    area: skills-agentes
+    tipo: skill
+    link: "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/brainstorming"
+    licenca: MIT
+    status: adotado
+    uso_agentes: "Transformar ideia em especificação/PRD com perguntas, alternativas e design aprovado antes de planejar. Em .cursor/skills/brainstorming, fixado em bb92a77741419a4ab5f06e711a283343f1ada0c3."
+    riscos: "Omitidos scripts/ (servidor web local) e visual-companion.md; hooks do repositório não instalados."
+    responsavel: orquestrador
+    revisado_em: 2026-10-18
