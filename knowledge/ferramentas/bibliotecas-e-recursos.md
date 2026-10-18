@@ -8,7 +8,7 @@
 ## 2. Descoberta (onde procurar)
 | Tipo de fonte | Exemplos verificados |
 |---|---|
-| Repositórios de skills (git, inspecionáveis) | [anthropics/skills](https://github.com/anthropics/skills), [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), impeccable; descoberta via [skills.sh](https://skills.sh) (aponta para o repo) |
+| Repositórios de skills (git, inspecionáveis) | [anthropics/skills](https://github.com/anthropics/skills), [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), impeccable, [mattpocock/skills](https://github.com/mattpocock/skills), [emilkowalski/skills](https://github.com/emilkowalski/skills); descoberta via [skills.sh](https://skills.sh) (aponta para o repo) |
 | Marketplaces MCP remotos de skills | [Agensi](https://www.agensi.io/) e similares — **descartados por enquanto** (ver §3.1) |
 | Coleções de regras do Cursor | [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) |
 | Registros de MCP | [MCP Registry oficial](https://registry.modelcontextprotocol.io), [modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers), [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) |
@@ -30,6 +30,14 @@
 - **Tratar skill de comunidade como biblioteca:** mesma avaliação de licença, manutenção e revisão de scripts/instruções; só depois copiar a **versão revisada** (commit fixo) para o repositório em `.cursor/skills/`. Não symlinks vivos para pastas externas sem pin.
 - **Marketplaces MCP remotos de skills** (Agensi e qualquer outro que carregue `SKILL.md` sob demanda via MCP, sem arquivo versionado no repo): **descartados por enquanto**. Motivos: o conteúdo pode mudar sem o agente ver o diff; risco de injeção em instruções servidas em tempo real; muitos itens são pagos (custo → Samuel). Preferir descobrir pelo git/`skills.sh` e instalar cópia revisada no repo.
 - Diretórios/índices que só apontam para repositórios públicos (ex.: skills.sh) podem servir à **descoberta**, desde que a adoção siga o fluxo acima (clonar/pin → revisar → copiar para `.cursor/skills/`).
+
+### 3.2 Coleções de comunidade em avaliação (18/10/2026)
+Ambas MIT, só instruções em Markdown, **status: em avaliação**. Revisão dos `SKILL.md` da shortlist: sem chamadas de rede, sem git destrutivo e sem serviço pago. **Ainda não copiadas** para `.cursor/skills/`; detalhes e riscos em `recursos.yaml`.
+
+| Coleção | Pin | Shortlist | Fora | Atenções da revisão |
+|---|---|---|---|---|
+| [mattpocock/skills](https://github.com/mattpocock/skills) (~296 mil estrelas, 38 skills) — processo | `49dd158` | grill-with-docs, to-questionnaire, to-spec, to-tickets, wayfinder, tdd, diagnosing-bugs, code-review, pr, domain-modeling, research, handoff, writing-for-agents | Específicas do Claude Code, de TypeScript/cursos e `in-progress/` | grill-with-docs depende de `grilling`; to-spec/to-tickets/wayfinder/code-review pressupõem `/setup-matt-pocock-skills` e **publicam no issue tracker** (ação externa → usar backlog/tracker local); research e code-review abrem subagentes (só locais, sem agentes de nuvem); diagnosing-bugs traz script bash interativo (fora do TT-060); handoff grava em `/tmp`; termos do Claude Code a adaptar |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) (~47 mil estrelas, 15 skills) — só frontend/design | `2d22863` | emil-design-eng, apple-design, pick-ui-library, break-ui, mobile-native, animate-expo, animate, review-animations, improve-animations, animation-performance | write-swift, ask-sonner | **Comparar com o impeccable antes de adotar** (evitar regras de design conflitantes); animate-expo/pick-ui-library instalam dependências (só com pedido, conferir licença); emil-design-eng é longa (~670 linhas, carregar sob demanda) |
 
 Decide: o papel responsável junto com o Arquiteto, registrando em `recursos.yaml`. **Vai para o Samuel** o que tiver custo, conta nova, envio de dados a terceiros ou licença duvidosa.
 

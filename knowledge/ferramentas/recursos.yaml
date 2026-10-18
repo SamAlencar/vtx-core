@@ -167,3 +167,25 @@ recursos:
     riscos: "Omitidos scripts/ (servidor web local) e visual-companion.md; hooks do repositório não instalados."
     responsavel: orquestrador
     revisado_em: 2026-10-18
+  - id: mattpocock-skills
+    nome: "Matt Pocock — skills (coleção)"
+    area: skills-agentes
+    tipo: skill
+    link: "https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Coleção de processo (~296 mil estrelas, 38 skills, quase só instruções), pin 49dd158. Shortlist: grill-with-docs, to-questionnaire (entrevista com cliente, ADRs e glossário); to-spec, to-tickets, wayfinder (conversa → especificação → tarefas encadeadas); tdd, diagnosing-bugs, code-review, pr (ciclo de desenvolvimento); domain-modeling, research, handoff, writing-for-agents (base de conhecimento, passagem entre agentes, escrita de skills). Fora: skills específicas do Claude Code (git-guardrails-claude-code, setup-pre-commit, claude-handoff), de TypeScript/cursos (migrate-to-shoehorn, scaffold-exercises, setup-ts-deep-modules) e toda a pasta in-progress/."
+    riscos: "Revisão 18/10 (SKILL.md da shortlist): sem chamadas de rede, sem git destrutivo, sem serviço pago. Atenções: (1) grill-with-docs só chama 'grilling' + 'domain-modeling' — adotar também grilling; (2) to-spec, to-tickets, wayfinder e code-review pressupõem /setup-matt-pocock-skills e publicam no issue tracker (criar issue = ação externa): na VTX usar o tracker local em Markdown/backlog do vtx-core ou ajustar o texto; (3) research e code-review disparam subagentes/agente em segundo plano — rodar localmente, nunca agentes de nuvem do Cursor; (4) diagnosing-bugs traz scripts/hitl-loop.template.sh (bash interativo com read; só para depuração com humano, fora do padrão TT-060); (5) handoff grava em /tmp (fora do repo); (6) vocabulário do Claude Code ('Skill tool', disable-model-invocation) a adaptar ao Cursor; agents/openai.yaml é só metadado. Copiar para .cursor/skills/ só após adaptação."
+    responsavel: orquestrador
+    revisado_em: 2026-10-18
+  - id: emilkowalski-skills
+    nome: "Emil Kowalski — skills (coleção)"
+    area: frontend-design
+    tipo: skill
+    link: "https://github.com/emilkowalski/skills/tree/2d228630ba1446365f614a108cb8252f1feda202"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Coleção só de frontend/design de interface (~47 mil estrelas, 15 skills, só instruções, sem scripts), pin 2d22863. Shortlist: emil-design-eng, apple-design, pick-ui-library (acabamento de interface e bibliotecas curadas); break-ui (estresse da tela com dados extremos — verificação antes de entregar); mobile-native, animate-expo (web com cara de app nativo; animação em React Native/Expo); animate, review-animations, improve-animations, animation-performance (ciclo de animação, casa com Framer Motion). Fora: write-swift (sem iOS nativo por ora) e ask-sonner (só se adotarmos o Sonner)."
+    riscos: "COMPARAR COM O IMPECCABLE ANTES DE ADOTAR, para não haver duas regras de design conflitantes (escolher uma fonte de verdade por tema). Revisão 18/10: sem scripts, sem rede, sem git destrutivo, sem serviço pago. Atenções: animate-expo manda instalar dependências com `npx expo install` e pick-ui-library pode instalar a biblioteca recomendada (só com pedido explícito, conferir licença da lib); improve-animations abre subagentes (só leitura; rodar localmente); emil-design-eng tem ~670 linhas (custo de contexto alto — carregar sob demanda); nome 'prototype' colide com a skill homônima do mattpocock (não está na shortlist)."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-10-18
