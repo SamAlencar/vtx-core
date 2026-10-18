@@ -118,8 +118,8 @@ recursos:
     tipo: skill
     link: https://github.com/Graphify-Labs/graphify
     licenca: Apache-2.0
-    status: em avaliação
-    uso_agentes: "Skill /graphify (Cursor, Claude Code etc.): grafo local da codebase via AST (tree-sitter); gera graph.html + GRAPH_REPORT.md + graph.json. Relevante para economia de tokens (consulta o grafo em vez de grep). Avaliar em VTX-125; piloto possível no vtx-core."
-    riscos: "Instala skill e regra always-on (.cursor/rules/graphify.mdc); pacote PyPI graphifyy; revisar e testar em sandbox antes de adotar."
+    status: adotado
+    uso_agentes: "Opcional, só em repositórios grandes: montar o grafo (`graphify update`) antes de varrer código, para perguntas de impacto/chamadas. Não integrar via `graphify install` por enquanto. Avaliação: knowledge/ferramentas/avaliacoes/graphify.md (piloto Tek no tekto-model, ~49% menos contexto)."
+    riscos: "Pasta graphify-out/ ~5 MB — obrigatório no .gitignore. Nunca ativar análise com IA (GEMINI_API_KEY); manter só AST local. Grafo envelhece a cada commit. `graphify install` cria skill/regra always-on — não usar ainda."
     responsavel: orquestrador
     revisado_em: "2026-10-18"
