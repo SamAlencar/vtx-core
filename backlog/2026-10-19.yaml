@@ -1,0 +1,14 @@
+data: "2026-10-19"
+tarefas:
+  - id: VTX-013
+    titulo: "Operação de agentes: prompts, contexto e memória"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/operacao-de-agentes.md: engenharia de contexto, 5 camadas de contexto, modelo de prompt de tarefa, onde guardar memória (artefato versionado), compactação e handoff, anti-padrões, exemplo da rotina diária, checklist, fontes. Skills: writing-plans (plano em docs/planos/2026-10-19-vtx-013-014.md; ajudou a fixar a Review Focus, custo baixo), verification-before-completion (links, URLs HTTP 200, pytest; ajudou, pegou link a acrescentar), brainstorming não aplicada (não é spec/PRD). Bibliotecas: mattpocock/skills writing-for-agents e handoff (pin 49dd158, em avaliação) como referência; ajudaram (ponteiros de contexto, instrução positiva, nota de handoff), custo ~100 linhas de leitura."
+  - id: VTX-014
+    titulo: "Governança e aprovações (humano no circuito)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/governanca-e-aprovacoes.md: níveis A0 decide / A1 decide e registra / A2 pede aprovação / A3 proibido; 8 itens que exigem o Samuel; formato do pedido (silêncio não é aprovação); registro e auditoria; exceção de incidente (rollback); exemplo; checklist; fontes NIST AI RMF, AI Act art. 14, OWASP LLM06, LGPD art. 20. Skills: writing-plans (mesmo plano; ajudou), verification-before-completion (coerência conferida com os portões dos fluxos via grep, links e pytest; ajudou). Ferramentas: git, rg/grep, curl para checar fontes (grátis, locais). ISO/IEC 42001 ficou fora por não ser verificável (403)."

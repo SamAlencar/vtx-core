@@ -20,3 +20,5 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 13 | [Bibliotecas e recursos para agentes](ferramentas/bibliotecas-e-recursos.md) | Ferramentas | v1 | 2026-10-17 |
 | 14 | [Engenharia de requisitos](processos/engenharia-de-requisitos.md) | Processos | v1 | 2026-10-18 |
 | 15 | [Scrum e Kanban adaptados a agentes](processos/scrum-kanban-agentes.md) | Processos | v1 | 2026-10-18 |
+| 16 | [Operação de agentes: prompts, contexto e memória](processos/operacao-de-agentes.md) | Processos | v1 | 2026-10-19 |
+| 17 | [Governança e aprovações (humano no circuito)](processos/governanca-e-aprovacoes.md) | Processos | v1 | 2026-10-19 |
