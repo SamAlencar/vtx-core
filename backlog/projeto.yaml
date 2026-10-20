@@ -569,7 +569,7 @@ tarefas:
   area: Validação
   prioridade: 115
   status: a fazer
-  entregavel: projects/piloto/
+  entregavel: projects/plataforma-projetos/
   depende_de: *id001
   notas: Classificar o piloto com o guia de triagem (VTX-066) e seguir o fluxo correspondente.
 - id: VTX-051
@@ -578,7 +578,7 @@ tarefas:
   area: Validação
   prioridade: 116
   status: a fazer
-  entregavel: projects/piloto/
+  entregavel: projects/plataforma-projetos/
   depende_de: *id001
   notas: Executar o piloto seguindo o fluxo do tipo escolhido, via agentes do Cursor.
 - id: VTX-052
@@ -587,7 +587,7 @@ tarefas:
   area: Validação
   prioridade: 117
   status: a fazer
-  entregavel: projects/piloto/
+  entregavel: projects/plataforma-projetos/
 - id: VTX-073
   titulo: 'Validação automática do backlog no CI (ids, campos, status, dependências)'
   fase: F8
