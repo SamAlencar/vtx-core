@@ -3,6 +3,7 @@
 # Ordem de execução = prioridade (não o id). F9 vem antes de F8 porque o piloto roda pelos agentes do Cursor.
 # F12 (catálogo de ferramentas) vem logo após F4: o stack de referência (VTX-023) escolhe, o catálogo ensina a usar; F9, F10 e o piloto precisam dele. Bibliotecas/recursos (VTX-119+) fecham a F12, antes das regras e skills da F9/F10.
 # F11 (plataforma de acompanhamento) fica entre F9 e F8: depende das convenções de issues/PRs da F9 e serve para acompanhar o piloto.
+# 2026-10-20: decisão do Samuel — med-hub (4med.co) roda em PARALELO ao piloto plataforma-projetos; docs adaptados pelo Bil (repo 4medco-base-conhecimento) serão importados em projects/med-hub/.
 projeto: Criação da base de conhecimento e documentação de diretrizes
 fases:
 - id: F0
