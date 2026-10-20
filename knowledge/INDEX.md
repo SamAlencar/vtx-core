@@ -22,3 +22,5 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 15 | [Scrum e Kanban adaptados a agentes](processos/scrum-kanban-agentes.md) | Processos | v1 | 2026-10-18 |
 | 16 | [Operação de agentes: prompts, contexto e memória](processos/operacao-de-agentes.md) | Processos | v1 | 2026-10-19 |
 | 17 | [Governança e aprovações (humano no circuito)](processos/governanca-e-aprovacoes.md) | Processos | v1 | 2026-10-19 |
+| 18 | [Arquitetura de software (estilos, C4, ADRs)](engenharia/arquitetura-de-software.md) | Engenharia | v1 | 2026-10-20 |
+| 19 | [Padrões de projeto e DDD](engenharia/padroes-de-projeto-ddd.md) | Engenharia | v1 | 2026-10-20 |

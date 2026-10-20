@@ -1,0 +1,14 @@
+data: "2026-10-20"
+tarefas:
+  - id: VTX-015
+    titulo: "Arquitetura de software (estilos, C4, ADRs)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/engenharia/arquitetura-de-software.md (abre a pasta engenharia/ da F2): atributos de qualidade ISO 25010:2023 com 3 metas medíveis, tabela de 6 estilos com usar/evitar e regra monólito modular primeiro, C4 níveis 1-2 obrigatórios em Mermaid, ADR (3 critérios, modelo Nygard enxuto, em docs/adr/), doc de arquitetura mínimo, exemplo, checklist, fontes. agents/arquiteto.md alinhado ao caminho docs/adr/ (antes projects/<proj>/adr/, divergia da governança). Skills: writing-plans (plano em docs/planos/2026-10-20-vtx-015-016.md; ajudou, a Review Focus pegou a divergência do caminho de ADR; custo baixo), verification-before-completion (links relativos com test -f, 24 URLs conferidas com curl, diagrama renderizado, pytest; ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: mattpocock/skills domain-modeling (ADR-FORMAT) e codebase-design, pin 49dd158, em avaliação; ajudaram (critério dos 3 sim para ADR, módulos profundos), custo ~150 linhas de leitura. Ferramentas: Mermaid via @mermaid-js/mermaid-cli local com o Chrome do box (grátis; renderizou o diagrama, ~20 s), git, curl."
+  - id: VTX-016
+    titulo: "Padrões de projeto e DDD"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/engenharia/padroes-de-projeto-ddd.md: linguagem ubíqua e GLOSSARY.md, subdomínios, contextos delimitados e mapa de contextos (Event Storming leve), tabela tática (entidade, objeto de valor, agregado, repositório, evento, serviço), padrões GoF úteis + Outbox/Circuit Breaker, quando NÃO usar, exemplo, checklist, fontes (Evans, Fowler, Microsoft, DDD Crew, Refactoring.Guru pt-BR). Skills: writing-plans (mesmo plano; ajudou a separar o escopo do VTX-015), verification-before-completion (links, URLs, coerência cruzada com VTX-015, pytest; ajudou). Bibliotecas: mattpocock/skills domain-modeling (GLOSSARY-FORMAT) e codebase-design; ajudaram (formato do glossário com Evitar, regra uma implementação = seam hipotético). Ferramentas: git, curl (grátis, locais)."
