@@ -168,6 +168,16 @@ tarefas:
   depende_de:
   - VTX-066
   notas: 'Pedido do Samuel em 2026-10-16: furar a fila (antes do VTX-072) para aplicar a entrevista a ele e iniciar o piloto plataforma-projetos. Prioridade 16 empata com VTX-071 (já concluída), evitando renumerar as demais.'
+- id: VTX-130
+  titulo: 'Pesquisa de domínio e base de conhecimento do projeto do cliente'
+  fase: F1
+  area: Base de Conhecimento
+  prioridade: 16
+  status: a fazer
+  entregavel: knowledge/processos/pesquisa-de-dominio.md
+  depende_de:
+  - VTX-084
+  notas: 'Pedido do Samuel em 2026-10-20. Etapa padrão antes de todo projeto de cliente, depois da entrevista e antes da especificação/PRD: agentes pesquisam o tema do serviço do cliente e montam a base em projects/<p>/conhecimento/. Cobrir: conceitos do domínio e glossário; regras e regulação aplicáveis (LGPD, normas do setor, normas técnicas — só resumos, nunca cópia de ABNT ou fontes pagas); processos e fluxos de trabalho comuns; concorrentes/SaaS de referência (análise RES/REA limitada ao comportamento público e observável); integrações e APIs típicas; riscos técnicos; fontes citadas. Incluir modelo e checklist; exigir reaproveitamento da base existente por domínio para não repetir pesquisa. Prioridade 16 empata com VTX-084 e vem logo depois dela na ordem do arquivo (ordenação estável), sem renumerar as demais.'
 - id: VTX-072
   titulo: 'Fluxo de projeto: MVP / prova de conceito'
   fase: F1

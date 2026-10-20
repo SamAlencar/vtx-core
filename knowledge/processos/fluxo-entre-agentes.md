@@ -15,7 +15,8 @@
 | # | Etapa | Dono | Entrada | Saída (artefato) | Portão de saída |
 |---|---|---|---|---|---|
 | 0 | Triagem | Orquestrador | Pedido do Samuel | Ficha do projeto (tipo, objetivo, restrições) | Tipo e fluxo escolhidos (VTX-066) |
-| 1 | Requisitos | Produto | Ficha | PRD + histórias com critérios de aceite | **Aprovação do Samuel (escopo)** |
+| 0.5 | Pesquisa de domínio (planejada, VTX-130) | Produto + Arquiteto | Ficha + entrevista | Base `projects/<p>/conhecimento/` ([pesquisa-de-dominio.md](pesquisa-de-dominio.md)) | Checklist da pesquisa completo |
+| 1 | Requisitos | Produto | Ficha | + base de domínio PRD + histórias com critérios de aceite | **Aprovação do Samuel (escopo)** |
 | 2 | Arquitetura | Arquiteto | PRD | Documento de arquitetura + ADRs | Revisão do Orquestrador; Segurança se houver dado sensível |
 | 3 | Planejamento | Orquestrador | PRD + arquitetura | Issues pequenas, priorizadas, com dependências | Cada issue cabe em 1 PR |
 | 4 | Implementação | Dev Backend / Frontend-Mobile | Issue | PR com código, testes e descrição | CI verde |
