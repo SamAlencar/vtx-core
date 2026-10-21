@@ -24,4 +24,6 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 17 | [Governança e aprovações (humano no circuito)](processos/governanca-e-aprovacoes.md) | Processos | v1 | 2026-10-19 |
 | 18 | [Arquitetura de software (estilos, C4, ADRs)](engenharia/arquitetura-de-software.md) | Engenharia | v1 | 2026-10-20 |
 | 19 | [Padrões de projeto e DDD](engenharia/padroes-de-projeto-ddd.md) | Engenharia | v1 | 2026-10-20 |
+| 20 | [Pesquisa de domínio e base de conhecimento do projeto do cliente](processos/pesquisa-de-dominio.md) | Processos | v1 | 2026-10-21 |
+| 21 | [Padrões de código, Clean Code e code review](engenharia/padroes-de-codigo.md) | Engenharia | v1 | 2026-10-21 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)

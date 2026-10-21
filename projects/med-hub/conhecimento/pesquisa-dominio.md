@@ -1,5 +1,5 @@
 # Pesquisa de domínio: 4med.co (serviços contábeis, jurídicos e de seguros para médicos PJ)
-Versão 1.0, de 20/10/2026. Estrutura da VTX-130 (planejada no `backlog/projeto.yaml` do vtx-core; o documento oficial `knowledge/processos/pesquisa-de-dominio.md` ainda não existe). **Reaproveita a base existente**: [00-fontes-oficiais.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/00-fontes-oficiais.md), [01-glossario.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/01-glossario.md), [02-tipos-pj-medica-e-crm.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/02-tipos-pj-medica-e-crm.md) e o [plano da etapa 4](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/etapa4-plano.md). Todos os links foram consultados em 20/10/2026. São só resumos, sem cópia de normas pagas.
+Versão 1.0, de 20/10/2026. Segue a [VTX-130](../../../knowledge/processos/pesquisa-de-dominio.md) (doc oficial publicado em 21/10/2026). **Reaproveita a base existente**: [00-fontes-oficiais.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/00-fontes-oficiais.md), [01-glossario.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/01-glossario.md), [02-tipos-pj-medica-e-crm.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/02-tipos-pj-medica-e-crm.md) e o [plano da etapa 4](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/etapa4-plano.md). Todos os links foram consultados em 20/10/2026. São só resumos, sem cópia de normas pagas.
 
 ## 1. Glossário do setor
 O glossário completo, com 52 termos contábeis e do setor, está em [01-glossario.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/01-glossario.md). Os termos essenciais para os agentes de implementação são:
@@ -32,7 +32,7 @@ O glossário completo, com 52 termos contábeis e do setor, está em [01-glossar
 
 ### 2.3 LGPD (Lei 13.709/2018)
 - Os dados do médico são pessoais comuns, com base em execução de contrato e obrigação legal (art. 7º, II e V).
-- **Dado de saúde é sensível** (art. 5º, II; art. 11). A plataforma **não coleta** dados de pacientes; se eles aparecerem por engano, valem a minimização e o descarte. Detalhes na seção 8 do [PRD](prd.md#8-dados-pessoais-e-base-legal-lgpd).
+- **Dado de saúde é sensível** (art. 5º, II; art. 11). A plataforma **não coleta** dados de pacientes; se eles aparecerem por engano, valem a minimização e o descarte. Detalhes na seção 8 do [PRD](../docs/produto/PRD.md#8-dados-pessoais-e-base-legal-lgpd).
 - Os parceiros e o provedor de IA são operadores ou controladores conjuntos, com contrato de tratamento.
 - Direitos do titular (art. 18), encarregado (art. 41) e transferência internacional (art. 33).
 - ANPD, Regulamento de Comunicação de Incidente (Resolução CD/ANPD 15/2024): comunicar incidente relevante em até 3 dias úteis.
@@ -48,7 +48,7 @@ Fontes: https://www.planalto.gov.br/ccivil_03/leis/l8906.htm · https://www.oab.
 
 ### 2.5 Contábil e seguros
 - **Contábil:** LC 123/2006 (Simples e Fator R), LC 214/2025 (IBS/CBS), Lei 15.270/2025 (dividendos), LC 224/2025 e LC 227/2026. Já estão no índice [00-fontes-oficiais.md](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/conhecimento/contabil/00-fontes-oficiais.md). O contador é um profissional registrado no CRC (Decreto-Lei 9.295/1946); a plataforma não assina nada técnico.
-- **Seguros:** a corretagem exige registro na SUSEP (Lei 4.594/1964). Por isso o modelo é de **indicação**, com cobrança pela corretora ([ADR-004](adr/adr-004-seguro-cobrado-pela-corretora.md)). Fonte: https://www.gov.br/susep
+- **Seguros:** a corretagem exige registro na SUSEP (Lei 4.594/1964). Por isso o modelo é de **indicação**, com cobrança pela corretora ([ADR-004](../docs/adr/0004-seguro-cobrado-pela-corretora.md)). Fonte: https://www.gov.br/susep
 
 ## 3. Processos do setor
 1. **Abertura da PJ médica:** escolher o tipo (SLU ou limitada) e o CNAE (8630-5/03, atividade médica ambulatorial, e outros conforme a atividade), elaborar o contrato social, registrar na Junta Comercial ou no cartório, obter CNPJ, inscrição municipal, alvará e licença sanitária (quando houver consultório) [VARIA POR MUNICÍPIO], fazer o registro no CRM, o certificado digital e a opção pelo Simples. Base: T02 e T14 da etapa 4.

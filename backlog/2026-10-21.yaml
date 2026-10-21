@@ -1,0 +1,14 @@
+data: "2026-10-21"
+tarefas:
+  - id: VTX-130
+    titulo: "Pesquisa de domínio e base de conhecimento do projeto do cliente"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/pesquisa-de-dominio.md: etapa 0.5 do SOP (depois da entrevista, antes do PRD), donos Produto + Arquiteto, prazo P/M 1 dia e G 2 dias, 7 passos (reaproveitar base do setor em knowledge/dominios/<setor>/ → 5-10 perguntas → fontes primárias, norma paga só resumida → SaaS de referência com RES + Playwright MCP no limite da governança §5 → integrações e riscos → síntese fato x hipótese → promover o genérico ao domínio), modelo de 8 seções, exemplo da plataforma de projetos (ART), checklist, fontes. Tirei o 'planejada' de entrevista-cliente.md e fluxo-entre-agentes.md (e corrigi a célula trocada da etapa 1), e o med-hub passou a apontar para o doc oficial; de quebra consertei 2 links relativos quebrados no pesquisa-dominio.md do med-hub. Decisão conservadora registrada: base genérica do setor em knowledge/dominios/<setor>/ (pasta criada sob demanda no 1º uso). Skills: writing-plans (plano em docs/planos/2026-10-21-vtx-130-017.md; ajudou, Review Focus pegou os 'planejada' desatualizados; custo baixo), verification-before-completion (test -f nos links, 21 URLs com HTTP 200, pytest; ajudou, achou os 2 links quebrados do med-hub), brainstorming não aplicada (processo, não spec/PRD). Bibliotecas: mattpocock/skills research (pin 49dd158, em avaliação; ajudou pouco, só reforça fonte primária com citação; ~15 linhas). Ferramentas: RES e Playwright MCP só citados (não executados hoje); git, curl (grátis, locais)."
+  - id: VTX-017
+    titulo: "Padrões de código, Clean Code e code review"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/engenharia/padroes-de-codigo.md: princípios (nomes, funções pequenas, DRY x YAGNI, erros explícitos, comentário do porquê, sem segredo), tabela de formatador/linter/tipos (Prettier, ESLint, TS strict, Ruff, EditorConfig; tudo grátis e local, CI vermelha não é revisada), Conventional Commits, PR < 400 linhas, review em 2 eixos (especificação x padrões) + cheiros de Fowler como juízo, Conventional Comments (só bloqueante impede merge), quando bloquear, exemplo TS antes/depois, checklist, fontes (Google eng-practices, Fowler, Refactoring.Guru pt-BR, SmartBear). Skills: writing-plans (mesmo plano; ajudou a fixar os 2 eixos no Review Focus), verification-before-completion (links, URLs, coerência com agents/qa.md e governança, pytest; ajudou). Bibliotecas: mattpocock/skills code-review (pin 49dd158, em avaliação; ajudou muito: dois eixos e lista de cheiros adotados; custo ~90 linhas de leitura; o issue tracker e os subagentes paralelos dela ficam trocados por backlog local e subagentes locais). Ferramentas: git, curl (grátis, locais)."

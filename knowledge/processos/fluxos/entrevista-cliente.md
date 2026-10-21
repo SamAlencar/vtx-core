@@ -69,7 +69,7 @@
 ### Depois da entrevista
 1. **Síntese (Produto, até 1 dia):** organizar respostas por bloco; separar **fatos**, **opiniões** e **hipóteses**; listar lacunas e contradições.
 2. **Revisão técnica (Arquiteto):** viabilidade, restrições, riscos técnicos, estimativa grossa (camisetas P/M/G).
-2a. **Pesquisa de domínio (VTX-130, planejada):** antes do briefing/PRD, pesquisar o tema do serviço do cliente e montar `projects/<p>/conhecimento/`, reaproveitando a base existente do domínio — ver [pesquisa-de-dominio.md](../pesquisa-de-dominio.md).
+2a. **Pesquisa de domínio (VTX-130):** antes do briefing/PRD, pesquisar o tema do serviço do cliente e montar `projects/<p>/conhecimento/`, reaproveitando a base existente do domínio — ver [pesquisa-de-dominio.md](../pesquisa-de-dominio.md).
 3. **Artefatos:** briefing/documento de visão (visão, personas, problema/JTBD, objetivos e métricas, escopo é/não é, MVP, restrições, modelo de negócio, riscos, MoSCoW) e **backlog inicial** (épicos e histórias do Must).
 4. **Validação com o cliente:** enviar o briefing e pedir correções explícitas por seção; repetir até "de acordo".
 5. **Portões:**
