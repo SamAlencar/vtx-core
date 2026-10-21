@@ -255,3 +255,14 @@ recursos:
     riscos: "Telemetria anônima LIGADA por padrão, inclusive ping no postinstall do npm — usar DO_NOT_TRACK=1 antes de instalar e 'trail telemetry disable'. 'trail init' lê transcrições do Claude Code e os comentários dos últimos 50 PRs via gh e envia à Anthropic — não usar. 'trail build --deep' manda código ao provedor de LLM (custo) — não usar. 'Trail workspace' (equipe) envia aprendizados e buscas à Trail — não conectar. Hooks do npm executam código: instalar só no piloto, local ao projeto (sem -g), em ambiente isolado. Nome: antes identificado por engano como grft-dev/graftcode (sem licença, camada de integração entre linguagens) — esclarecido pelo Samuel em 21/10."
     responsavel: arquiteto
     revisado_em: 2026-10-21
+  - id: task-observer
+    nome: "task-observer (rebelytics/one-skill-to-rule-them-all) — meta-skill de melhoria contínua de skills"
+    area: skills-agentes
+    tipo: skill
+    link: "https://github.com/rebelytics/one-skill-to-rule-them-all/tree/3463c7c"
+    licenca: CC-BY-4.0
+    status: "em avaliação"
+    uso_agentes: "Decisão: ADAPTAR (até o VTX-136). ~3,5 mil estrelas, pin 3463c7c. Skill (SKILL.md ~690 linhas + references/) que observa as sessões, grava em skill-observations/observation-log/ um arquivo Markdown por observação (padrão, correção do usuário, decisão de julgamento) com frontmatter e alvo (skill existente ou candidata), faz checkpoint obrigatório a cada ~3 itens e revisão semanal que transforma observações em atualizações de skill para aprovação. Diz não usar rede. Extrair: registro de observações por skill no vtx-core (complementa o log de uso de skills já exigido na rotina diária) e revisão na rotina quinzenal 'manutenção de skills', com mudança de skill sempre como proposta revisável."
+    riscos: "CC-BY-4.0: cópia permitida só com atribuição (autor, link, licença, alterações). scripts/ (new-observation.sh, session-start-scan.sh, skill-load.sh, migrate-log.py) e .claude-plugin não executar; pressupõe caminhos do Claude Code (~/.claude/...) fora do repo — usar pasta versionada no vtx-core. Skill longa = custo de contexto (carregar references sob demanda). Auto-atualização de skills só via proposta/PR, nunca direto. DÚVIDA DE IDENTIFICAÇÃO: não há repo 'task-observer' relevante; é o nome da skill (name: task-observer) neste repo, também espelhada em aiskillstore/marketplace. Alternativas vistas e descartadas: chekusu/wanman (Apache-2.0, ~690 estrelas, runtime de agentes com humano 'observador' — não é o mesmo), tmogeid/skill-prompt-evolution (port para OpenCode, 0 estrelas), repos 'TaskObserver' sem relação (Android, logs de tarefa)."
+    responsavel: orquestrador
+    revisado_em: 2026-10-21

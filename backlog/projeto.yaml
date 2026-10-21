@@ -1203,3 +1203,13 @@ tarefas:
   depende_de:
   - VTX-131
   notas: 'Pedido do Samuel em 2026-10-21 (o "graft" sugerido é trailhq/Trail-Code, MIT, pin b1211ef). Instalar local ao projeto (sem -g) em ambiente isolado, com DO_NOT_TRACK=1 antes do npm install e trail telemetry disable. Usar só trail build/ask/skeleton/check e o MCP no Cursor; proibido trail init (lê transcrições e PRs e envia à Anthropic), build --deep (LLM pago) e conectar workspace. Medir chamadas de ferramenta e tokens com e sem o mapa e decidir adotar/descartar; levar o modelo decisão/preferência/guardrail para o VTX-132. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+- id: VTX-136
+  titulo: 'Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer)'
+  fase: F12
+  area: Ferramentas
+  prioridade: 62
+  status: a fazer
+  entregavel: 'knowledge/processos/observacao-de-skills.md'
+  depende_de:
+  - VTX-125
+  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a skill task-observer (rebelytics/one-skill-to-rule-them-all, CC-BY-4.0, pin 3463c7c): pasta versionada no vtx-core (ex. knowledge/skills/observacoes/) com um arquivo por observação (tipo, skill alvo, evidência, data), checkpoint a cada ~3 tarefas, e revisão na rotina quinzenal de manutenção de skills que gera propostas de mudança revisáveis (nunca alterar skill direto). Integrar ao log de uso de skills da rotina diária. Não executar scripts/ nem usar caminhos ~/.claude; reescrever em pt-BR, com atribuição CC-BY se copiar trecho. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'

@@ -59,6 +59,13 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) (~163 mil estrelas) | `4e3ac3c` | MIT | adaptar | Processo, entregáveis e métricas por persona para enriquecer os papéis de `papeis-de-agentes.md`; novos especialistas sob demanda (mudança mínima, onboarding de codebase, fluxo git, resposta a incidentes) — VTX-134 |
 | [trailhq/Trail-Code](https://github.com/trailhq/Trail-Code) (antigo graft, ~10,6 mil estrelas) | `b1211ef` | MIT | em avaliação | Mapa de código local (tree-sitter, sem rede) via MCP/CLI e aprendizados versionados em `.trail/` (decisão/preferência/guardrail); piloto local com telemetria desligada, sem `init`, `--deep` nem workspace — VTX-135. Corrige a identificação anterior (graftcode) |
 
+### 3.5 Melhoria contínua de skills (21/10/2026)
+Nada instalado nem executado; detalhes em `recursos.yaml`.
+
+| Projeto | Pin | Licença | Decisão | O que extrair |
+|---|---|---|---|---|
+| [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all) — skill `task-observer` (~3,5 mil estrelas) | `3463c7c` | CC-BY-4.0 | adaptar | Log de observações por skill (padrões, correções, julgamentos) com checkpoints e revisão periódica que vira proposta de atualização de skill — VTX-136. Nome ambíguo: "task observer" é o nome da skill, não do repo (alternativas em `recursos.yaml`) |
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
