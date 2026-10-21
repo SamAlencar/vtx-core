@@ -1223,3 +1223,34 @@ tarefas:
   depende_de:
   - VTX-136
   notas: 'Pedido do Samuel em 2026-10-21. Adaptar a metodologia de google-research/harness2 (Apache-2.0, pin 1cfe254), sem executar o framework (exige modelos pagos). Entregar: (1) mapa dos 8 componentes do harness para o Cursor (.cursor/rules e AGENTS.md, memory bank, MCP, .cursor/skills, scripts do arsenal TT-060, papéis); (2) ciclo Propose–Probe–Compose para mudar regra/skill: propor a edição, testar numa tarefa real do backlog com e sem a mudança, comparar resultado/tokens e adotar só com evidência; (3) arquivo de lições com evidência alimentado pelas observações do VTX-136 e revisado na manutenção quinzenal; (4) skill .cursor/skills/melhoria-do-harness/ que guia o ciclo. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+- id: VTX-138
+  titulo: 'Regras comuns e por stack em .cursor/rules a partir do ECC'
+  fase: F9
+  area: Integração Cursor
+  prioridade: 86
+  status: a fazer
+  entregavel: '.cursor/rules/ (common-*, typescript, react, react-native, python) e knowledge/templates/cursor/'
+  depende_de:
+  - VTX-017
+  - VTX-058
+  notas: 'Pedido do Samuel em 2026-10-21. Fonte: affaan-m/ECC (MIT, pin 90606c8), pastas rules/common e .cursor/rules. Reescrever em pt-BR, fundindo com padroes-de-codigo.md e as regras por assunto (VTX-057/058) sem duplicar; globs por stack; atribuição MIT se copiar trecho. Prioridade 86 empata com VTX-058 e vem depois (ordenação estável).'
+- id: VTX-139
+  titulo: 'Hooks do Cursor como guardrails locais (adaptados do ECC)'
+  fase: F9
+  area: Integração Cursor
+  prioridade: 86
+  status: a fazer
+  entregavel: '.cursor/hooks.json e scripts/hooks/ (padrão TT-060)'
+  depende_de:
+  - VTX-138
+  notas: 'Pedido do Samuel em 2026-10-21. Reescrever versões mínimas e revisadas dos hooks do ECC (pin 90606c8): beforeShellExecution bloqueia --no-verify, push forçado, rm -rf fora do repo e segredos em comandos; beforeReadFile bloqueia .env e chaves; afterFileEdit roda formatador local. Reaproveitar os padrões perigosos do checklist de segurança local (adaptado do security-guidance). Sem rede, sem telemetria; testes unitários dos scripts. Prioridade 86 empata com VTX-058 e vem depois.'
+- id: VTX-140
+  titulo: 'Skills do ECC que preenchem lacunas do stack VTX'
+  fase: F12
+  area: Ferramentas
+  prioridade: 62
+  status: a fazer
+  entregavel: '.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)'
+  depende_de:
+  - VTX-125
+  notas: 'Pedido do Samuel em 2026-10-21. Revisar cada SKILL.md do ECC (MIT, pin 90606c8) e comparar com mattpocock (tdd, code-review), superpowers e o checklist de segurança antes de adotar — uma fonte de verdade por tema. Copiar só o revisado, com atribuição e pin; remover referências a serviços pagos e comandos do Claude Code. Agents, commands, memória/codemaps e MCP configs do ECC ficam fora (já cobertos por VTX-131..137). Prioridade 62 empata com VTX-129 e vem depois.'

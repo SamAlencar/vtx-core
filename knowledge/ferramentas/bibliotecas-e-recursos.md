@@ -67,6 +67,19 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all) — skill `task-observer` (~3,5 mil estrelas) | `3463c7c` | CC-BY-4.0 | adaptar | Log de observações por skill (padrões, correções, julgamentos) com checkpoints e revisão periódica que vira proposta de atualização de skill — VTX-136. Nome ambíguo: "task observer" é o nome da skill, não do repo (alternativas em `recursos.yaml`) |
 | [google-research/harness2](https://github.com/google-research/harness2) (~17 mil estrelas) | `1cfe254` | Apache-2.0 | adaptar só a metodologia | Ciclo Propose–Probe–Compose para mudar regras/skills (propor, testar numa tarefa real, comparar, adotar) e registro de lições com evidência; mapa dos 8 componentes do harness para o Cursor (rules, AGENTS.md, memory bank, MCP, skills, scripts, papéis) — VTX-137. Não executar: exige modelos pagos e rede irrestrita |
 
+### 3.6 ECC — Everything Claude Code (21/10/2026)
+[affaan-m/ECC](https://github.com/affaan-m/ECC), MIT, ~286 mil estrelas, pin `90606c8`. **Decisão: adaptar por partes**, sem instalar o pacote. Inventário completo e riscos em `recursos.yaml`.
+
+| Categoria (qtd.) | Já temos/planejado | Vira no Cursor (VTX) |
+|---|---|---|
+| Rules (23 pastas: common + linguagens) | `padroes-de-codigo.md`, regras por assunto (VTX-057/058) | `.cursor/rules/` comuns (estilo, testes, segurança, git, performance) e por stack (typescript, react, react-native, python), reescritas em pt-BR — **VTX-138** |
+| Hooks (`.cursor/hooks.json`) | nada | Hooks mínimos do Cursor: `beforeShellExecution` (bloquear `--no-verify`, push forçado, segredos), `beforeReadFile` (.env), `afterFileEdit` (formatador) + script do arsenal TT-060 — **VTX-139** |
+| Skills (311) | mattpocock, emilkowalski, impeccable, superpowers | Só lacunas do stack: verification-loop, tdd-workflow, search-first, strategic-compact/context-budget, security-review, e2e-testing, api-design/contract-first, postgres-patterns, deployment-patterns, mcp-dependency-review em `.cursor/skills/` — **VTX-140** |
+| Agents (71) | `papeis-de-agentes.md` + VTX-134 | Não importar; usar como fonte extra no VTX-134 |
+| Commands (97) | fluxos em `knowledge/processos/` | Não importar; plan-prd/feature-dev/quality-gate só como referência dos fluxos |
+| Memória, aprendizado, codemaps | VTX-131/132/135/136/137 | Ignorar (já coberto) |
+| MCP configs (~35) | Playwright, Context7, GitHub | Nada novo grátis/local além dos já avaliados |
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
