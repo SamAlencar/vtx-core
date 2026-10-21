@@ -41,6 +41,16 @@ Ambas MIT, só instruções em Markdown, **status: em avaliação**. Revisão do
 
 Decide: o papel responsável junto com o Arquiteto, registrando em `recursos.yaml`. **Vai para o Samuel** o que tiver custo, conta nova, envio de dados a terceiros ou licença duvidosa.
 
+### 3.3 Memória, contexto e economia de tokens (21/10/2026)
+Sugestões do Samuel. Nada instalado nem executado; detalhes em `recursos.yaml`.
+
+| Projeto | Pin | Licença | Decisão | O que extrair |
+|---|---|---|---|---|
+| [kingbootoshi/cartographer](https://github.com/kingbootoshi/cartographer) | `a62d169` | sem licença | em avaliação (só ideia) | Mapa de codebase (`docs/CODEBASE_MAP.md`) por projeto, atualizado por incremento — VTX-131 |
+| [centminmod/my-claude-code-setup](https://github.com/centminmod/my-claude-code-setup) | `7d5c374` | MIT | adaptar | Memory bank em arquivos (padrões, decisões, troubleshooting, contexto ativo) no formato AGENTS.md/.cursor/rules — VTX-132 |
+| [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | `bbb3379` | Apache-2.0 | descartar | Só o padrão de observações tipadas e datadas (entra no VTX-132); serviço hospedado por padrão e hooks |
+| [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | `4c7acba` | Apache-2.0 | em avaliação | Regras de compressão de saída de ferramentas e logs — VTX-133; piloto local do MCP com telemetria desligada |
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 

@@ -189,3 +189,47 @@ recursos:
     riscos: "COMPARAR COM O IMPECCABLE ANTES DE ADOTAR, para não haver duas regras de design conflitantes (escolher uma fonte de verdade por tema). Revisão 18/10: sem scripts, sem rede, sem git destrutivo, sem serviço pago. Atenções: animate-expo manda instalar dependências com `npx expo install` e pick-ui-library pode instalar a biblioteca recomendada (só com pedido explícito, conferir licença da lib); improve-animations abre subagentes (só leitura; rodar localmente); emil-design-eng tem ~670 linhas (custo de contexto alto — carregar sob demanda); nome 'prototype' colide com a skill homônima do mattpocock (não está na shortlist)."
     responsavel: dev-frontend-mobile
     revisado_em: 2026-10-18
+  - id: cartographer
+    nome: "Cartographer (kingbootoshi) — mapa de codebase"
+    area: skills-agentes
+    tipo: referência
+    link: "https://github.com/kingbootoshi/cartographer/tree/a62d169"
+    licenca: "sem licença declarada"
+    status: "em avaliação"
+    uso_agentes: "~790 estrelas, pin a62d169. Gera docs/CODEBASE_MAP.md (arquitetura, módulos, fluxos) com subagentes em paralelo; v2 tem CLI (Bun) com grafo local em SQLite e 'briefs' limitados. Extrair só a IDEIA: padrão de mapa de codebase por projeto, gerado por agente local e atualizado a cada incremento, para não reler o repo inteiro (alinha com o .cursorignore/regras de contexto)."
+    riscos: "SEM LICENÇA = todos os direitos reservados: não copiar código nem texto. Plugin feito para Claude Code; subagentes Sonnet consomem muitos tokens. Dúvida de identificação: o nome também é do projeto SLAM do Google (cartographer-project) — escolhido o de agentes por contexto."
+    responsavel: arquiteto
+    revisado_em: 2026-10-21
+  - id: claude-code-setup-centminmod
+    nome: "my-claude-code-setup (centminmod) — memory bank e templates"
+    area: skills-agentes
+    tipo: regras
+    link: "https://github.com/centminmod/my-claude-code-setup/tree/7d5c374"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Decisão: ADAPTAR (status em avaliação até o VTX-132). ~2,7 mil estrelas, pin 7d5c374. Templates de CLAUDE.md e 'memory bank' em arquivos (padrões, decisões/ADRs, troubleshooting, contexto ativo) atualizados a cada entrega. Adaptar ao Cursor: AGENTS.md + .cursor/rules/ e memória em docs do projeto (decisions.md já adotado), com atribuição se algum trecho for copiado."
+    riscos: "Hooks e settings.json executam comandos (notifier macOS) — não usar. Sugere Z.AI/provedores pagos — fora. Dúvida de identificação: 'Claude Code setup' também casa com garrytan/gstack (MIT, ~137 mil estrelas, 23 ferramentas por papel) — fica como referência secundária."
+    responsavel: orquestrador
+    revisado_em: 2026-10-21
+  - id: claude-mem
+    nome: "claude-mem (thedotmack) — memória persistente entre sessões"
+    area: skills-agentes
+    tipo: referência
+    link: "https://github.com/thedotmack/claude-mem/tree/bbb3379"
+    licenca: Apache-2.0
+    status: descartado
+    uso_agentes: "~102 mil estrelas, pin bbb3379. Captura tudo da sessão via hooks/worker, comprime com IA e injeta contexto depois. Não instalar. Extrair só o padrão: observações tipadas (decision, bugfix, security_alert) com data, resumo curto por sessão e busca sob demanda — a VTX faz isso em arquivos Markdown versionados."
+    riscos: "Padrão é o 'CMEM Pro' hospedado (login, envio de dados a terceiros); modo local é opt-in. Hooks e worker em segundo plano capturam e executam código; compressão usa LLM (custo). Viola a regra de nada pago/terceiros."
+    responsavel: orquestrador
+    revisado_em: 2026-10-21
+  - id: headroom
+    nome: "Headroom (headroomlabs-ai) — compressão de contexto"
+    area: skills-agentes
+    tipo: mcp
+    link: "https://github.com/headroomlabs-ai/headroom/tree/4c7acba"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "~77 mil estrelas, pin 4c7acba (antigo chopratejas/headroom). Comprime saídas de ferramentas, logs, diffs e JSON localmente (biblioteca, proxy ou MCP), guardando originais para recuperar sob demanda; 'headroom learn' grava correções em AGENTS.md. Extrair já: regras de economia de saída (filtrar logs pelo erro principal, rg em vez de ler arquivo, resumir JSON). Piloto local do MCP só depois de revisão."
+    riscos: "Telemetria/beacon ligados por padrão — desligar com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off; checa PyPI 1x/dia. Proxy intercepta chamadas ao modelo (credenciais passam por ele). Instalação traz modelos de ML grandes. Não instalar globalmente."
+    responsavel: devops-sre
+    revisado_em: 2026-10-21
