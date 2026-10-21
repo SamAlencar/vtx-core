@@ -244,14 +244,14 @@ recursos:
     riscos: "Só Markdown, sem rede; MAS install.sh/convert.sh e o app desktop (agencyagents.app, Homebrew) escrevem nos diretórios das ferramentas — não executar nem instalar. Personas longas = custo de contexto (carregar sob demanda). Cópia só com atribuição MIT e pin; preferir reescrever em pt-BR no formato .cursor/rules. Conflito possível com os papéis já definidos: a fonte de verdade continua sendo papeis-de-agentes.md."
     responsavel: orquestrador
     revisado_em: 2026-10-21
-  - id: graftcode
-    nome: "Graftcode (grft-dev) — camada de integração entre linguagens"
-    area: backend
-    tipo: referência
-    link: "https://github.com/grft-dev/graftcode/tree/222320e"
-    licenca: "sem licença declarada"
-    status: descartado
-    uso_agentes: "~930 estrelas, pin 222320e. Chama métodos entre linguagens/runtimes como dependência local via 'Graftcode Gateway', sem escrever REST/gRPC; tem MCP para agentes. Nada a extrair para a VTX: o stack de referência usa APIs explícitas (OpenAPI), mais simples de revisar e testar."
-    riscos: "Sem licença no GitHub (todos os direitos reservados). Depende do gateway deles e de comandos 'graft' obtidos do serviço; acoplamento e possível plano pago. DÚVIDA DE IDENTIFICAÇÃO: nenhum 'graft' famoso de agentes de IA; alternativas vistas: orbitinghail/graft (Apache-2.0, ~1,6 mil estrelas, motor de armazenamento/replicação SQLite, alpha — não é de agentes), hmgle/graftcp (proxy TCP), remigius42/skill-graft (enxertar skills de outros repos; 0 estrelas, imaturo). Confirmar com o Samuel qual ele quis."
+  - id: trail-code
+    nome: "Trail-code (trailhq, antigo graft) — mapa de código e aprendizados para agentes"
+    area: skills-agentes
+    tipo: mcp
+    link: "https://github.com/trailhq/Trail-Code/tree/b1211ef"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "~10,6 mil estrelas, pin b1211ef (pacote npm @trailhq/trail-code, antes @nanonets/graft). (1) 'graft map': grafo local do código com tree-sitter (funções, quem chama quem, impacto de mudança, 'skeleton' só com assinaturas ≈1/10 dos tokens), sem modelo nem rede; MCP/CLI para Cursor. (2) Learnings: decisões, preferências e guardrails em arquivos no .trail/ do repo, versionados no git; 'trail check' avisa antes do PR se a mudança desfaz uma decisão registrada. Extrair: (a) piloto local do graft map em um repo da VTX como ferramenta do mapa de codebase (VTX-131); (b) o modelo decisão × preferência × guardrail, com quem decidiu e por quê, para o memory bank (VTX-132). Fonte: benchmark do próprio autor (−46% chamadas, −42% tokens) — confirmar no piloto."
+    riscos: "Telemetria anônima LIGADA por padrão, inclusive ping no postinstall do npm — usar DO_NOT_TRACK=1 antes de instalar e 'trail telemetry disable'. 'trail init' lê transcrições do Claude Code e os comentários dos últimos 50 PRs via gh e envia à Anthropic — não usar. 'trail build --deep' manda código ao provedor de LLM (custo) — não usar. 'Trail workspace' (equipe) envia aprendizados e buscas à Trail — não conectar. Hooks do npm executam código: instalar só no piloto, local ao projeto (sem -g), em ambiente isolado. Nome: antes identificado por engano como grft-dev/graftcode (sem licença, camada de integração entre linguagens) — esclarecido pelo Samuel em 21/10."
     responsavel: arquiteto
     revisado_em: 2026-10-21

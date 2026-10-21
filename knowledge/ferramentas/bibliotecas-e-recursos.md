@@ -57,7 +57,7 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | Projeto | Pin | Licença | Decisão | O que extrair |
 |---|---|---|---|---|
 | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) (~163 mil estrelas) | `4e3ac3c` | MIT | adaptar | Processo, entregáveis e métricas por persona para enriquecer os papéis de `papeis-de-agentes.md`; novos especialistas sob demanda (mudança mínima, onboarding de codebase, fluxo git, resposta a incidentes) — VTX-134 |
-| [grft-dev/graftcode](https://github.com/grft-dev/graftcode) | `222320e` | sem licença | descartado | Nada; nome ambíguo (alternativas: orbitinghail/graft, skill-graft) — confirmar com o Samuel |
+| [trailhq/Trail-Code](https://github.com/trailhq/Trail-Code) (antigo graft, ~10,6 mil estrelas) | `b1211ef` | MIT | em avaliação | Mapa de código local (tree-sitter, sem rede) via MCP/CLI e aprendizados versionados em `.trail/` (decisão/preferência/guardrail); piloto local com telemetria desligada, sem `init`, `--deep` nem workspace — VTX-135. Corrige a identificação anterior (graftcode) |
 
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
