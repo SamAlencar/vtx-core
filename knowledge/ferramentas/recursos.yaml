@@ -233,3 +233,25 @@ recursos:
     riscos: "Telemetria/beacon ligados por padrão — desligar com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off; checa PyPI 1x/dia. Proxy intercepta chamadas ao modelo (credenciais passam por ele). Instalação traz modelos de ML grandes. Não instalar globalmente."
     responsavel: devops-sre
     revisado_em: 2026-10-21
+  - id: agency-agents
+    nome: "Agency Agents (msitarzewski) — catálogo de personas de agentes"
+    area: skills-agentes
+    tipo: regras
+    link: "https://github.com/msitarzewski/agency-agents/tree/4e3ac3c"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Decisão: ADAPTAR (até o VTX-134). ~163 mil estrelas, pin 4e3ac3c. Centenas de personas em Markdown por divisão (engineering, design, product, testing, security, project-management...), cada uma com missão, processo, entregáveis e métricas; tem conversor para Cursor (scripts/convert.sh). Comparado com papeis-de-agentes.md: cobre os 7 papéis do núcleo e os especialistas (software-architect, backend-architect, frontend-developer, mobile-app-builder, code-reviewer, sre, devops-automator, technical-writer, privacy-engineer, testing/*, security/*). Extrair: seções de processo/entregáveis/métricas para enriquecer as regras por papel (VTX-055/056) e especialistas úteis que faltam na VTX — minimal-change-engineer, codebase-onboarding-engineer, git-workflow-master, incident-response-commander. Fora: personas de marketing, paid-media, sales, game-dev e específicas de China/WeChat/Drupal."
+    riscos: "Só Markdown, sem rede; MAS install.sh/convert.sh e o app desktop (agencyagents.app, Homebrew) escrevem nos diretórios das ferramentas — não executar nem instalar. Personas longas = custo de contexto (carregar sob demanda). Cópia só com atribuição MIT e pin; preferir reescrever em pt-BR no formato .cursor/rules. Conflito possível com os papéis já definidos: a fonte de verdade continua sendo papeis-de-agentes.md."
+    responsavel: orquestrador
+    revisado_em: 2026-10-21
+  - id: graftcode
+    nome: "Graftcode (grft-dev) — camada de integração entre linguagens"
+    area: backend
+    tipo: referência
+    link: "https://github.com/grft-dev/graftcode/tree/222320e"
+    licenca: "sem licença declarada"
+    status: descartado
+    uso_agentes: "~930 estrelas, pin 222320e. Chama métodos entre linguagens/runtimes como dependência local via 'Graftcode Gateway', sem escrever REST/gRPC; tem MCP para agentes. Nada a extrair para a VTX: o stack de referência usa APIs explícitas (OpenAPI), mais simples de revisar e testar."
+    riscos: "Sem licença no GitHub (todos os direitos reservados). Depende do gateway deles e de comandos 'graft' obtidos do serviço; acoplamento e possível plano pago. DÚVIDA DE IDENTIFICAÇÃO: nenhum 'graft' famoso de agentes de IA; alternativas vistas: orbitinghail/graft (Apache-2.0, ~1,6 mil estrelas, motor de armazenamento/replicação SQLite, alpha — não é de agentes), hmgle/graftcp (proxy TCP), remigius42/skill-graft (enxertar skills de outros repos; 0 estrelas, imaturo). Confirmar com o Samuel qual ele quis."
+    responsavel: arquiteto
+    revisado_em: 2026-10-21

@@ -1183,3 +1183,13 @@ tarefas:
   depende_de:
   - VTX-126
   notas: 'Pedido do Samuel em 2026-10-21. Regra: filtrar logs pelo erro principal, rg/trechos em vez de arquivos inteiros, resumir JSON/diffs grandes. Piloto opcional do MCP do Headroom (Apache-2.0, pin 4c7acba) em ambiente isolado, com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off, sem proxy; decidir adotar/descartar após medir economia.'
+- id: VTX-134
+  titulo: 'Enriquecer papéis de agentes com o catálogo agency-agents'
+  fase: F9
+  area: Integração Cursor
+  prioridade: 84
+  status: a fazer
+  entregavel: 'knowledge/organizacao/papeis-de-agentes.md'
+  depende_de:
+  - VTX-055
+  notas: 'Pedido do Samuel em 2026-10-21. Comparar cada papel do núcleo e especialista com as personas equivalentes de msitarzewski/agency-agents (MIT, pin 4e3ac3c) e trazer, reescrito em pt-BR, o que falta de processo, entregáveis e métricas; avaliar novos especialistas sob demanda (minimal-change, codebase-onboarding, git-workflow, incident-response). Não executar install.sh/convert.sh nem o app; atribuição MIT se copiar trecho. papeis-de-agentes.md segue como fonte de verdade. Prioridade 84 empata com VTX-056 e vem depois (ordenação estável).'

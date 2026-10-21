@@ -51,6 +51,14 @@ Sugestões do Samuel. Nada instalado nem executado; detalhes em `recursos.yaml`.
 | [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) | `bbb3379` | Apache-2.0 | descartar | Só o padrão de observações tipadas e datadas (entra no VTX-132); serviço hospedado por padrão e hooks |
 | [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) | `4c7acba` | Apache-2.0 | em avaliação | Regras de compressão de saída de ferramentas e logs — VTX-133; piloto local do MCP com telemetria desligada |
 
+### 3.4 Personas de agentes e integração (21/10/2026)
+Nada instalado nem executado; detalhes em `recursos.yaml`.
+
+| Projeto | Pin | Licença | Decisão | O que extrair |
+|---|---|---|---|---|
+| [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) (~163 mil estrelas) | `4e3ac3c` | MIT | adaptar | Processo, entregáveis e métricas por persona para enriquecer os papéis de `papeis-de-agentes.md`; novos especialistas sob demanda (mudança mínima, onboarding de codebase, fluxo git, resposta a incidentes) — VTX-134 |
+| [grft-dev/graftcode](https://github.com/grft-dev/graftcode) | `222320e` | sem licença | descartado | Nada; nome ambíguo (alternativas: orbitinghail/graft, skill-graft) — confirmar com o Samuel |
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
