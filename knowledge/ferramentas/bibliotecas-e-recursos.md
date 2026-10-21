@@ -65,6 +65,7 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | Projeto | Pin | Licença | Decisão | O que extrair |
 |---|---|---|---|---|
 | [rebelytics/one-skill-to-rule-them-all](https://github.com/rebelytics/one-skill-to-rule-them-all) — skill `task-observer` (~3,5 mil estrelas) | `3463c7c` | CC-BY-4.0 | adaptar | Log de observações por skill (padrões, correções, julgamentos) com checkpoints e revisão periódica que vira proposta de atualização de skill — VTX-136. Nome ambíguo: "task observer" é o nome da skill, não do repo (alternativas em `recursos.yaml`) |
+| [google-research/harness2](https://github.com/google-research/harness2) (~17 mil estrelas) | `1cfe254` | Apache-2.0 | adaptar só a metodologia | Ciclo Propose–Probe–Compose para mudar regras/skills (propor, testar numa tarefa real, comparar, adotar) e registro de lições com evidência; mapa dos 8 componentes do harness para o Cursor (rules, AGENTS.md, memory bank, MCP, skills, scripts, papéis) — VTX-137. Não executar: exige modelos pagos e rede irrestrita |
 
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.

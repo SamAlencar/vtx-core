@@ -1213,3 +1213,13 @@ tarefas:
   depende_de:
   - VTX-125
   notas: 'Pedido do Samuel em 2026-10-21. Adaptar a skill task-observer (rebelytics/one-skill-to-rule-them-all, CC-BY-4.0, pin 3463c7c): pasta versionada no vtx-core (ex. knowledge/skills/observacoes/) com um arquivo por observação (tipo, skill alvo, evidência, data), checkpoint a cada ~3 tarefas, e revisão na rotina quinzenal de manutenção de skills que gera propostas de mudança revisáveis (nunca alterar skill direto). Integrar ao log de uso de skills da rotina diária. Não executar scripts/ nem usar caminhos ~/.claude; reescrever em pt-BR, com atribuição CC-BY se copiar trecho. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+- id: VTX-137
+  titulo: 'Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²)'
+  fase: F12
+  area: Ferramentas
+  prioridade: 62
+  status: a fazer
+  entregavel: 'knowledge/processos/melhoria-do-harness.md'
+  depende_de:
+  - VTX-136
+  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a metodologia de google-research/harness2 (Apache-2.0, pin 1cfe254), sem executar o framework (exige modelos pagos). Entregar: (1) mapa dos 8 componentes do harness para o Cursor (.cursor/rules e AGENTS.md, memory bank, MCP, .cursor/skills, scripts do arsenal TT-060, papéis); (2) ciclo Propose–Probe–Compose para mudar regra/skill: propor a edição, testar numa tarefa real do backlog com e sem a mudança, comparar resultado/tokens e adotar só com evidência; (3) arquivo de lições com evidência alimentado pelas observações do VTX-136 e revisado na manutenção quinzenal; (4) skill .cursor/skills/melhoria-do-harness/ que guia o ciclo. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'

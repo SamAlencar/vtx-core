@@ -266,3 +266,14 @@ recursos:
     riscos: "CC-BY-4.0: cópia permitida só com atribuição (autor, link, licença, alterações). scripts/ (new-observation.sh, session-start-scan.sh, skill-load.sh, migrate-log.py) e .claude-plugin não executar; pressupõe caminhos do Claude Code (~/.claude/...) fora do repo — usar pasta versionada no vtx-core. Skill longa = custo de contexto (carregar references sob demanda). Auto-atualização de skills só via proposta/PR, nunca direto. DÚVIDA DE IDENTIFICAÇÃO: não há repo 'task-observer' relevante; é o nome da skill (name: task-observer) neste repo, também espelhada em aiskillstore/marketplace. Alternativas vistas e descartadas: chekusu/wanman (Apache-2.0, ~690 estrelas, runtime de agentes com humano 'observador' — não é o mesmo), tmogeid/skill-prompt-evolution (port para OpenCode, 0 estrelas), repos 'TaskObserver' sem relação (Android, logs de tarefa)."
     responsavel: orquestrador
     revisado_em: 2026-10-21
+  - id: harness2
+    nome: "Harness² (google-research/harness2) — melhoria recursiva do harness de agentes"
+    area: skills-agentes
+    tipo: referência
+    link: "https://github.com/google-research/harness2/tree/1cfe254"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "Decisão: ADAPTAR SÓ A METODOLOGIA (VTX-137); não executar o framework. ~17 mil estrelas, pin 1cfe254, artigo arXiv 2610.14224. Framework de pesquisa que otimiza o 'harness' (tudo em volta do modelo) sem mexer nos pesos: por tarefa, Propose–Probe–Compose (propor edições, testá-las na mesma tarefa, compor a versão melhor pelo contraste entre execuções); entre tarefas, um 'improvement harness' persistente com harnesses adotados e lições com evidência. Divide o harness em 8 componentes editáveis: system prompt, guardrails, memória, orientação de ferramentas, subagentes, skills, scripts e plugins. No Cursor: system prompt/guardrails = .cursor/rules/ e AGENTS.md; memória = memory bank (VTX-132); orientação de ferramentas e plugins = MCP; skills = .cursor/skills/; scripts = arsenal TT-060; subagentes = papéis (papeis-de-agentes.md)."
+    riscos: "Executar exige modelos pagos (Vertex AI/Gemini, GLM via API) e custo por execução; executor com rede irrestrita e sandbox do Codex desligado; benchmarks precisam de Docker. Viola a regra de nada pago — só leitura. Não é produto oficial do Google (projeto de pesquisa). Copiar texto só com atribuição Apache-2.0 e pin; preferir reescrever."
+    responsavel: orquestrador
+    revisado_em: 2026-10-21
