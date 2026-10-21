@@ -1,0 +1,43 @@
+# ==========================================
+# CURSOR IGNORE - Otimização de Contexto (padrão VTX, base do Samuel 20/10/2026)
+# ==========================================
+# 1. Dependências e Builds
+node_modules/
+dist/
+build/
+out/
+.cache/
+coverage/
+.next/
+# 2. Logs
+*.log
+*.err
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# 3. Engenharia, CAD e Modelagem
+*.bak
+*.dwl
+*.dwl2
+*.sv$
+*.dxf
+*.dwg
+*.rvt
+*.rfa
+*.rcp
+*.ifc
+# 4. Dados brutos e lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+*.csv
+*.sqlite
+*.db
+# 5. Mídia e documentos finais
+*.pdf
+*.mp4
+*.png
+*.jpg
+*.jpeg
+# *.svg fica liberado em projetos web (ícones e componentes são código); bloqueie só se forem ilustrações pesadas.
+# Exceção: se um CSV/PDF for insumo de teste ou especificação, libere com !caminho/arquivo
