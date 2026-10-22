@@ -1254,3 +1254,24 @@ tarefas:
   depende_de:
   - VTX-125
   notas: 'Pedido do Samuel em 2026-10-21. Revisar cada SKILL.md do ECC (MIT, pin 90606c8) e comparar com mattpocock (tdd, code-review), superpowers e o checklist de segurança antes de adotar — uma fonte de verdade por tema. Copiar só o revisado, com atribuição e pin; remover referências a serviços pagos e comandos do Claude Code. Agents, commands, memória/codemaps e MCP configs do ECC ficam fora (já cobertos por VTX-131..137). Prioridade 62 empata com VTX-129 e vem depois.'
+
+- id: VTX-141
+  titulo: 'Skill de diagramas editoriais (adaptada do diagram-design)'
+  fase: F10
+  area: Ferramentas
+  prioridade: 60
+  status: em avaliação
+  entregavel: '.cursor/skills/diagramas/ + diagramas dos ADRs do med-hub'
+  depende_de:
+  - VTX-125
+  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. cathrynlavery/diagram-design (MIT, pin 7a12007): copiar só SKILL.md e templates revisados, com atribuição e pin; trocar Google Fonts por fontes locais; tema VTX; não executar scripts do repo. Usar em docs/ADRs e sites.'
+- id: VTX-142
+  titulo: 'Vídeos de divulgação com HyperFrames (render local)'
+  fase: F12
+  area: Ferramentas
+  prioridade: 40
+  status: em avaliação
+  entregavel: '.cursor/skills/video-marketing/ + script do arsenal (TT-060) render-video + processo frame.md'
+  depende_de:
+  - VTX-141
+  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. heygen-com/hyperframes (Apache-2.0, pin 4371981). Só render local (Chrome headless + FFmpeg); telemetria ligada por padrão -> sempre HYPERFRAMES_NO_TELEMETRY=1 e DO_NOT_TRACK=1; sem render em nuvem (Lambda/Cloud Run), sem registry remoto, sem npx skills add. Instalar só após revisão do pacote. Para vídeos dos sites VTX, med-hub e Tekto, depois que existirem.'

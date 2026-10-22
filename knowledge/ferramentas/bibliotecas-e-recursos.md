@@ -80,6 +80,17 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | Memória, aprendizado, codemaps | VTX-131/132/135/136/137 | Ignorar (já coberto) |
 | MCP configs (~35) | Playwright, Context7, GitHub | Nada novo grátis/local além dos já avaliados |
 
+### 3.7 diagram-design — diagramas editoriais (21/10/2026)
+[cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design), MIT, ~60 mil estrelas, pin `7a12007`. Skill de 45 tipos de diagrama em HTML + SVG autocontido (sem Mermaid), com tema de marca. Sem servidor, sem telemetria (PRIVACY.md); único acesso externo é Google Fonts. **Decisão: adaptar.**
+- Vira no Cursor: skill `.cursor/skills/diagramas/` (cópia revisada, atribuição + pin), com fontes locais/self-hosted no lugar do Google Fonts e tema VTX — **VTX-141**.
+- Uso: diagramas de ADRs, arquitetura e fluxos em `docs/` de todos os projetos (med-hub, plataforma-projetos), README e sites (site-vtx, site-med-hub, site-tekto). Não rodar os scripts do repo; exportar PNG só com o Playwright local já avaliado.
+
+### 3.8 HyperFrames (HeyGen) — vídeo a partir de HTML (21/10/2026)
+[heygen-com/hyperframes](https://github.com/heygen-com/hyperframes), Apache-2.0, ~69 mil estrelas, pin `4371981`. Agentes escrevem HTML e o CLI renderiza MP4 local (Chrome headless + FFmpeg, Node 22+). **Decisão: adaptar, com cuidado.**
+- Riscos: CLI tem **telemetria ligada por padrão** (desligar com `HYPERFRAMES_NO_TELEMETRY=1`/`DO_NOT_TRACK=1`); há render em nuvem (AWS Lambda/GCP), registry remoto e instaladores `npx` — tudo fora. Só render local; instalar apenas após revisão, em ambiente isolado.
+- Vira no Cursor: skill `.cursor/skills/video-marketing/` adaptada das skills core (`hyperframes`, `hyperframes-cli`), script do arsenal TT-060 `render-video` (render local com telemetria desligada) e a ideia do `frame.md` (design.md traduzido para vídeo) como processo de marketing — **VTX-142**.
+- Uso: vídeos curtos de divulgação e demos dos sites (site-vtx, site-med-hub, site-tekto). Prioridade baixa: depois dos sites existirem.
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
