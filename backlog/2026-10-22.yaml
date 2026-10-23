@@ -1,0 +1,14 @@
+data: "2026-10-22"
+tarefas:
+  - id: VTX-018
+    titulo: "Estratégia de testes e qualidade"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Rodada atrasada (pausa por cota em 22/10), executada em 23/10 00:30. knowledge/engenharia/testes-e-qualidade.md: pirâmide, critério de aceite → teste, TDD obrigatório em regra de negócio, ferramentas grátis (Vitest, Testing Library, Jest no RN, pytest, Playwright, Testcontainers/Supabase local, coverage, axe-core), metodologia por história, metas (80% só em módulos de regra, flaky = defeito, severidades), exemplo Vitest ligado a HU, checklist, fontes (ISO 25010 só citada). Skills: writing-plans (plano em docs/planos/2026-10-22-vtx-018-019.md; ajudou a fixar Review Focus de cobertura cega), verification-before-completion (test -f nos links, todas as URLs HTTP 200, unittest verde; ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: catálogo knowledge/ferramentas (Playwright já avaliado; mattpocock tdd só como referência, não lida hoje). Ferramentas: git, curl. Correu bem, sem bloqueio."
+  - id: VTX-019
+    titulo: "Git e CI/CD"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/engenharia/git-e-ci-cd.md: trunk-based com main protegida, branch por issue < 2 dias, squash + Conventional Commits, proibição de force-push/--no-verify/segredo (coerente com VTX-139), SemVer; pipeline de 6 etapas em GitHub Actions na cota grátis (pre-commit com gitleaks, CI, E2E, segurança com audit/Dependabot/CodeQL, CD homologação, produção por tag com aprovação humana), economia de minutos, exemplo ci.yml, métricas DORA com metas iniciais, checklist, fontes. Skills: writing-plans (mesmo plano), verification-before-completion (links, URLs 200, coerência com agents/devops-sre.md e workflows do vtx-core, unittest verde). Ferramentas: git, curl, gh (grátis, locais). Correu bem."
