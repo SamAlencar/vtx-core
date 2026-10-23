@@ -17,3 +17,6 @@ Usar Supabase na nuvem (Postgres, Auth, Storage e Edge Functions), começando no
 - (−) O plano Free pausa projetos parados e tem limites de banco, armazenamento e funções [A CONFIRMAR: limites atuais]. Não serve para produção com clientes.
 - (−) Escolher a região. Proposta: `sa-east-1` (São Paulo), se disponível no Free [A CONFIRMAR], para simplificar a LGPD.
 - Se a VTX-023 escolher outro stack, este ADR vira "substituído por ADR-NNNN".
+
+## Nota (23/10/2026)
+Samuel conectou o Supabase como MCP. Uso pelos agentes só em projeto de desenvolvimento, nunca em produção. Status segue **proposto** até a VTX-023. Ver `knowledge/ferramentas/bibliotecas-e-recursos.md` §3.9.

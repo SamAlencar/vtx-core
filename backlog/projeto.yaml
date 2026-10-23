@@ -708,6 +708,7 @@ tarefas:
   entregavel: 'knowledge/ferramentas/hospedagem/vercel.md'
   depende_de:
   - VTX-098
+  notas: '2026-10-23: Samuel conectou o MCP da Vercel. Hobby grátis proíbe uso comercial: só sites internos/não comerciais. Site comercial/cliente = Pro pago ou Cloudflare/GitHub Pages: decisão de dinheiro do Samuel. Ver §3.9.'
 - id: VTX-100
   titulo: 'Ferramenta: Supabase (banco, auth, storage)'
   fase: F12
@@ -717,6 +718,7 @@ tarefas:
   entregavel: 'knowledge/ferramentas/backend/supabase.md'
   depende_de:
   - VTX-098
+  notas: '2026-10-23: Samuel conectou o MCP do Supabase. MCP só em projeto de dev, nunca produção; limites do Free; ligado ao ADR-0002 do med-hub e VTX-023. Ver §3.9.'
 - id: VTX-101
   titulo: 'Ferramenta: GitHub e GitHub Actions'
   fase: F12
@@ -774,7 +776,7 @@ tarefas:
   entregavel: 'knowledge/ferramentas/pagamentos/stripe-mercado-pago.md'
   depende_de:
   - VTX-098
-  notas: 'Comparativo; dinheiro real sempre com o Samuel.'
+  notas: '2026-10-23: Samuel definiu Stripe como gateway PRINCIPAL; Mercado Pago é alternativa. Padrão em knowledge/engenharia/pagamentos.md. Confirmar Pix/boleto e taxas BR. Dinheiro real sempre com o Samuel.'
 - id: VTX-107
   titulo: 'Ferramenta: Sentry'
   fase: F12
@@ -812,6 +814,7 @@ tarefas:
   entregavel: 'knowledge/ferramentas/design/figma.md'
   depende_de:
   - VTX-098
+  notas: '2026-10-23: Samuel conectou o MCP do Figma. Usar no handoff dos sites (site-vtx, site-med-hub, site-tekto) e telas de produto; confirmar limites do plano grátis/Dev Mode. Ver §3.9.'
 - id: VTX-111
   titulo: 'Ferramentas de comunicação e gestão (Google Workspace, Grok Bot)'
   fase: F12
@@ -965,7 +968,7 @@ tarefas:
   entregavel: 'vtx-acompanhamento/docs/adr/'
   depende_de:
   - VTX-117
-  notas: 'Antecipado. Site estático + login (ex.: Cloudflare Pages + Access ou Vercel com proteção); limites, termos e cartão. Portão: Samuel aprova serviço e qualquer custo.'
+  notas: 'Antecipado. Site estático + login (ex.: Cloudflare Pages + Access ou Vercel com proteção; Vercel Hobby serve por ser uso interno não comercial); limites, termos e cartão. Portão: Samuel aprova serviço e qualquer custo.'
 - id: VTX-096
   titulo: 'Interface web: estrutura, login restrito e portfólio'
   fase: F11
