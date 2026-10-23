@@ -1,0 +1,14 @@
+data: "2026-10-23"
+tarefas:
+  - id: VTX-020
+    titulo: "Segurança no desenvolvimento (OWASP, SSDF)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/seguranca/desenvolvimento-seguro.md: SSDF (NIST SP 800-218) mapeado às fases VTX (requisito, design com STRIDE leve, código, dependências, CI, operação com prazos de CVE 48h/7d/30d), OWASP Top 10, API Top 10, LLM Top 10 (prompt injection, excesso de agência), ASVS nível 1/2, regras do stack (RLS Supabase, NEXT_PUBLIC sem segredo, webhook Stripe), job de segurança grátis (gitleaks, Semgrep CE, OSV-Scanner), checklist de PR, escalonamento LGPD. Skills: writing-plans (plano em docs/planos/2026-10-23-vtx-020-021.md; Review Focus trouxe LLM e LGPD, ajudou), verification-before-completion (test -f nos links, URLs HTTP 200; planalto.gov.br inacessível da máquina, URL oficial mantida; unittest verde; ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: catálogo knowledge/ferramentas (owasp-cheatsheets adotado, citado; security-guidance/ECC só como referência). Ferramentas: git, curl. Correu bem, custo baixo."
+  - id: VTX-021
+    titulo: "DevOps e SRE (IaC, SLOs, incidentes)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/operacao/devops-sre.md: IaC (migrações Supabase versionadas, expandir/contrair, vercel.json, OpenTofu se houver nuvem), ambientes dev/homologação/produção nos planos grátis, SLOs padrão (99,5% não-5xx, p95 < 500 ms, jobs 99%) com política de error budget, severidades SEV1-3 com quando avisar Samuel, fluxo de incidente e postmortem sem culpados, runbook mínimo, checklist, fontes (livro SRE do Google, DORA). Observabilidade fica para o VTX-022. Skills: writing-plans (mesmo plano), verification-before-completion (links, URLs 200, coerência com agents/devops-sre.md e git-e-ci-cd.md, unittest verde). Ferramentas: git, curl. Correu bem."

@@ -258,14 +258,14 @@ tarefas:
   fase: F3
   area: Base de Conhecimento
   prioridade: 27
-  status: a fazer
+  status: concluído
   entregavel: knowledge/seguranca/desenvolvimento-seguro.md
 - id: VTX-021
   titulo: DevOps e SRE (IaC, SLOs, incidentes)
   fase: F3
   area: Base de Conhecimento
   prioridade: 28
-  status: a fazer
+  status: concluído
   entregavel: knowledge/operacao/devops-sre.md
 - id: VTX-022
   titulo: Observabilidade (logs, métricas, traces)

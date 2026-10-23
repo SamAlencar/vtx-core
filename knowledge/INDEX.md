@@ -28,4 +28,6 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 21 | [Padrões de código, Clean Code e code review](engenharia/padroes-de-codigo.md) | Engenharia | v1 | 2026-10-21 |
 | 22 | [Estratégia de testes e qualidade](engenharia/testes-e-qualidade.md) | Engenharia | v1 | 2026-10-22 |
 | 23 | [Git e CI/CD](engenharia/git-e-ci-cd.md) | Engenharia | v1 | 2026-10-22 |
+| 24 | [Segurança no desenvolvimento (OWASP, SSDF)](seguranca/desenvolvimento-seguro.md) | Segurança | v1 | 2026-10-23 |
+| 25 | [DevOps e SRE (IaC, SLOs, incidentes)](operacao/devops-sre.md) | Operação | v1 | 2026-10-23 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
