@@ -17,3 +17,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Uso interno possível:** simular como personas (clientes, profissionais revisores) reagem a um PRD, preço ou funcionalidade antes de construir. A AGPL não atrapalha no uso interno.
 - **Limites:** gasta muitos tokens de LLM; as previsões não são validadas, então servem só como indício e nunca substituem a entrevista ou o teste com usuários reais. A versão original usa o Zep, que é pago; só o fork offline é aceitável.
 - **Decisão:** ideia, com teste opcional depois do piloto, usando o fork offline com Ollama. Não roda instaladores nem scripts sem revisar.
+
+## thinking-orbs (jakubantalik/thinking-orbs) — avaliado 2026-10-24
+- **O que é:** indicadores de carregamento animados (orbes pontilhados) para interfaces de IA e agentes. 9 tipos, dois tamanhos, tema claro/escuro automático. TypeScript, MIT, commit de85557. Demo: orbs.jakubantalik.com.
+- **Uso:** estado "pensando" quando a IA trabalha, como na plataforma-projetos enquanto a Tekto gera um projeto e no painel da VTX quando houver ações em andamento. Também ajuda o Pico-Fim dos princípios de UX: a espera parece viva.
+- **Licença:** MIT permite uso também em projetos de clientes, com atribuição e commit fixado.
+- **Decisão:** adotar como componente de referência do stack (Next.js/Tailwind) quando a primeira tela de IA for construída. Ler o código antes; não rodar scripts de instalação sem revisar.
