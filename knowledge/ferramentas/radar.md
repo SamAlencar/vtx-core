@@ -23,3 +23,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Uso:** estado "pensando" quando a IA trabalha, como na plataforma-projetos enquanto a Tekto gera um projeto e no painel da VTX quando houver ações em andamento. Também ajuda o Pico-Fim dos princípios de UX: a espera parece viva.
 - **Licença:** MIT permite uso também em projetos de clientes, com atribuição e commit fixado.
 - **Decisão:** adotar como componente de referência do stack (Next.js/Tailwind) quando a primeira tela de IA for construída. Ler o código antes; não rodar scripts de instalação sem revisar.
+
+## agent-skills (addyosmani/agent-skills) — avaliado 2026-10-24
+- **O que é:** 24 skills de engenharia para agentes de código (API design, TDD, code review, debugging, CI/CD, segurança, performance, ADRs, spec-driven, planejamento, lançamento, interview-me...) + pasta evals/ com casos de teste das skills. MIT, ~110k estrelas, commit aeac41d.
+- **Uso interno:** referência direta para as próximas tarefas de conhecimento (VTX-024 Design de APIs usa api-and-interface-design) e para as skills em .cursor/skills/. O padrão de evals serve à manutenção quinzenal de skills do Vix.
+- **Licença:** MIT; copiar trechos com atribuição e commit fixado. Revisar como biblioteca (regra de skills da comunidade); não rodar scripts.
+- **Decisão:** adaptar. Consultar a skill correspondente antes de escrever cada documento ou skill da VTX; adotar o formato de evals.
