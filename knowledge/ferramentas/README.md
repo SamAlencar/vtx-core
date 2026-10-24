@@ -81,3 +81,7 @@ Uma vez por trimestre, dentro da manutenção quinzenal (VTX-113), revisam-se cu
 - Nygard, M. *Documenting Architecture Decisions* (2011): formato ADR.
 - ThoughtWorks Technology Radar: categorias adotar / avaliar / evitar.
 - Documentação oficial de cada ferramenta, citada no documento dela.
+
+
+## Radar
+Até o piloto começar, ferramentas novas vão para o [radar](radar.md), não para o backlog (decisão de 23/10/2026).
