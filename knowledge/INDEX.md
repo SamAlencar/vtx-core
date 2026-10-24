@@ -33,3 +33,4 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 26 | [Observabilidade (logs, métricas, traces)](operacao/observabilidade.md) | Operação | v1 | 2026-10-24 |
 | 27 | [Stack de referência da VTX](tecnologia/stack-de-referencia.md) | Tecnologia | v1 | 2026-10-24 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
+- [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.
