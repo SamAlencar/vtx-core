@@ -19,7 +19,7 @@
 **Varredura periódica:** na manutenção quinzenal, olhar as fontes acima atrás de novidades em 1 ou 2 áreas, em rodízio, com no máximo 3 candidatos por ciclo. Na revisão trimestral (VTX-113), reavaliar os itens adotados e descartar os que não estão em uso.
 
 ## 3. Avaliação (antes de entrar como candidato)
-1. **Licença:** MIT, Apache-2.0, BSD e CC0 são aceitas. CC-BY e CC-BY-SA só para referência, com atribuição. Sem licença ou com licença restritiva: não copiar. Em repositórios mistos (ex.: anthropics/skills), conferir a licença **de cada skill** — as de documento (`docx`, `pdf`, `pptx`, `xlsx`) são source-available sob termos da Anthropic, **não** open source: não copiar.
+1. **Licença** (vale para código **copiado para entregas de clientes**; para uso interno da VTX, ver o princípio em [radar.md](radar.md)): MIT, Apache-2.0, BSD e CC0 são aceitas. CC-BY e CC-BY-SA só para referência, com atribuição. Sem licença ou com licença restritiva: não copiar. Em repositórios mistos (ex.: anthropics/skills), conferir a licença **de cada skill** — as de documento (`docx`, `pdf`, `pptx`, `xlsx`) são source-available sob termos da Anthropic, **não** open source: não copiar.
 2. **Manutenção:** commit nos últimos 6 meses, issues respondidas, não arquivado.
 3. **Segurança e cadeia de suprimentos:** o que executa (binários, hooks, `postinstall`), que permissões pede, de onde baixa; fixar versão ou commit; nunca dar tokens além do necessário. **Revisar o texto e os scripts** da skill como se fosse código de biblioteca (prompt injection, exfiltração, rede, shell).
 4. **Custo em tokens:** skills e regras longas consomem contexto. Preferir as que carregam sob demanda.
