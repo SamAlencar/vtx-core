@@ -30,4 +30,6 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 23 | [Git e CI/CD](engenharia/git-e-ci-cd.md) | Engenharia | v1 | 2026-10-22 |
 | 24 | [Segurança no desenvolvimento (OWASP, SSDF)](seguranca/desenvolvimento-seguro.md) | Segurança | v1 | 2026-10-23 |
 | 25 | [DevOps e SRE (IaC, SLOs, incidentes)](operacao/devops-sre.md) | Operação | v1 | 2026-10-23 |
+| 26 | [Observabilidade (logs, métricas, traces)](operacao/observabilidade.md) | Operação | v1 | 2026-10-24 |
+| 27 | [Stack de referência da VTX](tecnologia/stack-de-referencia.md) | Tecnologia | v1 | 2026-10-24 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)

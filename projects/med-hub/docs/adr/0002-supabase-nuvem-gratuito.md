@@ -1,5 +1,5 @@
 # ADR-002: Supabase na nuvem, começando no plano gratuito
-- **Status:** **proposto, sujeito à VTX-023** (stack de referência da VTX, ainda pendente)
+- **Status:** **aceito** (24/10/2026): escolha do Samuel em 18/10/2026, confirmada pelo [stack de referência](../../../../knowledge/tecnologia/stack-de-referencia.md) (VTX-023)
 - **Data:** 20/10/2026 · **Nível de governança:** A2 (hospedagem e fornecedor). O Samuel escolheu esta opção em 18/10/2026; a validação final depende da VTX-023.
 
 ## Contexto
@@ -20,3 +20,6 @@ Usar Supabase na nuvem (Postgres, Auth, Storage e Edge Functions), começando no
 
 ## Nota (23/10/2026)
 Samuel conectou o Supabase como MCP. Uso pelos agentes só em projeto de desenvolvimento, nunca em produção. Status segue **proposto** até a VTX-023. Ver `knowledge/ferramentas/bibliotecas-e-recursos.md` §3.9.
+
+## Nota (24/10/2026)
+A VTX-023 adotou Supabase como backend padrão; ADR passa a **aceito**. Plano Pro, produção e região continuam aprovações A2 separadas.

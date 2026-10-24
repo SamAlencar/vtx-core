@@ -272,14 +272,14 @@ tarefas:
   fase: F3
   area: Base de Conhecimento
   prioridade: 29
-  status: a fazer
+  status: concluído
   entregavel: knowledge/operacao/observabilidade.md
 - id: VTX-023
   titulo: Stack de referência da VTX
   fase: F4
   area: Base de Conhecimento
   prioridade: 30
-  status: a fazer
+  status: concluído
   entregavel: knowledge/tecnologia/stack-de-referencia.md
 - id: VTX-024
   titulo: Design de APIs

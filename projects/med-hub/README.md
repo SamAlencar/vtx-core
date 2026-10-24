@@ -5,7 +5,7 @@ Plataforma chat-first para médicos PJ (3 MCPs), implementada pelos agentes da V
 - Fonte única de verdade do planejamento: [SamAlencar/4medco-base-conhecimento](https://github.com/SamAlencar/4medco-base-conhecimento) (importado de `planejamento/vtx/`, commit 0da4cba, preparado pelo Bil).
 - [PRD](docs/produto/PRD.md) · [ADRs](docs/adr/) · [Pesquisa de domínio](conhecimento/pesquisa-dominio.md)
 - Aprovação de escopo (A2): 18/10/2026.
-- ADR-0002 (Supabase) está **proposto**, sujeito à VTX-023 (stack de referência).
+- ADR-0002 (Supabase) **aceito** em 24/10/2026, confirmado pela VTX-023 (stack de referência).
 
 ## Pendências
 - Issues por história (HU-xx, épicos A–G) só depois das convenções de issues/PRs da F9.

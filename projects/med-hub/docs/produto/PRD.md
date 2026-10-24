@@ -335,7 +335,7 @@ Cenário: editar link
 - LGPD obrigatória.
 - Desenvolvimento pelos agentes da VTX (Cursor), seguindo o fluxo `sistema-web-saas`.
 - Refazer do zero sem copiar código do repositório antigo ([ADR-001](adr/adr-001-refazer-do-zero.md)).
-- Supabase na nuvem, plano gratuito no início ([ADR-002](adr/adr-002-supabase-nuvem-gratuito.md), proposto, sujeito à VTX-023).
+- Supabase na nuvem, plano gratuito no início ([ADR-002](adr/adr-002-supabase-nuvem-gratuito.md), aceito em 24/10/2026 com a VTX-023).
 - Chat-first com 3 MCPs ([ADR-003](adr/adr-003-chat-first-3-mcps.md)).
 - O seguro é cobrado pela corretora, fora da plataforma ([ADR-004](adr/adr-004-seguro-cobrado-pela-corretora.md)).
 - O MCP jurídico nunca dá parecer (Lei 8.906/1994, art. 1º, II).

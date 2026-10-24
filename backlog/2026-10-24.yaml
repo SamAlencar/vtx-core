@@ -1,0 +1,14 @@
+data: "2026-10-24"
+tarefas:
+  - id: VTX-022
+    titulo: "Observabilidade (logs, métricas, traces)"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/operacao/observabilidade.md: três sinais ligados por trace_id, padrão OpenTelemetry (@vercel/otel), logs JSON com pino e redação de PII/segredos (LGPD), métricas pelos painéis nativos Vercel/Supabase, alertas só por burn rate do SLO (2% em 1 h = SEV2; 10% em 3 dias = issue) com dono e runbook, health check grátis via GitHub Actions, self-host opcional (Grafana OSS, Tempo/Jaeger, GlitchTip); Sentry fica na VTX-107. Skills: writing-plans (plano em docs/planos/2026-10-24-vtx-022-023.md; Review Focus trouxe PII em log e ferramenta paga disfarçada de free tier, ajudou), verification-before-completion (test -e nos links relativos, 8 URLs HTTP 200, unittest verde, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: catálogo knowledge/ferramentas consultado (nenhum recurso específico de observabilidade). Ferramentas: git, curl, python. Correu bem, custo baixo."
+  - id: VTX-023
+    titulo: "Stack de referência da VTX"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/stack-de-referencia.md: TypeScript, Next.js + Tailwind + shadcn/ui, Expo, Supabase (RLS obrigatória), Zod, Stripe, Vercel, Vitest/Playwright, GitHub Actions, pino+OTel, Figma, Vercel AI SDK, pnpm; alternativas com ADR, quando desviar e o que é sempre A2. Decisão A1: só itens gratuitos/open source ou já escolhidos pelo Samuel (Supabase 18/10; Vercel/Figma conectados e Stripe principal 23/10); ADR-0002 do med-hub passou a aceito (PRD, README e catálogo atualizados), plano Pro/produção seguem A2. shadcn/ui segue 'em avaliação' no catálogo até a VTX de ferramentas. Skills: writing-plans (mesmo plano; critério de exceção veio do Review Focus, ajudou), verification-before-completion (links, 9 URLs 200, coerência com ADR-0002, pagamentos.md e ferramentas/README.md, unittest verde). Bibliotecas: recursos.yaml (shadcn/ui citado como candidato). Ferramentas: git, curl. Correu bem."
