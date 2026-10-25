@@ -34,3 +34,17 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **O que é:** plugin de compressão de contexto para sessões muito longas. O próprio modelo decide quando e o que comprimir (compress, decompress, search_context), e o autor diz que basta uma janela de 100k tokens e que o gasto cai cerca de 5 vezes. Funciona nos harnesses pi, opencode e DeepSeek, não no Cursor. Licença "Other" (não padrão); os forks são MIT. ~2,8k estrelas.
 - **Uso interno:** não pluga no Cursor, que tem gerenciamento de contexto próprio. A ideia aproveitável: ao fim de cada tarefa, o agente grava um resumo compacto e pesquisável (decisões, arquivos tocados, pendências) em vez de reler histórico, reforçando as regras de eficiência de tokens.
 - **Decisão:** ideia apenas. Licença não padrão, então nenhum código é copiado.
+
+## ponytail (DietrichGebert/ponytail) — avaliado 2026-10-25
+- **O que é:** instruções para o agente agir como "o sênior preguiçoso": o melhor código é o que não precisa ser escrito. MIT, ~176k estrelas, commit 09c434a.
+- **Uso interno:** vira regra do Cursor para os Devs e o Faxineiro: antes de codar, perguntar se dá para não escrever (reusar, biblioteca, configuração); preferir a menor mudança que resolve. Casa com Pareto e Tesler dos princípios de UX.
+- **Decisão:** adaptar como trecho da regra de padrões de código, com atribuição. Não instalar pelo npm.
+
+## i-have-adhd (ayghri/i-have-adhd) — avaliado 2026-10-25
+- **O que é:** skill que obriga o agente a pôr a resposta primeiro, curta e escaneável. MIT, ~59k estrelas, commit 1ecea19.
+- **Uso interno:** formato padrão dos relatórios dos agentes para o Samuel (resposta na primeira linha, depois detalhes). Reforça as regras de eficiência de tokens.
+- **Decisão:** adaptar no template de relatório e na regra de eficiência, com atribuição. Não seguir o "instale pelo prompt" do README.
+
+## superpowers (obra/superpowers) — reavaliado 2026-10-25
+- Já está no catálogo (recursos.yaml) e a rotina diária já usa writing-plans e verification-before-completion. MIT, ~305k estrelas, suporta Cursor.
+- **Decisão:** manter; avaliar as demais skills (brainstorming, TDD, depuração sistemática) junto com addyosmani/agent-skills quando cada tema chegar no backlog. Ignorar a telemetria do "visual companion".
