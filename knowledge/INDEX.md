@@ -32,5 +32,7 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 25 | [DevOps e SRE (IaC, SLOs, incidentes)](operacao/devops-sre.md) | Operação | v1 | 2026-10-23 |
 | 26 | [Observabilidade (logs, métricas, traces)](operacao/observabilidade.md) | Operação | v1 | 2026-10-24 |
 | 27 | [Stack de referência da VTX](tecnologia/stack-de-referencia.md) | Tecnologia | v1 | 2026-10-24 |
+| 28 | [Design de APIs](tecnologia/design-de-apis.md) | Tecnologia | v1 | 2026-10-25 |
+| 29 | [Modelagem de dados e bancos de dados](tecnologia/modelagem-de-dados.md) | Tecnologia | v1 | 2026-10-25 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
 - [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.

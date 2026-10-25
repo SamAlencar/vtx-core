@@ -1,0 +1,14 @@
+data: "2026-10-25"
+tarefas:
+  - id: VTX-024
+    titulo: "Design de APIs"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/design-de-apis.md: contrato primeiro (Zod -> OpenAPI 3.1), quando usar supabase-js+RLS vs Route Handler/Edge Function vs webhook, REST pela RFC 9110, erros RFC 9457 sem stack trace, Idempotency-Key, validação Zod tolerante a variações inofensivas (lei de Postel), autorização no servidor, paginação por cursor, rate limit/CORS, versionamento só aditivo (apps mobile antigos), tabela de status, exemplo POST e checklist de PR. Skills: writing-plans (plano em docs/planos/2026-10-25-vtx-024-025.md; Review Focus trouxe idempotência e quebra de contrato com app mobile antigo, ajudou), verification-before-completion (test -e em 13 links relativos, 14 URLs HTTP 200, unittest verde, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: recursos.yaml (ECC: api-design, contract-first citados como referência; não instalados). Ferramentas: git, curl, python. Correu bem, custo baixo."
+  - id: VTX-025
+    titulo: "Modelagem de dados e bancos de dados"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/modelagem-de-dados.md: conceitual->lógico->físico, 3FN e desnormalização só com ADR, jsonb restrito, RLS obrigatória na mesma migração e testada com dois usuários, migrações versionadas em supabase/migrations, convenções (snake_case, uuid, timestamptz, dinheiro sem float, restrições no banco, owner_id), tipos gerados + Zod, expand-contract, explain analyze/índices/pooler, backup e retenção LGPD; exemplo SQL com (select auth.uid()). Skills: writing-plans (mesmo plano), verification-before-completion (links e URLs como acima; planalto.gov.br não respondeu da caixa (timeout), URL já usada em desenvolvimento-seguro.md, mantida), supabase-postgres-best-practices (skill local, origem do padrão (select auth.uid()) e índice em FK, ajudou). Bibliotecas: recursos.yaml (ECC postgres-patterns como referência). Ferramentas: git, curl. Correu bem."
