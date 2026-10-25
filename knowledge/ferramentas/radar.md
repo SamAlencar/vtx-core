@@ -48,3 +48,19 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 ## superpowers (obra/superpowers) — reavaliado 2026-10-25
 - Já está no catálogo (recursos.yaml) e a rotina diária já usa writing-plans e verification-before-completion. MIT, ~305k estrelas, suporta Cursor.
 - **Decisão:** manter; avaliar as demais skills (brainstorming, TDD, depuração sistemática) junto com addyosmani/agent-skills quando cada tema chegar no backlog. Ignorar a telemetria do "visual companion".
+
+## OmniRoute (diegosouzapw/omniroute → cheaper-inference/OmniRoute) — avaliado 2026-10-25
+- **O que é:** gateway de IA local com um endpoint só para centenas de provedores, troca automática quando a cota acaba e compressão de tokens. MIT, ~81k estrelas, commit 9666fa3. Os tiers grátis exigem contas próprias em cada provedor.
+- **Riscos:** juntar contas grátis de vários provedores pode violar os termos de uso de cada um; os dados passam por muitos provedores (LGPD), então nunca dados de clientes. Não usar para trocar o modelo dos agentes do Cursor.
+- **Decisão:** ideia. Possível teste depois do piloto só para scripts internos sem dados sensíveis (ex.: simulações tipo MiroFish).
+
+## Strix (usestrix/strix) — avaliado 2026-10-25
+- **O que é:** agentes de IA que fazem teste de invasão (pentest): rodam a aplicação, acham falhas e as comprovam com prova de conceito. Apache-2.0, ~72k estrelas, commit 200a501. Precisa de chave de LLM e Docker.
+- **Uso interno:** atende a competência 8 (segurança). Rodar localmente contra o ambiente de teste antes de cada go-live (primeiro: plataforma-projetos).
+- **Regras:** só contra sistemas próprios ou de cliente com autorização escrita; nunca produção; não usar o serviço hospedado app.strix.ai; revisar o código e rodar dentro de contêiner isolado.
+- **Decisão:** adaptar, no checklist de go-live do fluxo de segurança.
+
+## Open WebUI (open-webui/open-webui) — avaliado 2026-10-25 para a plataforma-projetos
+- **O que é:** interface de chat de IA self-hosted, com Ollama e APIs compatíveis com OpenAI, RAG e plugins. ~157k estrelas. Licença própria (BSD + cláusula de marca).
+- **Limite da licença:** acima de 50 usuários finais em 30 dias, é proibido tirar ou trocar a marca "Open WebUI" sem licença enterprise paga.
+- **Decisão:** não usar como base da plataforma-projetos (produto com marca Tekto e mais de 50 usuários, e ela é um fluxo de projeto e revisão, não um chat genérico). A interface de IA da plataforma usa o stack (Next.js + Vercel AI SDK + thinking-orbs). Uso interno ok: chat com modelos locais para a equipe Tekto/VTX, com menos de 50 usuários. Ideias para copiar como conceito: biblioteca de documentos com RAG, seleção de modelo, histórico.
