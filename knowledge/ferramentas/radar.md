@@ -29,3 +29,8 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Uso interno:** referência direta para as próximas tarefas de conhecimento (VTX-024 Design de APIs usa api-and-interface-design) e para as skills em .cursor/skills/. O padrão de evals serve à manutenção quinzenal de skills do Vix.
 - **Licença:** MIT; copiar trechos com atribuição e commit fixado. Revisar como biblioteca (regra de skills da comunidade); não rodar scripts.
 - **Decisão:** adaptar. Consultar a skill correspondente antes de escrever cada documento ou skill da VTX; adotar o formato de evals.
+
+## billion-context (ranxianglei/billion-context) — avaliado 2026-10-25
+- **O que é:** plugin de compressão de contexto para sessões muito longas. O próprio modelo decide quando e o que comprimir (compress, decompress, search_context), e o autor diz que basta uma janela de 100k tokens e que o gasto cai cerca de 5 vezes. Funciona nos harnesses pi, opencode e DeepSeek, não no Cursor. Licença "Other" (não padrão); os forks são MIT. ~2,8k estrelas.
+- **Uso interno:** não pluga no Cursor, que tem gerenciamento de contexto próprio. A ideia aproveitável: ao fim de cada tarefa, o agente grava um resumo compacto e pesquisável (decisões, arquivos tocados, pendências) em vez de reler histórico, reforçando as regras de eficiência de tokens.
+- **Decisão:** ideia apenas. Licença não padrão, então nenhum código é copiado.
