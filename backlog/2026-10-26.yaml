@@ -1,0 +1,14 @@
+data: "2026-10-26"
+tarefas:
+  - id: VTX-026
+    titulo: "Desenvolvimento frontend web"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/frontend-web.md: Server Components por padrão e 'use client' só onde precisa, fronteira de segredo (NEXT_PUBLIC_* só público), Core Web Vitals (LCP 2,5 s, INP 200 ms, CLS 0,1 no p75, medido em celular), WCAG 2.2 AA, princípios de UX aplicados à tela, metodologia por tela (4 estados, design system, sem cascata, bundle enxuto, Zod do contrato no formulário, autorização no servidor, Vitest/Playwright+axe/Lighthouse), exemplo de página e checklist de PR. Skills: writing-plans (plano em docs/planos/2026-10-26-vtx-026-027.md; Review Focus trouxe vazamento de segredo no bundle e app antigo vs OTA, ajudou), verification-before-completion (test -e em 12 links relativos, 17 URLs HTTP 200, unittest verde, ajudou), react-best-practices (skill Vercel lida; as prioridades cascatas/bundle/servidor viraram os passos 3 e 4, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: recursos.yaml (impeccable/emilkowalski em avaliação, não usados; ECC react/nextjs-patterns como referência). Ferramentas: git, curl, python. Correu bem, custo baixo."
+  - id: VTX-027
+    titulo: "Desenvolvimento mobile"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/mobile.md: quando app de loja vs PWA (ADR), Expo + expo-router, binário (EAS Build) vs OTA (EAS Update) com runtimeVersion fingerprint, app antigo e versão mínima, custos de loja como A2, metodologia (padrões nativos e alvos 44pt/48dp, rede ruim e rascunho local, EXPO_PUBLIC_* é público e sessão no SecureStore, permissões no uso, acessibilidade, Jest/RNTL/aparelho real/Maestro, perfis EAS), exemplo eas.json e checklist. Skills: writing-plans (mesmo plano), verification-before-completion (links e URLs como acima; política fingerprint conferida na doc do Expo, ajudou), brainstorming não aplicada. Bibliotecas: recursos.yaml (emilkowalski mobile-native/animate-expo citadas só como referência, não instaladas). Ferramentas: git, curl. Correu bem."
