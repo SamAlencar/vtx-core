@@ -36,6 +36,8 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 29 | [Modelagem de dados e bancos de dados](tecnologia/modelagem-de-dados.md) | Tecnologia | v1 | 2026-10-25 |
 | 30 | [Desenvolvimento frontend web](tecnologia/frontend-web.md) | Tecnologia | v1 | 2026-10-26 |
 | 31 | [Desenvolvimento mobile](tecnologia/mobile.md) | Tecnologia | v1 | 2026-10-26 |
+| 32 | [UX/UI e acessibilidade](tecnologia/ux-ui-acessibilidade.md) | Tecnologia | v1 | 2026-10-27 |
+| 33 | [Vercel](ferramentas/hospedagem/vercel.md) | Ferramentas | v1 | 2026-10-27 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
 - [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.
 - [Competências especializadas](tecnologia/competencias-especializadas.md) — OpenBIM/IFC, WebGL, automação CAD/BIM, Web3, L2, contêineres, armazenamento imutável, segurança e rastreabilidade; ativadas por projeto.

@@ -74,7 +74,7 @@ Uma vez por trimestre, dentro da manutenção quinzenal (VTX-113), revisam-se cu
 
 ## Checklist
 - [x] Estrutura, categorias, modelo, critérios e esqueleto da matriz
-- [ ] Um documento por ferramenta (VTX-099 a VTX-111)
+- [ ] Um documento por ferramenta (VTX-099 a VTX-111) — feito: [Vercel](hospedagem/vercel.md)
 - [ ] Matriz completa (VTX-112) e processo de revisão (VTX-113)
 
 ## Fontes

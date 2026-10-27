@@ -1,0 +1,14 @@
+data: "2026-10-27"
+tarefas:
+  - id: VTX-028
+    titulo: "UX/UI e acessibilidade"
+    area: "Base de Conhecimento"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/tecnologia/ux-ui-acessibilidade.md: meta WCAG 2.2 AA e LBI art. 63, critérios AA que mais reprovam (contraste 4,5:1/3:1, teclado e foco não escondido, alvo 24 px, reflow 320 px e zoom 200%, alternativa ao arrastar, login sem teste de memória, entrada redundante), HTML semântico antes de ARIA, movimento com prefers-reduced-motion, metodologia por tela (4 estados, shadcn/ui + Cult UI ou KokonutUI sem misturar na mesma tela, tokens com contraste, texto de interface, formulários, mobile 44pt/48dp, axe + teclado + zoom + leitor de tela), exemplo de campo CPF e checklist de PR; link a partir de frontend-web.md. Skills: writing-plans (plano em docs/planos/2026-10-27-vtx-028-099.md; Review Focus trouxe animação sem reduced-motion e div clicável dos componentes copiados, ajudou), verification-before-completion (test -e nos links relativos, URLs HTTP 200; site do Planalto não respondeu do box e ficou anotado no doc; unittest verde, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: radar Cult UI e KokonutUI (regra de uso incorporada, não instaladas), recursos.yaml (impeccable/emilkowalski seguem em avaliação, não usados). Ferramentas: git, curl, python. Correu bem, custo baixo."
+  - id: VTX-099
+    titulo: "Ferramenta: Vercel"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/hospedagem/vercel.md no modelo de 10 seções do catálogo: Hobby só para uso interno não comercial (uso comercial inclui consultor pago que escreveu o código, então sites de cliente e os comerciais VTX/Tekto/med-hub exigem Pro), limites do Hobby (100 GB, 1 mi requisições/invocações, 4 h CPU ativa, 5 mil imagens; estourou = pausa até 30 dias), Pro US$ 20/assento dev com US$ 20 de crédito, senha +US$ 20/projeto; alternativas Cloudflare/GitHub Pages; região padrão iad1, fixar gru1 perto do Supabase; variáveis Secret por ambiente; preview protegido sem dados reais; ADR curto. Decisão de plano pago/uso comercial NÃO tomada: fica com o Samuel (A2), sem travar a tarefa. Fatos conferidos na doc oficial em 27/10. Matriz do README continua para a VTX-112. Skills: writing-plans (mesmo plano; Review Focus pegou o risco de site comercial no Hobby e a região iad1, ajudou), verification-before-completion (10 seções, links e URLs 200, preço por assento conferido na página de preços após correção de 'por membro', ajudou). Bibliotecas: recursos.yaml (vercel-agent-skills em avaliação, não usada). Ferramentas: git, curl, python (MCP da Vercel não foi preciso). Correu bem."

@@ -6,7 +6,7 @@
 - **Server Components por padrão:** a página busca dados no servidor e manda HTML pronto; `"use client"` só no pedaço que precisa de estado, evento ou API do navegador. Menos JavaScript no celular do usuário.
 - **Fronteira de segredo:** só variáveis `NEXT_PUBLIC_*` vão para o navegador, e nelas só vai o que é público (URL e chave `anon` do Supabase). `service_role`, chaves do Stripe e tokens ficam no servidor (Route Handler, Server Action, Edge Function).
 - **Core Web Vitals (metas do Google, percentil 75):** LCP ≤ 2,5 s (carregamento), INP ≤ 200 ms (resposta ao toque), CLS ≤ 0,1 (estabilidade). Medir em celular com 4G, não no notebook do Dev.
-- **Acessibilidade WCAG 2.2 nível AA:** contraste mínimo de 4,5:1, tudo operável pelo teclado com foco visível, rótulo em todo campo, alvo de toque de pelo menos 24×24 px, idioma `pt-BR` no `<html>`.
+- **Acessibilidade WCAG 2.2 nível AA:** contraste mínimo de 4,5:1, tudo operável pelo teclado com foco visível, rótulo em todo campo, alvo de toque de pelo menos 24×24 px, idioma `pt-BR` no `<html>`. Detalhes e checklist em [UX/UI e acessibilidade](ux-ui-acessibilidade.md).
 - **Princípios de UX** ([UX](../design/principios-de-ux.md)): uma ação principal por tela (Hick), formulários em etapas curtas (Miller), padrões conhecidos (Jakob), CEP preenche o endereço (Tesler), máscara opcional e normalização no servidor (Postel).
 
 ## 2. Metodologia (por tela)
