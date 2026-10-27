@@ -64,3 +64,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **O que é:** interface de chat de IA self-hosted, com Ollama e APIs compatíveis com OpenAI, RAG e plugins. ~157k estrelas. Licença própria (BSD + cláusula de marca).
 - **Limite da licença:** acima de 50 usuários finais em 30 dias, é proibido tirar ou trocar a marca "Open WebUI" sem licença enterprise paga.
 - **Decisão:** não usar como base da plataforma-projetos (produto com marca Tekto e mais de 50 usuários, e ela é um fluxo de projeto e revisão, não um chat genérico). A interface de IA da plataforma usa o stack (Next.js + Vercel AI SDK + thinking-orbs). Uso interno ok: chat com modelos locais para a equipe Tekto/VTX, com menos de 50 usuários. Ideias para copiar como conceito: biblioteca de documentos com RAG, seleção de modelo, histórico.
+
+## Plandex (plandex-ai/plandex) — avaliado 2026-10-26
+- **O que é:** agente de código no terminal (Go, MIT, ~16k estrelas) para tarefas longas em muitos arquivos: contexto de até 2M tokens, mapa do projeto com tree-sitter, sandbox de diffs acumulados antes de aplicar, versões e branches do plano.
+- **Situação:** sem commits desde 03/10/2025; o Plandex Cloud foi encerrado. Só modo local com Docker e chaves de API próprias (pagas).
+- **Uso interno:** não substitui o Cursor e duplicaria custo de modelo. Ideias já cobertas pela VTX: plano antes de executar (writing-plans) e mudanças isoladas até revisão (PR com CI verde). Ideia a aproveitar: testar duas abordagens em branches paralelas e comparar antes de escolher, em decisões de arquitetura.
+- **Decisão:** ideia apenas; projeto parado, não instalar.
