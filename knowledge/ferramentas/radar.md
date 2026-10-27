@@ -76,3 +76,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Uso:** encaixa direto no stack (Next.js + Tailwind/shadcn). Fonte de componentes animados para sites (VTX, Tekto, med-hub) e telas da plataforma-projetos. Junto com thinking-orbs para estados de IA.
 - **Regras:** só componentes gratuitos; adicionar um a um pelo shadcn CLI fixando o commit (kokonut-labs/kokonutui/<nome>), revisar o código e as dependências antes do commit; passar pelos princípios de UX (animação com propósito, respeitar prefers-reduced-motion). MIT permite uso em clientes com atribuição.
 - **Decisão:** adotar como biblioteca de componentes de referência.
+
+## Cult UI (nolly-studio/cult-ui) — avaliado 2026-10-26
+- **O que é:** 150+ componentes animados gratuitos para shadcn/ui, com Tailwind v4 e Motion, distribuídos como registro do shadcn (código copiado para o projeto). MIT, ~6,8k estrelas, commit 7f031dc.
+- **Uso:** mesma função do KokonutUI; as duas bibliotecas formam o catálogo de componentes animados da VTX. Regra: escolher um componente por necessidade, sem misturar estilos na mesma tela, e preferir o que tiver menos dependências.
+- **Regras:** as mesmas do KokonutUI (um a um, commit fixado, revisar código e dependências, prefers-reduced-motion, atribuição MIT).
+- **Decisão:** adotar como segunda biblioteca de referência.
