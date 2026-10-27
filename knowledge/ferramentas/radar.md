@@ -70,3 +70,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Situação:** sem commits desde 03/10/2025; o Plandex Cloud foi encerrado. Só modo local com Docker e chaves de API próprias (pagas).
 - **Uso interno:** não substitui o Cursor e duplicaria custo de modelo. Ideias já cobertas pela VTX: plano antes de executar (writing-plans) e mudanças isoladas até revisão (PR com CI verde). Ideia a aproveitar: testar duas abordagens em branches paralelas e comparar antes de escolher, em decisões de arquitetura.
 - **Decisão:** ideia apenas; projeto parado, não instalar.
+
+## KokonutUI (kokonut-labs/kokonutui) — avaliado 2026-10-26
+- **O que é:** 100+ componentes React com Tailwind, shadcn/ui e Motion, distribuídos como registro do shadcn (o código é copiado para components/kokonutui/ e fica nosso). MIT, ~2,2k estrelas, commit d33a196. Tem versão Pro paga, que não usamos.
+- **Uso:** encaixa direto no stack (Next.js + Tailwind/shadcn). Fonte de componentes animados para sites (VTX, Tekto, med-hub) e telas da plataforma-projetos. Junto com thinking-orbs para estados de IA.
+- **Regras:** só componentes gratuitos; adicionar um a um pelo shadcn CLI fixando o commit (kokonut-labs/kokonutui/<nome>), revisar o código e as dependências antes do commit; passar pelos princípios de UX (animação com propósito, respeitar prefers-reduced-motion). MIT permite uso em clientes com atribuição.
+- **Decisão:** adotar como biblioteca de componentes de referência.
