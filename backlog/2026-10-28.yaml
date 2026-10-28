@@ -1,0 +1,14 @@
+data: "2026-10-28"
+tarefas:
+  - id: VTX-100
+    titulo: "Ferramenta: Supabase (banco, auth, storage)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/backend/supabase.md no modelo de 10 seções: limites do Free conferidos na página de preços em 28/10 (2 projetos ativos, 500 MB de banco, 1 GB de arquivos, 5 GB egress, 50 mil MAU, 500 mil invocações, sem backup e pausa após 1 semana parada), Pro a partir de US$ 25/org + compute por projeto; Pro/produção/add-ons ficam com o Samuel (A2). Setup local-first com CLI e migrações, região sa-east-1 (existe), MCP com project_ref do dev + read_only=true e alerta de prompt injection; RLS obrigatória, service_role só no servidor, dump agendado no Free. Skills: writing-plans (plano em docs/planos/2026-10-28-vtx-100-101.md; Review Focus trouxe pausa do Free e tabela sem RLS, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, limites conferidos na fonte, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: recursos.yaml §3.9 (base das notas). Ferramentas: git, curl, python, WebFetch (MCP do Supabase não foi preciso). Correu bem, custo baixo."
+  - id: VTX-101
+    titulo: "Ferramenta: GitHub e GitHub Actions"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/ci-cd/github-actions.md no modelo de 10 seções, só o uso prático (teoria segue na VTX-019, linkada). Achado importante conferido pela API em 28/10: a conta é GitHub Free e o vtx-core é privado, então branch protection, rulesets, environments e auto-merge nativo não existem (HTTP 403 'Upgrade to GitHub Pro'); o 'PR com merge no CI verde' combinado para a manutenção de 01/11 fica feito pelo agente com gh pr checks --watch + gh pr merge --squash, sem custo. Cota: público grátis; privado 2.000 min/mês, 500 MB de artefatos, 10 GB de cache por repo. Economia (concurrency, paths, cache, timeout), permissions mínimas, actions de terceiros por SHA, nada de pull_request_target, OIDC, act para testar local. Pro/repo público fica com o Samuel (A2). Skills: writing-plans (mesmo plano; Review Focus apontou estouro de minutos e pull_request_target, ajudou), verification-before-completion (10 seções, links e URLs 200; a checagem pegou que environments também não existem no Free privado e corrigiu o texto, ajudou muito). Bibliotecas: nenhuma nova. Ferramentas: git, gh (API do repo e da proteção de branch), curl, python. Correu bem, custo baixo."
