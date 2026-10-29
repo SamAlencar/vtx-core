@@ -1,0 +1,14 @@
+data: "2026-10-29"
+tarefas:
+  - id: VTX-102
+    titulo: "Ferramenta: Cursor (regras, agentes locais e na nuvem)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/ia-dev/cursor.md no modelo de 10 seções, sem repetir a F9 (linka templates/cursor). Conferido na doc oficial em 29/10: 4 tipos de regra (sempre, inteligente, por glob, manual), .md solto em .cursor/rules é ignorado, regra < 500 linhas, skills em .cursor/skills ou .agents/skills, CLI agent -p, Cloud Agents consomem o pool na taxa do modelo e segredos só na aba Secrets. Modo local registrado como padrão e Cloud Agent só com motivo no log; plano e gasto ficam com o Samuel (A2). Skills: writing-plans (plano em docs/planos/2026-10-29-vtx-102-103.md; Review Focus trouxe regra sempre-ativa cara e segredo em snapshot, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: recursos.yaml (skills fixadas, awesome-cursorrules). Ferramentas: git, curl, python, WebSearch. Correu bem, custo baixo."
+  - id: VTX-103
+    titulo: "Ferramenta: Appwrite"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/backend/appwrite.md no modelo de 10 seções, status avaliado/não adotado (Supabase segue padrão). Limites do Free conferidos em 29/10 (2 projetos, 5 GB banda, 2 GB arquivos, 750 mil execuções, 75 mil MAU, 500 mil leituras/250 mil escritas, sem backup) e pausa após 7 dias sem atividade (changelog 20/02/2026); licença BSD-3-Clause e v2.6.2 pela API do GitHub; Cloud sem região no Brasil (LGPD: self-host ou base legal, A2). Skills: writing-plans (mesmo plano; Review Focus apontou região fora do Brasil e permissão any, ajudou), verification-before-completion (10 seções, links e URLs 200, ajudou). Bibliotecas: nenhuma nova. Ferramentas: MCP Appwrite-docs (busca não trouxe os limites, não ajudou; a tabela de preços veio por WebSearch), gh, curl, python. Correu bem, custo baixo."

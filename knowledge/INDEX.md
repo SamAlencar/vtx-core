@@ -40,6 +40,8 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 33 | [Vercel](ferramentas/hospedagem/vercel.md) | Ferramentas | v1 | 2026-10-27 |
 | 34 | [Supabase](ferramentas/backend/supabase.md) | Ferramentas | v1 | 2026-10-28 |
 | 35 | [GitHub e GitHub Actions](ferramentas/ci-cd/github-actions.md) | Ferramentas | v1 | 2026-10-28 |
+| 36 | [Cursor](ferramentas/ia-dev/cursor.md) | Ferramentas | v1 | 2026-10-29 |
+| 37 | [Appwrite](ferramentas/backend/appwrite.md) | Ferramentas | v1 | 2026-10-29 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
 - [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.
 - [Competências especializadas](tecnologia/competencias-especializadas.md) — OpenBIM/IFC, WebGL, automação CAD/BIM, Web3, L2, contêineres, armazenamento imutável, segurança e rastreabilidade; ativadas por projeto.

@@ -734,7 +734,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 40
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/ia-dev/cursor.md'
   depende_de:
   - VTX-098
@@ -744,7 +744,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 41
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/backend/appwrite.md'
   depende_de:
   - VTX-098
