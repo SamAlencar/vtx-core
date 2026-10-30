@@ -1,0 +1,14 @@
+data: "2026-10-30"
+tarefas:
+  - id: VTX-104
+    titulo: "Ferramenta: Firebase"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/backend/firebase.md no modelo de 10 seções, status avaliado/não adotado (Supabase segue padrão; FCM e Crashlytics podem ser usados mesmo com backend Supabase). Limites do Spark conferidos em 30/10 (Firestore 1 GiB, 50 mil leituras/20 mil escritas/20 mil exclusões por dia, 10 GiB/mês; Auth 50 mil MAU); Storage exige Blaze desde 03/02/2026 (402/403 no Spark); Functions e App Hosting só no Blaze; região southamerica-east1 existe; Blaze é A2. VTX-142 (próxima na fila) pulada: depende da VTX-141, ainda a fazer. Skills: writing-plans (plano em docs/planos/2026-10-30-vtx-104-105.md; Review Focus trouxe Storage só no Blaze e regra aberta, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, unittest, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma nova. Ferramentas: WebSearch, curl, gh API (licença MIT do firebase-tools), python. Correu bem, custo baixo."
+  - id: VTX-105
+    titulo: "Ferramenta: Expo e EAS"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/mobile/expo.md no modelo de 10 seções, status recomendado quando o ADR escolher React Native (build local + EAS Free). Conferido em 30/10: Expo MIT, SDK 58 (14/10/2026); Free com 15 builds Android + 15 iOS/mês, fila baixa (90+ min no pico), timeout 45 min, updates para 1.000 MAU e 100 GiB, 60 min de Workflows, sem excedente; Starter US$ 19 e Production US$ 199 (assinatura de updates só no Production); MCP de servidor da Expo exige plano pago. Contas de loja e plano pago são A2. Skills: writing-plans (mesmo plano; Review Focus apontou EXPO_PUBLIC_ e OTA mudando código nativo, ajudou), verification-before-completion (10 seções, links e URLs 200, ajudou). Bibliotecas: recursos.yaml (animate-expo já na shortlist, só citado). Ferramentas: WebSearch, curl, gh API, python. Correu bem, custo baixo."

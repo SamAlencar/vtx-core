@@ -754,7 +754,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 42
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/backend/firebase.md'
   depende_de:
   - VTX-098
@@ -763,7 +763,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 43
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/mobile/expo.md'
   depende_de:
   - VTX-098
