@@ -1,0 +1,22 @@
+{
+  "name": "vtx-skill-ifc-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "esbuild visualizador.ts --bundle --format=esm --outfile=dist/visualizador.js --log-level=warning",
+    "typecheck": "tsc --noEmit --strict --target es2022 --module esnext --moduleResolution bundler --lib es2022,dom --skipLibCheck visualizador.ts"
+  },
+  "dependencies": {
+    "@thatopen/components": "3.6.0",
+    "@thatopen/fragments": "3.6.0",
+    "camera-controls": "3.1.2",
+    "three": "0.187.0",
+    "web-ifc": "0.0.78"
+  },
+  "devDependencies": {
+    "@types/three": "0.187.0",
+    "esbuild": "0.25.12",
+    "typescript": "7.0.2"
+  }
+}

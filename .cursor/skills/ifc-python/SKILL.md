@@ -13,11 +13,12 @@ Receitas testadas em `receitas.py` (testes: `tests/test_ifc_python.py`, rodam no
 ## Receitas
 | Tarefa | Função | Observação |
 |---|---|---|
-| Modelo novo | `criar_modelo(schema="IFC4")` | Projeto, unidades SI (m), contexto Body, Site/Edifício/Pavimento. Para infraestrutura use `"IFC4X3_ADD2"`. |
+| Modelo novo | `criar_modelo(schema="IFC4")` | Projeto, unidade do arquivo mm (a API recebe metro e converte), contexto Body, Site/Edifício/Pavimento. Para infraestrutura use `"IFC4X3_ADD2"`. |
 | Parede | `criar_parede(f, nome, comp, esp, alt, psets)` | `IfcWall` (não `IfcWallStandardCase`, obsoleta no IFC4); valida medidas > 0. |
 | Listar | `listar(f, "IfcWall")` | Funciona em IFC2X3, IFC4 e IFC4X3; `by_type` inclui subclasses. |
 | Psets | `ler_psets(e)` / `definir_pset(f, e, {...})` | Elemento sem Pset devolve `{}`; herda do tipo. |
 | Validar | `validar_ids(ifc, ids)` | IDS 1.0 via ifctester; devolve `aprovado` + falhas por especificação (JSON). Exemplo: `exemplo.ids`. |
+| Tool-calling | `funcoes.chamar(f, nome, args)` / `funcoes.ferramentas()` | Funções de domínio com JSON Schema e erro estruturado (VTX-146); entrada em mm. |
 | Comparar | `diff_por_globalid(a, b)` | Adicionados/removidos/alterados (classe, nome, Psets; não geometria). Base da VTX-151. |
 
 ## Regras para agentes
@@ -30,7 +31,7 @@ Receitas testadas em `receitas.py` (testes: `tests/test_ifc_python.py`, rodam no
 
 ## Checklist
 - [ ] `f.schema` conferido e registrado na versão.
-- [ ] Medidas em metro (unidades do projeto conferidas).
+- [ ] Unidades conferidas: API em metro; entidade crua e leitura de geometria na unidade do arquivo (`ifcopenshell.util.unit.calculate_unit_scale`).
 - [ ] IDS do projeto aprovado; falhas devolvidas ao usuário em texto.
 - [ ] Teste unitário para cada receita nova.
 

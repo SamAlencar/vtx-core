@@ -21,10 +21,13 @@ import ifcopenshell.util.element
 
 
 def criar_modelo(schema: str = "IFC4", nome: str = "Projeto") -> ifcopenshell.file:
-    """IFC novo com projeto, unidades SI (m), contexto Body e Site/Edifício/Pavimento."""
+    """IFC novo com projeto, unidades padrão do IfcOpenShell (mm, m², m³), contexto Body e Site/Edifício/Pavimento.
+
+    A API (`ifcopenshell.api.*`) recebe medidas em metro e converte para mm no arquivo.
+    """
     f = ifcopenshell.api.project.create_file(version=schema)
     projeto = ifcopenshell.api.root.create_entity(f, ifc_class="IfcProject", name=nome)
-    ifcopenshell.api.unit.assign_unit(f)  # padrão: metro, m², m³
+    ifcopenshell.api.unit.assign_unit(f)  # padrão: milímetro, m², m³
     modelo = ifcopenshell.api.context.add_context(f, context_type="Model")
     ifcopenshell.api.context.add_context(
         f, context_type="Model", context_identifier="Body", target_view="MODEL_VIEW", parent=modelo
