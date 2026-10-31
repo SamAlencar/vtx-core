@@ -28,6 +28,8 @@ fases:
   nome: Integração com o Cursor e operação
 - id: F11
   nome: Plataforma de acompanhamento (projeto interno)
+- id: F13
+  nome: Capacidades para o piloto plataforma-projetos
 - id: F8
   nome: Consolidação e validação
 - id: F10
@@ -579,7 +581,24 @@ tarefas:
   prioridade: 116
   status: a fazer
   entregavel: projects/plataforma-projetos/
-  depende_de: *id001
+  depende_de:
+  - VTX-066
+  - VTX-067
+  - VTX-068
+  - VTX-069
+  - VTX-070
+  - VTX-071
+  - VTX-072
+  - VTX-146
+  - VTX-147
+  - VTX-149
+  - VTX-151
+  - VTX-152
+  - VTX-153
+  - VTX-155
+  - VTX-156
+  - VTX-160
+  - VTX-161
   notas: Executar o piloto seguindo o fluxo do tipo escolhido, via agentes do Cursor.
 - id: VTX-052
   titulo: 'Projeto piloto: retrospectiva e ajustes na base'
@@ -1278,3 +1297,243 @@ tarefas:
   depende_de:
   - VTX-141
   notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. heygen-com/hyperframes (Apache-2.0, pin 4371981). Só render local (Chrome headless + FFmpeg); telemetria ligada por padrão -> sempre HYPERFRAMES_NO_TELEMETRY=1 e DO_NOT_TRACK=1; sem render em nuvem (Lambda/Cloud Run), sem registry remoto, sem npx skills add. Instalar só após revisão do pacote. Para vídeos dos sites VTX, med-hub e Tekto, depois que existirem.'
+- id: VTX-143
+  titulo: 'Conhecimento de domínio BIM/IFC (IFC4/IFC4x3, IDS, openBIM)'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 100
+  status: a fazer
+  entregavel: projects/plataforma-projetos/conhecimento/bim-ifc.md
+  depende_de:
+  - VTX-130
+  notas: 'Esquema IFC, entidades principais por disciplina, IDS e BCF, a partir de fontes abertas da buildingSMART. Aceite: glossário, mapa de entidades por disciplina e links de fonte. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-144
+  titulo: 'Skill IFC no navegador (That Open Components e web-ifc)'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 100
+  status: a fazer
+  entregavel: '.cursor/skills/ifc-web/'
+  depende_de:
+  - VTX-143
+  - VTX-026
+  notas: 'Carregar, navegar, selecionar e extrair propriedades. Licenças: @thatopen/components MIT, web-ifc MPL-2.0 (confirmar e registrar pin). Aceite: skill com exemplo mínimo testado localmente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-145
+  titulo: 'Skill IFC no backend (IfcOpenShell 0.9, validação e IDS)'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 101
+  status: a fazer
+  entregavel: '.cursor/skills/ifc-python/'
+  depende_de:
+  - VTX-143
+  notas: 'IfcOpenShell LGPL-3.0 usado como biblioteca sem modificar. Inclui ifctester/IDS para validar o modelo. Aceite: receitas de leitura, criação e validação com testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-146
+  titulo: 'Padrão de biblioteca de funções de domínio para tool-calling da IA'
+  fase: F13
+  area: IA aplicada
+  prioridade: 101
+  status: a fazer
+  entregavel: knowledge/engenharia/ia/funcoes-de-dominio.md
+  depende_de:
+  - VTX-145
+  notas: 'A IA chama funções determinísticas (criar_parede, abrir_vao, lancar_pilar) com parâmetros em JSON Schema validados, em vez de escrever scripts. Aceite: padrão, contrato de erro, testes e exemplo com 3 funções. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-147
+  titulo: 'Execução isolada de código gerado por IA (sandbox)'
+  fase: F13
+  area: Segurança
+  prioridade: 102
+  status: a fazer
+  entregavel: knowledge/seguranca/sandbox-codigo-ia.md
+  depende_de:
+  - VTX-020
+  - VTX-109
+  notas: 'Processo separado sem rede, sem acesso a outros projetos, limite de tempo/memória/CPU, só o arquivo do projeto montado. Aceite: padrão com Docker/nsjail ou similar grátis e teste de fuga básico. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-148
+  titulo: 'Orquestração de LLM: roteamento por modelo, streaming e fallback'
+  fase: F13
+  area: IA aplicada
+  prioridade: 102
+  status: a fazer
+  entregavel: knowledge/engenharia/ia/orquestracao-llm.md
+  depende_de:
+  - VTX-023
+  notas: 'Modelo pequeno para pedidos simples, grande para complexos, streaming de respostas, retries e limites. Aceite: guia com critérios de roteamento e exemplo independente de provedor. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-149
+  titulo: 'Medição de tokens, franquia com pausa e chave própria (BYOK)'
+  fase: F13
+  area: IA aplicada
+  prioridade: 103
+  status: a fazer
+  entregavel: knowledge/engenharia/ia/medicao-tokens-byok.md
+  depende_de:
+  - VTX-148
+  - VTX-020
+  notas: 'Contabilizar tokens por usuário/projeto, pausar ao fim da franquia (sem cobrança automática), BYOK só no Premium com chave cifrada e nunca logada. Aceite: modelo de dados, fluxo e testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-150
+  titulo: 'Privacidade em IA: retenção zero, não treino e LGPD nos prompts'
+  fase: F13
+  area: Conformidade
+  prioridade: 103
+  status: a fazer
+  entregavel: knowledge/conformidade/ia-privacidade.md
+  depende_de:
+  - VTX-031
+  - VTX-148
+  notas: 'ZDR depende de aprovação do provedor; minimização de dados nos prompts; em BYOK vale a conta do projetista. Aceite: checklist por provedor e regra de minimização. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-151
+  titulo: 'Versionamento de modelos IFC: versões, branches, diff e merge'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 104
+  status: a fazer
+  entregavel: knowledge/engenharia/bim/versionamento-ifc.md
+  depende_de:
+  - VTX-145
+  - VTX-025
+  notas: 'O diferencial "GitHub de projetos": identidade por GlobalId, armazenamento de versões (completo vs. delta), diff semântico, merge e conflitos. Pesquisar abordagens abertas (ex.: IfcDiff do IfcOpenShell). Aceite: proposta de ADR com prós e contras. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-152
+  titulo: 'Prova de conceito: diff visual de IFC e desempenho 3D no navegador'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 104
+  status: a fazer
+  entregavel: projects/plataforma-projetos/docs/poc/
+  depende_de:
+  - VTX-144
+  - VTX-151
+  notas: 'Medir carga e navegação com arquivos reais grandes; destacar elementos alterados entre duas versões. Aceite: relatório com números e decisão viável/não viável. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-153
+  titulo: 'Importação de arquivos: DWG/DXF só leitura e extração de PDF, DOCX e XLSX'
+  fase: F13
+  area: Engenharia
+  prioridade: 105
+  status: a fazer
+  entregavel: knowledge/engenharia/importacao-arquivos.md
+  depende_de:
+  - VTX-147
+  notas: 'DWG como anexo; conversão para prévia 2D só com ferramenta aberta em processo separado (LibreCAD GPL-2.0 sem embutir código); bibliotecas abertas para PDF/DOCX/XLSX. Aceite: matriz formato × ferramenta × licença e exemplo de extração. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-154
+  titulo: 'Armazenamento de arquivos grandes com custo zero inicial'
+  fase: F13
+  area: Infraestrutura
+  prioridade: 105
+  status: a fazer
+  entregavel: knowledge/operacao/armazenamento-arquivos-grandes.md
+  depende_de:
+  - VTX-100
+  notas: 'Limites das camadas grátis (Supabase Storage, Cloudflare R2 etc.), upload em partes, deduplicação de versões, cifragem e backup. Aceite: comparativo e limite de alerta antes de custo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-155
+  titulo: 'Assinaturas SaaS no Brasil: planos, créditos pré-pagos, Pix e webhooks'
+  fase: F13
+  area: Pagamentos
+  prioridade: 106
+  status: a fazer
+  entregavel: knowledge/engenharia/assinaturas-saas-br.md
+  depende_de:
+  - VTX-106
+  notas: 'Estende knowledge/engenharia/pagamentos.md: Free/Pro/Premium, compra de créditos extras, Pix recorrente, webhooks verificados, só modo de teste. Escolha do gateway (Asaas preferido pelo Samuel, Stripe principal hoje) fica para ADR do projeto e ficha do Asaas vai ao radar. Dinheiro real com o Samuel. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-156
+  titulo: 'SaaS multi-inquilino: login Google, papéis por disciplina e convites'
+  fase: F13
+  area: Engenharia
+  prioridade: 106
+  status: a fazer
+  entregavel: knowledge/engenharia/saas-multitenant-auth.md
+  depende_de:
+  - VTX-100
+  - VTX-025
+  notas: 'OAuth Google, organizações/projetos, papéis (projetista dono, colega por disciplina, contratante só leitura e comentário), convites por e-mail, RLS. Aceite: modelo de permissões e testes de isolamento entre inquilinos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-157
+  titulo: 'Comentários no modelo 3D (BCF) e notificações de andamento'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 107
+  status: a fazer
+  entregavel: knowledge/engenharia/bim/comentarios-notificacoes.md
+  depende_de:
+  - VTX-144
+  notas: 'Comentário ancorado em elemento/vista, compatível com BCF; notificações por e-mail e na plataforma com opção de sair. Aceite: padrão e exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-158
+  titulo: 'Páginas públicas de portfólio com SEO'
+  fase: F13
+  area: Engenharia
+  prioridade: 107
+  status: a fazer
+  entregavel: knowledge/engenharia/paginas-publicas-seo.md
+  depende_de:
+  - VTX-026
+  notas: 'Renderização no servidor, metadados, schema.org, imagens otimizadas, visualizador leve; publicidade revisada pela skill de ética CONFEA/CREA/CAU. Aceite: checklist e página-modelo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-159
+  titulo: 'Quantitativos e memoriais gerados a partir do IFC'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 108
+  status: a fazer
+  entregavel: '.cursor/skills/ifc-quantitativos/'
+  depende_de:
+  - VTX-145
+  notas: 'Extrair quantidades (IfcElementQuantity) para XLSX e montar memoriais descritivos com revisão do projetista. Sem copiar texto de norma. Aceite: skill com teste em modelo de exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-160
+  titulo: 'Termos de uso, política de privacidade e mapa de dados do piloto'
+  fase: F13
+  area: Jurídico
+  prioridade: 108
+  status: a fazer
+  entregavel: projects/plataforma-projetos/docs/juridico/
+  depende_de:
+  - VTX-031
+  - VTX-083
+  notas: 'IA como "Assistente de Modelagem e Extração de Dados"; projetista responde pelo projeto; arquivos tratados como dados pessoais; encarregado (DPO). Rascunho pelo papel jurídico; publicação exige aprovação do Samuel e recomenda revisão por advogado. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-161
+  titulo: 'Programa alpha com 5 a 10 projetistas'
+  fase: F13
+  area: Validação
+  prioridade: 109
+  status: a fazer
+  entregavel: knowledge/processos/programa-alpha.md
+  depende_de:
+  - VTX-084
+  notas: 'Recrutamento, termo de teste, roteiro, métricas (tempo com/sem IA, uso pelo contratante, colaboração) e decisão de seguir. Aceite: roteiro e planilha de métricas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-162
+  titulo: 'Captura de dados para fine-tuning futuro (pedido → ação no IFC)'
+  fase: F13
+  area: IA aplicada
+  prioridade: 109
+  status: a fazer
+  entregavel: knowledge/engenharia/ia/dataset-fine-tuning.md
+  depende_de:
+  - VTX-150
+  - VTX-146
+  notas: 'Registrar pares com consentimento explícito, anonimização e opção de sair; fine-tuning só após o lançamento. Aceite: esquema do registro e regra de consentimento. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-163
+  titulo: 'Avaliação de qualidade da IA (evals de modelagem IFC)'
+  fase: F13
+  area: IA aplicada
+  prioridade: 110
+  status: a fazer
+  entregavel: knowledge/engenharia/ia/evals.md
+  depende_de:
+  - VTX-146
+  notas: 'Conjunto de pedidos de referência, validação automática do IFC resultante (IDS) e regressão a cada troca de modelo/prompt. Aceite: harness local e 10 casos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-164
+  titulo: 'Inventário das ferramentas Tekto para a v1 (Calc, Docs, Model)'
+  fase: F13
+  area: Domínio BIM
+  prioridade: 110
+  status: a fazer
+  entregavel: projects/plataforma-projetos/conhecimento/tekto-ferramentas.md
+  depende_de:
+  - VTX-143
+  notas: 'Maturidade, interface (API/CLI), licença e o que falta para entrar na v1. Aceite: tabela ferramenta × pronta/parcial/ausente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+- id: VTX-165
+  titulo: 'Métricas de produto SaaS (pagantes, churn, custo de IA por projeto)'
+  fase: F13
+  area: Operação
+  prioridade: 111
+  status: a fazer
+  entregavel: knowledge/operacao/metricas-produto-saas.md
+  depende_de:
+  - VTX-022
+  - VTX-149
+  notas: 'Eventos e painel das métricas do briefing com ferramenta grátis/auto-hospedada, sem dados pessoais. Aceite: plano de eventos e consultas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
