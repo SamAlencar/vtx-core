@@ -1306,7 +1306,7 @@ tarefas:
   entregavel: projects/plataforma-projetos/conhecimento/bim-ifc.md
   depende_de:
   - VTX-130
-  notas: 'Esquema IFC, entidades principais por disciplina, IDS e BCF, a partir de fontes abertas da buildingSMART. Aceite: glossário, mapa de entidades por disciplina e links de fonte. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Esquema IFC, entidades principais por disciplina, IDS e BCF, a partir de fontes abertas da buildingSMART. Aceite: glossário, mapa de entidades por disciplina e links de fonte. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TK-032, TM-261.'
 - id: VTX-144
   titulo: 'Skill IFC no navegador (That Open Components e web-ifc)'
   fase: F13
@@ -1327,7 +1327,7 @@ tarefas:
   entregavel: '.cursor/skills/ifc-python/'
   depende_de:
   - VTX-143
-  notas: 'IfcOpenShell LGPL-3.0 usado como biblioteca sem modificar. Inclui ifctester/IDS para validar o modelo. Aceite: receitas de leitura, criação e validação com testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'IfcOpenShell LGPL-3.0 usado como biblioteca sem modificar. Inclui ifctester/IDS para validar o modelo. Aceite: receitas de leitura, criação e validação com testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TK-032, TM-261.'
 - id: VTX-146
   titulo: 'Padrão de biblioteca de funções de domínio para tool-calling da IA'
   fase: F13
@@ -1337,7 +1337,7 @@ tarefas:
   entregavel: knowledge/engenharia/ia/funcoes-de-dominio.md
   depende_de:
   - VTX-145
-  notas: 'A IA chama funções determinísticas (criar_parede, abrir_vao, lancar_pilar) com parâmetros em JSON Schema validados, em vez de escrever scripts. Aceite: padrão, contrato de erro, testes e exemplo com 3 funções. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'A IA chama funções determinísticas (criar_parede, abrir_vao, lancar_pilar) com parâmetros em JSON Schema validados, em vez de escrever scripts. Aceite: padrão, contrato de erro, testes e exemplo com 3 funções. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-126★, TC-127, TM-261.'
 - id: VTX-147
   titulo: 'Execução isolada de código gerado por IA (sandbox)'
   fase: F13
@@ -1391,7 +1391,7 @@ tarefas:
   depende_de:
   - VTX-145
   - VTX-025
-  notas: 'O diferencial "GitHub de projetos": identidade por GlobalId, armazenamento de versões (completo vs. delta), diff semântico, merge e conflitos. Pesquisar abordagens abertas (ex.: IfcDiff do IfcOpenShell). Aceite: proposta de ADR com prós e contras. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'O diferencial "GitHub de projetos": identidade por GlobalId, armazenamento de versões (completo vs. delta), diff semântico, merge e conflitos. Pesquisar abordagens abertas (ex.: IfcDiff do IfcOpenShell). Aceite: proposta de ADR com prós e contras. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TM-262, TM-263, TS-090.'
 - id: VTX-152
   titulo: 'Prova de conceito: diff visual de IFC e desempenho 3D no navegador'
   fase: F13
@@ -1473,7 +1473,7 @@ tarefas:
   entregavel: '.cursor/skills/ifc-quantitativos/'
   depende_de:
   - VTX-145
-  notas: 'Extrair quantidades (IfcElementQuantity) para XLSX e montar memoriais descritivos com revisão do projetista. Sem copiar texto de norma. Aceite: skill com teste em modelo de exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Extrair quantidades (IfcElementQuantity) para XLSX e montar memoriais descritivos com revisão do projetista. Sem copiar texto de norma. Aceite: skill com teste em modelo de exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-129, TD-085.'
 - id: VTX-160
   titulo: 'Termos de uso, política de privacidade e mapa de dados do piloto'
   fase: F13
@@ -1515,7 +1515,7 @@ tarefas:
   entregavel: knowledge/engenharia/ia/evals.md
   depende_de:
   - VTX-146
-  notas: 'Conjunto de pedidos de referência, validação automática do IFC resultante (IDS) e regressão a cada troca de modelo/prompt. Aceite: harness local e 10 casos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Conjunto de pedidos de referência, validação automática do IFC resultante (IDS) e regressão a cada troca de modelo/prompt. Aceite: harness local e 10 casos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-128.'
 - id: VTX-164
   titulo: 'Inventário das ferramentas Tekto para a v1 (Calc, Docs, Model)'
   fase: F13
@@ -1525,7 +1525,7 @@ tarefas:
   entregavel: projects/plataforma-projetos/conhecimento/tekto-ferramentas.md
   depende_de:
   - VTX-143
-  notas: 'Maturidade, interface (API/CLI), licença e o que falta para entrar na v1. Aceite: tabela ferramenta × pronta/parcial/ausente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Maturidade, interface (API/CLI), licença e o que falta para entrar na v1. Aceite: tabela ferramenta × pronta/parcial/ausente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-127, TD-086.'
 - id: VTX-165
   titulo: 'Métricas de produto SaaS (pagantes, churn, custo de IA por projeto)'
   fase: F13
