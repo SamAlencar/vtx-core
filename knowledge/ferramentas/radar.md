@@ -82,3 +82,7 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 - **Uso:** mesma função do KokonutUI; as duas bibliotecas formam o catálogo de componentes animados da VTX. Regra: escolher um componente por necessidade, sem misturar estilos na mesma tela, e preferir o que tiver menos dependências.
 - **Regras:** as mesmas do KokonutUI (um a um, commit fixado, revisar código e dependências, prefers-reduced-motion, atribuição MIT).
 - **Decisão:** adotar como segunda biblioteca de referência.
+
+## Jev (TypeSafe AI) — modelo "System One"
+- **O que é:** API hospedada que não gera texto; recebe estado + perguntas tipadas (choice/score/sim-não) e devolve probabilidades calibradas em ~100 ms, custo muito baixo. Fontes: https://typesafe.ai/blog/introducing-system-one-models-and-jev · https://arxiv.org/html/2610.02267
+- **Decisão (2026-10-31):** ideia. Não usar internamente agora (agentes rodam no Cursor; API paga). Reavaliar em produtos de cliente (triagem, moderação, classificação de documentos em plataforma-projetos/med-hub). Nunca como única barreira de segurança nem para roteamento de modelos. Alternativa aberta (Laya) ficou bem abaixo nas avaliações.
