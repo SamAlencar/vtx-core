@@ -41,3 +41,4 @@ Regras: só ferramentas grátis/open-source; licenças confirmadas com pin (MIT,
 - tek-studio: cliente MCP + cartões de proposta auditados; aplicar cartão no IFC (TS-076) pendente → VTX-151.
 - Lacunas tek: lajes/vigas/pilares paramétricos, diff de IFC (nenhum repo), quantitativos/preços/4D (D-011 tek-token). Diff de IFC fica com a VTX (VTX-151/152).
 - Itens de adaptação tek (empacotar ifc_base, JSON estável no tek-calc, funções paramétricas) aguardam liberação do Samuel; ids tek serão ligados como dependências.
+- Decisão de Samuel (31/10): adaptações nos repos tek só depois da VTX. As tarefas F13 não ficam bloqueadas por elas: usam os repos tek como estão (somente leitura) e registram o que precisa mudar como "adaptação tek pós-VTX". Quando a VTX terminar, o Eng cria os itens tek e passa os ids.
