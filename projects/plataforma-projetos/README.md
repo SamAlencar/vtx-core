@@ -7,6 +7,8 @@ Plataforma de projetos de engenharia/arquitetura: ambiente BIM/IFC flexível ond
 - Próximas etapas: pesquisa de domínio (VTX-130) → PRD (VTX-050) → capacidades da F13 (VTX-143..165) → execução do fluxo (VTX-051).
 - Lacunas da VTX para este projeto: [docs/lacunas-vtx.md](docs/lacunas-vtx.md).
 - Domínio BIM/IFC (VTX-143): [conhecimento/bim-ifc.md](conhecimento/bim-ifc.md).
+- Skill IFC no backend (VTX-145): [.cursor/skills/ifc-python/](../../.cursor/skills/ifc-python/SKILL.md).
+- Versionamento de IFC, proposta de ADR (VTX-151): [knowledge/engenharia/bim/versionamento-ifc.md](../../knowledge/engenharia/bim/versionamento-ifc.md).
 
 ## Estrutura
 - `docs/produto/` PRD e histórias · `docs/adr/` decisões · `conhecimento/` pesquisa de domínio e SaaS de referência (RES).
