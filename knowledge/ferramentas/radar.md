@@ -86,3 +86,9 @@ Regras de sempre: só leitura dos repositórios (nunca rodar instaladores, hooks
 ## Jev (TypeSafe AI) — modelo "System One"
 - **O que é:** API hospedada que não gera texto; recebe estado + perguntas tipadas (choice/score/sim-não) e devolve probabilidades calibradas em ~100 ms, custo muito baixo. Fontes: https://typesafe.ai/blog/introducing-system-one-models-and-jev · https://arxiv.org/html/2610.02267
 - **Decisão (2026-10-31):** ideia. Não usar internamente agora (agentes rodam no Cursor; API paga). Reavaliar em produtos de cliente (triagem, moderação, classificação de documentos em plataforma-projetos/med-hub). Nunca como única barreira de segurança nem para roteamento de modelos. Alternativa aberta (Laya) ficou bem abaixo nas avaliações.
+
+## Speckle (specklesystems/speckle-server) — avaliado 2026-10-31
+- **O que é:** plataforma open source de dados BIM (objetos versionados, API GraphQL, visualizador). Apache 2.0 (com módulos EE à parte), hospedável por conta própria.
+- **Uso:** candidato a camada de trabalho (banco de objetos) da plataforma-projetos, contra um índice próprio por elemento no Postgres; o IFC aprovado segue como fonte da verdade.
+- **Regras:** só hospedagem própria, sem nuvem paga nem módulos EE; exportação para Revit e outros softwares fora do escopo por ora.
+- **Decisão:** em avaliação na VTX-152.

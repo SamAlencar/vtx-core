@@ -1393,7 +1393,7 @@ tarefas:
   - VTX-025
   notas: 'O diferencial "GitHub de projetos": identidade por GlobalId, armazenamento de versões (completo vs. delta), diff semântico, merge e conflitos. Pesquisar abordagens abertas (ex.: IfcDiff do IfcOpenShell). Aceite: proposta de ADR com prós e contras. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TM-262, TM-263, TS-090.'
 - id: VTX-152
-  titulo: 'Prova de conceito: diff visual de IFC e desempenho 3D no navegador'
+  titulo: 'Prova de conceito: banco de objetos como camada de trabalho, diff visual e desempenho 3D'
   fase: F13
   area: Domínio BIM
   prioridade: 104
@@ -1402,7 +1402,7 @@ tarefas:
   depende_de:
   - VTX-144
   - VTX-151
-  notas: 'Medir carga e navegação com arquivos reais grandes; destacar elementos alterados entre duas versões. Aceite: relatório com números e decisão viável/não viável. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Decisão de 31/10 no grupo Plataforma de Projetos: testar um banco de objetos como camada de trabalho do dia a dia (IA e visualizador), e não o Speckle só como visualizador; o IFC fechado de cada versão aprovada segue como fonte da verdade (ver VTX-151). Candidatos: Speckle hospedado por nós (Apache 2.0, sem nuvem paga) × índice próprio por elemento no Postgres. Aceite: um modelo real faz a ida e volta para IFC preservando GlobalId, classe e tipo IFC, Psets, material e relações (andar, tipo e agrupamentos) e passa nas regras IDS / validador do tek-catalog; relatório com números de tempo de resposta de consultas e edições da IA, fluidez 3D e diff visual entre duas versões, comparando o visualizador do Speckle com o That Open; decisão viável/não viável. Modelos de teste: IFC do tek-catalog e exemplos do tek-model (Eng entrega o critério de campos e os modelos; TM-261 e TM-264 passam a aceitar arquivo IFC e objeto JSON). Neo4j fora do MVP. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
 - id: VTX-153
   titulo: 'Importação de arquivos: DWG/DXF só leitura e extração de PDF, DOCX e XLSX'
   fase: F13
