@@ -31,3 +31,13 @@ Levantamento de 31/10/2026, pedido pelo Samuel, comparando o briefing (`SamAlenc
 | Métricas de produto SaaS | parcial (observabilidade: VTX-022) | VTX-165 |
 
 Regras: só ferramentas grátis/open-source; licenças confirmadas com pin (MIT, MPL-2.0, LGPL-3.0 como biblioteca, GPL só como processo separado); sem texto de ABNT ou fonte paga; fichas de ferramentas novas vão para `knowledge/ferramentas/radar.md`.
+
+## Inventário Tekto informado pelo Eng (31/10/2026) — insumo da VTX-164
+- Divisão acordada: Tekto = conhecimento de engenharia (funções, cálculo, normas); VTX = plataforma. A plataforma consome os repos tek, não copia.
+- tek-calc: MCP, 51 ferramentas NBR 6118, JSON com unidades, ~800 testes → VTX-146, VTX-159.
+- tek-docs: Markdown (índices de normas, modelos) → RAG, VTX-159.
+- tek-catalog: `tools/ifc_base.py` (IFC4X3_ADD2, mm, tipos, material), `ids_base.py`/`validar.py` (IDS via ifctester) → VTX-145, VTX-146.
+- tek-model: exemplos IfcOpenShell (parede, cópia de item), `conhecimento.json`, fluxo de aprovação de mudanças por IA → VTX-143, VTX-151.
+- tek-studio: cliente MCP + cartões de proposta auditados; aplicar cartão no IFC (TS-076) pendente → VTX-151.
+- Lacunas tek: lajes/vigas/pilares paramétricos, diff de IFC (nenhum repo), quantitativos/preços/4D (D-011 tek-token). Diff de IFC fica com a VTX (VTX-151/152).
+- Itens de adaptação tek (empacotar ifc_base, JSON estável no tek-calc, funções paramétricas) aguardam liberação do Samuel; ids tek serão ligados como dependências.
