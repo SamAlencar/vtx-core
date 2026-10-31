@@ -52,7 +52,7 @@ Adotar **D (snapshot completo + índice por elemento)** no MVP, identidade por G
 
 ## 7.1 Decisão de 31/10 (grupo Plataforma de Projetos)
 - Cada versão aprovada pelo projetista é guardada como um **IFC fechado e imutável, com data e hash SHA-256**. Esse arquivo é o entregável e o que vale para a ART (a Estratégia BIM BR, Decreto 11.888/2024, exige entrega em formato aberto).
-- A camada de objetos / índice por elemento é **gerada a partir desse IFC** e funciona como camada de trabalho do dia a dia para a IA e o visualizador. A escolha entre Speckle hospedado e índice próprio no Postgres fica para a prova de risco VTX-152.
+- A camada de objetos / índice por elemento é **gerada a partir desse IFC** e funciona como camada de trabalho do dia a dia para a IA e o visualizador. A escolha entre Speckle hospedado e índice próprio no Postgres fica para a prova de risco VTX-152. Parte 1 (índice próprio no Postgres) medida e viável: [poc/objetos-ifc.md](../../../projects/plataforma-projetos/docs/poc/objetos-ifc.md).
 
 ## 8. Consequências
 - (+) Entregável no prazo de março/2027 com IfcOpenShell + IfcDiff (LGPL, por import) e Postgres; reverter e abrir versão antiga são triviais.

@@ -21,6 +21,9 @@ Receitas testadas em `receitas.py` (testes: `tests/test_ifc_python.py`, rodam no
 | Tool-calling | `funcoes.chamar(f, nome, args)` / `funcoes.ferramentas()` | Funções de domínio com JSON Schema e erro estruturado (VTX-146); entrada em mm. |
 | Comparar | `diff_por_globalid(a, b)` | Adicionados/removidos/alterados (classe, nome, Psets; não geometria). Base da VTX-151. |
 
+## Camada de objetos (VTX-152)
+`objetos.py`: `extrair(f)` gera um objeto JSON por elemento (globalid, classe, nome, tipo, psets, qtos, materiais, andar, grupos) para Postgres `jsonb` e para a IA; `aplicar(f, objetos)` devolve ao IFC base só o que mudou (nome, psets, andar, grupos, tipo), nunca cria elemento e nunca lança (erros `globalid_inexistente`, `campo_somente_leitura`, `referencia_invalida`). Propriedade ausente no objeto é removida do Pset. Medição: `medir_objetos.py N` (Postgres local). Relatório: `projects/plataforma-projetos/docs/poc/objetos-ifc.md`.
+
 ## Regras para agentes
 1. Sempre abra com `ifcopenshell.open()` e confira `f.schema` antes de editar; não converta esquema silenciosamente.
 2. Edite pelo `ifcopenshell.api.*` (mantém relações e histórico de dono coerentes), não criando entidades cruas, salvo leitura.

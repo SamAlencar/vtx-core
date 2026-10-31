@@ -93,7 +93,8 @@ def validar_ids(caminho_ifc, caminho_ids) -> dict:
     from ifctester import ids, reporter
 
     regras = ids.open(str(caminho_ids))
-    regras.validate(ifcopenshell.open(str(caminho_ifc)))
+    modelo = ifcopenshell.open(str(caminho_ifc))  # manter vivo até o report (senão "Instance #n not found")
+    regras.validate(modelo)
     rel = reporter.Json(regras).report()
     especs = [{"nome": s["name"], "aprovado": s["status"],
                "falhas": [fl.get("reason") for r in s.get("requirements", []) for fl in r.get("failed_entities", [])]}
