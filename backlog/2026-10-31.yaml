@@ -12,3 +12,15 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "knowledge/ferramentas/observabilidade/sentry.md no modelo de 10 seções, status recomendado: Developer grátis em projeto pequeno, GlitchTip (MIT) self-host quando faltar cota, usuários ou residência de dados no Brasil. Conferido em 31/10: Developer US$ 0 com 1 usuário, 5 mil erros, 5M spans, 5 GB logs, 50 replays; Team US$ 26 e Business US$ 80 (A2); servidor FSL 1.1, SDKs MIT; self-host pede 4 CPU e 16 GB RAM + swap; dados só EUA (Iowa) ou UE (Frankfurt). Atualizei operacao/observabilidade.md e a matriz do catálogo. Skills: writing-plans (mesmo plano; Review Focus apontou LGPD sem região BR e cota de 1 usuário, ajudou), verification-before-completion (10 seções, links, URLs 200, ajudou). Bibliotecas: nenhuma. Ferramentas: WebFetch, WebSearch, curl, gh/GitLab API (licenças), python. Correu bem, custo baixo."
+  - id: VTX-108
+    titulo: "Ferramenta: Cloudflare (DNS, Pages, Access, WAF)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/ci-cd/cloudflare.md no modelo de 10 seções, status recomendado: DNS/WAF de todo domínio e hospedagem grátis padrão de site comercial (Vercel Hobby proíbe uso comercial). Conferido em 31/10: Pages Free 500 builds/mês, 1 por vez, 20 min, 20 mil arquivos; Workers Free 100 mil req/dia e 10 ms CPU (erro 1027); WAF Free = Free Managed Ruleset + 5 regras customizadas (OWASP só Pro US$ 20, A2); Access grátis até 50 usuários, 51º bloqueado, cadastro pede cartão (A2). Matriz preenchida. VTX-142 de novo pulada (depende da VTX-141). Skills: writing-plans (plano em docs/planos/2026-10-31-vtx-108-109.md; Review Focus trouxe limite de 5 regras WAF e cartão no Zero Trust, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, unittest, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma nova. Ferramentas: WebSearch, curl, gh api, python. Correu bem, custo baixo."
+  - id: VTX-109
+    titulo: "Ferramenta: Docker"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/ci-cd/docker.md no modelo de 10 seções, status recomendado: Engine + Compose (Apache-2.0) padrão, GHCR como registro, Trivy no CI; Podman/Colima como alternativa. Conferido em 31/10: Desktop grátis só para empresa < 250 funcionários e < US$ 10 mi (VTX/Tekto se enquadram); Docker Hub sem login 100 pulls/6 h por IP, Personal 200/6 h; versões Moby v29.9.2, Compose v5.6.1, Podman v6.1.4, Trivy v0.76.1 pela API do GitHub. Matriz preenchida. Skills: writing-plans (mesmo plano; Review Focus apontou limite de pull no CI e licença do Desktop, ajudou), verification-before-completion (10 seções, links, URLs 200, ajudou). Bibliotecas: nenhuma. Ferramentas: WebSearch, curl, gh api, python. Correu bem, custo baixo."

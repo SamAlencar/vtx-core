@@ -120,7 +120,7 @@ tarefas:
   fase: F1
   area: Base de Conhecimento
   prioridade: 13
-  status: "concluído"
+  status: concluído
   entregavel: knowledge/processos/fluxos/app-mobile.md
   depende_de:
   - VTX-010
@@ -792,7 +792,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 46
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/ci-cd/cloudflare.md'
   depende_de:
   - VTX-098
@@ -801,7 +801,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 47
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/ci-cd/docker.md'
   depende_de:
   - VTX-098
