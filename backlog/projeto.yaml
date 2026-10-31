@@ -1263,7 +1263,7 @@ tarefas:
   fase: F10
   area: Ferramentas
   prioridade: 60
-  status: em avaliação
+  status: pendente
   entregavel: '.cursor/skills/diagramas/ + diagramas dos ADRs do med-hub'
   depende_de:
   - VTX-125
