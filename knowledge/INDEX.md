@@ -44,6 +44,8 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 37 | [Appwrite](ferramentas/backend/appwrite.md) | Ferramentas | v1 | 2026-10-29 |
 | 38 | [Firebase](ferramentas/backend/firebase.md) | Ferramentas | v1 | 2026-10-30 |
 | 39 | [Expo e EAS](ferramentas/mobile/expo.md) | Ferramentas | v1 | 2026-10-30 |
+| 40 | [Stripe e Mercado Pago](ferramentas/pagamentos/stripe-mercado-pago.md) | Ferramentas | v1 | 2026-10-31 |
+| 41 | [Sentry](ferramentas/observabilidade/sentry.md) | Ferramentas | v1 | 2026-10-31 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
 - [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.
 - [Competências especializadas](tecnologia/competencias-especializadas.md) — OpenBIM/IFC, WebGL, automação CAD/BIM, Web3, L2, contêineres, armazenamento imutável, segurança e rastreabilidade; ativadas por projeto.

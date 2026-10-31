@@ -15,7 +15,7 @@
 | Logs | JSON estruturado (`pino` no Node; `console.log` de objeto em Edge/Vercel), campos fixos: `ts`, `level`, `msg`, `service`, `env`, `trace_id`, `request_id`, `user_ref` (id opaco) | Logs da Vercel e do Supabase (painel e CLI); retenção curta, exportar só se necessário |
 | Métricas | Derivadas dos logs e dos painéis nativos (Vercel Analytics/Speed Insights do plano Hobby, relatórios do Supabase); contadores de negócio como eventos de log | Painéis nativos; Prometheus + Grafana OSS só com VPS |
 | Traces | `@vercel/otel` / SDK OTel em Next.js (`instrumentation.ts`), propagando `traceparent` (W3C) | Exportador OTLP para Grafana Tempo ou Jaeger self-host; sem backend, só `trace_id` nos logs |
-| Erros | `try/catch` na borda + `error.tsx`/handler global com log `level=error` e `trace_id` | Logs; GlitchTip (open source, compatível com SDK do Sentry) se self-host; Sentry é avaliado na VTX-107 |
+| Erros | `try/catch` na borda + `error.tsx`/handler global com log `level=error` e `trace_id` | Logs; GlitchTip (open source, compatível com SDK do Sentry) se self-host; [Sentry](../ferramentas/observabilidade/sentry.md) Developer (grátis) em projeto pequeno |
 
 **Níveis:** `error` (ação humana ou alerta), `warn` (degradação tolerada), `info` (evento de negócio/requisição), `debug` (só dev/homologação). Produção roda em `info`.
 

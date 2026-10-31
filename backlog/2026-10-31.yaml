@@ -1,0 +1,14 @@
+data: "2026-10-31"
+tarefas:
+  - id: VTX-106
+    titulo: "Ferramentas de pagamento: Stripe e Mercado Pago"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/pagamentos/stripe-mercado-pago.md no modelo de 10 seções; Stripe segue principal, MP alternativa. Conferido em 31/10: Stripe BR cartão 3,99% + R$ 0,39 (+2% internacional), boleto R$ 3,45 (confirma em até 1 dia útil, sem reembolso pela Stripe), Pix 1,19% só por convite para empresa BR, contestação R$ 55; MP Checkout Pro cartão 4,98%/4,49%/3,98% conforme prazo, Pix 0,99%, boleto R$ 3,49. Fechou os dois 'A CONFIRMAR' de engenharia/pagamentos.md. VTX-142 (primeira da fila) pulada: depende da VTX-141, ainda em avaliação. Skills: writing-plans (plano em docs/planos/2026-10-31-vtx-106-107.md; Review Focus trouxe Pix por convite e boleto assíncrono, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, unittest, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma nova. Ferramentas: WebFetch, WebSearch, curl, python. Correu bem, custo baixo."
+  - id: VTX-107
+    titulo: "Ferramenta: Sentry"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/observabilidade/sentry.md no modelo de 10 seções, status recomendado: Developer grátis em projeto pequeno, GlitchTip (MIT) self-host quando faltar cota, usuários ou residência de dados no Brasil. Conferido em 31/10: Developer US$ 0 com 1 usuário, 5 mil erros, 5M spans, 5 GB logs, 50 replays; Team US$ 26 e Business US$ 80 (A2); servidor FSL 1.1, SDKs MIT; self-host pede 4 CPU e 16 GB RAM + swap; dados só EUA (Iowa) ou UE (Frankfurt). Atualizei operacao/observabilidade.md e a matriz do catálogo. Skills: writing-plans (mesmo plano; Review Focus apontou LGPD sem região BR e cota de 1 usuário, ajudou), verification-before-completion (10 seções, links, URLs 200, ajudou). Bibliotecas: nenhuma. Ferramentas: WebFetch, WebSearch, curl, gh/GitLab API (licenças), python. Correu bem, custo baixo."

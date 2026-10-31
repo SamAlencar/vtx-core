@@ -772,7 +772,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 44
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/pagamentos/stripe-mercado-pago.md'
   depende_de:
   - VTX-098
@@ -782,7 +782,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 45
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/observabilidade/sentry.md'
   depende_de:
   - VTX-098

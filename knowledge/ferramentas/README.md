@@ -63,8 +63,8 @@ Legenda: **P** = padrão · **O** = opcional · **—** = não se aplica · *?* 
 | Appwrite | ? | ? | ? | — | ? | ? |
 | Firebase | ? | ? | — | — | ? | ? |
 | Expo / EAS | — | ? | — | — | ? | ? |
-| Stripe / Mercado Pago | ? | ? | ? | — | ? | ? |
-| Sentry | ? | ? | ? | — | ? | ? |
+| Stripe / Mercado Pago | P | P | P | — | ? | P |
+| Sentry | P | P | P | — | P | O |
 | Docker | ? | — | ? | — | ? | ? |
 | Figma | ? | ? | — | ? | ? | ? |
 | Google Workspace | O | O | O | O | O | O |
@@ -74,7 +74,7 @@ Uma vez por trimestre, dentro da manutenção quinzenal (VTX-113), revisam-se cu
 
 ## Checklist
 - [x] Estrutura, categorias, modelo, critérios e esqueleto da matriz
-- [ ] Um documento por ferramenta (VTX-099 a VTX-111) — feito: [Vercel](hospedagem/vercel.md)
+- [ ] Um documento por ferramenta (VTX-099 a VTX-111) — feito: [Vercel](hospedagem/vercel.md), [Supabase](backend/supabase.md), [GitHub Actions](ci-cd/github-actions.md), [Cursor](ia-dev/cursor.md), [Appwrite](backend/appwrite.md), [Firebase](backend/firebase.md), [Expo](mobile/expo.md), [Stripe/MP](pagamentos/stripe-mercado-pago.md), [Sentry](observabilidade/sentry.md)
 - [ ] Matriz completa (VTX-112) e processo de revisão (VTX-113)
 
 ## Fontes
