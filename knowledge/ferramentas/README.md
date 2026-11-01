@@ -66,7 +66,7 @@ Legenda: **P** = padrão · **O** = opcional · **—** = não se aplica · *?* 
 | Stripe / Mercado Pago | P | P | P | — | ? | P |
 | Sentry | P | P | P | — | P | O |
 | Docker | P | — | P | — | O | O |
-| Figma | ? | ? | — | ? | ? | ? |
+| Figma | P | P | — | P | O | O |
 | Google Workspace | O | O | O | O | O | O |
 
 ## 6. Revisão periódica

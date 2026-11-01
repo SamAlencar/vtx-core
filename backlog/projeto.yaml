@@ -829,7 +829,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 48
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/design/figma.md'
   depende_de:
   - VTX-098
@@ -839,7 +839,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 49
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/comunicacao/google-workspace.md'
   depende_de:
   - VTX-098

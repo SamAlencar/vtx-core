@@ -1,0 +1,14 @@
+data: "2026-11-01"
+tarefas:
+  - id: VTX-110
+    titulo: "Ferramenta: Figma"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/design/figma.md no modelo de 10 seções, status recomendado. Conferido em 01/11 com whoami do MCP: conta conectada está no plano Starter (assento Full), logo MCP limitado a 20 chamadas de leitura/mês; Starter = 3 arquivos de Design por pasta, 30 dias de histórico, sem Dev Mode/bibliotecas/Code Connect. Professional US$ 16 Full / US$ 12 Dev (A2). Penpot (MPL-2.0, tem penpot-mcp) como alternativa self-host. Matriz: Figma P em SaaS/Mobile/Site. VTX-152 (parte 2) segue em andamento sem avanço: precisa de Docker (Speckle), navegador real e modelos do Eng (TM-261/264); VTX-142 pulada (depende da VTX-141). Skills: writing-plans (plano em docs/planos/2026-11-01-vtx-110-111.md; Review Focus trouxe o limite de 20 chamadas do MCP no Starter, ajudou), verification-before-completion (10 seções, test -e nos links, URLs 200, unittest, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma. Ferramentas: MCP do Figma (whoami, isento de cota), WebFetch, WebSearch, gh api (licença Penpot), curl. Correu bem, custo baixo."
+  - id: VTX-111
+    titulo: "Ferramentas de comunicação e gestão (Google Workspace, Grok Bot)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/comunicacao/google-workspace.md no modelo de 10 seções, status adotado: conta Google grátis da VTX (samuel.vtxsystems@gmail.com, conferida com get_me do Gmail) + chat/rotinas do Grok Bot; Workspace pago só com domínio e primeiro cliente (A2). Conferido em 01/11: conta grátis 15 GB compartilhados; Business Starter US$ 7/usuário/mês (promo US$ 3,50 por 12 meses), Standard US$ 14. Regras: envio externo só com pedido de Samuel, nada de segredo em Doc/e-mail/chat. Link de ajuda do Meet dava 404 e o limite do Meet grátis não foi confirmado: tirei a afirmação. Skills: writing-plans (mesmo plano; Review Focus apontou falta de DPA na conta grátis, virou item de LGPD, ajudou), verification-before-completion (10 seções, links, URLs 200 após remover a 404, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: conector Gmail (get_me), WebFetch, curl. Correu bem, custo baixo."
