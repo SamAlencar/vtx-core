@@ -1227,11 +1227,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/piloto-trail-code.md'
   depende_de:
   - VTX-131
-  notas: 'Pedido do Samuel em 2026-10-21 (o "graft" sugerido é trailhq/Trail-Code, MIT, pin b1211ef). Instalar local ao projeto (sem -g) em ambiente isolado, com DO_NOT_TRACK=1 antes do npm install e trail telemetry disable. Usar só trail build/ask/skeleton/check e o MCP no Cursor; proibido trail init (lê transcrições e PRs e envia à Anthropic), build --deep (LLM pago) e conectar workspace. Medir chamadas de ferramenta e tokens com e sem o mapa e decidir adotar/descartar; levar o modelo decisão/preferência/guardrail para o VTX-132. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+  notas: 'Pedido do Samuel em 2026-10-21 (trailhq/Trail-Code, MIT, pin b1211ef). Concluída em 24/11/2026 no PR da branch vtx-135: piloto no sandbox projects/sandbox-trail-code/ com @nanonets/graft@0.23.1 (binário graft), DO_NOT_TRACK=1 e HOME isolado. Sem init, --deep, workspace ou MCP no vtx-core. Decisão: adotado com restrições. Medido skeleton de scripts/backlog_lib.py ≈27% dos tokens aproximados; build ~1 s, 12 arquivos Python, 81 nós, 169 arestas. Não houve A/B de tokens de agente. Relato em knowledge/ferramentas/piloto-trail-code.md. O modelo decisão/preferência/guardrail segue como insumo da VTX-132.'
 - id: VTX-136
   titulo: 'Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer)'
   fase: F12

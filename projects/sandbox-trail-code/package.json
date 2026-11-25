@@ -1,0 +1,8 @@
+{
+  "name": "sandbox-trail-code",
+  "private": true,
+  "description": "Piloto local VTX-135. Não é um produto VTX.",
+  "dependencies": {
+    "@nanonets/graft": "0.23.1"
+  }
+}

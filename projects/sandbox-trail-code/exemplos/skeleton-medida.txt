@@ -1,0 +1,8 @@
+arquivo=scripts/backlog_lib.py
+completo_bytes=1574
+completo_linhas=40
+completo_tokens_aprox=391
+skeleton_bytes=445
+skeleton_linhas=6
+skeleton_tokens_aprox=107
+razao_tokens=0.27365728900255754

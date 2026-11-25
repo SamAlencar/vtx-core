@@ -250,11 +250,11 @@ recursos:
     tipo: mcp
     link: "https://github.com/trailhq/Trail-Code/tree/b1211ef"
     licenca: MIT
-    status: "em avaliação"
-    uso_agentes: "~10,6 mil estrelas, pin b1211ef (pacote npm @trailhq/trail-code, antes @nanonets/graft). (1) 'graft map': grafo local do código com tree-sitter (funções, quem chama quem, impacto de mudança, 'skeleton' só com assinaturas ≈1/10 dos tokens), sem modelo nem rede; MCP/CLI para Cursor. (2) Learnings: decisões, preferências e guardrails em arquivos no .trail/ do repo, versionados no git; 'trail check' avisa antes do PR se a mudança desfaz uma decisão registrada. Extrair: (a) piloto local do graft map em um repo da VTX como ferramenta do mapa de codebase (VTX-131); (b) o modelo decisão × preferência × guardrail, com quem decidiu e por quê, para o memory bank (VTX-132). Fonte: benchmark do próprio autor (−46% chamadas, −42% tokens) — confirmar no piloto."
-    riscos: "Telemetria anônima LIGADA por padrão, inclusive ping no postinstall do npm — usar DO_NOT_TRACK=1 antes de instalar e 'trail telemetry disable'. 'trail init' lê transcrições do Claude Code e os comentários dos últimos 50 PRs via gh e envia à Anthropic — não usar. 'trail build --deep' manda código ao provedor de LLM (custo) — não usar. 'Trail workspace' (equipe) envia aprendizados e buscas à Trail — não conectar. Hooks do npm executam código: instalar só no piloto, local ao projeto (sem -g), em ambiente isolado. Nome: antes identificado por engano como grft-dev/graftcode (sem licença, camada de integração entre linguagens) — esclarecido pelo Samuel em 21/10."
+    status: adotado
+    uso_agentes: "Adotado com restrições (piloto VTX-135, pin b1211ef). No pin o npm é @nanonets/graft@0.23.1 e o binário é graft, não trail. Usar só no sandbox projects/sandbox-trail-code/ (script rodar-piloto.sh): DO_NOT_TRACK=1 antes do npm, HOME isolado, graft telemetry disable, e os comandos build/ask/skeleton/check sem --deep. Não ligar o MCP no vtx-core, não rodar init, não conectar workspace, não dar upgrade para fora do pin, não instalar na raiz nem com -g. Relato em knowledge/ferramentas/piloto-trail-code.md. O modelo decisão/preferência/guardrail em .trail/ não foi exercitado e segue como insumo da VTX-132."
+    riscos: "Telemetria anônima LIGADA por padrão, inclusive ping no postinstall do npm — usar DO_NOT_TRACK=1 antes de instalar e 'graft telemetry disable'. 'graft init' lê transcrições e comentários de PRs e envia à Anthropic — não usar. 'graft build --deep' manda código ao provedor de LLM (custo) — não usar. Trail workspace envia aprendizados e buscas à Trail — não conectar. No piloto o npm 11 pulou scripts de postinstall; mesmo assim o opt-out permanece obrigatório. Hooks do npm executam código: instalar só no sandbox. Nome: antes identificado por engano como grft-dev/graftcode."
     responsavel: arquiteto
-    revisado_em: 2026-10-21
+    revisado_em: 2026-11-24
   - id: task-observer
     nome: "task-observer (rebelytics/one-skill-to-rule-them-all) — meta-skill de melhoria contínua de skills"
     area: skills-agentes
