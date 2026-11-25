@@ -91,6 +91,10 @@ class TestAgentsMd(unittest.TestCase):
             self.assertIn("alwaysApply: false", texto)
             self.assertIn("globs:", texto)
             self.assertNotIn("alwaysApply: true", texto)
+            # O Cursor separa globs por vírgula; chaves com vírgula quebram o padrão.
+            for linha in texto.splitlines():
+                if linha.startswith("globs:"):
+                    self.assertNotIn("{", linha, path.name)
 
     def test_caminhos_citados_existem(self):
         falhas = []

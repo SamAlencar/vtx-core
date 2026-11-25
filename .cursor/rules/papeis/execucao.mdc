@@ -1,6 +1,6 @@
 ---
 description: Papéis de execução (Devs, QA, DevOps/SRE) — VTX-169
-globs: "**/*.{py,ts,tsx,js,jsx},src/**,tests/**,testes/**,.github/workflows/**,docs/runbook.md,agents/dev-backend.md,agents/dev-frontend-mobile.md,agents/qa.md,agents/devops-sre.md,agents/especialistas.md"
+globs: "**/*.py,**/*.ts,**/*.tsx,**/*.js,**/*.jsx,src/**,tests/**,testes/**,.github/workflows/**,docs/runbook.md,agents/dev-backend.md,agents/dev-frontend-mobile.md,agents/qa.md,agents/devops-sre.md,agents/especialistas.md"
 alwaysApply: false
 ---
 

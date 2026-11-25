@@ -451,6 +451,7 @@ tarefas:
   prioridade: 81
   status: a fazer
   entregavel: AGENTS.md
+  notas: 'Reescopo após VTX-169 (24/11/2026): o AGENTS.md raiz já existe (camada 1, ~32 linhas, só ponteiros). O que falta é aprofundar as diretrizes gerais (sem copiar SOP/governança) e manter o arquivo curto.'
 - id: VTX-054
   titulo: 'Regra sempre ativa: fluxo entre papéis, DoD e aprovações'
   fase: F9
@@ -465,6 +466,7 @@ tarefas:
   prioridade: 83
   status: a fazer
   entregavel: .cursor/rules/papeis/planejamento.mdc
+  notas: 'Reescopo após VTX-169 (24/11/2026): planejamento.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Orquestrador, Produto, Arquiteto), sem alwaysApply, alinhado às diretrizes da F7.'
 - id: VTX-056
   titulo: 'Regras por papel: Devs, QA e DevOps/SRE'
   fase: F9
@@ -472,6 +474,7 @@ tarefas:
   prioridade: 84
   status: a fazer
   entregavel: .cursor/rules/papeis/execucao.mdc
+  notas: 'Reescopo após VTX-169 (24/11/2026): execucao.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Devs, QA, DevOps/SRE), sem alwaysApply, alinhado às diretrizes da F7.'
 - id: VTX-057
   titulo: 'Regras por assunto com globs: testes e APIs'
   fase: F9
@@ -500,6 +503,7 @@ tarefas:
   prioridade: 88
   status: a fazer
   entregavel: templates/projeto/
+  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). O que falta: levar as regras por papel ao template, um resumo de A0-A3/SOP que não dependa do vtx-core privado, e os templates detalhados da F6 (VTX-033 a 038).'
 - id: VTX-061
   titulo: Sincronização de regras e script de bootstrap de projetos
   fase: F9
@@ -507,6 +511,7 @@ tarefas:
   prioridade: 89
   status: a fazer
   entregavel: scripts/bootstrap_projeto.sh
+  notas: 'Reescopo após VTX-170 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. O que falta é o bootstrap copiar as regras de uma fonte única (VTX-180) e sincronizar as regras por papel nos repositórios de cliente.'
 - id: VTX-062
   titulo: Ambiente dos agentes de nuvem (environment.json, segredos, permissões)
   fase: F9
