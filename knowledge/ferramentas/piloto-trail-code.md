@@ -28,14 +28,14 @@ Repetir: `projects/sandbox-trail-code/scripts/rodar-piloto.sh`. Não rodar `graf
 |---|---|
 | Versão | 0.23.1 |
 | `graft build` (sem `--deep`) | ~1 s (`exemplos/tempo-build.txt` e `exemplos/build-resumo.txt`) |
-| Grafo | 12 arquivos Python, 81 nós, 169 arestas (wiring), ver `exemplos/build-resumo.txt` |
+| Grafo | 21 arquivos Python, 130 nós, 249 arestas (wiring), no commit `3327caa`; ver `exemplos/build-resumo.txt` |
 | `skeleton` de `scripts/backlog_lib.py` | 107 tokens aproximados vs 391 do arquivo (~27%) |
 | `graft ask "como o backlog escolhe a próxima tarefa"` | busca lexical, sem LLM: acertou `proxima_tarefa.py`, `backlog_lib.py` / `carregar`, `validar_backlog.py` (amostra em `exemplos/ask-proxima-tarefa-amostra.txt`) |
 | `graft check` | wiring OK; o CLI sugere `--deep` — não foi rodado |
 | `graft stats` | no pin o comando é `stats` (não `status`) |
 | `.trail/` | não apareceu |
 
-O build nesta corrida indexou só 12 arquivos Python (há mais `.py` no repositório; Markdown, YAML e shell ficaram de fora do grafo). A evidência versionada está em `exemplos/build-resumo.txt`. Não houve A/B de chamadas ou tokens de um agente com e sem o mapa: isso exigiria um segundo agente e não seria um número honesto aqui. O número do autor (−46% chamadas, −42% tokens) não foi reproduzido. O que deu para medir é a razão do `skeleton` (~27% dos tokens aproximados do arquivo).
+O build desta corrida (commit `3327caa`, rebaseado sobre a `main` com os PRs #21 e #22) indexou 21 arquivos Python; Markdown, YAML e shell ficaram de fora do grafo. A evidência versionada está em `exemplos/build-resumo.txt`, com o SHA da corrida. Os números mudam quando o repositório ganha ou perde `.py` — por isso o resumo registra o commit, e o teste não trava a contagem. Não houve A/B de chamadas ou tokens de um agente com e sem o mapa: isso exigiria um segundo agente e não seria um número honesto aqui. O número do autor (−46% chamadas, −42% tokens) não foi reproduzido. O que deu para medir é a razão do `skeleton` (~27% dos tokens aproximados do arquivo).
 
 A saída da ferramenta no `skeleton` chegou a citar economia maior; o que entra no registro é a medição acima (caracteres / 4).
 

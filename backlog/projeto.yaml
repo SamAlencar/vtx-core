@@ -1742,7 +1742,7 @@ tarefas:
 
 
 - id: VTX-186
-  titulo: A/B do mapa Trail-code e status estruturado da adoção com restrições
+  titulo: A/B do mapa Trail-code e decisão sobre o MCP
   fase: F12
   area: Ferramentas
   prioridade: 63

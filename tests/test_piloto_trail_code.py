@@ -60,16 +60,15 @@ class TestPilotoTrailCode(unittest.TestCase):
             "init",
             "scripts/backlog_lib.py",
             "27%",
-            "81",
-            "169",
         ):
             self.assertIn(trecho.lower(), lower)
         self.assertIn("mcp", lower)
         self.assertIn("entra no vtx-core nesta etapa", lower)
         resumo = (SANDBOX / "exemplos/build-resumo.txt").read_text(encoding="utf-8")
-        self.assertIn("81 nodes", resumo)
-        self.assertIn("169 edges", resumo)
-        self.assertIn("12 of 12", resumo)
+        self.assertRegex(resumo, r"commit [0-9a-f]{7,40}")
+        self.assertRegex(resumo, r"\d+ nodes")
+        self.assertRegex(resumo, r"\d+ edges")
+        self.assertRegex(resumo, r"parsed: \d+ of \d+ files")
 
     def test_index_aponta_para_o_piloto(self):
         index = (RAIZ / "knowledge/INDEX.md").read_text(encoding="utf-8")

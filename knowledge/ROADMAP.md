@@ -26,7 +26,7 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 
 ## F12 — Catálogo de ferramentas
 
-9. **VTX-186** A/B do mapa Trail-code e status estruturado da adoção com restrições → `knowledge/ferramentas/piloto-trail-code.md`
+9. **VTX-186** A/B do mapa Trail-code e decisão sobre o MCP → `knowledge/ferramentas/piloto-trail-code.md`
 
 ## F5 — Gestão e conformidade
 

@@ -280,7 +280,7 @@ tarefas:
     notas: "Pedido do Samuel em 2026-10-21. Sandbox isolado, pin 0.23.1, sem init/--deep/workspace/MCP. Decisão: adotado com restrições. Skills: writing-plans, verification-before-completion (unittest, validar_backlog, verificar_links, ajudou). Ferramentas: npm, graft 0.23.1, git, gh, unittest. Correu bem; o A/B de tokens de agente não foi medido (não seria honesto neste ambiente)."
 
   - id: VTX-186
-    titulo: "A/B do mapa Trail-code e status estruturado da adoção com restrições"
+    titulo: "A/B do mapa Trail-code e decisão sobre o MCP"
     area: "Ferramentas"
     status: "a fazer"
     responsavel: "agente-orquestrador"
