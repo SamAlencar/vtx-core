@@ -143,6 +143,10 @@ Hipóteses iniciais: (1) clientes de residências pequenas acham projeto caro e 
 - [ ] Síntese, revisão técnica, briefing e backlog inicial prontos
 - [ ] Briefing validado pelo cliente e aprovado pelo Samuel (P3)
 
+
+## Recursos por papel
+Este fluxo ainda não escolhe stack. Depois do tipo definido, consultar o [registro](../../ferramentas/recursos.yaml) e as seções “Recursos por papel” em [Produto](../../../agents/produto.md) e [Orquestrador](../../../agents/orquestrador.md). Não adotar ferramenta na entrevista ou na triagem.
+
 ## 8. Fontes
 - IIBA. *BABOK Guide v3* — áreas de Elicitação e Colaboração; técnicas de entrevista e workshop. https://www.iiba.org/business-analysis-standards/babok-guide/
 - IREB. *CPRE Foundation Level — Syllabus* (elicitação, tipos de requisitos). https://cpre.ireb.org/

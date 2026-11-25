@@ -63,6 +63,10 @@ As etapas 5 e 6 repetem por página ou seção. Cada incremento termina em previ
 - [ ] Sitemap, robots, HTTPS e Search Console; publicação aprovada pelo Samuel
 - [ ] Analytics de conversão e retrospectiva registrados
 
+
+## Recursos por papel
+Áreas deste fluxo: frontend e design, documentação, MCP (Figma, Vercel). Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [Frontend/Mobile](../../../agents/dev-frontend-mobile.md), [DevOps/SRE](../../../agents/devops-sre.md), [Especialistas](../../../agents/especialistas.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - Google, *Core Web Vitals* (LCP, INP, CLS): https://web.dev/articles/vitals · *Understanding Core Web Vitals and Google Search*: https://developers.google.com/search/docs/appearance/core-web-vitals
 - Google Search Central, *SEO Starter Guide*: https://developers.google.com/search/docs/fundamentals/seo-starter-guide · *Sitemaps*: https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview

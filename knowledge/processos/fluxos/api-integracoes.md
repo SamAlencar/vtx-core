@@ -64,6 +64,10 @@ As etapas 4 e 5 repetem por fluxo de dados. Nada vai para produção sem ter rod
 - [ ] Testado no sandbox; produção aprovada pelo Samuel
 - [ ] Runbook, alertas, documentação para consumidores e retrospectiva registrados
 
+
+## Recursos por papel
+Áreas deste fluxo: backend e APIs, segurança, testes e QA, MCP. Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [Backend](../../../agents/dev-backend.md), [DevOps/SRE](../../../agents/devops-sre.md), [QA](../../../agents/qa.md), [Arquiteto](../../../agents/arquiteto.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - OpenAPI Initiative, *OpenAPI Specification*: https://spec.openapis.org/oas/latest.html · AsyncAPI, *Specification*: https://www.asyncapi.com/docs/reference/specification/latest
 - IETF, RFC 9110 *HTTP Semantics*: https://www.rfc-editor.org/rfc/rfc9110 · RFC 9457 *Problem Details for HTTP APIs*: https://www.rfc-editor.org/rfc/rfc9457 · *The Idempotency-Key HTTP Header Field* (rascunho): https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/

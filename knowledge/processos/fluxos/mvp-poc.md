@@ -65,6 +65,10 @@ Ciclos curtos: um MVP pode repetir 3 → 6 várias vezes; cada volta testa a hip
 - [ ] Relatório de aprendizado com recomendação e destino do código
 - [ ] Decisão do Samuel registrada; transição (nova ficha) ou encerramento com recursos desligados
 
+
+## Recursos por papel
+Áreas deste fluxo: frontend e design, backend e APIs, testes e QA, MCP — só o mínimo adotado, sem promover “em avaliação”. Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [Frontend/Mobile](../../../agents/dev-frontend-mobile.md), [Backend](../../../agents/dev-backend.md), [QA](../../../agents/qa.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - RIES, Eric. *The Lean Startup* — princípios e ciclo construir-medir-aprender: https://theleanstartup.com/principles · *Minimum Viable Product: a guide*: https://www.startuplessonslearned.com/2009/08/minimum-viable-product-guide.html
 - KNIBERG, Henrik. *Making sense of MVP (Minimum Viable Product)*: https://blog.crisp.se/2016/01/25/henrikkniberg/making-sense-of-mvp

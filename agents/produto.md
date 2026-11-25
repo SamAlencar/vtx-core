@@ -8,3 +8,4 @@
 - **Conhecimento que carrega:** [Papéis de agentes](../knowledge/organizacao/papeis-de-agentes.md) · [ROADMAP](../knowledge/ROADMAP.md) VTX-011 Engenharia de requisitos, VTX-028 UX/UI e acessibilidade, VTX-031 LGPD.
 - **Definition of Done:** PRD com objetivo, escopo/fora de escopo, personas, histórias INVEST e critérios de aceite testáveis; prioridades explícitas; aprovado pelo Samuel.
 - **Limites / escalar ao Samuel:** aprovação de escopo e prioridades, requisitos ambíguos do cliente, impacto em prazo/custo, coleta de dados pessoais.
+- **Recursos por papel:** este papel não é dono de nenhuma `area` do [registro](../knowledge/ferramentas/recursos.yaml). Quando o PRD citar ferramenta, consulta o catálogo e o agente da área; não adota recurso por conta própria.
