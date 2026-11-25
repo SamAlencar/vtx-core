@@ -97,3 +97,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "knowledge/templates/memoria-projeto/: README e cinco modelos (padroes, decisions, troubleshooting, contexto-ativo, observacoes com decision/bugfix/security_alert), caminho canônico docs/memoria/, ponteiro sob demanda no AGENTS.md e na regra de eficiência. Sem hooks e sem serviço hospedado. Templates escritos do zero (MIT/Apache só como ideia). Skills: as da VTX-131 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-133
+    titulo: "Regras de economia de contexto em saídas de ferramentas e piloto local do Headroom"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: ".cursor/rules/economia-de-contexto.mdc (sob demanda): logs filtrados pelo erro, rg/trechos, jq em JSON, diff --stat, resumo no lugar do bruto; cópia em knowledge/templates/cursor/. Piloto do Headroom não executado (opcional; proxy e modelos de ML); segue em avaliação, sem proxy e com telemetria off se vier a ser testado. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-133.md; Review Focus evitou duplicar a regra always-on e instalar sem medir, ajudou), verification-before-completion (unittest, proxima_tarefa, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."

@@ -229,10 +229,10 @@ recursos:
     link: "https://github.com/headroomlabs-ai/headroom/tree/4c7acba"
     licenca: Apache-2.0
     status: "em avaliação"
-    uso_agentes: "~77 mil estrelas, pin 4c7acba (antigo chopratejas/headroom). Comprime saídas de ferramentas, logs, diffs e JSON localmente (biblioteca, proxy ou MCP), guardando originais para recuperar sob demanda; 'headroom learn' grava correções em AGENTS.md. Extrair já: regras de economia de saída (filtrar logs pelo erro principal, rg em vez de ler arquivo, resumir JSON). Piloto local do MCP só depois de revisão."
+    uso_agentes: "~77 mil estrelas, pin 4c7acba (antigo chopratejas/headroom). Comprime saídas de ferramentas, logs, diffs e JSON localmente (biblioteca, proxy ou MCP), guardando originais para recuperar sob demanda; 'headroom learn' grava correções em AGENTS.md. Regras de economia de saída já extraídas em .cursor/rules/economia-de-contexto.mdc (VTX-133). Piloto local do MCP segue opcional e NÃO foi executado: só em ambiente isolado, com revisão prévia; sem medição não há adoção."
     riscos: "Telemetria/beacon ligados por padrão — desligar com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off; checa PyPI 1x/dia. Proxy intercepta chamadas ao modelo (credenciais passam por ele). Instalação traz modelos de ML grandes. Não instalar globalmente."
     responsavel: devops-sre
-    revisado_em: 2026-10-21
+    revisado_em: 2026-11-24
   - id: agency-agents
     nome: "Agency Agents (msitarzewski) — catálogo de personas de agentes"
     area: skills-agentes

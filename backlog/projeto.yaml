@@ -1202,11 +1202,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: '.cursor/rules/economia-de-contexto.mdc'
   depende_de:
   - VTX-126
-  notas: 'Pedido do Samuel em 2026-10-21. Regra: filtrar logs pelo erro principal, rg/trechos em vez de arquivos inteiros, resumir JSON/diffs grandes. Piloto opcional do MCP do Headroom (Apache-2.0, pin 4c7acba) em ambiente isolado, com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off, sem proxy; decidir adotar/descartar após medir economia.'
+  notas: 'Pedido do Samuel em 2026-10-21. Regra: filtrar logs pelo erro principal, rg/trechos em vez de arquivos inteiros, resumir JSON/diffs grandes. Piloto opcional do MCP do Headroom (Apache-2.0, pin 4c7acba) em ambiente isolado, com HEADROOM_TELEMETRY=off e HEADROOM_BEACON=off, sem proxy; decidir adotar/descartar após medir economia. Concluída em 2026-11-24: regra .cursor/rules/economia-de-contexto.mdc (sob demanda) com cópia em knowledge/templates/cursor/. Piloto do Headroom NÃO executado (opcional; instalação traz modelos de ML e proxy); status segue em avaliação em recursos.yaml, sem medição não há adoção.'
 - id: VTX-134
   titulo: 'Enriquecer papéis de agentes com o catálogo agency-agents'
   fase: F9
