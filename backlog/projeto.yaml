@@ -1074,20 +1074,21 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 53
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
-  notas: 'Skills de design (impeccable), componentes, acessibilidade.'
+  notas: 'Skills de design (impeccable), componentes, acessibilidade. Concluída em 2026-11-24: shadcn/Tailwind/Radix/axe-core/WCAG/APG adotados; impeccable, jsx-a11y e React Aria em avaliação; §3.10.'
 - id: VTX-121
   titulo: 'Pesquisa de recursos: backend e APIs'
   fase: F12
   area: Ferramentas
   prioridade: 54
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
+  notas: 'Concluída em 2026-11-24: Zod, supabase-js, OpenAPI 3.1, RFC 9457, guidelines Microsoft e pino adotados; zod-openapi, openapi-typescript, Drizzle e Hono em avaliação; §3.11.'
 - id: VTX-122
   titulo: 'Pesquisa de recursos: testes e QA'
   fase: F12

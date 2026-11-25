@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -9,10 +9,10 @@ recursos:
     link: "https://github.com/pbakaus/impeccable"
     licenca: Apache-2.0
     status: "em avaliação"
-    uso_agentes: "Skill com 24 comandos (/impeccable init, shape, critique, audit, polish...) e 59 regras determinísticas; instala em .cursor via npx impeccable install."
-    riscos: "Baixa um binário no 1º uso e instala hooks no projeto: revisar, fixar versão, testar em sandbox (VTX-127)."
+    uso_agentes: "Skill Apache-2.0 (~116 mil estrelas, pin b49177d, npm 4.11.0 em 24/11/2026). 24 comandos (init, document, shape, critique, audit, polish, bolder, quieter...) e 62 regras determinísticas (eram 59 em 17/10). Instala com `npx impeccable install`. Continua em avaliação até o piloto em sandbox (VTX-127); não instalar no vtx-core nem em projeto de cliente antes disso."
+    riscos: "Baixa um binário (engine) no 1º uso e instala hooks no projeto: revisar scripts, fixar versão, conferir checksum, telemetria e rede antes do piloto."
     responsavel: dev-frontend-mobile
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: anthropic-skills
     nome: "Anthropic Skills (inclui frontend-design)"
     area: skills-agentes
@@ -96,11 +96,11 @@ recursos:
     tipo: componentes
     link: "https://github.com/shadcn-ui/ui"
     licenca: MIT
-    status: "em avaliação"
-    uso_agentes: "Componentes copiados para o projeto (sem dependência fechada); candidato a padrão web no stack de referência (VTX-023)."
-    riscos: Baixo.
+    status: "adotado"
+    uso_agentes: "Padrão de UI do stack (VTX-023): componentes MIT copiados para o projeto, base Radix. ~129 mil estrelas, pin 055aa6b (23/11/2026). O agente copia o componente e ajusta tokens do Tailwind; não vira dependência fechada."
+    riscos: "Código copiado entra no repo do cliente — manter o aviso MIT. Se houver opção de base React Aria, não misturar com Radix na mesma tela."
     responsavel: dev-frontend-mobile
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: owasp-cheatsheets
     nome: OWASP Cheat Sheet Series
     area: seguranca
@@ -288,3 +288,192 @@ recursos:
     riscos: "Pacote enorme (install.sh/install.ps1, npm, ecc2, dashboard) — não executar. Hooks Node rodam a cada comando, leitura de arquivo e chamada MCP: só reescrever versões mínimas revisadas. mcp-configs inclui serviços pagos/de terceiros (firecrawl, exa, browserbase, fal-ai, railway, codescene, memória hospedada) — usar só os locais/grátis já aprovados (playwright, filesystem, github, context7 como auxiliar). ECC Pro / GitHub App é pago (US$19/assento/mês em repos privados) — fora. Muitos patrocinadores (CodeRabbit, Greptile) — ignorar integrações. Copiar só com atribuição MIT e pin."
     responsavel: arquiteto
     revisado_em: 2026-10-21
+
+  - id: tailwind-css
+    nome: Tailwind CSS
+    area: frontend-design
+    tipo: componentes
+    link: "https://github.com/tailwindlabs/tailwindcss"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Padrão de tokens e utilitários do stack (VTX-023), junto com shadcn/ui. ~99 mil estrelas, pin f646ff8 (24/11/2026). O agente usa classes e variáveis do projeto, não inventa cor ou espaçamento solto."
+    riscos: "Baixo. Preferir a versão já pinada no projeto; não puxar plugin pago nem gerador hospedado."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: radix-primitives
+    nome: Radix Primitives
+    area: frontend-design
+    tipo: componentes
+    link: "https://github.com/radix-ui/primitives"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Base acessível (teclado, foco, ARIA) dos componentes shadcn/ui do stack. MIT, ~20 mil estrelas, pin eb3a2b7 (14/10/2026). O agente não troca a base sem ADR."
+    riscos: "Não misturar com React Aria na mesma tela. Manutenção um pouco mais lenta que o shadcn; conferir changelog do primitivo antes de atualizar."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: axe-core
+    nome: axe-core
+    area: frontend-design
+    tipo: "referência"
+    link: "https://github.com/dequelabs/axe-core"
+    licenca: MPL-2.0
+    status: "adotado"
+    uso_agentes: "Motor de acessibilidade do stack (VTX-023 / VTX-028): `@axe-core/playwright` no fluxo principal, zero violação séria ou crítica. MPL-2.0, ~8 mil estrelas, pin 32d9bd5 (23/11/2026, branch develop). Docs da integração: https://playwright.dev/docs/accessibility-testing. O axe acha só parte dos problemas — o teste manual de teclado continua obrigatório."
+    riscos: "MPL-2.0 é copyleft fraco: usar como dependência npm, não copiar o código para o repo do cliente. Não misturar com Pa11y/HTML CodeSniffer (outro motor, resultados divergentes). Produtos pagos da Deque (axe DevTools Pro) estão fora."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: eslint-plugin-jsx-a11y
+    nome: eslint-plugin-jsx-a11y
+    area: frontend-design
+    tipo: "referência"
+    link: "https://github.com/jsx-eslint/eslint-plugin-jsx-a11y"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Lint estático de JSX (alt, label, ARIA, âncoras) que complementa o axe no DOM renderizado. MIT, ~3,6 mil estrelas, pin 8f75961. Candidato a entrar no ESLint padrão do stack, sem substituir o axe nem o teste manual."
+    riscos: "Último commit em 04/01/2026 — passou do critério de 6 meses de manutenção (§3). Não arquivado, ainda é o plugin padrão da comunidade. Não adotar como obrigatório até haver commit recente ou justificativa de estabilidade no ADR. Não instala hooks nem binário."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: wcag-22
+    nome: "WCAG 2.2"
+    area: frontend-design
+    tipo: "referência"
+    link: "https://www.w3.org/TR/WCAG22/"
+    licenca: "W3C Document License"
+    status: "adotado"
+    uso_agentes: "Nível AA é o alvo do stack (VTX-026 / VTX-028): contraste 4,5:1, teclado, rótulos, alvo de toque 24×24 px, idioma pt-BR. Referência rápida: https://www.w3.org/WAI/WCAG22/quickref/. Citar e resumir; não copiar o texto da recomendação."
+    riscos: "Nenhum de cadeia de suprimentos. A Lei 13.146/2015 (LBI) art. 63 também vale para sites de cliente no Brasil."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: wai-aria-apg
+    nome: "WAI-ARIA Authoring Practices Guide (APG)"
+    area: frontend-design
+    tipo: "referência"
+    link: "https://www.w3.org/WAI/ARIA/apg/"
+    licenca: "W3C Document License"
+    status: "adotado"
+    uso_agentes: "Padrões de widget (dialog, tabs, combobox, menu) com teclado e ARIA corretos. Usar quando o shadcn/Radix não cobrir o caso ou quando o agente for revisar um componente customizado. Repositório de origem: https://github.com/w3c/aria-practices (pin f14b249, ativo em 18/11/2026)."
+    riscos: "Citar e resumir, sem copiar exemplos longos. Preferir o padrão já implementado no Radix/shadcn quando existir."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: react-aria
+    nome: React Aria (Adobe React Spectrum)
+    area: frontend-design
+    tipo: componentes
+    link: "https://github.com/adobe/react-spectrum"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "Biblioteca de cabeças de componente acessíveis (React Aria Components), Apache-2.0, ~16 mil estrelas, pin b1e8cf5 (24/11/2026). Alternativa à base Radix; o shadcn passou a mencionar essa opção. Não é padrão VTX."
+    riscos: "Não misturar Radix e React Aria na mesma tela (nem no mesmo projeto, salvo ADR). Não instalar até haver motivo real (componente que o Radix não cobre). Pacotes extras do React Spectrum (temas pagos ou de marca Adobe) ficam de fora."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+
+  - id: zod
+    nome: Zod
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/colinhacks/zod"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Validação na borda do stack (VTX-023 / VTX-024): formulários, Route Handlers, webhooks e contrato de API. MIT, ~44 mil estrelas, pin d40c329 (22/11/2026). Schemas em packages/shared; o contrato é escrito e revisado antes do código."
+    riscos: "Baixo. Fixar a versão major do projeto (Zod 3 vs 4) no ADR ou no package.json; geradores de OpenAPI precisam da mesma major."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: supabase-js
+    nome: supabase-js
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/supabase/supabase-js"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Cliente oficial do backend padrão (VTX-023 / VTX-100): dados com RLS, Auth e Storage. MIT, ~4,6 mil estrelas, pin 840843d (19/11/2026). Tipos gerados com `supabase gen types`. Dados simples do app passam por supabase-js; regra de negócio, segredo ou integração vão para Route Handler ou Edge Function."
+    riscos: "service_role só no servidor, nunca no cliente nem no chat. MCP do Supabase só em projeto de desenvolvimento, de preferência só leitura (VTX-100)."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: drizzle-orm
+    nome: Drizzle ORM
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/drizzle-team/drizzle-orm"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "Alternativa do stack quando houver Postgres fora do Supabase (VTX-023). Apache-2.0, ~36 mil estrelas, pin 3bcb6a2 (13/11/2026). Não é o acesso padrão — o padrão é supabase-js + SQL nas migrações."
+    riscos: "Só entra com ADR. Não usar em cima do Supabase só por preferência, para não ter duas camadas de acesso."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: openapi-specification
+    nome: "OpenAPI Specification 3.1"
+    area: backend-apis
+    tipo: "referência"
+    link: "https://spec.openapis.org/oas/v3.1.0"
+    licenca: Apache-2.0
+    status: "adotado"
+    uso_agentes: "Formato do contrato de API (VTX-024). Spec 3.1 publicada em https://spec.openapis.org/oas/v3.1.0; repositório OAI/OpenAPI-Specification, pin 4f86429. O OpenAPI do projeto é gerado a partir dos schemas Zod e versionado no repo."
+    riscos: "Baixo. Mudança de contrato só aditiva; quebra vai para /v2 com prazo."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: zod-openapi
+    nome: zod-openapi (samchungy)
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/samchungy/zod-openapi"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Gera OpenAPI 3.x a partir de schemas Zod — encaixa no 'contrato primeiro' do VTX-024. MIT, ~650 estrelas, pin 4ae5375 (24/11/2026), manutenção ativa. Alternativa mais estrela e um pouco mais parada: asteasolutions/zod-to-openapi (MIT, pin 9af9229, último commit em 19/07/2026)."
+    riscos: "Conferir compatibilidade com a major do Zod do projeto antes de adotar. Não instalar nos projetos até um piloto curto (um Route Handler gerando o YAML/JSON)."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: openapi-typescript
+    nome: openapi-typescript
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/openapi-ts/openapi-typescript"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Gera tipos TypeScript a partir de um OpenAPI 3.x. MIT, ~8 mil estrelas, pin d46a319 (25/09/2026). Útil para consumir API externa ou para o front/mobile tiparem contra o contrato do próprio projeto."
+    riscos: "Último commit em setembro de 2026 (dentro da janela de 6 meses, mas acompanhar). Não substitui o Zod na validação de runtime."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: pino
+    nome: pino
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/pinojs/pino"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Logger JSON do stack (VTX-023). MIT, ~18 mil estrelas, pin b5fac26 (22/11/2026). Todo 500 leva `trace_id`; sem dado pessoal nem segredo no log."
+    riscos: "Baixo. Evitar pretty-print em produção; não logar corpo de webhook com PII."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: hono
+    nome: Hono
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/honojs/hono"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Framework HTTP mínimo (MIT, ~33 mil estrelas, pin 9c2f294, 24/11/2026) que roda em Node e na edge. Alternativa aos Route Handlers do Next.js ou às Edge Functions, só com ADR."
+    riscos: "Não é o padrão do stack. Adotar só se o Route Handler não atender (runtime fora do Next, API avulsa). Evita segunda forma de roteamento no mesmo app."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: microsoft-api-guidelines
+    nome: Microsoft REST API Guidelines
+    area: backend-apis
+    tipo: "referência"
+    link: "https://github.com/microsoft/api-guidelines"
+    licenca: CC-BY-4.0
+    status: "adotado"
+    uso_agentes: "Referência de design REST já citada no VTX-024 (coleções, erros, paginação, idempotência). CC-BY-4.0, pin 1c58ca7 (30/10/2026). Citar e resumir, com atribuição."
+    riscos: "Não copiar o texto em bloco. É guia, não contrato — o contrato do projeto continua sendo o OpenAPI/Zod."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: rfc-9457
+    nome: "RFC 9457 — Problem Details for HTTP APIs"
+    area: backend-apis
+    tipo: "referência"
+    link: "https://www.rfc-editor.org/rfc/rfc9457"
+    licenca: "IETF Trust Legal Provisions"
+    status: "adotado"
+    uso_agentes: "Formato de erro do stack (VTX-024): `application/problem+json` com type, title, status, detail e errors[] por campo. Sem stack trace nem SQL na resposta."
+    riscos: "Nenhum de cadeia de suprimentos. RFC 9110 (semântica HTTP) complementa e já está nas fontes do VTX-024."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
