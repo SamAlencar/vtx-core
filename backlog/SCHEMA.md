@@ -33,8 +33,9 @@ tarefas:
 
 ## Regras
 - **Status efetivo** de uma tarefa = o do diário mais recente que cita o id; se nenhum cita, vale o do mestre. Valores: `a fazer`, `em andamento`, `concluído`, `aguardando`, `cancelado`. Qualquer outro valor vira `a fazer`.
-- **aguardando:** a tarefa existe, mas espera aprovação, dependência externa ou decisão do Samuel. Não entra na fila do `proxima_tarefa.py` e continua no denominador do progresso.
-- **cancelado:** a tarefa saiu de escopo (ex.: VTX-142). Não entra na fila, não conta como concluída e é excluída do total do progresso e do roadmap.
+- **aguardando:** a tarefa existe, mas espera aprovação, dependência externa ou decisão do Samuel. Não entra na fila do `proxima_tarefa.py` e continua no denominador do progresso. **Motivo obrigatório** no campo `notas` (ex.: «adiado até 3 clientes pagantes»).
+- **cancelado:** a tarefa saiu de escopo (ex.: VTX-142). Não entra na fila, não conta como concluída e é excluída do total do progresso e do roadmap. **Motivo obrigatório** no campo `notas` (ex.: referência à auditoria ou à tarefa em que foi fundida).
+- **F14 (Primeiros clientes):** fase da frente, só com trabalho técnico neste repositório. Marketing, contabilidade/NFS-e, vendas, ofertas/preços, contrato, funil comercial e métricas de negócio são dependências externas — trabalho dos agentes de marketing, contabilidade e vendas, não do vtx-core. Quando o trilho de receita e o piloto interno med-hub competirem pelas 5 h/semana do Samuel, o trilho de receita vem primeiro.
 - Tarefas novas entram primeiro no mestre (com id, fase e prioridade); depois são citadas nos diários.
 - Campos opcionais PRIVADOS no mestre: `depende_de` (lista de ids) e `notas`.
 - A ordem de execução é a `prioridade`, não o id (ex.: F9 vem antes de F8). A ordem das fases no painel segue a lista `fases`.
