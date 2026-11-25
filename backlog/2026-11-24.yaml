@@ -866,3 +866,10 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "Documento de política, tabela por tipo, piloto med-hub e A2 para plano pago. Skills: verification-before-completion. Ferramentas: git. Correu bem."
 
+  - id: VTX-195
+    titulo: "Política técnica de hospedagem por cliente e de custos de infra"
+    area: "Operação"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Ressalvas do Tzu no PR #26: A2 explicitado (primeiro deploy de produção e plano pago); OpenNext com teste no primeiro projeto e plano B; Workers com static assets como padrão de site novo; dependência do runbook no #25 registrada; 5 h/semana liga ao SCHEMA; termo EAS fica com a VTX-203."
+
