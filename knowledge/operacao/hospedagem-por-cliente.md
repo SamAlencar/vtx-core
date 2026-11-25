@@ -5,7 +5,7 @@
 ## Princípios
 
 1. **A conta de produção é do cliente**, no nome dele, com o domínio dele. A VTX não mistura produção de cliente na conta da VTX.
-2. **A2 (Samuel):** o primeiro deploy de produção de um projeto, e qualquer plano pago ou upgrade (Vercel Pro, Cloudflare Pro, EAS pago, banco pago, add-on). Deploys seguintes no mesmo projeto, no plano já aprovado, seguem o runbook e não pedem A2 só por serem produção.
+2. **A2 (Samuel):** todo deploy em produção, e qualquer plano pago ou upgrade (Vercel Pro, Cloudflare Pro, EAS pago, banco pago, add-on). Isso é o mesmo recorte da [governança](../processos/governanca-e-aprovacoes.md) (§3, item 3) e da regra de execução: uma política de operação não reduz o A2.
 3. **Não violar termo de plano gratuito.** O Vercel Hobby não admite uso comercial (incluindo trabalho de consultor pago). Cliente e sites comerciais da VTX não entram no Hobby.
 4. Quando o trilho de receita e o piloto interno competirem pelas [5 h/semana do Samuel](../../backlog/SCHEMA.md) (regra da F14 no SCHEMA), o de receita vem primeiro. O piloto med-hub tem teto próprio.
 
@@ -45,4 +45,4 @@ No runbook do repositório do cliente, anotar: provedor, plano, dono da conta, d
 - [ ] Plano gratuito permitido para uso comercial, ou A2 para plano pago
 - [ ] Variáveis só no painel; nada de segredo no git
 - [ ] Limite de cota e o que acontece no estouro (pausa ou 1027) escritos no runbook
-- [ ] Primeiro deploy de produção é A2; plano pago ou upgrade também é A2
+- [ ] Deploy em produção é A2; plano pago ou upgrade também é A2
