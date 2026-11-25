@@ -63,6 +63,10 @@ As etapas 5 e 6 repetem por incremento. Cada incremento termina publicado em hom
 - [ ] Privacidade e termos revisados; produção aprovada pelo Samuel
 - [ ] Runbook, notas de versão e retrospectiva registrados
 
+
+## Recursos por papel
+Áreas deste fluxo: frontend e design, backend e APIs, testes e QA, segurança, MCP, documentação. Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [Frontend/Mobile](../../../agents/dev-frontend-mobile.md), [Backend](../../../agents/dev-backend.md), [QA](../../../agents/qa.md), [DevOps/SRE](../../../agents/devops-sre.md), [Arquiteto](../../../agents/arquiteto.md), [Especialistas](../../../agents/especialistas.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - AWS, *Well-Architected SaaS Lens* (modelos silo/pool/bridge, isolamento): https://docs.aws.amazon.com/wellarchitected/latest/saas-lens/saas-lens.html
 - Wiggins, A., *The Twelve-Factor App*: https://12factor.net/pt_br/

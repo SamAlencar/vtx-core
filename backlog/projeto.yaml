@@ -1155,7 +1155,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 61
-  status: a fazer
+  status: concluído
   entregavel: 'agents/ + knowledge/processos/fluxos/'
   depende_de:
   - VTX-120
@@ -1165,7 +1165,7 @@ tarefas:
   - VTX-124
   - VTX-125
   - VTX-126
-  notas: 'Seção Recursos por papel, filtrada por area.'
+  notas: 'Concluída em 2026-11-24: seção Recursos por papel em agents/*.md (adotados filtrados por area; MCP só do responsável, exceto o Arquiteto que vê os MCPs adotados). Recorte por área nos 8 fluxos, apontando o YAML. Fonte de verdade: recursos.yaml.'
 - id: VTX-129
   titulo: 'Varredura periódica de recursos na manutenção quinzenal e revisão trimestral'
   fase: F12

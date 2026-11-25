@@ -62,6 +62,10 @@ As etapas 5 e 6 repetem por incremento, publicado na trilha interna (Play *inter
 - [ ] Ficha da loja e política de privacidade prontas; submissão aprovada pelo Samuel
 - [ ] Notas de versão e retrospectiva registradas
 
+
+## Recursos por papel
+Áreas deste fluxo: frontend e design, backend e APIs, testes e QA, MCP. Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [Frontend/Mobile](../../../agents/dev-frontend-mobile.md), [Backend](../../../agents/dev-backend.md), [QA](../../../agents/qa.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - JetBrains, *What is cross-platform mobile development?* (nativo, Flutter, React Native, Kotlin Multiplatform): https://kotlinlang.org/docs/multiplatform/cross-platform-mobile-development.html
 - Google, *Flutter*: https://docs.flutter.dev/ · Meta, *React Native*: https://reactnative.dev/

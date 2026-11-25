@@ -83,6 +83,10 @@ duvidas_para_samuel: []
 - [ ] Ficha salva em `projects/<projeto>/ficha.yaml` e enviada ao Samuel
 - [ ] Dúvidas registradas, nada adivinhado
 
+
+## Recursos por papel
+Este fluxo ainda não escolhe stack. Depois do tipo definido, consultar o [registro](../../ferramentas/recursos.yaml) e as seções “Recursos por papel” em [Orquestrador](../../../agents/orquestrador.md). Não adotar ferramenta na entrevista ou na triagem.
+
 ## Fontes
 - Snowden, D. & Boone, M., *A Leader's Framework for Decision Making*, Harvard Business Review (2007): https://hbr.org/2007/11/a-leaders-framework-for-decision-making
 - Stacey, R., *Strategic Management and Organisational Dynamics* (matriz de concordância × certeza).

@@ -5,6 +5,8 @@ ferramentas permitidas, limites/permissões e critérios de qualidade.
 
 A proposta de papéis (aprovada em 2026-10-10) está em [`knowledge/organizacao/papeis-de-agentes.md`](../knowledge/organizacao/papeis-de-agentes.md).
 
+Os recursos de bibliotecas, skills e MCPs por papel estão no final de cada arquivo, filtrados por `area` do [registro](../knowledge/ferramentas/recursos.yaml). Só o status **adotado** entra no dia a dia.
+
 ## Índice
 
 | Agente | Arquivo | Foco |
@@ -30,6 +32,7 @@ Modelo:
 - Limites (o que NÃO faz):
 - Critérios de qualidade / Definition of Done:
 - Base de conhecimento a consultar:
+- Recursos por papel:  # adotados das áreas do papel; fonte knowledge/ferramentas/recursos.yaml
 ```
 
 ## Arquétipos (camada ortogonal aos papéis)

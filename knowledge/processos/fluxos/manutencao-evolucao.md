@@ -64,6 +64,10 @@ Bug urgente em produção (*hotfix*) segue atalho: 0 → diagnóstico curto → 
 - [ ] Release aprovada pelo Samuel; cliente comunicado
 - [ ] Monitoramento ativo, postmortems e retrospectiva registrados
 
+
+## Recursos por papel
+Áreas deste fluxo: as áreas já usadas no sistema (frontend, backend, testes, segurança, MCP); não introduzir recurso novo sem ADR. Fonte: [recursos.yaml](../../ferramentas/recursos.yaml) (narrativa em [bibliotecas-e-recursos.md](../../ferramentas/bibliotecas-e-recursos.md)). Usar só o que está **adotado**, listado nas seções dos agentes [DevOps/SRE](../../../agents/devops-sre.md), [Backend](../../../agents/dev-backend.md), [Frontend/Mobile](../../../agents/dev-frontend-mobile.md), [QA](../../../agents/qa.md). Em avaliação não entra no incremento sem piloto. Se esta página e o YAML divergirem, vale o YAML.
+
 ## Fontes
 - ISO/IEC/IEEE 14764:2022, *Software engineering — Software life cycle processes — Maintenance* (categorias de manutenção).
 - IEEE Computer Society, *SWEBOK Guide*, capítulo "Software Maintenance": https://www.computer.org/education/bodies-of-knowledge/software-engineering
