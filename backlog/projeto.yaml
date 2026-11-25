@@ -1722,3 +1722,21 @@ tarefas:
   - VTX-178
   - VTX-179
   notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 15. Agente simples com 1 ferramenta, eval, log de custo e deploy em homologação gratuita, seguindo só o SOP e os templates. O tempo gasto é métrica de onboarding. Pode ser repositório gerado pelo bootstrap.'
+
+- id: VTX-184
+  titulo: Fechar a brecha do teste de caminhos citados (sem fallback para o template)
+  fase: F8
+  area: Qualidade
+  prioridade: 57
+  status: concluído
+  entregavel: tests/test_agents_md.py + .cursor/rules/papeis/planejamento.mdc + .cursor/rules/papeis/execucao.mdc
+  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o teste de caminhos citados falhar quando o arquivo não existir no repositório, em vez de aceitar um equivalente em templates/projeto/. Arquivos afetados: tests/test_agents_md.py, .cursor/rules/papeis/*.mdc (e as cópias no template). Critério de aceite: test_caminhos_citados_existem não consulta templates/projeto/ como fallback; todo caminho em crase nos arquivos conferidos existe neste repo. Concluída no PR #18 em 24/11/2026: fallback removido; as regras citam os modelos em templates/projeto/....'
+
+- id: VTX-185
+  titulo: 'permissions: contents: read no CI do template de projeto'
+  fase: F6
+  area: Templates
+  prioridade: 57
+  status: concluído
+  entregavel: templates/projeto/.github/workflows/ci.yml
+  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o workflow do template de cliente declarar o menor privilégio. Arquivos afetados: templates/projeto/.github/workflows/ci.yml (e o docs/plano.md do template, que registra o build provisório). Critério de aceite: o ci.yml do template tem permissions: contents: read no workflow. Concluída no PR #18 em 24/11/2026.'
