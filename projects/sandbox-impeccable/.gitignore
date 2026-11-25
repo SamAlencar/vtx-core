@@ -1,0 +1,5 @@
+/bin/
+/.impeccable-home/
+/detect-saida.json
+/detect-tempo.txt
+*.verified

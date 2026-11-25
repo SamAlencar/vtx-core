@@ -60,3 +60,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "recursos.yaml: Registry oficial adotado como fonte de descoberta (preview, listing não é auditoria, pin 0c74fa6). awesome-mcp-servers atualizado (pin ac5cc37). GitHub, Supabase (dev + read_only=true), Figma (handoff de leitura, sem escrita no canvas) e Vercel (logs/deploys; produção só pelo Git) registrados como adotados. Filesystem/fetch de referência em avaliação, filesystem só com --read-only. Stripe MCP em avaliação, só chave de teste. Playwright MCP, Headroom e Trail-code sem mudança de status. Agensi continua descartado. Recorte §3.16. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-126.md; Review Focus evitou tratar listing como auditoria e filesystem sem --read-only, ajudou), verification-before-completion (unittest, pins, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-127
+    titulo: "Piloto do impeccable em uma tela de teste (fluxo frontend)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "projects/sandbox-impeccable/: revisão no pin b49177d, engine 0.1.27 linux-x64 com SHA-256 conferido, telemetria off, sem login e sem hooks no vtx-core. Tela de teste gerou 5 avisos em 0,049 s (0 tokens de LLM). Decisão: adotado com restrições (detector + skill sob demanda; fora: npx install, hooks, conta/Pro). recursos.yaml e §3.10 atualizados. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-127.md; Review Focus evitou npx install na raiz, telemetria padrão e um A/B de tokens inventado, ajudou), verification-before-completion (checksum, unittest, test -e, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada no vtx-core; binário só no sandbox e gitignorado. Ferramentas: git, gh, curl, sha256sum, unittest. Correu bem, custo baixo."

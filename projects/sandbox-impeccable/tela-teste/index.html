@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Portal Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+      color: #6b7280;
+    }
+    .hero { padding: 96px 24px; text-align: center; }
+    .icon-tile {
+      width: 56px; height: 56px; margin: 0 auto 16px;
+      border-radius: 12px; background: #fff; display: flex;
+      align-items: center; justify-content: center;
+    }
+    h1 { color: #111827; font-size: 48px; letter-spacing: -0.03em; }
+    .subtitle { color: #9ca3af; font-size: 18px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; padding: 0 24px 96px; max-width: 1100px; margin: 0 auto; }
+    .card {
+      background: #fff; border-radius: 16px; padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.15);
+    }
+    .card .card-inner { background: #f9fafb; border-radius: 12px; padding: 16px; }
+    .card h2 { margin-top: 0; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="icon-tile">✨</div>
+    <h1>Tudo que você precisa, em um só lugar</h1>
+    <p class="subtitle">Uma plataforma completa para transformar a sua jornada.</p>
+  </section>
+  <div class="grid">
+    <div class="card"><div class="card-inner"><h2>Rápido</h2><p>Experiência fluida e moderna para o seu time.</p></div></div>
+    <div class="card"><div class="card-inner"><h2>Seguro</h2><p>Seus dados protegidos com o que há de mais avançado.</p></div></div>
+    <div class="card"><div class="card-inner"><h2>Simples</h2><p>Comece agora e veja os resultados imediatamente.</p></div></div>
+  </div>
+</body>
+</html>
