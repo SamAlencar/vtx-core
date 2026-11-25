@@ -18,3 +18,15 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "knowledge/ferramentas/revisao-periodica.md: revisão trimestral no primeiro ciclo quinzenal de jan/abr/jul/out; cinco eixos (custos, limites, versões, segurança, sem uso); ata no diário; A2 para custo/contrato/dados/padrão; sem uso só vira descontinuada após dois trimestres e se não for P. README §6 e INDEX atualizados. Varredura de recursos fica para a VTX-129. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-113.md; Review Focus evitou descontinuar P no primeiro trimestre e antecipar a VTX-129, ajudou), verification-before-completion (unittest, test -e, URLs, proxima_tarefa, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-120
+    titulo: "Pesquisa de recursos: frontend, UI e design"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml: atualizados impeccable (pin b49177d, 62 regras) e shadcn (adotado, padrão VTX-023). Incluídos Tailwind, Radix, axe-core+@axe-core/playwright (MPL-2.0, dependência npm), WCAG 2.2, WAI-ARIA APG (adotados); eslint-plugin-jsx-a11y (em avaliação, commit de jan/2026 fora da janela de 6 meses) e React Aria (alternativa, sem misturar com Radix). Recorte em bibliotecas-e-recursos.md §3.10. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-120-121.md; Review Focus evitou adotar jsx-a11y sem a janela de manutenção e misturar motores Pa11y/axe, ajudou), verification-before-completion (unittest, pins/licenças via API GitHub, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-121
+    titulo: "Pesquisa de recursos: backend e APIs"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml area backend-apis: Zod, supabase-js, OpenAPI 3.1, RFC 9457, Microsoft REST API Guidelines (CC-BY-4.0) e pino adotados (já eram padrão VTX-023/024). Em avaliação: zod-openapi (samchungy, ativo), openapi-typescript, Drizzle (só com ADR fora do Supabase) e Hono (só com ADR). Fora: Prisma, tRPC, GraphQL, OpenAPI Generator. Recorte §3.11. Skills: as da VTX-120 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."

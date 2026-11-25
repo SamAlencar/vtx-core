@@ -99,6 +99,42 @@ Pedido do Samuel: conectou Figma, Vercel e Supabase como conectores (MCP) e defi
 - **Stripe** — gateway de pagamento **principal** (Mercado Pago vira alternativa). Sem mensalidade; cobra taxa por transação [A CONFIRMAR taxas BR]; modo de teste grátis. Brasil: conta BR com cartão, boleto e Pix [A CONFIRMAR disponibilidade e taxas]. MCP oficial / Agent Toolkit só com **chave de teste restrita**. Padrão em `knowledge/engenharia/pagamentos.md` — **VTX-106**.
 - Segurança: chaves (Stripe, Supabase service_role, tokens Vercel/Figma) nunca no repo nem no chat; manifestos registram só onde a chave está. Webhooks sempre com verificação de assinatura.
 
+### 3.10 Frontend, UI e design (24/11/2026)
+Pesquisa VTX-120. Nada novo instalado. Pins e licenças pela API do GitHub / páginas oficiais em 24/11/2026.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [shadcn/ui](https://github.com/shadcn-ui/ui) (~129 mil estrelas) | `055aa6b` | MIT | **adotado** (já era padrão no VTX-023) | Componentes copiados, base Radix; manter aviso MIT |
+| [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) (~99 mil estrelas) | `f646ff8` | MIT | **adotado** (VTX-023) | Tokens e utilitários; sem plugin pago |
+| [Radix Primitives](https://github.com/radix-ui/primitives) (~20 mil estrelas) | `eb3a2b7` | MIT | **adotado** (base do shadcn) | Não trocar a base sem ADR |
+| [axe-core](https://github.com/dequelabs/axe-core) (~8 mil estrelas) + `@axe-core/playwright` | `32d9bd5` | MPL-2.0 | **adotado** (VTX-023 / VTX-028) | Dependência npm, não copiar código; zero violação séria + teclado manual |
+| [WCAG 2.2](https://www.w3.org/TR/WCAG22/) nível AA | recomendação W3C | W3C Document License | **adotado** | Citar e resumir; alvo AA do stack |
+| [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/) | `f14b249` (repo) | W3C Document License | **adotado** | Padrões de widget quando o shadcn/Radix não cobrir |
+| [Impeccable](https://github.com/pbakaus/impeccable) (~116 mil estrelas, 62 regras, npm 4.11.0) | `b49177d` | Apache-2.0 | em avaliação | Continua até o piloto VTX-127 (binário + hooks) |
+| [emilkowalski/skills](https://github.com/emilkowalski/skills) | `2d22863` | MIT | em avaliação | Sem mudança; comparar com o impeccable antes de adotar |
+| [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) (~3,6 mil estrelas) | `8f75961` | MIT | em avaliação | Lint estático que complementa o axe; último commit em jan/2026 (fora da janela de 6 meses) |
+| [React Aria](https://github.com/adobe/react-spectrum) (~16 mil estrelas) | `b1e8cf5` | Apache-2.0 | em avaliação | Alternativa à base Radix; **não misturar** na mesma tela |
+
+Fora: Pa11y e HTML CodeSniffer (outro motor — resultados divergem do axe); produtos pagos da Deque. Cult UI e KokonutUI permanecem no [radar](radar.md), não neste registro.
+
+### 3.11 Backend e APIs (24/11/2026)
+Pesquisa VTX-121. Nada novo instalado. Pins e licenças pela API do GitHub / páginas oficiais em 24/11/2026.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [Zod](https://github.com/colinhacks/zod) (~44 mil estrelas) | `d40c329` | MIT | **adotado** (VTX-023 / VTX-024) | Validação na borda; contrato antes do código |
+| [supabase-js](https://github.com/supabase/supabase-js) (~4,6 mil estrelas) | `840843d` | MIT | **adotado** (VTX-023 / VTX-100) | Dados com RLS; `service_role` só no servidor |
+| [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0) | `4f86429` (repo OAI) | Apache-2.0 | **adotado** | Contrato versionado, gerado a partir do Zod |
+| [RFC 9457](https://www.rfc-editor.org/rfc/rfc9457) Problem Details | RFC | IETF Trust | **adotado** | Erros `application/problem+json` |
+| [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines) | `1c58ca7` | CC-BY-4.0 | **adotado** | Citar e resumir, com atribuição |
+| [pino](https://github.com/pinojs/pino) (~18 mil estrelas) | `b5fac26` | MIT | **adotado** (VTX-023) | Logs JSON com `trace_id`; sem PII |
+| [zod-openapi](https://github.com/samchungy/zod-openapi) (~650 estrelas) | `4ae5375` | MIT | em avaliação | Gerar OpenAPI a partir do Zod; conferir a major |
+| [openapi-typescript](https://github.com/openapi-ts/openapi-typescript) (~8 mil estrelas) | `d46a319` | MIT | em avaliação | Tipos a partir do contrato; não substitui o Zod |
+| [Drizzle ORM](https://github.com/drizzle-team/drizzle-orm) (~36 mil estrelas) | `3bcb6a2` | Apache-2.0 | em avaliação | Só com ADR, quando o Postgres não for o Supabase |
+| [Hono](https://github.com/honojs/hono) (~33 mil estrelas) | `9c2f294` | MIT | em avaliação | Alternativa ao Route Handler, só com ADR |
+
+Fora: Prisma (o stack já escolheu supabase-js / Drizzle), tRPC e GraphQL (só com ADR, VTX-024), OpenAPI Generator (Java, pesado demais para o fluxo da VTX).
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
