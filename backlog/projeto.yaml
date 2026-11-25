@@ -4,8 +4,16 @@
 # F12 (catálogo de ferramentas) vem logo após F4: o stack de referência (VTX-023) escolhe, o catálogo ensina a usar; F9, F10 e o piloto precisam dele. Bibliotecas/recursos (VTX-119+) fecham a F12, antes das regras e skills da F9/F10.
 # F11 (plataforma de acompanhamento) fica entre F9 e F8: depende das convenções de issues/PRs da F9 e serve para acompanhar o piloto.
 # 2026-10-20: decisão do Samuel — med-hub (4med.co) roda em PARALELO ao piloto plataforma-projetos; docs adaptados pelo Bil (repo 4medco-base-conhecimento) serão importados em projects/med-hub/.
+# F14 (Primeiros clientes) entra na frente de qualquer tarefa aberta. Recorte do Samuel em 24/11/2026 às 23:26:
+# o vtx-core guarda só a parte técnica. Marketing, contabilidade/NFS-e, vendas, ofertas/preços, contrato,
+# funil comercial e métricas de negócio são dependências externas — trabalho dos agentes de marketing,
+# contabilidade e vendas, não deste repositório.
+# Quando o trilho de receita (esses agentes) e o piloto interno med-hub competirem pelas 5 h/semana do Samuel,
+# o trilho de receita vem primeiro.
 projeto: Criação da base de conhecimento e documentação de diretrizes
 fases:
+- id: F14
+  nome: Primeiros clientes
 - id: F0
   nome: Fundação
 - id: F1
@@ -332,6 +340,7 @@ tarefas:
   prioridade: 64
   status: a fazer
   entregavel: knowledge/gestao/estimativas.md
+  notas: 'Critério de aceite (auditoria §7, ajustado): estimativa calibrada contra o prazo real do incremento 1 do med-hub, com erro de no máximo 30%. O prazo do primeiro cliente pagante é dependência externa (agentes de vendas), não aceite deste repositório.'
 - id: VTX-031
   titulo: LGPD e compliance
   fase: F5
@@ -339,20 +348,23 @@ tarefas:
   prioridade: 65
   status: a fazer
   entregavel: knowledge/seguranca/lgpd-compliance.md
+  notas: 'Critério de aceite (auditoria §7, ajustado): checklist LGPD aplicado ao PRD do med-hub, com base legal por dado. DPA e contrato com cliente pagante são dependência externa (agentes de vendas/jurídico), não tarefa deste repositório.'
 - id: VTX-032
   titulo: Documentação técnica (docs-as-code)
   fase: F5
   area: Base de Conhecimento
   prioridade: 66
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/gestao/documentacao-tecnica.md
+  notas: 'Cancelada: docs-as-code de baixo valor para a fase F14. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-033
   titulo: Template de PRD
   fase: F6
   area: Templates
   prioridade: 67
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/templates/prd.md
+  notas: 'Cancelada: o PRD já existe em templates/projeto/docs/ (VTX-170 / PR #18). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-034
   titulo: Template de história de usuário e critérios de aceite
   fase: F6
@@ -365,22 +377,25 @@ tarefas:
   fase: F6
   area: Templates
   prioridade: 69
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/templates/adr.md
+  notas: 'Cancelada: o ADR já existe em templates/projeto/docs/ (VTX-170 / PR #18). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-036
   titulo: Template de plano e relatório de testes
   fase: F6
   area: Templates
   prioridade: 70
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/templates/plano-de-testes.md
+  notas: 'Cancelada: o plano de testes já existe em templates/projeto/docs/ (VTX-170 / PR #18). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-037
   titulo: Template de runbook e postmortem
   fase: F6
   area: Templates
   prioridade: 71
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/templates/runbook-postmortem.md
+  notas: 'Cancelada: o runbook já existe em templates/projeto/docs/ (VTX-170 / PR #18). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-038
   titulo: Template de relatório diário e de sprint
   fase: F6
@@ -393,88 +408,97 @@ tarefas:
   fase: F7
   area: Diretrizes
   prioridade: 73
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/orquestrador.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-040
   titulo: Diretrizes do agente Produto
   fase: F7
   area: Diretrizes
   prioridade: 74
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/produto.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-041
   titulo: Diretrizes do agente Arquiteto
   fase: F7
   area: Diretrizes
   prioridade: 75
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/arquiteto.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-042
   titulo: Diretrizes do agente Dev Backend
   fase: F7
   area: Diretrizes
   prioridade: 76
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/dev-backend.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-043
   titulo: Diretrizes do agente Dev Frontend/Mobile
   fase: F7
   area: Diretrizes
   prioridade: 77
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/dev-frontend-mobile.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-044
   titulo: Diretrizes do agente QA
   fase: F7
   area: Diretrizes
   prioridade: 78
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/qa.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-045
   titulo: Diretrizes do agente DevOps/SRE
   fase: F7
   area: Diretrizes
   prioridade: 79
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/devops-sre.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-046
   titulo: Diretrizes dos especialistas sob demanda
   fase: F7
   area: Diretrizes
   prioridade: 80
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/diretrizes/especialistas.md
+  notas: 'Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-053
   titulo: AGENTS.md raiz com diretrizes gerais dos agentes
   fase: F9
   area: Integração Cursor
   prioridade: 81
-  status: a fazer
+  status: cancelado
   entregavel: AGENTS.md
-  notas: 'Reescopo após VTX-169 (24/11/2026): o AGENTS.md raiz já existe (camada 1, ~32 linhas, só ponteiros). O que falta é aprofundar as diretrizes gerais (sem copiar SOP/governança) e manter o arquivo curto.'
+  notas: 'Reescopo após VTX-169 (24/11/2026): o AGENTS.md raiz já existe (camada 1, ~32 linhas, só ponteiros). O que falta é aprofundar as diretrizes gerais (sem copiar SOP/governança) e manter o arquivo curto. Cancelada: fundida na VTX-206 (enriquecer AGENTS.md e regras por papel só quando o uso real mostrar lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-054
   titulo: 'Regra sempre ativa: fluxo entre papéis, DoD e aprovações'
   fase: F9
   area: Integração Cursor
   prioridade: 82
-  status: a fazer
+  status: cancelado
   entregavel: .cursor/rules/vtx-base.mdc
+  notas: 'Cancelada: fundida na VTX-206 (enriquecer AGENTS.md e regras por papel só quando o uso real mostrar lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-055
   titulo: 'Regras por papel: Orquestrador, Produto e Arquiteto'
   fase: F9
   area: Integração Cursor
   prioridade: 83
-  status: a fazer
+  status: cancelado
   entregavel: .cursor/rules/papeis/planejamento.mdc
-  notas: 'Reescopo após VTX-169 (24/11/2026): planejamento.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Orquestrador, Produto, Arquiteto), sem alwaysApply, alinhado às diretrizes da F7.'
+  notas: 'Reescopo após VTX-169 (24/11/2026): planejamento.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Orquestrador, Produto, Arquiteto), sem alwaysApply, alinhado às diretrizes da F7. Cancelada: fundida na VTX-206 (enriquecer AGENTS.md e regras por papel só quando o uso real mostrar lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-056
   titulo: 'Regras por papel: Devs, QA e DevOps/SRE'
   fase: F9
   area: Integração Cursor
   prioridade: 84
-  status: a fazer
+  status: cancelado
   entregavel: .cursor/rules/papeis/execucao.mdc
-  notas: 'Reescopo após VTX-169 (24/11/2026): execucao.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Devs, QA, DevOps/SRE), sem alwaysApply, alinhado às diretrizes da F7.'
+  notas: 'Reescopo após VTX-169 (24/11/2026): execucao.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Devs, QA, DevOps/SRE), sem alwaysApply, alinhado às diretrizes da F7. Cancelada: fundida na VTX-206 (enriquecer AGENTS.md e regras por papel só quando o uso real mostrar lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-057
   titulo: 'Regras por assunto com globs: testes e APIs'
   fase: F9
@@ -494,8 +518,9 @@ tarefas:
   fase: F9
   area: Integração Cursor
   prioridade: 87
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/index.yaml
+  notas: 'Cancelada: duplica o INDEX.md. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-060
   titulo: Template de repositório de projeto
   fase: F9
@@ -519,6 +544,7 @@ tarefas:
   prioridade: 90
   status: a fazer
   entregavel: .cursor/environment.json
+  notas: 'Critério de aceite (auditoria §7): um agente de nuvem abre um PR verde no repositório do med-hub sem intervenção.'
 - id: VTX-063
   titulo: Orquestração com issues, PRs e agentes de nuvem por papel e tipo de projeto
   fase: F9
@@ -547,44 +573,48 @@ tarefas:
   fase: F9
   area: Integração Cursor
   prioridade: 93
-  status: a fazer
+  status: cancelado
   entregavel: projects/validacao-cursor/
+  notas: 'Cancelada: o projeto de validação do Cursor foi substituído pelo piloto interno med-hub. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-047
   titulo: Glossário técnico
   fase: F8
   area: Base de Conhecimento
   prioridade: 112
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/glossario.md
+  notas: 'Cancelada: glossário de baixo valor para a fase F14. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-048
   titulo: Revisão geral da base (consistência, links, fontes)
   fase: F8
   area: Qualidade
   prioridade: 113
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/
+  notas: 'Cancelada: revisão geral de baixo valor para a fase F14. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-049
   titulo: Índice final e guia de navegação para agentes
   fase: F8
   area: Base de Conhecimento
   prioridade: 114
-  status: a fazer
+  status: cancelado
   entregavel: knowledge/INDEX.md
+  notas: 'Cancelada: o INDEX foi corrigido na VTX-166. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-050
   titulo: 'Projeto piloto: definição, triagem do tipo e PRD'
   fase: F8
   area: Validação
   prioridade: 115
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/
   depende_de: *id001
-  notas: Classificar o piloto com o guia de triagem (VTX-066) e seguir o fluxo correspondente.
+  notas: Classificar o piloto com o guia de triagem (VTX-066) e seguir o fluxo correspondente. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).
 - id: VTX-051
   titulo: 'Projeto piloto: execução do fluxo completo'
   fase: F8
   area: Validação
   prioridade: 116
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/
   depende_de:
   - VTX-066
@@ -604,76 +634,77 @@ tarefas:
   - VTX-156
   - VTX-160
   - VTX-161
-  notas: Executar o piloto seguindo o fluxo do tipo escolhido, via agentes do Cursor.
+  notas: Executar o piloto seguindo o fluxo do tipo escolhido, via agentes do Cursor. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).
 - id: VTX-052
   titulo: 'Projeto piloto: retrospectiva e ajustes na base'
   fase: F8
   area: Validação
   prioridade: 117
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/
+  notas: 'Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-073
   titulo: 'Validação automática do backlog no CI (ids, campos, status, dependências)'
   fase: F8
   area: Qualidade
   prioridade: 118
-  status: a fazer
+  status: cancelado
   entregavel: scripts/validar_backlog.py
-  notas: 'Proposta da manutenção quinzenal 2026-10-15. Hoje um status digitado errado (ex.: "concluido" sem acento) vira "a fazer" silenciosamente no painel. Validar ids únicos, campos obrigatórios, status permitido, fase existente e depende_de apontando para ids existentes; falhar o CI. Reavaliar prioridade (pode subir).'
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. Hoje um status digitado errado (ex.: "concluido" sem acento) vira "a fazer" silenciosamente no painel. Validar ids únicos, campos obrigatórios, status permitido, fase existente e depende_de apontando para ids existentes; falhar o CI. Reavaliar prioridade (pode subir). Cancelada: já entregue pela VTX-168 (validar_backlog.py no CI). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-074
   titulo: 'Verificação automática de links e fontes da base de conhecimento'
   fase: F8
   area: Qualidade
   prioridade: 119
-  status: a fazer
+  status: cancelado
   entregavel: .github/workflows/links.yml
-  notas: 'Proposta da manutenção quinzenal 2026-10-15. Checar links internos (INDEX.md, entre documentos) e externos das seções Fontes; apoia VTX-048.'
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. Checar links internos (INDEX.md, entre documentos) e externos das seções Fontes; apoia VTX-048. Cancelada: já entregue pela VTX-168 (verificar_links.py no CI). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-075
   titulo: 'ROADMAP gerado com status efetivo (só tarefas pendentes)'
   fase: F8
   area: Gestão
   prioridade: 120
-  status: a fazer
+  status: cancelado
   entregavel: scripts/gerar_roadmap.py
-  notas: 'Proposta da manutenção quinzenal 2026-10-15. gerar_roadmap.py lê só o mestre e lista também tarefas já concluídas nos diários; usar backlog_lib.carregar e listar só pendentes.'
+  notas: 'Proposta da manutenção quinzenal 2026-10-15. gerar_roadmap.py lê só o mestre e lista também tarefas já concluídas nos diários; usar backlog_lib.carregar e listar só pendentes. Cancelada: já entregue pela VTX-168 (gerar_roadmap.py com status efetivo). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-076
   titulo: 'Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts'
   fase: F10
   area: Automação
   prioridade: 121
-  status: a fazer
+  status: aguardando
   entregavel: scripts/arsenal/INVENTARIO.md
-  notas: 'Adaptação do tek-team (acordo com Tek em 2026-10-16). Listar tarefas recorrentes que devem virar scripts testados, reaproveitando bibliotecas abertas; priorizar por frequência e economia de tokens.'
+  notas: 'Adaptação do tek-team (acordo com Tek em 2026-10-16). Listar tarefas recorrentes que devem virar scripts testados, reaproveitando bibliotecas abertas; priorizar por frequência e economia de tokens. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-077
   titulo: 'Script de estrutura inicial de projeto por tipo'
   fase: F10
   area: Automação
   prioridade: 122
-  status: a fazer
+  status: cancelado
   entregavel: scripts/arsenal/scaffold.py
   depende_de:
   - VTX-076
-  notas: 'Reusar ferramentas abertas (ex.: cookiecutter/copier, create-* oficiais) por tipo de projeto dos fluxos (SaaS, app mobile, API, site, MVP).'
+  notas: 'Reusar ferramentas abertas (ex.: cookiecutter/copier, create-* oficiais) por tipo de projeto dos fluxos (SaaS, app mobile, API, site, MVP). Cancelada: duplica o bootstrap_projeto.sh (VTX-170/061). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-078
   titulo: 'Script de checklist automatizado de revisão de código e qualidade'
   fase: F10
   area: Automação
   prioridade: 123
-  status: a fazer
+  status: aguardando
   entregavel: scripts/arsenal/revisao.py
   depende_de:
   - VTX-076
-  notas: 'Embrulhar linters/formatadores/testes existentes e o checklist de revisão da base de conhecimento.'
+  notas: 'Embrulhar linters/formatadores/testes existentes e o checklist de revisão da base de conhecimento. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-079
   titulo: 'Script de verificações de segurança (dependências e segredos)'
   fase: F10
   area: Automação
   prioridade: 124
-  status: a fazer
+  status: aguardando
   entregavel: scripts/arsenal/seguranca.py
   depende_de:
   - VTX-076
-  notas: 'Embrulhar ferramentas abertas de auditoria de dependências (npm audit, pip-audit, osv-scanner) e varredura de segredos (gitleaks).'
+  notas: 'Embrulhar ferramentas abertas de auditoria de dependências (npm audit, pip-audit, osv-scanner) e varredura de segredos (gitleaks). Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-080
   titulo: 'Script de verificação de prontidão para deploy'
   fase: F10
@@ -689,24 +720,24 @@ tarefas:
   fase: F10
   area: Integração Cursor
   prioridade: 126
-  status: a fazer
+  status: aguardando
   entregavel: skills/
   depende_de:
   - VTX-077
   - VTX-078
   - VTX-079
   - VTX-080
-  notas: 'Receitas curtas para o Cursor e para os agentes chamarem os scripts do arsenal.'
+  notas: 'Receitas curtas para o Cursor e para os agentes chamarem os scripts do arsenal. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-082
   titulo: 'Adotar o formato-fonte de agentes e os exportadores compartilhados'
   fase: F10
   area: Integração Cursor
   prioridade: 127
-  status: a fazer
+  status: cancelado
   entregavel: agentes/
   depende_de:
   - VTX-065
-  notas: 'Depende do tek-team (SamAlencar/tek-team) concluir TT-096 e TT-100 a TT-103; o Tek avisa quando estiverem prontas. Formato e exportadores são responsabilidade do tek-team; a VTX só usa, sem duplicar.'
+  notas: 'Depende do tek-team (SamAlencar/tek-team) concluir TT-096 e TT-100 a TT-103; o Tek avisa quando estiverem prontas. Formato e exportadores são responsabilidade do tek-team; a VTX só usa, sem duplicar. Cancelada: o projeto de validação do Cursor foi substituído pelo piloto interno med-hub. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-083
   titulo: 'Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD)'
   fase: F10
@@ -904,168 +935,170 @@ tarefas:
   fase: F11
   area: Plataforma interna
   prioridade: 96
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/docs/prd-mvp.md'
   depende_de:
   - VTX-114
-  notas: 'Etapas 1 a 3 do mvp-poc. Portão: Samuel aprova hipóteses e critérios.'
+  notas: 'Etapas 1 a 3 do mvp-poc. Portão: Samuel aprova hipóteses e critérios. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-087
   titulo: 'Formatos de registro: eventos, handoffs, decisões e custos'
   fase: F11
   area: Plataforma interna
   prioridade: 97
-  status: a fazer
+  status: aguardando
   entregavel: 'registro/ + backlog/SCHEMA.md'
   depende_de:
   - VTX-086
-  notas: 'Campos PÚBLICO/PRIVADO e teste de validação.'
+  notas: 'Campos PÚBLICO/PRIVADO e teste de validação. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-088
   titulo: 'Formato da fila de aprovações do Samuel'
   fase: F11
   area: Plataforma interna
   prioridade: 98
-  status: a fazer
+  status: aguardando
   entregavel: 'registro/aprovacoes.yaml + backlog/SCHEMA.md'
   depende_de:
   - VTX-087
-  notas: 'Alinhar com VTX-064 (rótulo aprovacao-samuel).'
+  notas: 'Alinhar com VTX-064 (rótulo aprovacao-samuel). Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-115
   titulo: 'Esquema do manifesto de conexões por projeto'
   fase: F11
   area: Plataforma interna
   prioridade: 99
-  status: a fazer
+  status: aguardando
   entregavel: 'projects/CONEXOES.md + projects/<p>/conexoes.yaml'
   depende_de:
   - VTX-086
   - VTX-098
-  notas: 'Ferramenta = id do catálogo F12; só referência de segredo (segredo_ref), nunca valor; validação no CI; manifestos de vtx-core e plataforma-projetos.'
+  notas: 'Ferramenta = id do catálogo F12; só referência de segredo (segredo_ref), nunca valor; validação no CI; manifestos de vtx-core e plataforma-projetos. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-089
   titulo: 'Gerador de dados da plataforma (JSON privado único)'
   fase: F11
   area: Plataforma interna
   prioridade: 100
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/gerador/'
   depende_de:
   - VTX-087
   - VTX-088
   - VTX-115
-  notas: 'Reaproveitar scripts/backlog_lib.py; somente leitura; testes de sanitização.'
+  notas: 'Reaproveitar scripts/backlog_lib.py; somente leitura; testes de sanitização. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-116
   titulo: 'Verificador de status das conexões (somente leitura)'
   fase: F11
   area: Plataforma interna
   prioridade: 101
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/verificador/'
   depende_de:
   - VTX-115
   - VTX-089
-  notas: 'Workflow agendado; etapa 1 sem segredos novos: API GitHub, HTTP, TLS, domínio, DNS. Token novo em serviço = aprovação do Samuel.'
+  notas: 'Workflow agendado; etapa 1 sem segredos novos: API GitHub, HTTP, TLS, domínio, DNS. Token novo em serviço = aprovação do Samuel. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-090
   titulo: 'Painel Markdown (semana 1): portfólio, fases e progresso'
   fase: F11
   area: Plataforma interna
   prioridade: 102
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/painel/'
   depende_de:
   - VTX-089
+  notas: 'Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-117
   titulo: 'Painel Markdown: conexões por projeto e alertas de conexão'
   fase: F11
   area: Plataforma interna
   prioridade: 103
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/painel/conexoes.md'
   depende_de:
   - VTX-116
   - VTX-090
-  notas: 'Alertas: quebrada, sem verificação > 48 h, expirando em 30 dias.'
+  notas: 'Alertas: quebrada, sem verificação > 48 h, expirando em 30 dias. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-095
   titulo: 'Plataforma: ADR da interface web com acesso restrito'
   fase: F11
   area: Plataforma interna
   prioridade: 104
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/docs/adr/'
   depende_de:
   - VTX-117
-  notas: 'Antecipado. Site estático + login (ex.: Cloudflare Pages + Access ou Vercel com proteção; Vercel Hobby serve por ser uso interno não comercial); limites, termos e cartão. Portão: Samuel aprova serviço e qualquer custo.'
+  notas: 'Antecipado. Site estático + login (ex.: Cloudflare Pages + Access ou Vercel com proteção; Vercel Hobby serve por ser uso interno não comercial); limites, termos e cartão. Portão: Samuel aprova serviço e qualquer custo. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-096
   titulo: 'Interface web: estrutura, login restrito e portfólio'
   fase: F11
   area: Plataforma interna
   prioridade: 105
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
   - VTX-095
-  notas: 'Lê o mesmo JSON; sem backend; sem login = bloqueio.'
+  notas: 'Lê o mesmo JSON; sem backend; sem login = bloqueio. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-091
   titulo: 'Interface web: atividade dos agentes e handoffs'
   fase: F11
   area: Plataforma interna
   prioridade: 106
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
   - VTX-096
+  notas: 'Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-092
   titulo: 'Interface web: fila de aprovações e registro de decisões'
   fase: F11
   area: Plataforma interna
   prioridade: 107
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
   - VTX-096
-  notas: 'Links para aprovar no GitHub; sem ações na plataforma.'
+  notas: 'Links para aprovar no GitHub; sem ações na plataforma. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-118
   titulo: 'Interface web: ferramentas e conexões por projeto'
   fase: F11
   area: Plataforma interna
   prioridade: 108
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
   - VTX-096
   - VTX-117
   - VTX-112
-  notas: 'Filtros por projeto, ferramenta, ambiente e estado; link para o doc do catálogo.'
+  notas: 'Filtros por projeto, ferramenta, ambiente e estado; link para o doc do catálogo. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-093
   titulo: 'Interface web: métricas, custos e alertas'
   fase: F11
   area: Plataforma interna
   prioridade: 109
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/web/'
   depende_de:
   - VTX-091
   - VTX-092
   - VTX-118
-  notas: 'Vazão, lead time, retrabalho, CI, cota de tokens, planos ativos.'
+  notas: 'Vazão, lead time, retrabalho, CI, cota de tokens, planos ativos. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-094
   titulo: 'Plataforma: uso real por uma semana e decisão continuar ou pivotar'
   fase: F11
   area: Plataforma interna
   prioridade: 110
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/docs/relatorio-mvp.md'
   depende_de:
   - VTX-093
-  notas: 'Etapas 5 a 6 do mvp-poc. Portão: Samuel decide. Avaliar se Supabase + auth se justifica.'
+  notas: 'Etapas 5 a 6 do mvp-poc. Portão: Samuel decide. Avaliar se Supabase + auth se justifica. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-097
   titulo: 'Plataforma: incluir projetos de cliente e outros repositórios'
   fase: F11
   area: Plataforma interna
   prioridade: 111
-  status: a fazer
+  status: aguardando
   entregavel: 'vtx-acompanhamento/gerador/'
   depende_de:
   - VTX-094
-  notas: 'Projetos por código/apelido, sem dados pessoais (LGPD).'
+  notas: 'Projetos por código/apelido, sem dados pessoais (LGPD). Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-119
   titulo: 'Bibliotecas e recursos para agentes: processo e registro'
   fase: F12
@@ -1217,11 +1250,11 @@ tarefas:
   fase: F9
   area: Integração Cursor
   prioridade: 84
-  status: a fazer
+  status: cancelado
   entregavel: 'knowledge/organizacao/papeis-de-agentes.md'
   depende_de:
   - VTX-055
-  notas: 'Pedido do Samuel em 2026-10-21. Comparar cada papel do núcleo e especialista com as personas equivalentes de msitarzewski/agency-agents (MIT, pin 4e3ac3c) e trazer, reescrito em pt-BR, o que falta de processo, entregáveis e métricas; avaliar novos especialistas sob demanda (minimal-change, codebase-onboarding, git-workflow, incident-response). Não executar install.sh/convert.sh nem o app; atribuição MIT se copiar trecho. papeis-de-agentes.md segue como fonte de verdade. Prioridade 84 empata com VTX-056 e vem depois (ordenação estável).'
+  notas: 'Pedido do Samuel em 2026-10-21. Comparar cada papel do núcleo e especialista com as personas equivalentes de msitarzewski/agency-agents (MIT, pin 4e3ac3c) e trazer, reescrito em pt-BR, o que falta de processo, entregáveis e métricas; avaliar novos especialistas sob demanda (minimal-change, codebase-onboarding, git-workflow, incident-response). Não executar install.sh/convert.sh nem o app; atribuição MIT se copiar trecho. papeis-de-agentes.md segue como fonte de verdade. Prioridade 84 empata com VTX-056 e vem depois (ordenação estável). Cancelada: meta-ferramenta que não aproxima o piloto interno nem a entrega técnica ao cliente. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-135
   titulo: 'Piloto local do Trail-code (graft map) como ferramenta do mapa de codebase'
   fase: F12
@@ -1231,27 +1264,27 @@ tarefas:
   entregavel: 'knowledge/ferramentas/piloto-trail-code.md'
   depende_de:
   - VTX-131
-  notas: 'Pedido do Samuel em 2026-10-21 (trailhq/Trail-Code, MIT, pin b1211ef). Concluída em 24/11/2026 no PR da branch vtx-135: piloto no sandbox projects/sandbox-trail-code/ com @nanonets/graft@0.23.1 (binário graft), DO_NOT_TRACK=1 e HOME isolado. Sem init, --deep, workspace ou MCP no vtx-core. Decisão: adotado com restrições. Medido skeleton de scripts/backlog_lib.py ≈27% dos tokens aproximados; build ~1 s, 12 arquivos Python, 81 nós, 169 arestas. Não houve A/B de tokens de agente. Relato em knowledge/ferramentas/piloto-trail-code.md. O modelo decisão/preferência/guardrail segue como insumo da VTX-132.'
+  notas: 'Pedido do Samuel em 2026-10-21 (trailhq/Trail-Code, MIT, pin b1211ef). Concluída em 24/11/2026 no PR da branch vtx-135: piloto no sandbox projects/sandbox-trail-code/ com @nanonets/graft@0.23.1 (binário graft), DO_NOT_TRACK=1 e HOME isolado. Sem init, --deep, workspace ou MCP no vtx-core. Decisão: adotado com restrições. Medido skeleton de scripts/backlog_lib.py ≈27% dos tokens aproximados; build ~1 s, 12 arquivos Python, 81 nós, 169 arestas. Não houve A/B de tokens de agente. Relato em knowledge/ferramentas/piloto-trail-code.md. O modelo decisão/preferência/guardrail segue como insumo da VTX-132. A auditoria §5 sugeria cancelar (meta-ferramenta); a tarefa já estava concluída no PR #20 e permanece concluída.'
 - id: VTX-136
   titulo: 'Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer)'
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: cancelado
   entregavel: 'knowledge/processos/observacao-de-skills.md'
   depende_de:
   - VTX-125
-  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a skill task-observer (rebelytics/one-skill-to-rule-them-all, CC-BY-4.0, pin 3463c7c): pasta versionada no vtx-core (ex. knowledge/skills/observacoes/) com um arquivo por observação (tipo, skill alvo, evidência, data), checkpoint a cada ~3 tarefas, e revisão na rotina quinzenal de manutenção de skills que gera propostas de mudança revisáveis (nunca alterar skill direto). Integrar ao log de uso de skills da rotina diária. Não executar scripts/ nem usar caminhos ~/.claude; reescrever em pt-BR, com atribuição CC-BY se copiar trecho. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a skill task-observer (rebelytics/one-skill-to-rule-them-all, CC-BY-4.0, pin 3463c7c): pasta versionada no vtx-core (ex. knowledge/skills/observacoes/) com um arquivo por observação (tipo, skill alvo, evidência, data), checkpoint a cada ~3 tarefas, e revisão na rotina quinzenal de manutenção de skills que gera propostas de mudança revisáveis (nunca alterar skill direto). Integrar ao log de uso de skills da rotina diária. Não executar scripts/ nem usar caminhos ~/.claude; reescrever em pt-BR, com atribuição CC-BY se copiar trecho. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável). Cancelada: meta-ferramenta que não aproxima o piloto interno nem a entrega técnica ao cliente. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-137
   titulo: 'Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²)'
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: cancelado
   entregavel: 'knowledge/processos/melhoria-do-harness.md'
   depende_de:
   - VTX-136
-  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a metodologia de google-research/harness2 (Apache-2.0, pin 1cfe254), sem executar o framework (exige modelos pagos). Entregar: (1) mapa dos 8 componentes do harness para o Cursor (.cursor/rules e AGENTS.md, memory bank, MCP, .cursor/skills, scripts do arsenal TT-060, papéis); (2) ciclo Propose–Probe–Compose para mudar regra/skill: propor a edição, testar numa tarefa real do backlog com e sem a mudança, comparar resultado/tokens e adotar só com evidência; (3) arquivo de lições com evidência alimentado pelas observações do VTX-136 e revisado na manutenção quinzenal; (4) skill .cursor/skills/melhoria-do-harness/ que guia o ciclo. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+  notas: 'Pedido do Samuel em 2026-10-21. Adaptar a metodologia de google-research/harness2 (Apache-2.0, pin 1cfe254), sem executar o framework (exige modelos pagos). Entregar: (1) mapa dos 8 componentes do harness para o Cursor (.cursor/rules e AGENTS.md, memory bank, MCP, .cursor/skills, scripts do arsenal TT-060, papéis); (2) ciclo Propose–Probe–Compose para mudar regra/skill: propor a edição, testar numa tarefa real do backlog com e sem a mudança, comparar resultado/tokens e adotar só com evidência; (3) arquivo de lições com evidência alimentado pelas observações do VTX-136 e revisado na manutenção quinzenal; (4) skill .cursor/skills/melhoria-do-harness/ que guia o ciclo. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável). Cancelada: meta-ferramenta que não aproxima o piloto interno nem a entrega técnica ao cliente. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-138
   titulo: 'Regras comuns e por stack em .cursor/rules a partir do ECC'
   fase: F9
@@ -1268,21 +1301,21 @@ tarefas:
   fase: F9
   area: Integração Cursor
   prioridade: 86
-  status: a fazer
+  status: aguardando
   entregavel: '.cursor/hooks.json e scripts/hooks/ (padrão TT-060)'
   depende_de:
   - VTX-138
-  notas: 'Pedido do Samuel em 2026-10-21. Reescrever versões mínimas e revisadas dos hooks do ECC (pin 90606c8): beforeShellExecution bloqueia --no-verify, push forçado, rm -rf fora do repo e segredos em comandos; beforeReadFile bloqueia .env e chaves; afterFileEdit roda formatador local. Reaproveitar os padrões perigosos do checklist de segurança local (adaptado do security-guidance). Sem rede, sem telemetria; testes unitários dos scripts. Prioridade 86 empata com VTX-058 e vem depois.'
+  notas: 'Pedido do Samuel em 2026-10-21. Reescrever versões mínimas e revisadas dos hooks do ECC (pin 90606c8): beforeShellExecution bloqueia --no-verify, push forçado, rm -rf fora do repo e segredos em comandos; beforeReadFile bloqueia .env e chaves; afterFileEdit roda formatador local. Reaproveitar os padrões perigosos do checklist de segurança local (adaptado do security-guidance). Sem rede, sem telemetria; testes unitários dos scripts. Prioridade 86 empata com VTX-058 e vem depois. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-140
   titulo: 'Skills do ECC que preenchem lacunas do stack VTX'
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: cancelado
   entregavel: '.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)'
   depende_de:
   - VTX-125
-  notas: 'Pedido do Samuel em 2026-10-21. Revisar cada SKILL.md do ECC (MIT, pin 90606c8) e comparar com mattpocock (tdd, code-review), superpowers e o checklist de segurança antes de adotar — uma fonte de verdade por tema. Copiar só o revisado, com atribuição e pin; remover referências a serviços pagos e comandos do Claude Code. Agents, commands, memória/codemaps e MCP configs do ECC ficam fora (já cobertos por VTX-131..137). Prioridade 62 empata com VTX-129 e vem depois.'
+  notas: 'Pedido do Samuel em 2026-10-21. Revisar cada SKILL.md do ECC (MIT, pin 90606c8) e comparar com mattpocock (tdd, code-review), superpowers e o checklist de segurança antes de adotar — uma fonte de verdade por tema. Copiar só o revisado, com atribuição e pin; remover referências a serviços pagos e comandos do Claude Code. Agents, commands, memória/codemaps e MCP configs do ECC ficam fora (já cobertos por VTX-131..137). Prioridade 62 empata com VTX-129 e vem depois. Cancelada: meta-ferramenta que não aproxima o piloto interno nem a entrega técnica ao cliente. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 
 - id: VTX-141
   titulo: 'Skill de diagramas editoriais (adaptada do diagram-design)'
@@ -1365,7 +1398,7 @@ tarefas:
   entregavel: knowledge/engenharia/ia/orquestracao-llm.md
   depende_de:
   - VTX-023
-  notas: 'Modelo pequeno para pedidos simples, grande para complexos, streaming de respostas, retries e limites. Aceite: guia com critérios de roteamento e exemplo independente de provedor. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Modelo pequeno para pedidos simples, grande para complexos, streaming de respostas, retries e limites. Aceite: guia com critérios de roteamento e exemplo independente de provedor. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Reapontada para o med-hub como piloto interno (orquestração de LLM no incremento do piloto), não como cobrança da VTX. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-149
   titulo: 'Medição de tokens, franquia com pausa e chave própria (BYOK)'
   fase: F13
@@ -1376,7 +1409,7 @@ tarefas:
   depende_de:
   - VTX-148
   - VTX-020
-  notas: 'Contabilizar tokens por usuário/projeto, pausar ao fim da franquia (sem cobrança automática), BYOK só no Premium com chave cifrada e nunca logada. Aceite: modelo de dados, fluxo e testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Contabilizar tokens por usuário/projeto, pausar ao fim da franquia (sem cobrança automática), BYOK só no Premium com chave cifrada e nunca logada. Aceite: modelo de dados, fluxo e testes. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Reapontada para o med-hub como piloto interno (medição de tokens/franquia no produto 4med.co), não como faturamento da VTX. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-150
   titulo: 'Privacidade em IA: retenção zero, não treino e LGPD nos prompts'
   fase: F13
@@ -1387,7 +1420,7 @@ tarefas:
   depende_de:
   - VTX-031
   - VTX-148
-  notas: 'ZDR depende de aprovação do provedor; minimização de dados nos prompts; em BYOK vale a conta do projetista. Aceite: checklist por provedor e regra de minimização. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'ZDR depende de aprovação do provedor; minimização de dados nos prompts; em BYOK vale a conta do projetista. Aceite: checklist por provedor e regra de minimização. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Reapontada para o med-hub como piloto interno (privacidade e LGPD nos prompts do piloto). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-151
   titulo: 'Versionamento de modelos IFC: versões, branches, diff e merge'
   fase: F13
@@ -1404,32 +1437,32 @@ tarefas:
   fase: F13
   area: Domínio BIM
   prioridade: 104
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/docs/poc/
   depende_de:
   - VTX-144
   - VTX-151
-  notas: 'Decisão de 31/10 no grupo Plataforma de Projetos: testar um banco de objetos como camada de trabalho do dia a dia (IA e visualizador), e não o Speckle só como visualizador; o IFC fechado de cada versão aprovada segue como fonte da verdade (ver VTX-151). Candidatos: Speckle hospedado por nós (Apache 2.0, sem nuvem paga) × índice próprio por elemento no Postgres. Aceite: um modelo real faz a ida e volta para IFC preservando GlobalId, classe e tipo IFC, Psets, material e relações (andar, tipo e agrupamentos) e passa nas regras IDS / validador do tek-catalog; relatório com números de tempo de resposta de consultas e edições da IA, fluidez 3D e diff visual entre duas versões, comparando o visualizador do Speckle com o That Open; decisão viável/não viável. Modelos de teste: IFC do tek-catalog e exemplos do tek-model (Eng entrega o critério de campos e os modelos; TM-261 e TM-264 passam a aceitar arquivo IFC e objeto JSON). Neo4j fora do MVP. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Decisão de 31/10 no grupo Plataforma de Projetos: testar um banco de objetos como camada de trabalho do dia a dia (IA e visualizador), e não o Speckle só como visualizador; o IFC fechado de cada versão aprovada segue como fonte da verdade (ver VTX-151). Candidatos: Speckle hospedado por nós (Apache 2.0, sem nuvem paga) × índice próprio por elemento no Postgres. Aceite: um modelo real faz a ida e volta para IFC preservando GlobalId, classe e tipo IFC, Psets, material e relações (andar, tipo e agrupamentos) e passa nas regras IDS / validador do tek-catalog; relatório com números de tempo de resposta de consultas e edições da IA, fluidez 3D e diff visual entre duas versões, comparando o visualizador do Speckle com o That Open; decisão viável/não viável. Modelos de teste: IFC do tek-catalog e exemplos do tek-model (Eng entrega o critério de campos e os modelos; TM-261 e TM-264 passam a aceitar arquivo IFC e objeto JSON). Neo4j fora do MVP. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-153
   titulo: 'Importação de arquivos: DWG/DXF só leitura e extração de PDF, DOCX e XLSX'
   fase: F13
   area: Engenharia
   prioridade: 105
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/engenharia/importacao-arquivos.md
   depende_de:
   - VTX-147
-  notas: 'DWG como anexo; conversão para prévia 2D só com ferramenta aberta em processo separado (LibreCAD GPL-2.0 sem embutir código); bibliotecas abertas para PDF/DOCX/XLSX. Aceite: matriz formato × ferramenta × licença e exemplo de extração. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'DWG como anexo; conversão para prévia 2D só com ferramenta aberta em processo separado (LibreCAD GPL-2.0 sem embutir código); bibliotecas abertas para PDF/DOCX/XLSX. Aceite: matriz formato × ferramenta × licença e exemplo de extração. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-154
   titulo: 'Armazenamento de arquivos grandes com custo zero inicial'
   fase: F13
   area: Infraestrutura
   prioridade: 105
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/operacao/armazenamento-arquivos-grandes.md
   depende_de:
   - VTX-100
-  notas: 'Limites das camadas grátis (Supabase Storage, Cloudflare R2 etc.), upload em partes, deduplicação de versões, cifragem e backup. Aceite: comparativo e limite de alerta antes de custo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Limites das camadas grátis (Supabase Storage, Cloudflare R2 etc.), upload em partes, deduplicação de versões, cifragem e backup. Aceite: comparativo e limite de alerta antes de custo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-155
   titulo: 'Assinaturas SaaS no Brasil: planos, créditos pré-pagos, Pix e webhooks'
   fase: F13
@@ -1439,7 +1472,7 @@ tarefas:
   entregavel: knowledge/engenharia/assinaturas-saas-br.md
   depende_de:
   - VTX-106
-  notas: 'Estende knowledge/engenharia/pagamentos.md: Free/Pro/Premium, compra de créditos extras, Pix recorrente, webhooks verificados, só modo de teste. Escolha do gateway (Asaas preferido pelo Samuel, Stripe principal hoje) fica para ADR do projeto e ficha do Asaas vai ao radar. Dinheiro real com o Samuel. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Estende knowledge/engenharia/pagamentos.md: Free/Pro/Premium, compra de créditos extras, Pix recorrente, webhooks verificados, só modo de teste. Escolha do gateway (Asaas preferido pelo Samuel, Stripe principal hoje) fica para ADR do projeto e ficha do Asaas vai ao radar. Dinheiro real com o Samuel. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Reapontada para o med-hub como piloto interno: assinatura do produto 4med.co, não a cobrança da VTX a clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-156
   titulo: 'SaaS multi-inquilino: login Google, papéis por disciplina e convites'
   fase: F13
@@ -1450,100 +1483,100 @@ tarefas:
   depende_de:
   - VTX-100
   - VTX-025
-  notas: 'OAuth Google, organizações/projetos, papéis (projetista dono, colega por disciplina, contratante só leitura e comentário), convites por e-mail, RLS. Aceite: modelo de permissões e testes de isolamento entre inquilinos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'OAuth Google, organizações/projetos, papéis (projetista dono, colega por disciplina, contratante só leitura e comentário), convites por e-mail, RLS. Aceite: modelo de permissões e testes de isolamento entre inquilinos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Reapontada para o med-hub como piloto interno (multi-inquilino e papéis de parceiro no piloto). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-157
   titulo: 'Comentários no modelo 3D (BCF) e notificações de andamento'
   fase: F13
   area: Domínio BIM
   prioridade: 107
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/engenharia/bim/comentarios-notificacoes.md
   depende_de:
   - VTX-144
-  notas: 'Comentário ancorado em elemento/vista, compatível com BCF; notificações por e-mail e na plataforma com opção de sair. Aceite: padrão e exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Comentário ancorado em elemento/vista, compatível com BCF; notificações por e-mail e na plataforma com opção de sair. Aceite: padrão e exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-158
   titulo: 'Páginas públicas de portfólio com SEO'
   fase: F13
   area: Engenharia
   prioridade: 107
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/engenharia/paginas-publicas-seo.md
   depende_de:
   - VTX-026
-  notas: 'Renderização no servidor, metadados, schema.org, imagens otimizadas, visualizador leve; publicidade revisada pela skill de ética CONFEA/CREA/CAU. Aceite: checklist e página-modelo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Renderização no servidor, metadados, schema.org, imagens otimizadas, visualizador leve; publicidade revisada pela skill de ética CONFEA/CREA/CAU. Aceite: checklist e página-modelo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-159
   titulo: 'Quantitativos e memoriais gerados a partir do IFC'
   fase: F13
   area: Domínio BIM
   prioridade: 108
-  status: a fazer
+  status: aguardando
   entregavel: '.cursor/skills/ifc-quantitativos/'
   depende_de:
   - VTX-145
-  notas: 'Extrair quantidades (IfcElementQuantity) para XLSX e montar memoriais descritivos com revisão do projetista. Sem copiar texto de norma. Aceite: skill com teste em modelo de exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-129, TD-085.'
+  notas: 'Extrair quantidades (IfcElementQuantity) para XLSX e montar memoriais descritivos com revisão do projetista. Sem copiar texto de norma. Aceite: skill com teste em modelo de exemplo. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-129, TD-085. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-160
   titulo: 'Termos de uso, política de privacidade e mapa de dados do piloto'
   fase: F13
   area: Jurídico
   prioridade: 108
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/docs/juridico/
   depende_de:
   - VTX-031
   - VTX-083
-  notas: 'IA como "Assistente de Modelagem e Extração de Dados"; projetista responde pelo projeto; arquivos tratados como dados pessoais; encarregado (DPO). Rascunho pelo papel jurídico; publicação exige aprovação do Samuel e recomenda revisão por advogado. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'IA como "Assistente de Modelagem e Extração de Dados"; projetista responde pelo projeto; arquivos tratados como dados pessoais; encarregado (DPO). Rascunho pelo papel jurídico; publicação exige aprovação do Samuel e recomenda revisão por advogado. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-161
   titulo: 'Programa alpha com 5 a 10 projetistas'
   fase: F13
   area: Validação
   prioridade: 109
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/processos/programa-alpha.md
   depende_de:
   - VTX-084
-  notas: 'Recrutamento, termo de teste, roteiro, métricas (tempo com/sem IA, uso pelo contratante, colaboração) e decisão de seguir. Aceite: roteiro e planilha de métricas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Recrutamento, termo de teste, roteiro, métricas (tempo com/sem IA, uso pelo contratante, colaboração) e decisão de seguir. Aceite: roteiro e planilha de métricas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-162
   titulo: 'Captura de dados para fine-tuning futuro (pedido → ação no IFC)'
   fase: F13
   area: IA aplicada
   prioridade: 109
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/engenharia/ia/dataset-fine-tuning.md
   depende_de:
   - VTX-150
   - VTX-146
-  notas: 'Registrar pares com consentimento explícito, anonimização e opção de sair; fine-tuning só após o lançamento. Aceite: esquema do registro e regra de consentimento. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Registrar pares com consentimento explícito, anonimização e opção de sair; fine-tuning só após o lançamento. Aceite: esquema do registro e regra de consentimento. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-163
   titulo: 'Avaliação de qualidade da IA (evals de modelagem IFC)'
   fase: F13
   area: IA aplicada
   prioridade: 110
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/engenharia/ia/evals.md
   depende_de:
   - VTX-146
-  notas: 'Conjunto de pedidos de referência, validação automática do IFC resultante (IDS) e regressão a cada troca de modelo/prompt. Aceite: harness local e 10 casos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-128.'
+  notas: 'Conjunto de pedidos de referência, validação automática do IFC resultante (IDS) e regressão a cada troca de modelo/prompt. Aceite: harness local e 10 casos. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-128. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-164
   titulo: 'Inventário das ferramentas Tekto para a v1 (Calc, Docs, Model)'
   fase: F13
   area: Domínio BIM
   prioridade: 110
-  status: a fazer
+  status: aguardando
   entregavel: projects/plataforma-projetos/conhecimento/tekto-ferramentas.md
   depende_de:
   - VTX-143
-  notas: 'Maturidade, interface (API/CLI), licença e o que falta para entrar na v1. Aceite: tabela ferramenta × pronta/parcial/ausente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-127, TD-086.'
+  notas: 'Maturidade, interface (API/CLI), licença e o que falta para entrar na v1. Aceite: tabela ferramenta × pronta/parcial/ausente. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Itens tek VTX-F13 (não bloqueiam; usar repos tek como estão se ainda pendentes): TC-127, TD-086. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 - id: VTX-165
   titulo: 'Métricas de produto SaaS (pagantes, churn, custo de IA por projeto)'
   fase: F13
   area: Operação
   prioridade: 111
-  status: a fazer
+  status: aguardando
   entregavel: knowledge/operacao/metricas-produto-saas.md
   depende_de:
   - VTX-022
   - VTX-149
-  notas: 'Eventos e painel das métricas do briefing com ferramenta grátis/auto-hospedada, sem dados pessoais. Aceite: plano de eventos e consultas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Eventos e painel das métricas do briefing com ferramenta grátis/auto-hospedada, sem dados pessoais. Aceite: plano de eventos e consultas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Adiado até 3 clientes pagantes. Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 
 - id: VTX-166
   titulo: 'Corrigir links quebrados, INDEX e o gerador do roadmap (auditoria P0 item 5)'
@@ -1645,7 +1678,7 @@ tarefas:
   prioridade: 60
   status: concluído
   entregavel: 'pyproject.toml + core/vtx_ifc/'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Concluída em 24/11/2026: funcoes.py, objetos.py e receitas.py em core/vtx_ifc/; skill aponta o pacote; pip install -e .; testes importam vtx_ifc sem sys.path; o job unittest do CI instala pelo pyproject.toml. exemplo.ids vai no pacote; scripts de medição na skill importam vtx_ifc.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Concluída em 24/11/2026: funcoes.py, objetos.py e receitas.py em core/vtx_ifc/; skill aponta o pacote; pip install -e .; testes importam vtx_ifc sem sys.path; o job unittest do CI instala pelo pyproject.toml. exemplo.ids vai no pacote; scripts de medição na skill importam vtx_ifc. A auditoria §5 sugeria adiar com o BIM da plataforma-projetos; a tarefa já estava concluída no PR #23 e permanece concluída.'
 
 - id: VTX-177
   titulo: Harness de agente de referência (loop de tool-calling)
@@ -1654,9 +1687,7 @@ tarefas:
   prioridade: 61
   status: a fazer
   entregavel: 'core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md'
-  depende_de:
-  - VTX-176
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma).'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma). Reescopo da auditoria: não depende mais da VTX-176 (já concluída e o BIM da plataforma-projetos foi adiado). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 
 - id: VTX-178
   titulo: Suíte de evals mínima com portão no CI
@@ -1702,11 +1733,11 @@ tarefas:
   fase: F7
   area: 'Diretrizes'
   prioridade: 87
-  status: a fazer
+  status: cancelado
   entregavel: 'knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py'
   depende_de:
   - VTX-039
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 14. Tabelas em agents/*.md geradas a partir de recursos.yaml; CI falha se houver divergência. Complementa as diretrizes VTX-039 a 046 (não as substitui).'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 14. Tabelas em agents/*.md geradas a partir de recursos.yaml; CI falha se houver divergência. Complementa as diretrizes VTX-039 a 046 (não as substitui). Cancelada: fundida na VTX-207 (detalhar agents/*.md só quando um projeto real mostrar a lacuna). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
 
 - id: VTX-183
   titulo: Exemplo ponta a ponta de agente rodando (onboarding)
@@ -1817,3 +1848,142 @@ tarefas:
   depende_de:
   - VTX-176
   notas: 'Seguimento da revisão do Tzu no PR #23 (item 5), 24/11/2026. Objetivo: validar_ids / ifctester não depender de xmlschema baixar o XSD na rede. Arquivos afetados: core/vtx_ifc/ (XSD versionado ou caminho local), testes de IDS, documentação da skill se couber. Critério de aceite: a validação de um .ids roda offline, com o schema local; um teste cobre esse caminho; validar_backlog e o CI passam.'
+
+- id: VTX-193
+  titulo: Repriorizar o backlog para a fase F14 (recorte técnico)
+  fase: F14
+  area: Gestão
+  prioridade: 1
+  status: concluído
+  entregavel: backlog/projeto.yaml + backlog/SCHEMA.md + knowledge/ROADMAP.md
+  notas: 'Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md), aprovada pelo Samuel em 24/11/2026 às 23:26 (America/Sao_Paulo) com o ajuste: o vtx-core é só a parte técnica. Aplicados os cortes e adiamentos da §5, com duas exceções já entregues (VTX-135 permanece concluída; VTX-176 permanece concluída). As 32 canceladas têm motivo; as 36 adiadas ficam aguardando com a nota "adiado até 3 clientes pagantes". VTX-177 sem depende_de VTX-176. VTX-148, 149, 150, 155 e 156 reapontadas ao med-hub como piloto interno. F14 cadastrada só com tarefas técnicas (VTX-193 a VTX-205). Fundidas VTX-206 (ex-053 a 056) e VTX-207 (ex-039 a 046 e 182). Dependências externas, que não viram tarefa neste repo: marketing, contabilidade/NFS-e, vendas, catálogo de ofertas e preços, contrato e proposta, funil comercial e métricas de negócio — trabalho dos agentes de marketing, contabilidade e vendas. Quando o trilho de receita e o piloto interno competirem pelas 5 h/semana do Samuel, o de receita vem primeiro.'
+
+- id: VTX-194
+  titulo: Template TypeScript de web e plataforma no bootstrap
+  fase: F14
+  area: Templates
+  prioridade: 1
+  status: a fazer
+  entregavel: templates/web-next/ + scripts/bootstrap_projeto.sh
+  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado.'
+
+- id: VTX-195
+  titulo: Política técnica de hospedagem por cliente e de custos de infra
+  fase: F14
+  area: Operação
+  prioridade: 2
+  status: a fazer
+  entregavel: knowledge/operacao/hospedagem-por-cliente.md
+  notas: 'Auditoria §7 item 8 (id sugerido VTX-193, mapeado para VTX-195), só o lado técnico. Objetivo: decidir, neste repositório, de quem é cada conta de hospedagem e como documentar custos de infra, sem violar termos de planos gratuitos. Arquivos afetados: knowledge/operacao/hospedagem-por-cliente.md, knowledge/ferramentas/hospedagem/vercel.md, templates/web-next/docs/runbook.md. Critério de aceite: tabela por tipo de produto com hospedagem padrão, plano gratuito permitido para uso comercial, limites e pausa por inatividade, inclusive o caso do piloto interno (med-hub); contas no nome do cliente por padrão e domínio do cliente; qualquer plano pago é A2. Cláusula de repasse no contrato é dependência externa (agentes de vendas/contabilidade), não aceite desta tarefa.'
+
+- id: VTX-196
+  titulo: 'med-hub: incremento 1 interno, com prazo e teto de esforço'
+  fase: F14
+  area: med-hub
+  prioridade: 3
+  status: a fazer
+  entregavel: projects/med-hub/docs/plano.md
+  notas: 'Auditoria §7 item 5 (id sugerido VTX-190, mapeado para VTX-196). Objetivo: usar o med-hub como piloto interno para validar o pipeline de entrega, sem tratá-lo como receita. Arquivos afetados: projects/med-hub/docs/plano.md, projects/med-hub/README.md (registrar que não há pagamento). Critério de aceite: incremento 1 recortado (HU-01, 02 e 04, e só o indispensável para o pipeline); data-alvo até a semana 10 e teto de esforço do Samuel (no máximo 1,5 h por semana no piloto); incrementos 5 e 6 e o restante do MVP ficam fora até o teto ser revisto com A2; autorização do colega para estudo de caso ou a decisão explícita de não publicar. Não há critério de fatura ou pagamento da VTX.'
+
+- id: VTX-197
+  titulo: 'med-hub: tarefas de entrega e repositório do piloto'
+  fase: F14
+  area: med-hub
+  prioridade: 4
+  status: a fazer
+  entregavel: backlog/projeto.yaml
+  depende_de:
+  - VTX-196
+  notas: 'Auditoria §7 item 6 (id sugerido VTX-191, mapeado para VTX-197). Objetivo: criar o repositório do med-hub pelo bootstrap e uma tarefa por história do incremento 1. Arquivos afetados: backlog/projeto.yaml (IDs MH-xxx ou VTX com área med-hub) e o repositório SamAlencar/med-hub (A2). Critério de aceite: cada tarefa cita a HU e usa os cenários Gherkin do PRD como aceite; CI verde no repositório novo; teste de isolamento entre parceiros (HU-22) se essa história entrar no incremento 1 (senão, tarefa seguinte, fora do teto). proxima_tarefa.py pode devolver tarefas do med-hub, mas o piloto não passa à frente do trabalho técnico F14 nem das 5 h/semana do Samuel reserváveis ao trilho de receita (dependência externa). Não há critério de fatura ou pagamento.'
+
+- id: VTX-204
+  titulo: Build técnico do site da VTX
+  fase: F14
+  area: Templates
+  prioridade: 5
+  status: a fazer
+  entregavel: projects/site-vtx/README.md
+  notas: 'Auditoria §7 item 11 (id sugerido VTX-198, mapeado para VTX-204), só o build técnico. Objetivo: ter o site da VTX no ar em hospedagem gratuita com uso comercial permitido, a partir de SamAlencar/vtx-systems-site. Arquivos afetados: projects/site-vtx/ (ponteiro e, se couber, o recorte técnico), projects/README.md. Critério de aceite: site publicado em hospedagem gratuita permitida para uso comercial, aviso de privacidade, Lighthouse de pelo menos 90; publicar é A2. Páginas de ofertas, formulário que vira lead e o funil comercial são dependências externas (agentes de marketing/vendas), não aceite desta tarefa.'
+
+- id: VTX-198
+  titulo: 'Fluxo de projeto: agente de IA ou IA embutida'
+  fase: F14
+  area: Processo
+  prioridade: 6
+  status: a fazer
+  entregavel: knowledge/processos/fluxos/agente-ia.md
+  notas: 'Auditoria §7 item 14 (id sugerido VTX-195, mapeado para VTX-198). Objetivo: dar a esse tipo de projeto um fluxo próprio na triagem. Arquivos afetados: knowledge/processos/fluxos/agente-ia.md, knowledge/processos/fluxos/triagem.md. Critério de aceite: a triagem classifica o tipo; o fluxo exige harness (VTX-177), evals (VTX-178), telemetria de custo (VTX-179) e privacidade (VTX-150). Teto de custo no contrato é dependência externa (agentes de vendas), não aceite desta tarefa.'
+
+- id: VTX-199
+  titulo: Pacote técnico de manutenção, SLA e suporte
+  fase: F14
+  area: Operação
+  prioridade: 7
+  status: a fazer
+  entregavel: knowledge/operacao/suporte-e-sla.md
+  notas: 'Auditoria §7 item 15 (id sugerido VTX-196, mapeado para VTX-199), só o lado técnico. Objetivo: suporte previsível e operação com SLA. Arquivos afetados: knowledge/operacao/suporte-e-sla.md, knowledge/processos/fluxos/manutencao-evolucao.md, templates/web-next/docs/runbook.md. Critério de aceite: dois níveis de SLA com tempo de resposta e horas incluídas; canal de suporte (e-mail ou formulário, triado por agente); monitor de disponibilidade gratuito configurado no template; incidentes viram postmortem curto no repositório do cliente. Preço e venda do plano de manutenção são dependência externa (agentes de vendas), não aceite desta tarefa.'
+
+- id: VTX-200
+  titulo: Módulos reutilizáveis extraídos do med-hub
+  fase: F14
+  area: Templates
+  prioridade: 8
+  status: a fazer
+  entregavel: templates/web-next/modulos/
+  depende_de:
+  - VTX-194
+  notas: 'Auditoria §7 item 18 (id sugerido VTX-202, mapeado para VTX-200). Objetivo: reaproveitar código, não só conhecimento. Arquivos afetados: templates/web-next/modulos/ (auth Supabase com RLS, consentimento LGPD, e o que for técnico no piloto). Critério de aceite: um segundo projeto integra pelo menos 2 módulos em 1 dia ou menos, com os testes dos módulos passando no CI do template. Módulo de cobrança recorrente da VTX fica de fora (faturamento é dependência externa).'
+
+- id: VTX-201
+  titulo: Template de site/landing
+  fase: F14
+  area: Templates
+  prioridade: 9
+  status: a fazer
+  entregavel: templates/site/
+  notas: 'Auditoria §7 item 19 (id sugerido VTX-203, mapeado para VTX-201). Objetivo: entregar o pacote mais barato e rápido em menos de 2 semanas. Arquivos afetados: templates/site/ (Astro ou Next estático), scripts/bootstrap_projeto.sh --tipo site. Critério de aceite: gera um site com Lighthouse de pelo menos 90, formulário de contato, aviso de privacidade e deploy de preview, com CI verde. Se a primeira entrega for um site ou landing, esta tarefa sobe na fila técnica. Captação comercial do lead é dependência externa.'
+
+- id: VTX-202
+  titulo: Template de API
+  fase: F14
+  area: Templates
+  prioridade: 10
+  status: a fazer
+  entregavel: templates/api/
+  notas: 'Auditoria §7 item 20 (id sugerido VTX-204, mapeado para VTX-202). Objetivo: atender integrações e APIs sem inventar estrutura. Arquivos afetados: templates/api/, bootstrap --tipo api. Critério de aceite: OpenAPI gerado, validação com Zod, teste de contrato e CI verde.'
+
+- id: VTX-203
+  titulo: Template de app Expo (só quando houver cliente de app)
+  fase: F14
+  area: Templates
+  prioridade: 11
+  status: a fazer
+  entregavel: templates/app-expo/
+  notas: 'Auditoria §7 item 21 (id sugerido VTX-205, mapeado para VTX-203). Objetivo: evitar inventar estrutura no primeiro app. Arquivos afetados: templates/app-expo/. Critério de aceite: build de preview EAS no plano gratuito e CI com lint, typecheck e testes. Só entra na frente quando houver demanda real de app.'
+
+- id: VTX-205
+  titulo: Retrospectiva por projeto alimentando a base
+  fase: F14
+  area: Processo
+  prioridade: 12
+  status: a fazer
+  entregavel: knowledge/templates/retrospectiva.md
+  notas: 'Auditoria §7 item 22 (id sugerido VTX-206, mapeado para VTX-205). Objetivo: reaproveitar a mecânica das VTX-052 e 136 em projetos reais (piloto interno ou entrega técnica). Arquivos afetados: knowledge/templates/retrospectiva.md, knowledge/processos/fluxo-entre-agentes.md. Critério de aceite: cada entrega encerrada gera retrospectiva com no máximo 3 ajustes na base, cada um virando tarefa ou PR.'
+
+- id: VTX-206
+  titulo: Enriquecer AGENTS.md e regras por papel só quando o uso real mostrar lacuna
+  fase: F9
+  area: Integração Cursor
+  prioridade: 80
+  status: a fazer
+  entregavel: AGENTS.md + .cursor/rules/papeis/
+  notas: 'Fusão das VTX-053 a VTX-056 (auditoria §5). Objetivo: não recriar uma terceira camada; só enriquecer o que o uso real (med-hub ou entrega) mostrar que falta. Arquivos afetados: AGENTS.md, .cursor/rules/papeis/. Critério de aceite: uma lacuna observada em projeto real vira ajuste pontual nas regras já existentes, com teste de caminhos se couber; as tarefas 053 a 056 permanecem canceladas.'
+
+- id: VTX-207
+  titulo: Detalhar agents/*.md quando um projeto real mostrar a lacuna
+  fase: F7
+  area: Diretrizes
+  prioridade: 81
+  status: a fazer
+  entregavel: agents/
+  notas: 'Fusão das VTX-039 a VTX-046 e VTX-182 (auditoria §5). Objetivo: detalhar o papel que a lacuna exigir, sem criar camada paralela às regras já existentes. Arquivos afetados: agents/*.md e, se ainda fizer sentido, a tabela de Recursos. Critério de aceite: um projeto real justifica o detalhe; as tarefas 039 a 046 e 182 permanecem canceladas.'
