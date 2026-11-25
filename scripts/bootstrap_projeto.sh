@@ -100,6 +100,12 @@ while IFS= read -r -d '' arquivo; do
   fi
 done < <(find "$DEST" -type f ! -path '*/.git/*' ! -path '*/node_modules/*' -print0)
 
+# Nome do pacote npm: minúsculo, para não sair todo cliente como "projeto-cliente".
+if [[ -f "$DEST/package.json" ]]; then
+  PKG_NOME="$(printf '%s' "$NOME" | tr '[:upper:]' '[:lower:]')"
+  python3 -c 'import json,sys; p=sys.argv[1]; n=sys.argv[2]; d=json.load(open(p,encoding="utf-8")); d["name"]=n; json.dump(d, open(p,"w",encoding="utf-8"), indent=2); open(p,"a").write("\n")' "$DEST/package.json" "$PKG_NOME"
+fi
+
 if [[ ! -d "$DEST/.git" ]]; then
   git -C "$DEST" init -q
 fi

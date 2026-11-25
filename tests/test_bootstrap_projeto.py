@@ -218,6 +218,8 @@ class TestBootstrapProjeto(unittest.TestCase):
             self.assertIn("demo-web", readme)
             self.assertNotIn("__NOME_DO_PROJETO__", readme)
             pkg = (dest / "package.json").read_text(encoding="utf-8")
+            self.assertIn('"name": "demo-web"', pkg)
+            self.assertNotIn("projeto-cliente", pkg)
             for script in ("lint", "typecheck", "test", "build"):
                 self.assertIn(f'"{script}"', pkg)
             ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")
@@ -225,6 +227,8 @@ class TestBootstrapProjeto(unittest.TestCase):
             self.assertIn("contents: read", ci)
             self.assertIn("gitleaks", ci)
             self.assertIn("8.30.1", ci)
+            self.assertIn("sha256sum", ci)
+            self.assertIn("branches: [main]", ci)
             self.assertIn("npm ci", ci)
             self.assertIn("npm run lint", ci)
             self.assertIn("npm run typecheck", ci)

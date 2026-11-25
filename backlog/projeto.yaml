@@ -1865,7 +1865,7 @@ tarefas:
   prioridade: 1
   status: concluído
   entregavel: templates/web-next/ + scripts/bootstrap_projeto.sh
-  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado. Concluída em 24/11/2026 (PR a abrir): templates/web-next/ com Next.js 15, TypeScript, Tailwind, Zod, Vitest e cliente Supabase; bootstrap --tipo web|python (padrão python). CI do template com permissions: contents: read, gitleaks 8.30.1 e o pipeline npm. Preview comercial documentado no runbook (Cloudflare Pages; Vercel Hobby não serve). Verificação: bootstrap --tipo web demo /tmp/... && npm ci && npm run lint && npm run typecheck && npm test && npm run build, verde.'
+  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado. Concluída em 24/11/2026 (PR #25): templates/web-next/ com Next.js 15, TypeScript, Tailwind, Zod, Vitest e cliente Supabase; bootstrap --tipo web|python (padrão python). CI do template com permissions: contents: read, gitleaks 8.30.1 e o pipeline npm. Preview comercial documentado no runbook (Cloudflare Pages; Vercel Hobby não serve). Verificação: bootstrap --tipo web demo /tmp/... && npm ci && npm run lint && npm run typecheck && npm test && npm run build, verde.'
 
 - id: VTX-195
   titulo: Política técnica de hospedagem por cliente e de custos de infra
@@ -1987,3 +1987,25 @@ tarefas:
   status: a fazer
   entregavel: agents/
   notas: 'Fusão das VTX-039 a VTX-046 e VTX-182 (auditoria §5). Objetivo: detalhar o papel que a lacuna exigir, sem criar camada paralela às regras já existentes. Arquivos afetados: agents/*.md e, se ainda fizer sentido, a tabela de Recursos. Critério de aceite: um projeto real justifica o detalhe; as tarefas 039 a 046 e 182 permanecem canceladas.'
+
+- id: VTX-208
+  titulo: Tratar o alerta de npm audit do template web-next (postcss no Next)
+  fase: F14
+  area: Templates
+  prioridade: 13
+  status: a fazer
+  entregavel: templates/web-next/package-lock.json
+  depende_de:
+  - VTX-194
+  notas: 'Seguimento da revisão do Tzu no PR #25 (item 1), 24/11/2026. Objetivo: decidir se o template aceita o alerta conhecido (postcss embutido no Next, GHSA-qx2v-qp2m-jg93) até uma versão do Next que o feche, ou subir de versão agora. Arquivos afetados: templates/web-next/package.json, package-lock.json, docs/runbook.md se a decisão for aceitar. Critério de aceite: npm audit --omit=dev no projeto gerado não deixa alerta sem registro; ou o Next foi atualizado e o pipeline npm continua verde.'
+
+- id: VTX-209
+  titulo: CI do vtx-core rodar o pipeline npm do template web
+  fase: F14
+  area: Templates
+  prioridade: 14
+  status: a fazer
+  entregavel: .github/workflows/testes.yml
+  depende_de:
+  - VTX-194
+  notas: 'Seguimento da revisão do Tzu no PR #25 (item 3), 24/11/2026. Objetivo: o CI do vtx-core gerar um projeto com bootstrap --tipo web e rodar npm ci && lint && typecheck && test && build, para regressão no template não passar só com teste de strings. Arquivos afetados: .github/workflows/testes.yml (ou workflow irmão). Critério de aceite: um job verde no CI do core reproduz o pipeline do template; falha se o template quebrar. Mexe no workflow do vtx-core e, quando for executada, precisa do Samuel.'
