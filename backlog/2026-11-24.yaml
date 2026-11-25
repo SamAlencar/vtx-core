@@ -110,3 +110,28 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Auditoria 24/11/2026 (parecer-vtx-core.md). PRD do med-hub: links dos ADRs e da pesquisa de domínio corrigidos. INDEX: cinco documentos que faltavam (versionamento IFC, funções de domínio, pagamentos, Graphify, radar). gerar_roadmap.py passa a listar só pendentes, com status efetivo. VTX-167 a VTX-172 cadastradas (pri 51–56); itens 1 e 6 ficam para o Samuel. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-166.md; Review Focus evitou inventar caminho e indexar modelos do memory bank, ajudou), verification-before-completion (unittest, test -e, gerar_roadmap, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+
+  - id: VTX-142
+    titulo: "Vídeos de divulgação com HyperFrames (render local)"
+    area: "Ferramentas"
+    status: "cancelado"
+    responsavel: "agente-orquestrador"
+    notas: "Com a VTX-167 o schema passa a aceitar cancelado. Status efetivo deixa de ser concluído (não houve entregável) e a tarefa sai da fila e do progresso. Cancelamento do Samuel em 24/11 permanece reversível."
+  - id: VTX-167
+    titulo: "Status aguardando e cancelado no backlog, e VTX-142 cancelada (auditoria P0)"
+    area: "Qualidade"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "STATUS_VALIDOS inclui aguardando e cancelado; proxima_tarefa.py não os escolhe; progresso exclui canceladas do total; VTX-142 foi para cancelado; VTX-171 e VTX-172 ficaram aguardando (aprovação do Samuel). Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-167.md; Review Focus evitou devolver cancelado para a fazer e inflar o progresso, ajudou), verification-before-completion (unittest, proxima_tarefa, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+  - id: VTX-171
+    titulo: "Corrigir ou aposentar o pipeline do painel (auditoria P0 item 1)"
+    area: "Plataforma interna"
+    status: "aguardando"
+    responsavel: "agente-orquestrador"
+    notas: "Aguardando aprovação do Samuel (A2): revogar PANEL_TOKEN e/ou remover o workflow, ou apontá-lo a um repositório existente. Nada executado neste passo."
+  - id: VTX-172
+    titulo: "Revisão obrigatória antes do merge (auditoria P0 item 6)"
+    area: "Base de Conhecimento"
+    status: "aguardando"
+    responsavel: "agente-orquestrador"
+    notas: "Aguardando aprovação do Samuel (A2): branch protection exige Pro ou repo público. Nada executado neste passo."

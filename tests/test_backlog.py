@@ -213,5 +213,45 @@ class TestFumacaBacklogReal(unittest.TestCase):
             self.assertNotIn(f'"{chave}"', texto)
 
 
+
+class TestStatusNovos(unittest.TestCase):
+    def test_carrega_aguardando_e_cancelado(self):
+        with tempfile.TemporaryDirectory() as pasta:
+            gravar_yaml(pasta, "projeto.yaml", {
+                "projeto": "Status novos",
+                "fases": [{"id": "F1", "nome": "Fase"}],
+                "tarefas": [
+                    {"id": "VTX-A", "titulo": "Espera", "fase": "F1", "area": "Qualidade", "prioridade": 1, "status": "aguardando"},
+                    {"id": "VTX-B", "titulo": "Fora", "fase": "F1", "area": "Qualidade", "prioridade": 2, "status": "cancelado"},
+                    {"id": "VTX-C", "titulo": "Typo", "fase": "F1", "area": "Qualidade", "prioridade": 3, "status": "concluido"},
+                ],
+            })
+            projeto, _dias = carregar(pasta)
+        status = {t["id"]: t["status"] for t in projeto["tarefas"]}
+        self.assertEqual(status["VTX-A"], "aguardando")
+        self.assertEqual(status["VTX-B"], "cancelado")
+        self.assertEqual(status["VTX-C"], "a fazer")
+
+    def test_proxima_tarefa_pula_e_progresso_exclui_cancelado(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as pasta:
+            gravar_yaml(pasta, "projeto.yaml", {
+                "projeto": "Fila",
+                "fases": [{"id": "F1", "nome": "Fase"}],
+                "tarefas": [
+                    {"id": "VTX-A", "titulo": "Feita", "fase": "F1", "area": "Qualidade", "prioridade": 1, "status": "concluído"},
+                    {"id": "VTX-B", "titulo": "Fora", "fase": "F1", "area": "Qualidade", "prioridade": 2, "status": "cancelado"},
+                    {"id": "VTX-C", "titulo": "Espera", "fase": "F1", "area": "Qualidade", "prioridade": 3, "status": "aguardando"},
+                    {"id": "VTX-D", "titulo": "Proxima da fila", "fase": "F1", "area": "Qualidade", "prioridade": 4, "status": "a fazer"},
+                ],
+            })
+            script = os.path.join(RAIZ, "scripts", "proxima_tarefa.py")
+            saida = subprocess.check_output(["python3", script, pasta], text=True)
+        self.assertIn("Progresso: 1/3 (33%)", saida)
+        self.assertIn("Próxima: VTX-D", saida)
+        self.assertNotIn("VTX-B", saida.split("Próxima:")[-1])
+        self.assertNotIn("VTX-C", saida.split("Próxima:")[-1])
+
+
 if __name__ == "__main__":
     unittest.main()
