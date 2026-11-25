@@ -37,7 +37,7 @@ def _parece_caminho(texto: str) -> bool:
     } or texto.endswith("/")
 
 
-def caminhos_de(path: Path) -> list[tuple[str, Path]]:
+def caminhos_de(path: Path, raiz: Path = RAIZ) -> list[tuple[str, Path]]:
     texto = path.read_text(encoding="utf-8")
     encontrados: list[tuple[str, Path]] = []
     vistos: set[str] = set()
@@ -53,7 +53,7 @@ def caminhos_de(path: Path) -> list[tuple[str, Path]]:
         if relativo_ao_arquivo:
             alvo = (path.parent / url).resolve()
         else:
-            alvo = (RAIZ / url).resolve()
+            alvo = (raiz / url).resolve()
         encontrados.append((url, alvo))
 
     for bruto in RE_LINK.findall(texto):

@@ -45,11 +45,11 @@ shopt -s dotglob
 cp -a "$SRC"/. "$DEST"/
 shopt -u dotglob
 
-# Regras do Cursor vêm da fonte do vtx-core, não de uma terceira cópia engessada.
-mkdir -p "$DEST/.cursor/rules/papeis"
+# Regras de tokens/contexto vêm da fonte do vtx-core.
+# As regras por papel ficam as do template (caminhos válidos no cliente).
+mkdir -p "$DEST/.cursor/rules"
 cp "$ROOT/.cursor/rules/eficiencia-de-tokens.mdc" "$DEST/.cursor/rules/"
 cp "$ROOT/.cursor/rules/economia-de-contexto.mdc" "$DEST/.cursor/rules/"
-cp "$ROOT/.cursor/rules/papeis/"*.mdc "$DEST/.cursor/rules/papeis/"
 
 # Troca o placeholder em arquivos de texto.
 while IFS= read -r -d '' arquivo; do

@@ -1,16 +1,15 @@
 ---
 description: Papéis de planejamento (Orquestrador, Produto, Arquiteto) — VTX-169
-globs: docs/produto/**,docs/arquitetura.md,docs/adr/**,docs/plano.md,**/PRD.md,**/prd.md,backlog/**,knowledge/processos/**,agents/orquestrador.md,agents/produto.md,agents/arquiteto.md,projects/**/docs/**,projects/**/conhecimento/**
+globs: docs/produto/**,docs/arquitetura.md,docs/adr/**,docs/plano.md,**/PRD.md,**/prd.md
 alwaysApply: false
 ---
 
 # Planejamento
 
-Aplique em triagem, requisitos, arquitetura ou planejamento. Leia só o `agents/<papel>.md` do papel ativo (Orquestrador, Produto ou Arquiteto).
+Aplique em triagem, requisitos, arquitetura ou planejamento. A governança A0–A3 está em `AGENTS.md`.
 
-- Passagem por artefato, segundo o SOP em `knowledge/processos/fluxo-entre-agentes.md`. Quem produz não aprova o próprio trabalho.
-- Escopo, comunicação externa, gasto e produção pedem A2 (`knowledge/processos/governanca-e-aprovacoes.md`).
-- Produto entrega o PRD no repositório do cliente (modelo: `templates/projeto/docs/produto/PRD.md`) e histórias com aceite testável. Não inventa requisito: devolve com pergunta.
-- Arquiteto entrega arquitetura e ADRs no repositório do cliente (modelos: `templates/projeto/docs/arquitetura.md` e `templates/projeto/docs/adr/0000-modelo.md`). Decisão relevante e reversível é A1 e vai a ADR.
-- Orquestrador fatia em tarefas de um PR, atualiza o diário em `backlog/` e o plano do projeto (modelo: `templates/projeto/docs/plano.md`). Sem merge de código e sem deploy.
-- Consulte `knowledge/INDEX.md` só o que a tarefa pede.
+- Passagem por artefato. Quem produz não aprova o próprio trabalho.
+- Escopo, comunicação externa, gasto e produção pedem A2 (`AGENTS.md`).
+- Produto entrega `docs/produto/PRD.md` e histórias com aceite testável. Não inventa requisito: devolve com pergunta.
+- Arquiteto entrega `docs/arquitetura.md` e `docs/adr/0000-modelo.md`. Decisão relevante e reversível é A1 e vai a ADR.
+- Orquestrador fatia em tarefas de um PR e atualiza `docs/plano.md`. Sem merge de código e sem deploy.

@@ -111,7 +111,7 @@ class TestBootstrapProjeto(unittest.TestCase):
                 )
 
 
-    def test_copias_das_regras_sao_iguais(self):
+    def test_regras_de_tokens_sao_iguais_a_fonte(self):
         nomes = [
             "eficiencia-de-tokens.mdc",
             "economia-de-contexto.mdc",
@@ -122,10 +122,46 @@ class TestBootstrapProjeto(unittest.TestCase):
             template = (RAIZ / "templates" / "projeto" / ".cursor" / "rules" / nome).read_bytes()
             self.assertEqual(fonte, catalogo, nome)
             self.assertEqual(fonte, template, nome)
-        for nome in ("planejamento.mdc", "execucao.mdc"):
-            fonte = (RAIZ / ".cursor" / "rules" / "papeis" / nome).read_bytes()
-            template = (RAIZ / "templates" / "projeto" / ".cursor" / "rules" / "papeis" / nome).read_bytes()
-            self.assertEqual(fonte, template, nome)
+
+    def test_regras_por_papel_do_projeto_gerado_citam_caminhos_existentes(self):
+        try:
+            from test_agents_md import caminhos_de
+        except ModuleNotFoundError:
+            from tests.test_agents_md import caminhos_de
+
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "demo"
+            r = _rodar(["bash", str(SCRIPT), "demo", str(dest)], cwd=str(RAIZ))
+            self.assertEqual(r.returncode, 0, r.stderr)
+            raiz = dest.resolve()
+            papeis = sorted((dest / ".cursor/rules/papeis").glob("*.mdc"))
+            self.assertTrue(papeis, "faltaram regras por papel no projeto gerado")
+            falhas = []
+            for path in papeis:
+                texto = path.read_text(encoding="utf-8")
+                # Não podem sobrar caminhos que só existem no vtx-core.
+                for trecho in (
+                    "templates/projeto/",
+                    "knowledge/processos/",
+                    "knowledge/INDEX.md",
+                    "agents/",
+                    "backlog/",
+                ):
+                    if trecho in texto:
+                        falhas.append(
+                            f"{path.relative_to(dest)}: cita caminho do vtx-core ({trecho})"
+                        )
+                for url, alvo in caminhos_de(path, raiz=raiz):
+                    try:
+                        alvo.relative_to(raiz)
+                    except ValueError:
+                        falhas.append(f"{path.relative_to(dest)}: {url} sai do projeto")
+                        continue
+                    if not alvo.exists():
+                        falhas.append(
+                            f"{path.relative_to(dest)}: caminho ausente {url}"
+                        )
+            self.assertEqual(falhas, [])
 
 
 if __name__ == "__main__":

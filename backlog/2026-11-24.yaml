@@ -233,7 +233,7 @@ tarefas:
     area: "Qualidade"
     status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Revisão do Tzu no PR #18, autorizada pelo Samuel em 24/11/2026 às 22:51. test_caminhos_citados_existem não usa mais fallback para templates/projeto/; as regras por papel citam os modelos existentes em templates/projeto/.... Skills: verification-before-completion (unittest, verificar_links, ajudou). Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+    notas: "Revisão do Tzu no PR #18, autorizada pelo Samuel em 24/11/2026 às 22:51. Sem fallback para templates/projeto/ na raiz. Após Mudanças necessárias: o template tem regras por papel próprias (caminhos do cliente); o bootstrap não as sobrescreve; o teste confere os caminhos no projeto gerado. Skills: verification-before-completion (unittest, ajudou). Ferramentas: git, gh, unittest. Correu bem, custo baixo."
   - id: VTX-185
     titulo: "permissions: contents: read no CI do template de projeto"
     area: "Templates"

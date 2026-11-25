@@ -503,7 +503,7 @@ tarefas:
   prioridade: 88
   status: a fazer
   entregavel: templates/projeto/
-  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). Já entrou no acompanhamento da VTX-170 (24/11): regras por papel no template e resumo A0-A3 no AGENTS.md do cliente (sem depender do vtx-core privado). O que falta são os templates detalhados da F6 (VTX-033 a 038).'
+  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). Já entrou no acompanhamento da VTX-170 e da revisão do PR #18 (24/11): regras por papel próprias do template, com caminhos válidos no cliente (PRD, plano, testes, runbook, A0–A3 em AGENTS.md), e resumo A0-A3 no AGENTS.md sem URL do vtx-core. O que falta são os templates detalhados da F6 (VTX-033 a 038).'
 - id: VTX-061
   titulo: Sincronização de regras e script de bootstrap de projetos
   fase: F9
@@ -511,7 +511,7 @@ tarefas:
   prioridade: 89
   status: a fazer
   entregavel: scripts/bootstrap_projeto.sh
-  notas: 'Reescopo após VTX-170 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. O bootstrap já copia as regras de `.cursor/rules/` na geração (teste de igualdade enquanto as cópias existem). O que falta é uma fonte única contínua (VTX-180) e a ressincronização em repositórios já criados.'
+  notas: 'Reescopo após VTX-170 e a revisão do PR #18 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. Copia da raiz só as regras de tokens/contexto (teste de igualdade enquanto as cópias existem); as regras por papel ficam as do template, com caminhos do cliente. O que falta é uma fonte única contínua (VTX-180) e a ressincronização em repositórios já criados.'
 - id: VTX-062
   titulo: Ambiente dos agentes de nuvem (environment.json, segredos, permissões)
   fase: F9
@@ -1687,8 +1687,7 @@ tarefas:
   prioridade: 57
   status: a fazer
   entregavel: '.cursor/rules/eficiencia-de-tokens.mdc + knowledge/templates/cursor/eficiencia-de-tokens.mdc'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16. Uma fonte única copiada pelo bootstrap, com teste de igualdade enquanto as duas cópias existirem. Hoje .cursor/rules/eficiencia-de-tokens.mdc e knowledge/templates/cursor/eficiencia-de-tokens.mdc são idênticos.'
-
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16. Uma fonte única copiada pelo bootstrap, com teste de igualdade enquanto as duas cópias existirem. Hoje .cursor/rules/eficiencia-de-tokens.mdc e knowledge/templates/cursor/eficiencia-de-tokens.mdc são idênticos. Na revisão do PR #18 (24/11/2026), o Tzu registrou que economia-de-contexto.mdc (e eficiencia-de-tokens.mdc) ainda citam caminhos do vtx-core (ex.: knowledge/) que não existem no cliente após o bootstrap copiar a fonte da raiz; tratar nesta tarefa junto com a fonte única.'
 - id: VTX-181
   titulo: Lint de código e de Markdown no CI (ruff e markdownlint)
   fase: F8
@@ -1730,7 +1729,7 @@ tarefas:
   prioridade: 57
   status: concluído
   entregavel: tests/test_agents_md.py + .cursor/rules/papeis/planejamento.mdc + .cursor/rules/papeis/execucao.mdc
-  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o teste de caminhos citados falhar quando o arquivo não existir no repositório, em vez de aceitar um equivalente em templates/projeto/. Arquivos afetados: tests/test_agents_md.py, .cursor/rules/papeis/*.mdc (e as cópias no template). Critério de aceite: test_caminhos_citados_existem não consulta templates/projeto/ como fallback; todo caminho em crase nos arquivos conferidos existe neste repo. Concluída no PR #18 em 24/11/2026: fallback removido; as regras citam os modelos em templates/projeto/....'
+  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o teste de caminhos citados falhar quando o arquivo não existir no repositório, em vez de aceitar um equivalente em templates/projeto/. Arquivos afetados: tests/test_agents_md.py, .cursor/rules/papeis/*.mdc, templates/projeto/.cursor/rules/papeis/*.mdc, scripts/bootstrap_projeto.sh, tests/test_bootstrap_projeto.py. Critério de aceite: test_caminhos_citados_existem não consulta templates/projeto/ como fallback; todo caminho em crase nos arquivos conferidos da raiz existe neste repo; as regras por papel do template são próprias do cliente (não iguais às da raiz) e, no projeto gerado pelo bootstrap, todo caminho citado nessas regras existe lá. Concluída no PR #18 em 24/11/2026: fallback removido; revisão posterior (Mudanças necessárias) separou as regras do cliente das do core.'
 
 - id: VTX-185
   titulo: 'permissions: contents: read no CI do template de projeto'
