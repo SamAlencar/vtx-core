@@ -29,10 +29,17 @@ echo "=== telemetry disable + status ==="
 "$GRAFT" telemetry disable || true
 "$GRAFT" telemetry status || true
 
-ALVO="$SANDBOX/tmp-repo"
-rm -rf "$ALVO"
-# Cópia rasa só com o necessário para um build local, sem o .git de worktree compartilhado.
-mkdir -p "$ALVO"
+# Cópia fora do repositório, para o teste de isolamento (VTX-175) não enxergar o tmp-repo.
+ALVO="$(mktemp -d /tmp/vtx-trail-piloto.XXXXXX)"
+KEEP_ALVO=0
+limpar_alvo() {
+  if [[ "${KEEP_ALVO:-0}" == "1" ]]; then
+    echo "Cópia preservada para inspeção: $ALVO" >&2
+    return
+  fi
+  rm -rf "$ALVO"
+}
+trap limpar_alvo EXIT
 git -C "$VTX_CORE" checkout-index -a --prefix="$ALVO/"
 git -C "$ALVO" init -q
 git -C "$ALVO" add -A
@@ -91,9 +98,9 @@ Path("$SANDBOX/exemplos/saida-bruta/ask-proxima-tarefa-amostra.txt").write_text(
 PY
 
 echo "Piloto concluído. HOME isolado em $HOME"
-# Recusa se alguém tiver rodado init neste sandbox.
+# init é proibido: falha e preserva a cópia para inspeção (o trap não apaga).
 if [[ -d "$ALVO/.trail" ]] || [[ -d "$SANDBOX/.trail" ]]; then
-  echo "AVISO: apareceu .trail/ — verificar se init rodou" >&2
+  echo "ERRO: apareceu .trail/ — init é proibido neste piloto. Diretório preservado em $ALVO" >&2
+  KEEP_ALVO=1
+  exit 1
 fi
-# A cópia temporária leva .env.example da raiz; não deixa o tmp-repo no worktree.
-rm -rf "$ALVO"
