@@ -163,6 +163,32 @@ class TestBootstrapProjeto(unittest.TestCase):
                         )
             self.assertEqual(falhas, [])
 
+    def test_regras_de_tokens_do_projeto_gerado_citam_caminhos_existentes(self):
+        try:
+            from test_agents_md import caminhos_de
+        except ModuleNotFoundError:
+            from tests.test_agents_md import caminhos_de
+
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "demo"
+            r = _rodar(["bash", str(SCRIPT), "demo", str(dest)], cwd=str(RAIZ))
+            self.assertEqual(r.returncode, 0, r.stderr)
+            raiz = dest.resolve()
+            falhas = []
+            for nome in ("eficiencia-de-tokens.mdc", "economia-de-contexto.mdc"):
+                path = dest / ".cursor/rules" / nome
+                self.assertTrue(path.is_file(), nome)
+                for url, alvo in caminhos_de(path, raiz=raiz):
+                    try:
+                        alvo.relative_to(raiz)
+                    except ValueError:
+                        falhas.append(f"{nome}: {url} sai do projeto")
+                        continue
+                    if not alvo.exists():
+                        falhas.append(f"{nome}: caminho ausente {url}")
+            self.assertEqual(falhas, [])
+
+
 
 if __name__ == "__main__":
     unittest.main()

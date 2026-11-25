@@ -1612,9 +1612,9 @@ tarefas:
   fase: F3
   area: Segurança
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: '.gitignore + .env.example + .pre-commit-config.yaml'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 12. .gitignore da raiz deve cobrir .env* (exceto .env.example), node_modules/, dist/, *.db, *.sqlite e .venv/. Pre-commit roda gitleaks. README documenta a instalação. O template de projeto (VTX-170) já tem .gitignore e .env.example no cliente; esta tarefa cobre a raiz do vtx-core.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 12. Concluída em 24/11/2026: .gitignore da raiz cobre .env/.env.* (exceto .env.example), node_modules/, dist/, *.db, *.sqlite e .venv/. .env.example na raiz. .pre-commit-config.yaml roda gitleaks v8.30.1 (igual ao job qualidade). README documenta pip install pre-commit && pre-commit install.'
 
 - id: VTX-174
   titulo: Human-in-the-loop verificável (evidência de aprovação A2)
@@ -1685,9 +1685,9 @@ tarefas:
   fase: F9
   area: 'Integração Cursor'
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: '.cursor/rules/eficiencia-de-tokens.mdc + knowledge/templates/cursor/eficiencia-de-tokens.mdc'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16. Uma fonte única copiada pelo bootstrap, com teste de igualdade enquanto as duas cópias existirem. Hoje .cursor/rules/eficiencia-de-tokens.mdc e knowledge/templates/cursor/eficiencia-de-tokens.mdc são idênticos. Na revisão do PR #18 (24/11/2026), o Tzu registrou que economia-de-contexto.mdc (e eficiencia-de-tokens.mdc) ainda citam caminhos do vtx-core (ex.: knowledge/) que não existem no cliente após o bootstrap copiar a fonte da raiz; tratar nesta tarefa junto com a fonte única.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16, com o item da revisão do PR #18. Concluída em 24/11/2026: fonte em .cursor/rules/, copiada pelo bootstrap e espelhada em knowledge/templates/cursor/ e no template; teste de igualdade mantido. As crases dessas regras passaram a citar só caminhos que também existem no projeto gerado (ex.: .cursor/rules/ e AGENTS.md); knowledge/ e docs/memoria/ ficam em texto corrido, sem crase de arquivo ausente no cliente.'
 - id: VTX-181
   titulo: Lint de código e de Markdown no CI (ruff e markdownlint)
   fase: F8
