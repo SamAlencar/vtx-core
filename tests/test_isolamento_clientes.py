@@ -17,9 +17,12 @@ LEGADO = {"med-hub", "plataforma-projetos"}
 META = {".gitkeep", "readme.md", "conexoes.yaml", "conexoes.yml"}
 
 CODIGO = {
-    ".py", ".ts", ".tsx", ".js", ".jsx", ".go", ".rs", ".java", ".kt",
-    ".cs", ".cpp", ".c", ".rb", ".php", ".swift",
+    ".py", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".vue", ".svelte",
+    ".go", ".rs", ".java", ".kt", ".cs", ".cpp", ".c", ".rb", ".php",
+    ".swift", ".sh", ".ipynb",
 }
+# Diagramas versionados no legado (Mermaid renderizado).
+DIAGRAMA = {".html", ".svg", ".png", ".jpg", ".jpeg", ".webp"}
 SEGREDO_NOMES = {".env", ".env.local", ".pem", ".p12", "id_rsa", "credentials.json"}
 DADOS = {".db", ".sqlite", ".sqlite3", ".dump", ".sql", ".csv"}
 
@@ -88,8 +91,14 @@ class TestIsolamentoClientes(unittest.TestCase):
                 if suf in CODIGO:
                     falhas.append(f"{rel}: código de cliente/produto não fica em projects/")
                     continue
-                if nome not in LEGADO and baixo not in META and suf not in {".md", ".html"}:
-                    # Pasta nova de cliente: só ponteiro e metadados.
+                if nome in LEGADO:
+                    if suf not in {".md"} | DIAGRAMA and baixo not in META:
+                        falhas.append(
+                            f"{rel}: no legado só documentação (.md) e diagrama"
+                        )
+                    continue
+                # Pasta nova de cliente: só ponteiro e metadados.
+                if baixo not in META and suf != ".md":
                     falhas.append(
                         f"{rel}: em pasta que não é legado nem sandbox, só README/metadados"
                     )

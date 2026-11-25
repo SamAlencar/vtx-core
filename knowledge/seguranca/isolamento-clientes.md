@@ -25,7 +25,7 @@ Cada cliente ou produto entregue a cliente tem **um repositório próprio**, cri
 
 - (+) Segredos e PII não entram no vtx-core. O acesso segue o repositório em que a tarefa roda.
 - (+) O template e o bootstrap (VTX-170) são o caminho padrão de projeto novo.
-- (−) `projects/med-hub/` e `projects/plataforma-projetos/` ainda têm documentação no core (legado, a migrar para o repositório de cada produto). Não se adiciona código nem dado operacional nessas pastas.
+- (−) `projects/med-hub/` e `projects/plataforma-projetos/` ainda têm documentação no core (legado). A migração está na VTX-187. Não se adiciona código nem dado operacional nessas pastas.
 - Sandboxes de ferramenta da VTX (`projects/sandbox-*`) não são repositório de cliente; continuam no core, sem dado de cliente.
 
 ## 2. O que pode ficar em `projects/` no vtx-core

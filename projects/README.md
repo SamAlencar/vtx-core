@@ -4,8 +4,8 @@ Política: [isolamento por cliente](../knowledge/seguranca/isolamento-clientes.m
 
 ## Ponteiros e legado
 
-- [plataforma-projetos](plataforma-projetos/) — piloto da plataforma de projetos (VTX). Documentação ainda neste repositório (legado, a migrar). Sem código de produto nem segredo.
-- [med-hub](med-hub/) — 4med.co, em paralelo ao piloto (20/10/2026). PRD e ADRs ainda neste repositório (legado, a migrar para o repositório do produto). Sem código de aplicativo nem segredo.
+- [plataforma-projetos](plataforma-projetos/) — piloto da plataforma de projetos (VTX). Documentação ainda neste repositório (legado, a migrar — VTX-187). Sem código de produto nem segredo.
+- [med-hub](med-hub/) — 4med.co, em paralelo ao piloto (20/10/2026). PRD e ADRs ainda neste repositório (legado, a migrar para o repositório do produto — VTX-187). Sem código de aplicativo nem segredo.
 - [sandbox-impeccable](sandbox-impeccable/) — piloto da skill/detector Impeccable (VTX-127); é sandbox de ferramenta da VTX, não repositório de cliente.
 
 ## Na fila (fluxo site/landing page, depois do piloto e do med-hub; ordem a confirmar)

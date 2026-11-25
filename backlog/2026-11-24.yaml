@@ -240,3 +240,11 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Revisão do Tzu no PR #18, autorizada pelo Samuel em 24/11/2026 às 22:51. ci.yml do template declara permissions: contents: read (já no commit anterior; registrado aqui como tarefa). Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+
+  - id: VTX-187
+    titulo: "Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #22. Não executada neste passo; pode precisar do Samuel para o repositório de destino."
+
