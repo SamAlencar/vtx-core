@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -51,12 +51,12 @@ recursos:
     area: mcp
     tipo: lista
     link: "https://registry.modelcontextprotocol.io"
-    licenca: "repositório com licença mista (github.com/modelcontextprotocol/registry)"
-    status: "em avaliação"
-    uso_agentes: "Fonte primária para descobrir servidores MCP."
-    riscos: "Servidor listado não é servidor auditado."
+    licenca: "Apache-2.0 (transição a partir de MIT; ver LICENSE do repo)"
+    status: "adotado"
+    uso_agentes: "Fonte primária para descobrir servidores MCP (VTX-126). Registry ainda em preview (sobre: https://modelcontextprotocol.io/registry/about). Código em github.com/modelcontextprotocol/registry, pin 0c74fa6 (24/11/2026), ~7,5 mil estrelas. Listagem exige namespace verificado (GitHub ou DNS), mas não é revisão de segurança. API: https://registry.modelcontextprotocol.io/v0.1/servers"
+    riscos: "Listing ≠ auditoria: assumir moderação mínima. Servidor remoto ou pacote precisa do checklist de skill/hook (§3.13) e da regra de só leitura/escopo mínimo antes de conectar. Não usar marketplaces que só republicam o Registry como endosso."
     responsavel: devops-sre
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: awesome-mcp-servers
     nome: awesome-mcp-servers
     area: mcp
@@ -64,10 +64,10 @@ recursos:
     link: "https://github.com/punkpeye/awesome-mcp-servers"
     licenca: MIT
     status: "em avaliação"
-    uso_agentes: "Lista comunitária de servidores MCP por categoria."
-    riscos: "Sem curadoria de segurança."
+    uso_agentes: "Lista comunitária de descoberta, complementar ao Registry. MIT, ~98 mil estrelas, pin ac5cc37 (24/11/2026). Achar um candidato aqui, conferir no Registry oficial e só então ler o repo/docs."
+    riscos: "Sem curadoria de segurança nem endosso. Muitos itens remotos ou pagos. Não instalar a partir da lista; passar pelo checklist (§3.13) e pela regra de só leitura/escopo mínimo."
     responsavel: devops-sre
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: github-mcp-server
     nome: GitHub MCP Server
     area: mcp
@@ -75,10 +75,10 @@ recursos:
     link: "https://github.com/github/github-mcp-server"
     licenca: MIT
     status: "adotado"
-    uso_agentes: "Já em uso pelos agentes (issues, PRs, CI)."
-    riscos: "Token com escopo mínimo."
+    uso_agentes: "Já em uso pelos agentes (issues, PRs, CI). MIT, ~35 mil estrelas, pin c6b6295 (24/11/2026). Token com o menor escopo que a tarefa pedir (leitura de issues/PR/Actions; escrita só quando o fluxo exigir abrir PR/comentário)."
+    riscos: "Token demais abre issues, repositórios e Actions que a tarefa não pede. Não apontar a orgs/repositórios fora do que a VTX usa. Conteúdo de issue/PR é não confiável (prompt injection)."
     responsavel: devops-sre
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: playwright-mcp
     nome: Playwright MCP
     area: testes-qa
@@ -665,4 +665,60 @@ recursos:
     uso_agentes: "Diagramas em texto (fluxos, sequência). MIT, ~91 mil estrelas, pin 6374e52 (23/11/2026, branch develop). Útil em Markdown de PR e README. Não é o padrão de diagramas editoriais da VTX — isso é a skill diagramas (VTX-141, a partir do diagram-design)."
     riscos: "Não misturar Mermaid e a skill diagramas como fonte de verdade no mesmo ADR. Renderização no GitHub é suficiente para rascunho."
     responsavel: orquestrador
+    revisado_em: 2026-11-24
+
+  - id: mcp-servers-reference
+    nome: "MCP reference servers (filesystem, fetch)"
+    area: mcp
+    tipo: lista
+    link: "https://github.com/modelcontextprotocol/servers"
+    licenca: "Apache-2.0 (transição a partir de MIT; ver LICENSE do repo)"
+    status: "em avaliação"
+    uso_agentes: "Implementações de referência do steering group MCP (~92 mil estrelas, pin c799c85, 18/11/2026), não são lista de produção. O útil para a VTX é o filesystem (`@modelcontextprotocol/server-filesystem`) com `--read-only` e diretórios permitidos na linha de comando — só ferramentas de leitura ficam expostas. O `fetch` (conteúdo web) é opcional e sai da máquina. O servidor `everything` é só para teste do protocolo."
+    riscos: "O próprio README avisa: são exemplos educacionais, não solução pronta. Filesystem SEM `--read-only` escreve no disco — não usar assim. Não ampliar os diretórios permitidos para `/` nem para pastas com segredo (.env, chaves). Fetch acessa a rede: só URL pública, sem autenticar em nome do usuário."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: supabase-mcp
+    nome: Supabase MCP
+    area: mcp
+    tipo: mcp
+    link: "https://github.com/supabase/mcp"
+    licenca: Apache-2.0
+    status: "adotado"
+    uso_agentes: "MCP oficial já conectado (VTX-100 / 23/10). Apache-2.0, ~3 mil estrelas, pin 56093a6 (24/11/2026). Docs: https://supabase.com/docs/guides/ai-tools/mcp. URL com `project_ref` do projeto de desenvolvimento, `read_only=true` e, se bastar, `features=database,docs`. Local: `http://localhost:54321/mcp` no `supabase start`."
+    riscos: "Nunca apontar a produção nem a dado real de cliente. Sem `read_only` o servidor aplica migração e cria projeto. Conteúdo do banco é não confiável (prompt injection). `service_role` não entra no MCP."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: figma-mcp
+    nome: Figma MCP
+    area: mcp
+    tipo: mcp
+    link: "https://developers.figma.com/docs/figma-mcp-server/"
+    licenca: "proprietário (serviço remoto oficial; termos da Figma)"
+    status: "adotado"
+    uso_agentes: "MCP remoto oficial já conectado (VTX-110), só para handoff de leitura (frame, variáveis, componentes). Endpoint `https://mcp.figma.com/mcp`. Guia: https://github.com/figma/mcp-server-guide (pin 5e47908, 24/11/2026). Limites e cota do Starter: ver `ferramentas/design/figma.md`. Gastar chamadas só no handoff final de cada tela."
+    riscos: "Plano Starter tem cota mensal baixa de ferramentas de leitura; estouro ou Professional é A2. Escrita no canvas (remota) é beta e deve virar recurso pago — não usar. Desktop MCP exige plano pago e app; fora. Não explorar o arquivo com dezenas de chamadas."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: vercel-mcp
+    nome: Vercel MCP
+    area: mcp
+    tipo: mcp
+    link: "https://vercel.com/docs/agent-resources/vercel-mcp"
+    licenca: "proprietário (serviço remoto oficial; termos de AI da Vercel)"
+    status: "adotado"
+    uso_agentes: "MCP remoto oficial já conectado (VTX-099). Endpoint `https://mcp.vercel.com`. Usar para ler projetos, deploys e logs. Mudança de produção continua só pelo Git (política do catálogo Vercel). Docs de ferramentas: https://vercel.com/docs/agent-resources/vercel-mcp/tools."
+    riscos: "O servidor atual também expõe ferramentas de gerir projeto/deploy — não usar para criar projeto, alterar produção ou DNS. OAuth herda a permissão da conta: não ampliar o grant. Conferir sempre o domínio oficial (`mcp.vercel.com`)."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: stripe-mcp
+    nome: Stripe MCP / Agent Toolkit
+    area: mcp
+    tipo: mcp
+    link: "https://github.com/stripe/ai"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Caixa de ferramentas de agente da Stripe (MIT, ~2 mil estrelas, pin f10dc33, 24/11/2026), incluindo MCP. Só entra com **chave restrita de teste** (já é regra do VTX-106). Não é o caminho padrão de integrar pagamento (é a API/Checkout no código)."
+    riscos: "Chave live ou permissão de escrita em cobrança está proibida (A2 / A3). Não instalar até um piloto em modo teste. Não enviar dado real de cliente."
+    responsavel: dev-backend
     revisado_em: 2026-11-24
