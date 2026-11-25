@@ -176,9 +176,9 @@ tarefas:
   - id: VTX-175
     titulo: "Política de isolamento por cliente"
     area: "Segurança"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Cadastrada a partir da auditoria 24/11/2026, P1 item 11. Não executada neste passo."
+    notas: "Auditoria P1 item 11. ADR um repo por cliente, permissões dos papéis recortadas, teste impede código/segredo em projects/<cliente>/. Skills: writing-plans, verification-before-completion (unittest, validar_backlog, verificar_links, ajudou). Ferramentas: git, gh, unittest. Correu bem, custo baixo."
   - id: VTX-176
     titulo: "Empacotar o núcleo de funções de domínio (core/vtx_ifc)"
     area: "Domínio BIM"
