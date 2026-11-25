@@ -1612,9 +1612,9 @@ tarefas:
   fase: F3
   area: Segurança
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: '.gitignore + .env.example + .pre-commit-config.yaml'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 12. .gitignore da raiz deve cobrir .env* (exceto .env.example), node_modules/, dist/, *.db, *.sqlite e .venv/. Pre-commit roda gitleaks. README documenta a instalação. O template de projeto (VTX-170) já tem .gitignore e .env.example no cliente; esta tarefa cobre a raiz do vtx-core.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 12. Concluída em 24/11/2026: .gitignore da raiz cobre .env/.env.* (exceto .env.example), node_modules/, dist/, *.db, *.sqlite e .venv/. .env.example na raiz. .pre-commit-config.yaml roda gitleaks v8.30.1 (igual ao job qualidade). README documenta pip install pre-commit && pre-commit install.'
 
 - id: VTX-174
   titulo: Human-in-the-loop verificável (evidência de aprovação A2)
@@ -1685,9 +1685,9 @@ tarefas:
   fase: F9
   area: 'Integração Cursor'
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: '.cursor/rules/eficiencia-de-tokens.mdc + knowledge/templates/cursor/eficiencia-de-tokens.mdc'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16. Uma fonte única copiada pelo bootstrap, com teste de igualdade enquanto as duas cópias existirem. Hoje .cursor/rules/eficiencia-de-tokens.mdc e knowledge/templates/cursor/eficiencia-de-tokens.mdc são idênticos. Na revisão do PR #18 (24/11/2026), o Tzu registrou que economia-de-contexto.mdc (e eficiencia-de-tokens.mdc) ainda citam caminhos do vtx-core (ex.: knowledge/) que não existem no cliente após o bootstrap copiar a fonte da raiz; tratar nesta tarefa junto com a fonte única.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16, com o item da revisão do PR #18. Concluída em 24/11/2026: fonte em .cursor/rules/, copiada pelo bootstrap e espelhada em knowledge/templates/cursor/ e no template; teste de igualdade mantido. As crases dessas regras passaram a citar só caminhos que também existem no projeto gerado (ex.: .cursor/rules/ e AGENTS.md); knowledge/ e docs/memoria/ ficam em texto corrido, sem crase de arquivo ausente no cliente.'
 - id: VTX-181
   titulo: Lint de código e de Markdown no CI (ruff e markdownlint)
   fase: F8
@@ -1751,3 +1751,46 @@ tarefas:
   - VTX-175
   notas: 'Seguimento da revisão do Tzu no PR #22 (24/11/2026). Objetivo: tirar do vtx-core o PRD, os ADRs e o restante da documentação de produto hoje em projects/med-hub/ e projects/plataforma-projetos/, deixando só ponteiro e metadados públicos, conforme a política de isolamento. Arquivos afetados: essas pastas no core e os repositórios de destino. Critério de aceite: no vtx-core, cada pasta tem só README (link do repo) e metadados públicos; o conteúdo migrado está no repositório do produto, com links atualizados no INDEX se couber. Exige o repositório de destino (pode precisar do Samuel para indicar ou criar).'
 
+- id: VTX-188
+  titulo: Remover a cópia redundante das regras de tokens em knowledge/templates/cursor
+  fase: F9
+  area: Integração Cursor
+  prioridade: 67
+  status: a fazer
+  entregavel: knowledge/templates/cursor/README.md
+  depende_de:
+  - VTX-180
+  notas: 'Seguimento da revisão do Tzu no PR #21 (item 4), 24/11/2026. Objetivo: deixar uma fonte só em .cursor/rules/, já que o bootstrap copia daí; retirar a cópia em knowledge/templates/cursor/. Arquivos afetados: knowledge/templates/cursor/, o teste de igualdade e o README do catálogo. Critério de aceite: as regras de tokens/contexto não existem mais em knowledge/templates/cursor/; o bootstrap e o teste continuam conferindo a cópia no template de projeto contra a fonte da raiz; validar_backlog e os testes passam.'
+
+- id: VTX-189
+  titulo: Bootstrap criar docs/memoria/ no repositório do cliente
+  fase: F9
+  area: Integração Cursor
+  prioridade: 68
+  status: a fazer
+  entregavel: scripts/bootstrap_projeto.sh + templates/projeto/docs/memoria/
+  depende_de:
+  - VTX-180
+  notas: 'Seguimento da revisão do Tzu no PR #21 (item 5), 24/11/2026. Objetivo: o projeto gerado ter o memory bank (ou um ponteiro claro para o modelo em knowledge/templates/memoria-projeto/), já que a regra de tokens deixou docs/memoria/ em texto corrido. Arquivos afetados: templates/projeto/, scripts/bootstrap_projeto.sh, .cursor/rules/eficiencia-de-tokens.mdc se voltar a citar caminhos. Critério de aceite: o bootstrap gera docs/memoria/ (ou equivalente) no cliente; as crases das regras de tokens, se existirem, apontam para caminhos que existem no projeto gerado; o teste de bootstrap cobre isso.'
+
+- id: VTX-190
+  titulo: Levar o pre-commit com gitleaks ao template de projeto
+  fase: F3
+  area: Segurança
+  prioridade: 69
+  status: a fazer
+  entregavel: templates/projeto/.pre-commit-config.yaml
+  depende_de:
+  - VTX-173
+  notas: 'Seguimento da revisão do Tzu no PR #21 (item 7), 24/11/2026. Objetivo: o repositório de cliente herdar a mesma higiene da raiz (hook local com gitleaks). Arquivos afetados: templates/projeto/.pre-commit-config.yaml, templates/projeto/README.md, scripts/bootstrap_projeto.sh se precisar. Critério de aceite: o projeto gerado pelo bootstrap tem .pre-commit-config.yaml com gitleaks na mesma versão do CI (8.30.1); o README do cliente documenta a instalação; o teste de bootstrap confere o arquivo.'
+
+- id: VTX-191
+  titulo: Validar o hook pre-commit de gitleaks no CI
+  fase: F3
+  area: Segurança
+  prioridade: 70
+  status: a fazer
+  entregavel: .github/workflows/testes.yml
+  depende_de:
+  - VTX-173
+  notas: 'Seguimento da revisão do Tzu no PR #21 (item 3), 24/11/2026. Objetivo: o CI confirmar que o .pre-commit-config.yaml é válido, além do job qualidade que já roda gitleaks no diff. Arquivos afetados: .github/workflows/testes.yml, .pre-commit-config.yaml. Critério de aceite: o CI roda pre-commit validate-config (ou equivalente) e falha se o hook estiver quebrado; a proteção do diff continua no job qualidade. Exige aprovação se mexer no workflow (precisa do Samuel).'

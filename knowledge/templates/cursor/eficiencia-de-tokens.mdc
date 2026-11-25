@@ -8,17 +8,17 @@ Modo de uso: em sessão **com humano** valem as regras como estão. Em execuçã
 
 ## 1. Roteamento e regras modulares
 - Antes de tarefa técnica, identifique domínio, linguagem ou framework.
-- Verifique se há regras em `.cursor/rules/`, skills em `.cursor/skills/` e docs em `knowledge/`. Se não houver: com humano, pergunte se deseja fornecer ou buscar diretrizes; autônomo, use `knowledge/` e registre a lacuna no backlog.
+- Verifique se há regras em `.cursor/rules/`, skills do Cursor (se o repositório tiver) e a documentação do projeto (`AGENTS.md` e, no vtx-core, a pasta knowledge/). Se não houver: com humano, pergunte se deseja fornecer ou buscar diretrizes; autônomo, use a documentação que existir e registre a lacuna no backlog.
 
 ## 2. Interceptação de contexto
 - Não indexe `@Codebase` nem leia arquivos inteiros para dúvidas pontuais; use busca (rg) e leia só o trecho.
 - Arquivo citado sem linha/função: com humano, pergunte qual bloco; autônomo, localize por busca.
 
 ## 3. Plano de voo
-- Mudança em vários arquivos, novas rotas ou mais de 30 linhas: apresente antes um plano curto (lógica e arquivos afetados). Com humano, aguarde "Ok". Autônomo: grave o plano em `docs/planos/` e siga.
+- Mudança em vários arquivos, novas rotas ou mais de 30 linhas: apresente antes um plano curto (lógica e arquivos afetados). Com humano, aguarde "Ok". Autônomo: grave o plano no repositório (no vtx-core, em docs/planos/) e siga.
 
 ## 4. Saída em diffs
-- Nunca reescreva o arquivo inteiro na resposta; mostre só o trecho alterado com `// ... (código existente)`.
+- Nunca reescreva o arquivo inteiro na resposta; mostre só o trecho alterado, omitindo o código que não mudou.
 - Direto e conciso; sem saudações ou teoria longa, salvo pedido.
 
 ## 5. Auditoria de recursos e GUI-first
@@ -26,8 +26,8 @@ Modo de uso: em sessão **com humano** valem as regras como estão. Em execuçã
 - Tarefa trivial (regex, typo): sugira modelo mais leve.
 
 ## 6. Memory log
-- O bank do projeto está em `docs/memoria/` e o mapa em `docs/CODEBASE_MAP.md`. Leia só o arquivo que a tarefa pedir (ponteiro no `AGENTS.md`; modelo em `knowledge/templates/memoria-projeto/`). Não carregue a pasta inteira em toda sessão.
-- Ao contornar limite, corrigir erro persistente ou achar solução não óbvia, registre em `docs/memoria/troubleshooting.md`: `[Problema] -> [Falhou] -> [Solução]`. Decisão leve vai em `docs/memoria/decisions.md`.
+- O bank do projeto, quando existir, está em docs/memoria/ e o mapa em docs/CODEBASE_MAP.md. Leia só o arquivo que a tarefa pedir (ponteiro no `AGENTS.md`). Não carregue a pasta inteira em toda sessão.
+- Ao contornar limite, corrigir erro persistente ou achar solução não óbvia, registre no memory bank: `[Problema] -> [Falhou] -> [Solução]`. Decisão leve vai no registro de decisões do bank.
 
 ## 7. Isolamento de erros
 - Em stack traces, ignore caminhos do SO e bibliotecas de terceiros; foque na exceção de topo e nas linhas de arquivos do projeto.

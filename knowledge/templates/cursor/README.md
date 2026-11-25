@@ -12,3 +12,5 @@ Em cada repositório de projeto também entram, sob demanda (não always-on):
 - `economia-de-contexto.mdc` → `.cursor/rules/` (sob demanda, `alwaysApply: false`) — filtrar logs, rg em vez de ler arquivo, resumir JSON e diffs (VTX-133).
 
 O repositório de cliente gerado pelo [template de projeto](../projeto.md) (`scripts/bootstrap_projeto.sh`) já recebe essas regras em `.cursor/rules/`.
+
+A fonte das regras de tokens/contexto é `.cursor/rules/` no vtx-core. `scripts/bootstrap_projeto.sh` copia essas duas regras para o repositório do cliente; `knowledge/templates/cursor/` guarda a mesma cópia. Um teste confere a igualdade enquanto as três existirem (VTX-180). Citações em crase nessas regras precisam existir também no projeto gerado.

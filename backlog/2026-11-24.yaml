@@ -164,9 +164,9 @@ tarefas:
   - id: VTX-173
     titulo: "Higiene de segredos (.gitignore, .env.example e pre-commit com gitleaks)"
     area: "Segurança"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Cadastrada a partir da auditoria 24/11/2026, P1 item 12. Não executada neste passo."
+    notas: "Auditoria P1 item 12. .gitignore, .env.example e pre-commit com gitleaks 8.30.1 na raiz; README documenta a instalação. Skills: writing-plans, verification-before-completion (unittest, ajudou). Ferramentas: git, unittest. Correu bem, custo baixo."
   - id: VTX-174
     titulo: "Human-in-the-loop verificável (evidência de aprovação A2)"
     area: "Base de Conhecimento"
@@ -206,9 +206,9 @@ tarefas:
   - id: VTX-180
     titulo: "Remover a duplicação da regra de eficiência de tokens"
     area: "Integração Cursor"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Cadastrada a partir da auditoria 24/11/2026, P2 item 16. Não executada neste passo."
+    notas: "Auditoria P2 item 16 e ressalva do Tzu no PR #18. Fonte em .cursor/rules/, cópias iguais, crases válidas também no projeto gerado. Skills: verification-before-completion (unittest, bootstrap, ajudou). Ferramentas: git, unittest. Correu bem, custo baixo."
   - id: VTX-181
     titulo: "Lint de código e de Markdown no CI (ruff e markdownlint)"
     area: "Qualidade"
@@ -247,4 +247,29 @@ tarefas:
     status: "a fazer"
     responsavel: "agente-orquestrador"
     notas: "Cadastrada a partir da revisão do Tzu no PR #22. Não executada neste passo; pode precisar do Samuel para o repositório de destino."
+
+  - id: VTX-188
+    titulo: "Remover a cópia redundante das regras de tokens em knowledge/templates/cursor"
+    area: "Integração Cursor"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 4. Não executada neste passo."
+  - id: VTX-189
+    titulo: "Bootstrap criar docs/memoria/ no repositório do cliente"
+    area: "Integração Cursor"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 5. Não executada neste passo."
+  - id: VTX-190
+    titulo: "Levar o pre-commit com gitleaks ao template de projeto"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 7. Não executada neste passo."
+  - id: VTX-191
+    titulo: "Validar o hook pre-commit de gitleaks no CI"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 3. Não executada neste passo. Mexe em workflow."
 

@@ -35,6 +35,11 @@ tests/            Testes dos scripts do backlog (unittest)
 .github/workflows CI de testes e qualidade (`testes.yml`)
 ```
 
+## Qualidade e segredos
+
+- Instale o hook local uma vez: `pip install pre-commit && pre-commit install`. Ele roda [gitleaks](https://github.com/gitleaks/gitleaks) 8.30.1, a mesma versão do job `qualidade` no CI. Não use `--no-verify`.
+- `.env` e variantes ficam no `.gitignore`; o modelo é [`.env.example`](.env.example).
+
 ## Princípio de economia de tokens
 
 A base de conhecimento cresce **incrementalmente**: um tema por sessão, cada documento curto e autocontido
