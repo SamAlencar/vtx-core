@@ -871,11 +871,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 51
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/revisao-periodica.md'
   depende_de:
   - VTX-098
-  notas: 'Trimestral, dentro da manutenção quinzenal: custos, limites, versões, segurança, ferramentas sem uso.'
+  notas: 'Trimestral, dentro da manutenção quinzenal: custos, limites, versões, segurança, ferramentas sem uso. Concluída em 2026-11-24: knowledge/ferramentas/revisao-periodica.md (cadência trimestral na quinzenal, cinco eixos, ata, A2).'
 - id: VTX-085
   titulo: 'Planejamento da plataforma de acompanhamento'
   fase: F11
