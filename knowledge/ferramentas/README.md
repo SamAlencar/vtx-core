@@ -83,13 +83,13 @@ Notas (células que não são um P óbvio):
 - **Google + Grok Bot** é o canal da operação. Na [entrevista com o cliente](../processos/fluxos/entrevista-cliente.md) entram Agenda, Meet e ata no Drive.
 
 ## 6. Revisão periódica
-Uma vez por trimestre, dentro da manutenção quinzenal (VTX-113), revisam-se custos, limites dos planos gratuitos, versões e mudanças de preço, incidentes de segurança e ferramentas sem uso. Status e datas são atualizados, e o que muda custo ou contrato vai para o Samuel.
+O procedimento está em [revisao-periodica.md](revisao-periodica.md) (VTX-113): uma vez por trimestre, no primeiro ciclo da manutenção quinzenal de janeiro, abril, julho e outubro, revisam-se custos, limites dos planos gratuitos, versões, incidentes de segurança e ferramentas sem uso. Status e a data `Revisado em` são atualizados (a data avança mesmo sem mudança). O que muda custo, contrato, dado pessoal ou o padrão vai para o Samuel (A2).
 
 ## Checklist
 - [x] Estrutura, categorias, modelo, critérios e esqueleto da matriz
 - [x] Um documento por ferramenta (VTX-099 a VTX-111): [Vercel](hospedagem/vercel.md), [Supabase](backend/supabase.md), [GitHub Actions](ci-cd/github-actions.md), [Cursor](ia-dev/cursor.md), [Appwrite](backend/appwrite.md), [Firebase](backend/firebase.md), [Expo](mobile/expo.md), [Stripe/MP](pagamentos/stripe-mercado-pago.md), [Sentry](observabilidade/sentry.md), [Cloudflare](ci-cd/cloudflare.md), [Docker](ci-cd/docker.md), [Figma](design/figma.md), [Google + Grok Bot](comunicacao/google-workspace.md)
 - [x] Matriz completa (VTX-112)
-- [ ] Processo de revisão (VTX-113)
+- [x] Processo de revisão (VTX-113): [revisao-periodica.md](revisao-periodica.md)
 
 ## Fontes
 - Nygard, M. *Documenting Architecture Decisions* (2011): formato ADR.

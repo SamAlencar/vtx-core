@@ -12,3 +12,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Cancelada por Samuel em 2026-11-24 (julgou desnecessária); reversível. SCHEMA.md e backlog_lib só admitem a fazer / em andamento / concluído; status desconhecido vira a fazer e o proxima_tarefa.py a pegaria (prioridade 40). Por isso o status efetivo ficou concluído, único valor permitido que sai da fila."
+  - id: VTX-113
+    titulo: "Processo periódico de revisão de ferramentas"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/revisao-periodica.md: revisão trimestral no primeiro ciclo quinzenal de jan/abr/jul/out; cinco eixos (custos, limites, versões, segurança, sem uso); ata no diário; A2 para custo/contrato/dados/padrão; sem uso só vira descontinuada após dois trimestres e se não for P. README §6 e INDEX atualizados. Varredura de recursos fica para a VTX-129. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-113.md; Review Focus evitou descontinuar P no primeiro trimestre e antecipar a VTX-129, ajudou), verification-before-completion (unittest, test -e, URLs, proxima_tarefa, ajudou), brainstorming não aplicada (não é spec/PRD). Bibliotecas: nenhuma. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
