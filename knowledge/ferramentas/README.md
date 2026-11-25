@@ -83,7 +83,7 @@ Notas (células que não são um P óbvio):
 - **Google + Grok Bot** é o canal da operação. Na [entrevista com o cliente](../processos/fluxos/entrevista-cliente.md) entram Agenda, Meet e ata no Drive.
 
 ## 6. Revisão periódica
-O procedimento está em [revisao-periodica.md](revisao-periodica.md) (VTX-113): uma vez por trimestre, no primeiro ciclo da manutenção quinzenal de janeiro, abril, julho e outubro, revisam-se custos, limites dos planos gratuitos, versões, incidentes de segurança e ferramentas sem uso. Status e a data `Revisado em` são atualizados (a data avança mesmo sem mudança). O que muda custo, contrato, dado pessoal ou o padrão vai para o Samuel (A2).
+O procedimento está em [revisao-periodica.md](revisao-periodica.md) (VTX-113 e VTX-129): uma vez por trimestre, no primeiro ciclo da manutenção quinzenal de janeiro, abril, julho e outubro, revisam-se custos, limites dos planos gratuitos, versões, incidentes de segurança e ferramentas sem uso. Na mesma quinzenal, varre-se 1–2 áreas de [recursos.yaml](recursos.yaml), com no máximo 3 candidatos; no trimestre reavaliam-se os adotados. Status e a data `Revisado em` são atualizados (a data avança mesmo sem mudança). O que muda custo, contrato, dado pessoal ou o padrão vai para o Samuel (A2).
 
 ## Checklist
 - [x] Estrutura, categorias, modelo, critérios e esqueleto da matriz

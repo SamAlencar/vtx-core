@@ -78,3 +78,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Seção Recursos por papel no fim de cada agents/*.md, filtrada por area (só adotados; MCP pelo responsável, Arquiteto vê os MCPs adotados). Produto só consulta o catálogo. Recorte nos 8 fluxos apontando o YAML, sem copiar tabelas. Fonte de verdade: recursos.yaml. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-128.md; Review Focus evitou duplicar o YAML e promover em avaliação, ajudou), verification-before-completion (unittest, test -e nos links, proxima_tarefa, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+  - id: VTX-129
+    titulo: "Varredura periódica de recursos na manutenção quinzenal e revisão trimestral"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "revisao-periodica.md §2.1: rodízio de 1–2 áreas do recursos.yaml por quinzenal, máx. 3 candidatos (sem promover neste passo); no trimestre, reavaliar adotados (regra dos dois trimestres da VTX-113). Checklist, modelo de ata e README §6 atualizados. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-129.md; Review Focus evitou rotina paralela e varredura total a cada ciclo, ajudou), verification-before-completion (unittest, test -e, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
