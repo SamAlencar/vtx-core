@@ -21,7 +21,7 @@ Fora do objetivo: substituir o GitHub, o Cursor ou o backlog YAML, e guardar seg
 | Samuel (dono/aprovador) | Visão geral, aprovações, decisões, conexões, custos | Leitura total; aprova pelo GitHub |
 | Orquestrador | Status, handoffs, alertas | Escreve só no `vtx-core` (YAML via PR/commit) |
 | Demais papéis ([agents/](../../agents/README.md)) | Eventos, decisões, manifestos de conexão | Escrevem via YAML/PR |
-| Público | Só o [painel público](https://samalencar.github.io/vtx_painel/) sanitizado | Sem acesso |
+| Público | Só o [painel público](https://samalencar.github.io/painel-central/) sanitizado | Sem acesso |
 
 ## 3. Módulos
 | # | Módulo | Conteúdo | Etapa |
@@ -46,7 +46,7 @@ conexoes:
     recurso: SamAlencar/plataforma-projetos
     ambiente: producao            # desenvolvimento | homologacao | producao
     responsavel: devops-sre       # papel de agents/
-    segredo_ref: "GitHub secret PANEL_TOKEN"   # SÓ a referência de onde está; nunca o valor
+    segredo_ref: "GitHub secret NOME_DO_TOKEN"   # SÓ a referência de onde está; nunca o valor
     verificacao: {tipo: github_api}            # github_api | http | tls | dns | manual
     expira_em: null               # token/domínio/certificado, se houver
   - id: site
@@ -83,7 +83,7 @@ Um painel só em Markdown não basta para um ambiente completo, porque não dá 
 Fica descartado neste momento: backend próprio, edição pela plataforma e qualquer forma de IDE.
 
 ## 7. Segurança
-- Nada sensível no `vtx_painel` público.
+- Nada sensível no [painel público](https://samalencar.github.io/painel-central/). O repositório `vtx_painel` e o secret `PANEL_TOKEN` do vtx-core foram aposentados (VTX-171).
 - Tokens de leitura com escopo mínimo, em secrets do GitHub, nunca no chat ou no repositório. O manifesto guarda só a referência.
 - Interface web somente com login. URL sem login = bloqueio de release.
 - O gerador e o verificador nunca escrevem no `vtx-core` nem nos serviços verificados.

@@ -39,7 +39,7 @@ jobs:
       - run: npm test -- --coverage
       - run: npm run build
 ```
-Referência interna: o próprio vtx-core usa `testes.yml` (unittest) e `sincronizar-painel.yml` (publica o painel quando `backlog/` muda).
+Referência interna: o próprio vtx-core usa `testes.yml` (unittest e o job `qualidade`). O painel público vive em `SamAlencar/painel-central` e não é publicado por um workflow deste repositório (VTX-171).
 
 ## 4. Métricas (DORA)
 Frequência de deploy, tempo de mudança (commit → produção), taxa de falha de mudança e tempo de recuperação. Meta inicial VTX: deploy em homologação diário, PR aberto < 1 dia, falha de mudança < 15 % ([DORA](https://dora.dev/guides/dora-metrics-four-keys/)).

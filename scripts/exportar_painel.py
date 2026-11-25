@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Exporta o backlog para o painel público, SOMENTE com campos sanitizados.
+"""Exporta o backlog para JSON, SOMENTE com campos sanitizados.
 
 Uso: python scripts/exportar_painel.py <dir_backlog> <arquivo_saida.json>
 Projeto: id, titulo, fase, area, prioridade, status. Dias: data, id, titulo, area, status.
 Notas, responsáveis e entregáveis (caminhos) NUNCA são exportados.
+
+O painel público (SamAlencar/painel-central) se atualiza sozinho a partir da API;
+este script é um helper local e não publica o site (VTX-171).
 """
 import json
 import os

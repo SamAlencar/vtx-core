@@ -142,3 +142,10 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "scripts/validar_backlog.py (schema, entregável das concluídas, knowledge no INDEX), scripts/verificar_links.py e job qualidade no testes.yml com gitleaks 8.30.1 no diff. F0 sem entregável passa. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-168.md; Review Focus evitou reprovar a F0 e a Action paga do gitleaks, ajudou), verification-before-completion (unittest, scripts no repo real, ajudou), brainstorming não aplicada. Bibliotecas: pyyaml (já no CI). Ferramentas: git, gh, unittest, gitleaks (só no CI). Correu bem, custo baixo."
+
+  - id: VTX-171
+    titulo: "Corrigir ou aposentar o pipeline do painel (auditoria P0 item 1)"
+    area: "Plataforma interna"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Aprovação do Samuel em 24/11/2026, 22:32 (America/Sao_Paulo). Workflow sincronizar-painel.yml removido. README, SCHEMA, git-e-ci-cd e plataforma-acompanhamento passam a citar o painel-central (https://samalencar.github.io/painel-central/) como painel público; vtx-acompanhamento permanece a plataforma privada (F11). exportar_painel.py segue como helper local. Secret PANEL_TOKEN revogado. Repositório painel-central não foi alterado. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-171.md; Review Focus evitou redirecionar o workflow morto e mexer no painel-central, ajudou), verification-before-completion (unittest, verificar_links, validar_backlog, gh secret list, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."

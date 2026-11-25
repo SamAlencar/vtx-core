@@ -39,10 +39,10 @@ tarefas:
 - Campos opcionais PRIVADOS no mestre: `depende_de` (lista de ids) e `notas`.
 - A ordem de execução é a `prioridade`, não o id (ex.: F9 vem antes de F8). A ordem das fases no painel segue a lista `fases`.
 - Após editar o mestre, rodar `python scripts/gerar_roadmap.py` para atualizar `knowledge/ROADMAP.md`.
-- `titulo`, `area` e `fase` são publicados no painel: **nunca** colocar dados sensíveis neles.
-- Exportado por `scripts/exportar_painel.py`: projeto (id, titulo, fase, area, prioridade, status) e diários (data, id, titulo, area, status).
+- `titulo`, `area` e `fase` aparecem no [painel público](https://samalencar.github.io/painel-central/): **nunca** colocar dados sensíveis neles.
+- O painel público (`SamAlencar/painel-central`) lê o backlog pela API e se atualiza no próprio repositório. `scripts/exportar_painel.py` é um exportador local de campos sanitizados (projeto: id, titulo, fase, area, prioridade, status; diários: data, id, titulo, area, status); não publica o site.
 
 ## Rotina diária
 1. `python scripts/proxima_tarefa.py` → mostra a tarefa em andamento ou a próxima "a fazer" de menor prioridade.
 2. Executar a tarefa (um documento por sessão) e atualizar `knowledge/INDEX.md`.
-3. Criar/atualizar `backlog/AAAA-MM-DD.yaml` citando o id com o novo status e fazer push → o painel atualiza sozinho.
+3. Criar/atualizar `backlog/AAAA-MM-DD.yaml` citando o id com o novo status e fazer push. O [painel público](https://samalencar.github.io/painel-central/) reflete a mudança na próxima atualização dele (cerca de 30 min), não por um workflow deste repositório.
