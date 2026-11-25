@@ -45,6 +45,8 @@ Regras de escrita (Anthropic, OpenAI GPT-4.1 Guide, `writing-for-agents`):
 | Conhecimento | `knowledge/` | Qualquer papel, revisado | Permanente, revisado na manutenção quinzenal |
 | Passagem | Nota de handoff (§5) | Quem encerra a sessão | Até a próxima sessão |
 | Lições | Seção "Lições" do relatório semanal | Orquestrador | Vira regra ou doc se repetir 2 vezes |
+| Memory bank do projeto | `docs/memoria/` (modelo em [templates/memoria-projeto](../templates/memoria-projeto/README.md)) | Quem fecha o incremento | Permanente; contexto ativo se enxuga ao fechar. Ponteiro só, leitura sob demanda |
+| Mapa de codebase | `docs/CODEBASE_MAP.md` ([padrão](../engenharia/mapa-de-codebase.md)) | Arquiteto / Dev do stack | Atualiza quando a estrutura muda |
 
 Regras: **segredos e dados pessoais nunca entram em memória, prompt ou artefato** (ficam em secrets do GitHub/hospedagem); memória desatualizada é pior que nenhuma: quem muda o comportamento atualiza o doc no mesmo commit.
 

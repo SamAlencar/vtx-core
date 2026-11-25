@@ -26,7 +26,8 @@ Modo de uso: em sessão **com humano** valem as regras como estão. Em execuçã
 - Tarefa trivial (regex, typo): sugira modelo mais leve.
 
 ## 6. Memory log
-- Ao contornar limite, corrigir erro persistente ou achar solução não óbvia, registre em `decisions.md` do projeto: `[Problema] -> [Abordagem que falhou] -> [Solução real]`.
+- O bank do projeto está em `docs/memoria/` e o mapa em `docs/CODEBASE_MAP.md`. Leia só o arquivo que a tarefa pedir (ponteiro no `AGENTS.md`; modelo em `knowledge/templates/memoria-projeto/`). Não carregue a pasta inteira em toda sessão.
+- Ao contornar limite, corrigir erro persistente ou achar solução não óbvia, registre em `docs/memoria/troubleshooting.md`: `[Problema] -> [Falhou] -> [Solução]`. Decisão leve vai em `docs/memoria/decisions.md`.
 
 ## 7. Isolamento de erros
 - Em stack traces, ignore caminhos do SO e bibliotecas de terceiros; foque na exceção de topo e nas linhas de arquivos do projeto.

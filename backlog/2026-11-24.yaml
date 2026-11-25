@@ -84,3 +84,16 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "revisao-periodica.md §2.1: rodízio de 1–2 áreas do recursos.yaml por quinzenal, máx. 3 candidatos (sem promover neste passo); no trimestre, reavaliar adotados (regra dos dois trimestres da VTX-113). Checklist, modelo de ata e README §6 atualizados. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-129.md; Review Focus evitou rotina paralela e varredura total a cada ciclo, ajudou), verification-before-completion (unittest, test -e, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+
+  - id: VTX-131
+    titulo: "Padrão de mapa de codebase por projeto (inspirado no Cartographer)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/engenharia/mapa-de-codebase.md: modelo original de docs/CODEBASE_MAP.md (visão, pontos de entrada, módulos, fluxos, convenções), geração por agente local e atualização só das seções afetadas. Cartographer (pin a62d169) sem licença — texto e código não copiados; ferramenta não instalada. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-131-132.md; Review Focus evitou copiar o fluxo do Cartographer e carregar o mapa always-on, ajudou), verification-before-completion (unittest, test -e, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-132
+    titulo: "Memory bank dos projetos em arquivos (adaptado de my-claude-code-setup e claude-mem)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/templates/memoria-projeto/: README e cinco modelos (padroes, decisions, troubleshooting, contexto-ativo, observacoes com decision/bugfix/security_alert), caminho canônico docs/memoria/, ponteiro sob demanda no AGENTS.md e na regra de eficiência. Sem hooks e sem serviço hospedado. Templates escritos do zero (MIT/Apache só como ideia). Skills: as da VTX-131 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
