@@ -66,3 +66,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "projects/sandbox-impeccable/: revisão no pin b49177d, engine 0.1.27 linux-x64 com SHA-256 conferido, telemetria off, sem login e sem hooks no vtx-core. Tela de teste gerou 5 avisos em 0,049 s (0 tokens de LLM). Decisão: adotado com restrições (detector + skill sob demanda; fora: npx install, hooks, conta/Pro). recursos.yaml e §3.10 atualizados. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-127.md; Review Focus evitou npx install na raiz, telemetria padrão e um A/B de tokens inventado, ajudou), verification-before-completion (checksum, unittest, test -e, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada no vtx-core; binário só no sandbox e gitignorado. Ferramentas: git, gh, curl, sha256sum, unittest. Correu bem, custo baixo."
+  - id: VTX-141
+    titulo: "Skill de diagramas editoriais (adaptada do diagram-design)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: ".cursor/skills/diagramas/ adaptada do cathrynlavery/diagram-design (MIT, pin 7a12007): SKILL.md em pt-BR, tema-vtx.css, templates de arquitetura/fluxograma/sequência, LICENSE+NOTICE. Fontes locais (system-ui/Segoe UI/Liberation), sem Google Fonts e sem scripts do origin. Quatro HTML+SVG em projects/med-hub/docs/adr/diagramas/, linkados nos ADRs. Tema provisório (não é marca oficial). Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-141.md; Review Focus evitou copiar os 45 tipos/scripts e o tema coral/Geist, ajudou), verification-before-completion (unittest, test -e, URLs, varredura de fonts.googleapis, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, curl, unittest. Correu bem, custo baixo."

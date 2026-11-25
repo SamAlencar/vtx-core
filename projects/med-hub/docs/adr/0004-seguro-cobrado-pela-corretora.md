@@ -2,6 +2,9 @@
 - **Status:** aceito (decisão do Samuel em 18/10/2026, [etapa 1](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/etapa1-escopo.md))
 - **Data:** 20/10/2026 · **Nível de governança:** A2 (aprovado)
 
+## Diagrama
+Encaminhamento à corretora: [0004-seguro-cobrado-pela-corretora.html](diagramas/0004-seguro-cobrado-pela-corretora.html).
+
 ## Contexto
 A plataforma antiga vendia e cobrava seguros pelo Stripe (`insurance_subscriptions`, preços customizados). O Samuel decidiu que esse modelo não continua e que a cobrança é feita pelo método da corretora parceira.
 

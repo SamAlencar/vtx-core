@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arquitetura — template</title>
+  <style>
+    :root {
+      --color-paper: #f4f1ea;
+      --color-ink: #1b2430;
+      --color-muted: #4a5562;
+      --color-line: #c8c3b8;
+      --color-accent: #0f5c6b;
+      --color-accent-ink: #f4f1ea;
+      --color-node: #ffffff;
+      --color-node-stroke: #1b2430;
+      --color-recusado: #8a3b32;
+      --font-sans: system-ui, "Segoe UI", "Liberation Sans", Roboto, sans-serif;
+      --font-mono: ui-monospace, "Cascadia Code", "Liberation Mono", "Segoe UI Mono", monospace;
+    }
+    html, body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 24px 48px; }
+    h1 { font-size: 1.35rem; font-weight: 650; margin: 0 0 4px; }
+    .meta { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 24px; }
+    svg { width: 100%; height: auto; display: block; background: var(--color-paper); }
+    text { font-family: var(--font-sans); }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Arquitetura — template</h1>
+    <p class="meta">Troque os rótulos. O nó focal usa o acento. Fontes locais, tema VTX.</p>
+    <svg viewBox="0 0 800 280" role="img" aria-labelledby="t d">
+      <title id="t">Template de arquitetura</title>
+      <desc id="d">Três nós em linha: origem, focal e destino.</desc>
+      <rect x="40" y="80" width="180" height="80" rx="8" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="130" y="126" text-anchor="middle" font-size="14" fill="var(--color-ink)">Origem</text>
+      <line x1="220" y1="120" x2="300" y2="120" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <rect x="300" y="72" width="200" height="96" rx="8" fill="var(--color-accent)"/>
+      <text x="400" y="126" text-anchor="middle" font-size="14" fill="var(--color-accent-ink)">Nó focal</text>
+      <line x1="500" y1="120" x2="580" y2="120" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <rect x="580" y="80" width="180" height="80" rx="8" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="670" y="126" text-anchor="middle" font-size="14" fill="var(--color-ink)">Destino</text>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-ink)"/>
+        </marker>
+      </defs>
+    </svg>
+
+  </main>
+</body>
+</html>

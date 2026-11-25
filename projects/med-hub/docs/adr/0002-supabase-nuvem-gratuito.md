@@ -2,6 +2,9 @@
 - **Status:** **aceito** (24/10/2026): escolha do Samuel em 18/10/2026, confirmada pelo [stack de referência](../../../../knowledge/tecnologia/stack-de-referencia.md) (VTX-023)
 - **Data:** 20/10/2026 · **Nível de governança:** A2 (hospedagem e fornecedor). O Samuel escolheu esta opção em 18/10/2026; a validação final depende da VTX-023.
 
+## Diagrama
+Arquitetura do backend escolhido: [0002-supabase-nuvem-gratuito.html](diagramas/0002-supabase-nuvem-gratuito.html).
+
 ## Contexto
 O produto precisa de Postgres, login, armazenamento de arquivos, regras de acesso por linha (RLS) e funções de servidor, com custo próximo de zero no início e apenas ferramentas abertas.
 

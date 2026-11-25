@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADR-004: seguro cobrado pela corretora, fora da plataforma</title>
+  <style>
+    :root {
+      --color-paper: #f4f1ea;
+      --color-ink: #1b2430;
+      --color-muted: #4a5562;
+      --color-line: #c8c3b8;
+      --color-accent: #0f5c6b;
+      --color-accent-ink: #f4f1ea;
+      --color-node: #ffffff;
+      --color-node-stroke: #1b2430;
+      --color-recusado: #8a3b32;
+      --font-sans: system-ui, "Segoe UI", "Liberation Sans", Roboto, sans-serif;
+      --font-mono: ui-monospace, "Cascadia Code", "Liberation Mono", "Segoe UI Mono", monospace;
+    }
+    html, body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 24px 48px; }
+    h1 { font-size: 1.35rem; font-weight: 650; margin: 0 0 4px; }
+    .meta { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 24px; }
+    svg { width: 100%; height: auto; display: block; background: var(--color-paper); }
+    text { font-family: var(--font-sans); }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>ADR-004: seguro cobrado pela corretora, fora da plataforma</h1>
+    <p class="meta">A 4med.co só mostra e encaminha. Preço, apólice e cobrança ficam com a corretora parceira. Sem venda de seguro no Stripe da plataforma.</p>
+    <svg viewBox="0 0 860 360" role="img" aria-labelledby="t d">
+      <title id="t">Seguro indicado pela plataforma e cobrado pela corretora</title>
+      <desc id="d">O médico vê a indicação na 4med.co e é encaminhado à corretora, que cobra e emite a apólice. Dinheiro e contrato de seguro não passam pela plataforma.</desc>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-ink)"/>
+        </marker>
+      </defs>
+      <rect x="40" y="120" width="160" height="80" rx="8" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="120" y="154" text-anchor="middle" font-size="14" fill="var(--color-ink)">Médico</text>
+      <text x="120" y="174" text-anchor="middle" font-size="11" fill="var(--color-muted)">consulta a indicação</text>
+      <line x1="200" y1="160" x2="280" y2="160" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <rect x="280" y="110" width="220" height="100" rx="8" fill="var(--color-accent)"/>
+      <text x="390" y="148" text-anchor="middle" font-size="14" fill="var(--color-accent-ink)">4med.co</text>
+      <text x="390" y="168" text-anchor="middle" font-size="11" fill="var(--color-accent-ink)">mostra e encaminha</text>
+      <text x="390" y="186" text-anchor="middle" font-size="11" fill="var(--color-accent-ink)">sem preço, compra ou apólice</text>
+      <line x1="500" y1="160" x2="590" y2="160" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="545" y="148" text-anchor="middle" font-size="10" fill="var(--color-muted)">link / WhatsApp</text>
+      <rect x="590" y="110" width="230" height="100" rx="8" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="705" y="148" text-anchor="middle" font-size="14" fill="var(--color-ink)">Corretora parceira</text>
+      <text x="705" y="168" text-anchor="middle" font-size="11" fill="var(--color-muted)">preço, cobrança, apólice</text>
+      <text x="705" y="186" text-anchor="middle" font-size="11" fill="var(--color-muted)">fora do plano de R$ 599</text>
+      <rect x="280" y="260" width="220" height="64" rx="8" fill="var(--color-node)" stroke="var(--color-recusado)" stroke-width="1.5"/>
+      <text x="390" y="286" text-anchor="middle" font-size="13" fill="var(--color-recusado)">Venda na plataforma</text>
+      <text x="390" y="306" text-anchor="middle" font-size="11" fill="var(--color-recusado)">recusado (SUSEP)</text>
+      <line x1="390" y1="210" x2="390" y2="260" stroke="var(--color-recusado)" stroke-width="1.5" stroke-dasharray="4 4"/>
+    </svg>
+
+  </main>
+</body>
+</html>
