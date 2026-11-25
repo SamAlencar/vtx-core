@@ -14,7 +14,7 @@ tarefas:
     fase: F1               # PÚBLICO
     area: "Base de Conhecimento"  # PÚBLICO
     prioridade: 10         # PÚBLICO — menor = antes (ordem de execução)
-    status: "a fazer"      # PÚBLICO — valor base
+    status: "a fazer"      # PÚBLICO — valor base: a fazer | em andamento | concluído | aguardando | cancelado
     entregavel: "knowledge/..."   # PRIVADO
 ```
 
@@ -26,13 +26,15 @@ tarefas:
   - id: VTX-010
     titulo: "Texto curto"   # PÚBLICO
     area: "Base de Conhecimento"  # PÚBLICO
-    status: "concluído"     # PÚBLICO: "a fazer" | "em andamento" | "concluído"
+    status: "concluído"     # PÚBLICO: "a fazer" | "em andamento" | "concluído" | "aguardando" | "cancelado"
     responsavel: "agente-x" # PRIVADO
     notas: "detalhes"       # PRIVADO
 ```
 
 ## Regras
-- **Status efetivo** de uma tarefa = o do diário mais recente que cita o id; se nenhum cita, vale o do mestre.
+- **Status efetivo** de uma tarefa = o do diário mais recente que cita o id; se nenhum cita, vale o do mestre. Valores: `a fazer`, `em andamento`, `concluído`, `aguardando`, `cancelado`. Qualquer outro valor vira `a fazer`.
+- **aguardando:** a tarefa existe, mas espera aprovação, dependência externa ou decisão do Samuel. Não entra na fila do `proxima_tarefa.py` e continua no denominador do progresso.
+- **cancelado:** a tarefa saiu de escopo (ex.: VTX-142). Não entra na fila, não conta como concluída e é excluída do total do progresso e do roadmap.
 - Tarefas novas entram primeiro no mestre (com id, fase e prioridade); depois são citadas nos diários.
 - Campos opcionais PRIVADOS no mestre: `depende_de` (lista de ids) e `notas`.
 - A ordem de execução é a `prioridade`, não o id (ex.: F9 vem antes de F8). A ordem das fases no painel segue a lista `fases`.

@@ -4,7 +4,8 @@ import os
 
 import yaml
 
-STATUS_VALIDOS = {"a fazer", "em andamento", "concluído"}
+STATUS_VALIDOS = {"a fazer", "em andamento", "concluído", "aguardando", "cancelado"}
+# aguardando: bloqueada por aprovação/dependência externa; cancelado: fora da fila e do progresso.
 PADRAO_DIA = "[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].yaml"
 
 

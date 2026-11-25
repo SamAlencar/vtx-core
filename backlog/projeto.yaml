@@ -1294,11 +1294,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 40
-  status: concluído
+  status: cancelado
   entregavel: '.cursor/skills/video-marketing/ + script do arsenal (TT-060) render-video + processo frame.md'
   depende_de:
   - VTX-141
-  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. heygen-com/hyperframes (Apache-2.0, pin 4371981). Só render local (Chrome headless + FFmpeg); telemetria ligada por padrão -> sempre HYPERFRAMES_NO_TELEMETRY=1 e DO_NOT_TRACK=1; sem render em nuvem (Lambda/Cloud Run), sem registry remoto, sem npx skills add. Instalar só após revisão do pacote. Para vídeos dos sites VTX, med-hub e Tekto, depois que existirem. Cancelada por Samuel em 2026-11-24 (julgou desnecessária); reversível.'
+  notas: 'Pedido do Samuel em 2026-10-21. Cancelada por Samuel em 2026-11-24 (julgou desnecessária); reversível. Em 24/11 o status efetivo chegou a ficar concluído só porque o schema ainda não aceitava cancelado (status desconhecido virava a fazer). Com a VTX-167 o status passou a cancelado: sai da fila e do progresso, e não conta como entregue (não há entregável).'
 - id: VTX-143
   titulo: 'Conhecimento de domínio BIM/IFC (IFC4/IFC4x3, IDS, openBIM)'
   fase: F13
@@ -1553,9 +1553,9 @@ tarefas:
   fase: F8
   area: Qualidade
   prioridade: 51
-  status: a fazer
+  status: concluído
   entregavel: 'scripts/backlog_lib.py + backlog/SCHEMA.md + scripts/proxima_tarefa.py'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10). SCHEMA e backlog_lib devem aceitar aguardando e cancelado; proxima_tarefa.py ignora os dois; progresso exclui cancelado do total; VTX-142 sai de concluído (sem entregável) para cancelado; exportar_painel.py publica os novos status.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10). Concluída em 2026-11-24: STATUS_VALIDOS inclui aguardando e cancelado; proxima_tarefa.py não os escolhe; progresso = concluídas / (total − canceladas); VTX-142 foi para cancelado; exportar_painel.py publica os novos status (campo público).'
 - id: VTX-168
   titulo: 'Portão de qualidade no CI (auditoria P0 item 4)'
   fase: F8
@@ -1590,7 +1590,7 @@ tarefas:
   fase: F11
   area: 'Plataforma interna'
   prioridade: 55
-  status: a fazer
+  status: aguardando
   entregavel: 'README.md + backlog/SCHEMA.md + .github/workflows/sincronizar-painel.yml'
   notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 1. Exige aprovação do Samuel (A2): revogar o secret PANEL_TOKEN e/ou apagar o workflow sincronizar-painel.yml, ou apontar o workflow a um repositório existente. Não executar até o Samuel decidir. Documentar a arquitetura real (painel-central / vtx-acompanhamento) e deixar de citar vtx_painel se o pipeline foi abandonado.'
 - id: VTX-172
@@ -1598,6 +1598,6 @@ tarefas:
   fase: F1
   area: 'Base de Conhecimento'
   prioridade: 56
-  status: a fazer
+  status: aguardando
   entregavel: '.github/pull_request_template.md + .github/CODEOWNERS + knowledge/processos/governanca-e-aprovacoes.md'
   notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 6. Exige aprovação do Samuel (A2): branch protection no plano atual é impossível (API 403); alternativas são tornar o repositório público, assinar o Pro, ou aceitar um job de CI que cobre review de outro papel. Não executar até o Samuel decidir.'
