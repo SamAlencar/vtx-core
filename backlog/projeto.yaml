@@ -1539,3 +1539,65 @@ tarefas:
   - VTX-022
   - VTX-149
   notas: 'Eventos e painel das métricas do briefing com ferramenta grátis/auto-hospedada, sem dados pessoais. Aceite: plano de eventos e consultas. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+
+- id: VTX-166
+  titulo: 'Corrigir links quebrados, INDEX e o gerador do roadmap (auditoria P0 item 5)'
+  fase: F8
+  area: Qualidade
+  prioridade: 50
+  status: concluído
+  entregavel: 'knowledge/INDEX.md + projects/med-hub/docs/produto/PRD.md + scripts/gerar_roadmap.py'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 5. Concluída no mesmo dia: PRD do med-hub aponta para ../adr/0001-0004 e ../../conhecimento/pesquisa-dominio.md; INDEX ganhou os 5 documentos que faltavam (versionamento IFC, funções de domínio, pagamentos, Graphify, radar); gerar_roadmap.py lista só o pendente com status efetivo.'
+- id: VTX-167
+  titulo: 'Status aguardando e cancelado no backlog, e VTX-142 cancelada (auditoria P0)'
+  fase: F8
+  area: Qualidade
+  prioridade: 51
+  status: a fazer
+  entregavel: 'scripts/backlog_lib.py + backlog/SCHEMA.md + scripts/proxima_tarefa.py'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10). SCHEMA e backlog_lib devem aceitar aguardando e cancelado; proxima_tarefa.py ignora os dois; progresso exclui cancelado do total; VTX-142 sai de concluído (sem entregável) para cancelado; exportar_painel.py publica os novos status.'
+- id: VTX-168
+  titulo: 'Portão de qualidade no CI (auditoria P0 item 4)'
+  fase: F8
+  area: Qualidade
+  prioridade: 52
+  status: a fazer
+  entregavel: '.github/workflows/testes.yml + scripts/validar_backlog.py + scripts/verificar_links.py'
+  depende_de:
+  - VTX-166
+  - VTX-167
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 4. CI deve falhar com link relativo quebrado, tarefa concluída sem entregável, YAML fora do SCHEMA, documento de knowledge/ fora do INDEX, e rodar gitleaks no diff. Só ferramentas grátis. Relacionada à VTX-074.'
+- id: VTX-169
+  titulo: 'AGENTS.md e regras por papel (auditoria P0 item 2)'
+  fase: F9
+  area: 'Integração Cursor'
+  prioridade: 53
+  status: a fazer
+  entregavel: 'AGENTS.md + .cursor/rules/papeis/planejamento.mdc + .cursor/rules/papeis/execucao.mdc'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 2. AGENTS.md com até ~60 linhas apontando SOP, governança A0-A3, INDEX e agents/<papel>.md; regras por papel com globs ou descrição; teste confirma que os caminhos citados existem. Recobre em parte VTX-053, VTX-055 e VTX-056.'
+- id: VTX-170
+  titulo: 'Template de projeto de cliente e script de bootstrap (auditoria P0 item 3)'
+  fase: F6
+  area: Templates
+  prioridade: 54
+  status: a fazer
+  entregavel: 'templates/projeto/ + scripts/bootstrap_projeto.sh'
+  depende_de:
+  - VTX-169
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 3. scripts/bootstrap_projeto.sh demo /tmp/demo gera repo com CI verde num exemplo hello; caminhos exigidos em agents/*.md existem no template; teste no vtx-core gera o projeto em diretório temporário e confere a estrutura.'
+- id: VTX-171
+  titulo: 'Corrigir ou aposentar o pipeline do painel (auditoria P0 item 1)'
+  fase: F11
+  area: 'Plataforma interna'
+  prioridade: 55
+  status: a fazer
+  entregavel: 'README.md + backlog/SCHEMA.md + .github/workflows/sincronizar-painel.yml'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 1. Exige aprovação do Samuel (A2): revogar o secret PANEL_TOKEN e/ou apagar o workflow sincronizar-painel.yml, ou apontar o workflow a um repositório existente. Não executar até o Samuel decidir. Documentar a arquitetura real (painel-central / vtx-acompanhamento) e deixar de citar vtx_painel se o pipeline foi abandonado.'
+- id: VTX-172
+  titulo: 'Revisão obrigatória antes do merge (auditoria P0 item 6)'
+  fase: F1
+  area: 'Base de Conhecimento'
+  prioridade: 56
+  status: a fazer
+  entregavel: '.github/pull_request_template.md + .github/CODEOWNERS + knowledge/processos/governanca-e-aprovacoes.md'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 6. Exige aprovação do Samuel (A2): branch protection no plano atual é impossível (API 403); alternativas são tornar o repositório público, assinar o Pro, ou aceitar um job de CI que cobre review de outro papel. Não executar até o Samuel decidir.'

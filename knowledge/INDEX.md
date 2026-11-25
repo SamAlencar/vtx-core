@@ -53,6 +53,11 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 46 | [Processo periódico de revisão de ferramentas](ferramentas/revisao-periodica.md) | Ferramentas | v1 | 2026-11-24 |
 | 47 | [Mapa de codebase por projeto](engenharia/mapa-de-codebase.md) | Engenharia | v1 | 2026-11-24 |
 | 48 | [Memory bank do projeto (arquivos)](templates/memoria-projeto/README.md) | Templates | v1 | 2026-11-24 |
+| 49 | [Versionamento de modelos IFC](engenharia/bim/versionamento-ifc.md) | Engenharia | v1 | 2026-10-31 |
+| 50 | [Funções de domínio para tool-calling](engenharia/ia/funcoes-de-dominio.md) | Engenharia | v1 | 2026-10-31 |
+| 51 | [Padrão de pagamentos](engenharia/pagamentos.md) | Engenharia | v1 | 2026-10-23 |
+| 52 | [Avaliação: Graphify](ferramentas/avaliacoes/graphify.md) | Ferramentas | v1 | 2026-10-18 |
+| 53 | [Radar de ferramentas](ferramentas/radar.md) | Ferramentas | v1 | 2026-10-24 |
 - [Regras do Cursor (padrão VTX)](templates/cursor/README.md)
 - [Princípios de UX](design/principios-de-ux.md) — leis de Hick, Miller, Jakob, Tesler, Postel, Pareto e Pico-Fim; checklist de revisão.
 - [Competências especializadas](tecnologia/competencias-especializadas.md) — OpenBIM/IFC, WebGL, automação CAD/BIM, Web3, L2, contêineres, armazenamento imutável, segurança e rastreabilidade; ativadas por projeto.
