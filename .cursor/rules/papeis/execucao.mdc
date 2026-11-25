@@ -1,0 +1,16 @@
+---
+description: Papéis de execução (Devs, QA, DevOps/SRE) — VTX-169
+globs: "**/*.{py,ts,tsx,js,jsx},src/**,tests/**,testes/**,.github/workflows/**,docs/runbook.md,agents/dev-backend.md,agents/dev-frontend-mobile.md,agents/qa.md,agents/devops-sre.md,agents/especialistas.md"
+alwaysApply: false
+---
+
+# Execução
+
+Aplique em implementação, testes, CI, deploy ou operação. Leia só o `agents/<papel>.md` do papel ativo (Dev Backend, Dev Frontend/Mobile, QA, DevOps/SRE ou o especialista chamado).
+
+- Passagem por artefato, segundo o SOP em `knowledge/processos/fluxo-entre-agentes.md`. Quem produz não aprova o próprio trabalho.
+- PR pequeno, com testes e CI verde, antes do handoff ao QA. Produção, segredo e serviço pago pedem A2 (`knowledge/processos/governanca-e-aprovacoes.md`).
+- Dev implementa no repositório do projeto, com teste no mesmo PR. Divergência de arquitetura volta ao Arquiteto; requisito ambíguo, ao Produto.
+- QA entrega `testes/plano.md`, roda a suíte e aprova ou reprova o PR. Não implementa feature e não faz deploy.
+- DevOps/SRE entrega workflows em `.github/workflows/`, runbook em `docs/runbook.md` e rollback testado. Segredo não entra no código.
+- Consulte `knowledge/INDEX.md` só o que a tarefa pede.

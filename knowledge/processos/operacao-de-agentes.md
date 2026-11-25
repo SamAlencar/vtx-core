@@ -19,6 +19,8 @@
 | 4. Sob demanda | Docs da `knowledge/`, skills (`SKILL.md`), código | Quando o ponteiro dispara | Ler por busca (`rg`, Graphify em repos grandes), não varrer tudo |
 | 5. Resultado | Saída de ferramentas, logs | Temporária | Resumir e descartar; salvar só o que vira evidência |
 
+A camada 1 está no [AGENTS.md](../../AGENTS.md) da raiz e nas regras de `.cursor/rules/`. As regras por papel (VTX-169) ficam em [`.cursor/rules/papeis/`](../../.cursor/rules/papeis/): `planejamento.mdc` (Orquestrador, Produto, Arquiteto) e `execucao.mdc` (Devs, QA, DevOps/SRE), com `globs` e `alwaysApply: false`. A camada 2 continua em `agents/<papel>.md`.
+
 ## 3. Anatomia do prompt de tarefa (modelo)
 ```markdown
 Papel: <papel> (ler agents/<papel>.md)
