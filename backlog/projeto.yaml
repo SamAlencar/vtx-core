@@ -1561,12 +1561,12 @@ tarefas:
   fase: F8
   area: Qualidade
   prioridade: 52
-  status: a fazer
+  status: concluído
   entregavel: '.github/workflows/testes.yml + scripts/validar_backlog.py + scripts/verificar_links.py'
   depende_de:
   - VTX-166
   - VTX-167
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 4. CI deve falhar com link relativo quebrado, tarefa concluída sem entregável, YAML fora do SCHEMA, documento de knowledge/ fora do INDEX, e rodar gitleaks no diff. Só ferramentas grátis. Relacionada à VTX-074.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 4. Concluída em 2026-11-24: validar_backlog.py (schema, concluída com entregável, knowledge no INDEX; F0 sem arquivo é ok), verificar_links.py (*.md) e job qualidade no testes.yml com gitleaks 8.30.1 no diff (binário oficial, sem a Action paga em repo privado). Relacionada à VTX-074, que continua a fazer (links externos das Fontes).'
 - id: VTX-169
   titulo: 'AGENTS.md e regras por papel (auditoria P0 item 2)'
   fase: F9

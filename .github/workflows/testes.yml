@@ -37,3 +37,36 @@ jobs:
 
       - name: Testes, tipos e bundle
         run: npm test && npm run typecheck && npm run build
+
+  qualidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install pyyaml
+
+      - name: Validar backlog e INDEX
+        run: python scripts/validar_backlog.py
+
+      - name: Verificar links relativos
+        run: python scripts/verificar_links.py
+
+      - name: Gitleaks no diff
+        env:
+          GITLEAKS_VERSION: "8.30.1"
+        run: |
+          curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz gitleaks
+          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+            ./gitleaks detect --no-banner --redact --log-opts="${BASE}..${GITHUB_SHA}"
+          else
+            ./gitleaks detect --no-banner --redact --log-opts="-1"
+          fi
+
