@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -8,9 +8,9 @@ recursos:
     tipo: skill
     link: "https://github.com/pbakaus/impeccable"
     licenca: Apache-2.0
-    status: "em avaliação"
-    uso_agentes: "Skill Apache-2.0 (~116 mil estrelas, pin b49177d, npm 4.11.0 em 24/11/2026). 24 comandos (init, document, shape, critique, audit, polish, bolder, quieter...) e 62 regras determinísticas (eram 59 em 17/10). Instala com `npx impeccable install`. Continua em avaliação até o piloto em sandbox (VTX-127); não instalar no vtx-core nem em projeto de cliente antes disso."
-    riscos: "Baixa um binário (engine) no 1º uso e instala hooks no projeto: revisar scripts, fixar versão, conferir checksum, telemetria e rede antes do piloto."
+    status: adotado
+    uso_agentes: "Adotado com restrições (piloto VTX-127, pin b49177d, engine 0.1.27; no pin o npm é 4.10.0, a ponta em 24/11/2026 era 4.11.0). Usar `impeccable detect` em tela de frontend com checksum do manifesto, DO_NOT_TRACK=1 e IMPECCABLE_NO_TELEMETRY=1, no modelo de projects/sandbox-impeccable/scripts/rodar-detector.sh. A skill (SKILL.md, ~3,2 mil tokens) pode ser copiada com o pin só quando o fluxo de frontend pedir; referências só sob demanda. Não rodar `npx impeccable install` no vtx-core nem em projeto de cliente. Sem hooks automáticos, login, health ou regras Pro."
+    riscos: "Engine é binário pré-compilado (~25 MiB) mesmo com código Apache-2.0 em crates/ e SHA-256 no manifesto: só executar depois de conferir o checksum do pin. Telemetria vem ligada por padrão (opt-out obrigatório). O instalador grava hook postToolUse em todo Write e oferece login. Não commitar o binário. Conta/Pro ficam fora (possível custo)."
     responsavel: dev-frontend-mobile
     revisado_em: 2026-11-24
   - id: anthropic-skills

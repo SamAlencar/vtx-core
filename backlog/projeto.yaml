@@ -1144,12 +1144,12 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 60
-  status: a fazer
+  status: concluído
   entregavel: 'projects/sandbox-impeccable/'
   depende_de:
   - VTX-120
   - VTX-123
-  notas: 'Sandbox, versão fixada, revisar binário e hooks; medir ganho e custo em tokens; decidir adotar ou descartar.'
+  notas: 'Concluída em 2026-11-24: adotado com restrições. Detector 0.1.27 (pin b49177d, SHA-256 conferido) achou 5 avisos em 0,049 s e 0 tokens de LLM na tela de teste. Sem npx install, hooks, login ou Pro. Skill só sob demanda. Relato no README do sandbox e §3.10.'
 - id: VTX-128
   titulo: 'Integrar o registro de recursos às definições dos agentes e aos fluxos'
   fase: F12

@@ -110,7 +110,7 @@ Pesquisa VTX-120. Nada novo instalado. Pins e licenças pela API do GitHub / pá
 | [axe-core](https://github.com/dequelabs/axe-core) (~8 mil estrelas) + `@axe-core/playwright` | `32d9bd5` | MPL-2.0 | **adotado** (VTX-023 / VTX-028) | Dependência npm, não copiar código; zero violação séria + teclado manual |
 | [WCAG 2.2](https://www.w3.org/TR/WCAG22/) nível AA | recomendação W3C | W3C Document License | **adotado** | Citar e resumir; alvo AA do stack |
 | [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/) | `f14b249` (repo) | W3C Document License | **adotado** | Padrões de widget quando o shadcn/Radix não cobrir |
-| [Impeccable](https://github.com/pbakaus/impeccable) (~116 mil estrelas, 62 regras, npm 4.11.0) | `b49177d` | Apache-2.0 | em avaliação | Continua até o piloto VTX-127 (binário + hooks) |
+| [Impeccable](https://github.com/pbakaus/impeccable) (~116 mil estrelas, 62 regras, engine 0.1.27; npm 4.10.0 no pin, ponta 4.11.0 em 24/11) | `b49177d` | Apache-2.0 | **adotado** com restrições (VTX-127) | Detector + skill sob demanda; sem `npx install`, hooks, login ou Pro. Piloto em [projects/sandbox-impeccable/](../../projects/sandbox-impeccable/) |
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `2d22863` | MIT | em avaliação | Sem mudança; comparar com o impeccable antes de adotar |
 | [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) (~3,6 mil estrelas) | `8f75961` | MIT | em avaliação | Lint estático que complementa o axe; último commit em jan/2026 (fora da janela de 6 meses) |
 | [React Aria](https://github.com/adobe/react-spectrum) (~16 mil estrelas) | `b1e8cf5` | Apache-2.0 | em avaliação | Alternativa à base Radix; **não misturar** na mesma tela |
