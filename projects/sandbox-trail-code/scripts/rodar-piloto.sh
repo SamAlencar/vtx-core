@@ -95,3 +95,5 @@ echo "Piloto concluído. HOME isolado em $HOME"
 if [[ -d "$ALVO/.trail" ]] || [[ -d "$SANDBOX/.trail" ]]; then
   echo "AVISO: apareceu .trail/ — verificar se init rodou" >&2
 fi
+# A cópia temporária leva .env.example da raiz; não deixa o tmp-repo no worktree.
+rm -rf "$ALVO"

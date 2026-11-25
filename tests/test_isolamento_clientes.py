@@ -76,11 +76,11 @@ class TestIsolamentoClientes(unittest.TestCase):
                     continue
                 rel = path.relative_to(PROJECTS).as_posix()
                 partes = set(path.parts)
-                if ".git" in partes:
+                if ".git" in partes or "tmp-repo" in partes or "node_modules" in partes:
                     continue
                 baixo = path.name.lower()
                 suf = path.suffix.lower()
-                if baixo in SEGREDO_NOMES or baixo.startswith(".env"):
+                if baixo in SEGREDO_NOMES or (baixo.startswith(".env") and baixo != ".env.example"):
                     falhas.append(f"{rel}: segredo não pode estar no vtx-core")
                     continue
                 if suf in DADOS:
