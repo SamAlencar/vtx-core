@@ -1643,9 +1643,9 @@ tarefas:
   fase: F13
   area: 'Domínio BIM'
   prioridade: 60
-  status: a fazer
+  status: concluído
   entregavel: 'pyproject.toml + core/vtx_ifc/'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Mover .cursor/skills/ifc-python/{funcoes,objetos,receitas}.py para core/vtx_ifc/ (ou equivalente); skill fica só com SKILL.md apontando o pacote. Aceite: pip install -e . e unittest sem manipular sys.path; CI instala pelo pyproject.toml.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Concluída em 24/11/2026: funcoes.py, objetos.py e receitas.py em core/vtx_ifc/; skill aponta o pacote; pip install -e .; testes importam vtx_ifc sem sys.path; o job unittest do CI instala pelo pyproject.toml. exemplo.ids vai no pacote; scripts de medição na skill importam vtx_ifc.'
 
 - id: VTX-177
   titulo: Harness de agente de referência (loop de tool-calling)
@@ -1806,3 +1806,14 @@ tarefas:
   depende_de:
   - VTX-173
   notas: 'Seguimento da revisão do Tzu no PR #21 (item 3), 24/11/2026. Objetivo: o CI confirmar que o .pre-commit-config.yaml é válido, além do job qualidade que já roda gitleaks no diff. Arquivos afetados: .github/workflows/testes.yml, .pre-commit-config.yaml. Critério de aceite: o CI roda pre-commit validate-config (ou equivalente) e falha se o hook estiver quebrado; a proteção do diff continua no job qualidade. Exige aprovação se mexer no workflow (precisa do Samuel).'
+
+- id: VTX-192
+  titulo: Validar IDS com XSD local, sem baixar schema pela rede
+  fase: F13
+  area: Domínio BIM
+  prioridade: 71
+  status: a fazer
+  entregavel: core/vtx_ifc/
+  depende_de:
+  - VTX-176
+  notas: 'Seguimento da revisão do Tzu no PR #23 (item 5), 24/11/2026. Objetivo: validar_ids / ifctester não depender de xmlschema baixar o XSD na rede. Arquivos afetados: core/vtx_ifc/ (XSD versionado ou caminho local), testes de IDS, documentação da skill se couber. Critério de aceite: a validação de um .ids roda offline, com o schema local; um teste cobre esse caminho; validar_backlog e o CI passam.'

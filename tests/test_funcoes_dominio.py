@@ -1,7 +1,8 @@
 """Testes do padrão de funções de domínio para tool-calling (VTX-146)."""
-import importlib.util, json, pathlib, sys, unittest
+import json, pathlib, unittest
 
-RAIZ = pathlib.Path(__file__).resolve().parent.parent / ".cursor/skills/ifc-python"
+from vtx_ifc import funcoes as _funcoes
+
 try:
     import ifcopenshell  # noqa: F401
     import ifcopenshell.geom
@@ -13,11 +14,7 @@ except ImportError:
 
 
 def carregar():
-    sys.path.insert(0, str(RAIZ))
-    spec = importlib.util.spec_from_file_location("funcoes", RAIZ / "funcoes.py")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    return _funcoes
 
 
 @unittest.skipUnless(TEM, "ifcopenshell/jsonschema não instalados")

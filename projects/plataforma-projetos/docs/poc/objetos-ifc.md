@@ -5,7 +5,7 @@
 ## 1. O que foi testado
 O IFC aprovado de cada versão continua sendo a fonte da verdade (arquivo fechado com hash). A partir dele geramos **um objeto JSON por elemento**, guardado em Postgres `jsonb`, que é a camada de trabalho da IA e do visualizador. Edições feitas nessa camada voltam ao IFC base aplicando só a diferença, e o resultado é a próxima versão.
 
-Código: [objetos.py](../../../../.cursor/skills/ifc-python/objetos.py) (`extrair`, `aplicar`), medição em [medir_objetos.py](../../../../.cursor/skills/ifc-python/medir_objetos.py), 6 testes em [test_objetos_ifc.py](../../../../tests/test_objetos_ifc.py).
+Código: [objetos.py](../../../../core/vtx_ifc/objetos.py) (`extrair`, `aplicar`), medição em [medir_objetos.py](../../../../.cursor/skills/ifc-python/medir_objetos.py), 6 testes em [test_objetos_ifc.py](../../../../tests/test_objetos_ifc.py).
 
 Objeto: `globalid`, `classe`, `nome`, `tipo`, `psets` (da instância), `qtos`, `materiais`, `andar`, `grupos`. Editáveis: nome, psets, andar, grupos e tipo. Somente leitura (erro `campo_somente_leitura`): classe, materiais e qtos.
 

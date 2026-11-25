@@ -9,3 +9,6 @@ dist/
 *.db
 *.sqlite
 .DS_Store
+*.egg-info/
+.eggs/
+build/

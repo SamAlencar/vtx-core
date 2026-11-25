@@ -1,7 +1,11 @@
 """Testes da skill .cursor/skills/ifc-python (VTX-145)."""
-import importlib.util, pathlib, tempfile, unittest
+import pathlib, tempfile, unittest
 
-RAIZ = pathlib.Path(__file__).resolve().parent.parent / ".cursor/skills/ifc-python"
+from importlib.resources import files as _files
+from vtx_ifc import receitas as _receitas
+
+EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
+
 try:
     import ifcopenshell  # noqa: F401
     import ifctester  # noqa: F401
@@ -11,10 +15,7 @@ except ImportError:
 
 
 def carregar():
-    spec = importlib.util.spec_from_file_location("receitas", RAIZ / "receitas.py")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+    return _receitas
 
 
 @unittest.skipUnless(TEM_IFC, "ifcopenshell/ifctester não instalados")
@@ -50,7 +51,7 @@ class TestIfcPython(unittest.TestCase):
         self.assertEqual([p["nome"] for p in self.r.listar(f, "IfcWall")], ["Antiga"])
 
     def test_validar_ids(self):
-        ids = RAIZ / "exemplo.ids"
+        ids = EXEMPLO_IDS
         f = self.r.criar_modelo()
         self.r.criar_parede(f, "Ext", 5.0, 0.2, 3.0, {"Pset_WallCommon": {"IsExternal": True}})
         ok = self.r.validar_ids(self._salvar(f, "ok.ifc"), ids)

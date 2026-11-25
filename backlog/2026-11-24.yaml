@@ -182,9 +182,9 @@ tarefas:
   - id: VTX-176
     titulo: "Empacotar o núcleo de funções de domínio (core/vtx_ifc)"
     area: "Domínio BIM"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Cadastrada a partir da auditoria 24/11/2026, P1 item 7. Não executada neste passo."
+    notas: "Auditoria P1 item 7. Pacote core/vtx_ifc, pyproject.toml, testes sem sys.path, CI com pip install -e . Skills: writing-plans, verification-before-completion (unittest, ajudou). Ferramentas: git, gh, pip, unittest. Correu bem, custo médio."
   - id: VTX-177
     titulo: "Harness de agente de referência (loop de tool-calling)"
     area: "Engenharia"
@@ -285,4 +285,11 @@ tarefas:
     status: "a fazer"
     responsavel: "agente-orquestrador"
     notas: "Cadastrada a partir da revisão do Tzu no PR #20. Não executada neste passo. O schema de status já aceita 'adotado com restrições'."
+
+  - id: VTX-192
+    titulo: "Validar IDS com XSD local, sem baixar schema pela rede"
+    area: "Domínio BIM"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #23, item 5. Não executada neste passo."
 

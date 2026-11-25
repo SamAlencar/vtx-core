@@ -5,14 +5,8 @@ Gera modelo sintético (10 andares, 5 tipos, 10 grupos), extrai objetos, carrega
 mede consultas/edições/diff em SQL e a volta ao IFC com `objetos.aplicar`.
 """
 import glob, json, os, random, re, subprocess, sys, tempfile, time
-import importlib.util
 import ifcopenshell, ifcopenshell.api
-
-AQUI = os.path.dirname(os.path.abspath(__file__))
-def mod(n):
-    sys.path.insert(0, AQUI); s = importlib.util.spec_from_file_location(n, os.path.join(AQUI, f"{n}.py"))
-    m = importlib.util.module_from_spec(s); s.loader.exec_module(m); return m
-r, o = mod("receitas"), mod("objetos")
+from vtx_ifc import objetos as o, receitas as r
 BIN = next(iter(sorted(glob.glob("/usr/lib/postgresql/*/bin"))), "")
 pg = lambda c: os.path.join(BIN, c) if BIN else c
 N = int(sys.argv[1]); random.seed(1); api = ifcopenshell.api

@@ -11,86 +11,92 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-3. **VTX-176** Empacotar o núcleo de funções de domínio (core/vtx_ifc) → `pyproject.toml + core/vtx_ifc/`
-4. **VTX-177** Harness de agente de referência (loop de tool-calling) → `core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md`
+3. **VTX-177** Harness de agente de referência (loop de tool-calling) → `core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md`
 
 ## F12 — Catálogo de ferramentas
 
-5. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
-6. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
-7. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
+4. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
+5. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
+6. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
 
 ## F5 — Gestão e conformidade
 
-8. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
+7. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
 
 ## F12 — Catálogo de ferramentas
 
-9. **VTX-186** A/B do mapa Trail-code e decisão sobre o MCP → `knowledge/ferramentas/piloto-trail-code.md`
+8. **VTX-186** A/B do mapa Trail-code e decisão sobre o MCP → `knowledge/ferramentas/piloto-trail-code.md`
 
 ## F5 — Gestão e conformidade
 
-10. **VTX-030** Estimativas e planejamento → `knowledge/gestao/estimativas.md`
+9. **VTX-030** Estimativas e planejamento → `knowledge/gestao/estimativas.md`
 
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-11. **VTX-178** Suíte de evals mínima com portão no CI → `evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md`
+10. **VTX-178** Suíte de evals mínima com portão no CI → `evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md`
 
 ## F5 — Gestão e conformidade
 
-12. **VTX-031** LGPD e compliance → `knowledge/seguranca/lgpd-compliance.md`
+11. **VTX-031** LGPD e compliance → `knowledge/seguranca/lgpd-compliance.md`
 
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-13. **VTX-179** Log estruturado por execução de agente e custo → `core/agente/telemetria.py + knowledge/operacao/observabilidade.md`
+12. **VTX-179** Log estruturado por execução de agente e custo → `core/agente/telemetria.py + knowledge/operacao/observabilidade.md`
 
 ## F5 — Gestão e conformidade
 
-14. **VTX-032** Documentação técnica (docs-as-code) → `knowledge/gestao/documentacao-tecnica.md`
+13. **VTX-032** Documentação técnica (docs-as-code) → `knowledge/gestao/documentacao-tecnica.md`
 
 ## F8 — Consolidação e validação
 
-15. **VTX-181** Lint de código e de Markdown no CI (ruff e markdownlint) → `pyproject.toml + .markdownlint.json + .github/workflows/testes.yml`
+14. **VTX-181** Lint de código e de Markdown no CI (ruff e markdownlint) → `pyproject.toml + .markdownlint.json + .github/workflows/testes.yml`
 
 ## F6 — Templates de artefatos
 
-16. **VTX-033** Template de PRD → `knowledge/templates/prd.md`
+15. **VTX-033** Template de PRD → `knowledge/templates/prd.md`
 
 ## F9 — Integração com o Cursor e operação
 
-17. **VTX-188** Remover a cópia redundante das regras de tokens em knowledge/templates/cursor → `knowledge/templates/cursor/README.md`
+16. **VTX-188** Remover a cópia redundante das regras de tokens em knowledge/templates/cursor → `knowledge/templates/cursor/README.md`
 
 ## F6 — Templates de artefatos
 
-18. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
+17. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
 
 ## F9 — Integração com o Cursor e operação
 
-19. **VTX-189** Bootstrap criar docs/memoria/ no repositório do cliente → `scripts/bootstrap_projeto.sh + templates/projeto/docs/memoria/`
+18. **VTX-189** Bootstrap criar docs/memoria/ no repositório do cliente → `scripts/bootstrap_projeto.sh + templates/projeto/docs/memoria/`
 
 ## F6 — Templates de artefatos
 
-20. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
+19. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
 
 ## F3 — Segurança e operação
 
-21. **VTX-190** Levar o pre-commit com gitleaks ao template de projeto → `templates/projeto/.pre-commit-config.yaml`
+20. **VTX-190** Levar o pre-commit com gitleaks ao template de projeto → `templates/projeto/.pre-commit-config.yaml`
 
 ## F6 — Templates de artefatos
 
-22. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
+21. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
 
 ## F8 — Consolidação e validação
 
-23. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
+22. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
 
 ## F3 — Segurança e operação
 
-24. **VTX-191** Validar o hook pre-commit de gitleaks no CI → `.github/workflows/testes.yml`
+23. **VTX-191** Validar o hook pre-commit de gitleaks no CI → `.github/workflows/testes.yml`
 
 ## F6 — Templates de artefatos
 
-25. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
+24. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+25. **VTX-192** Validar IDS com XSD local, sem baixar schema pela rede → `core/vtx_ifc/`
+
+## F6 — Templates de artefatos
+
 26. **VTX-038** Template de relatório diário e de sprint → `knowledge/templates/relatorios.md`
 
 ## F7 — Diretrizes por papel
