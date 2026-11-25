@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sequência — template</title>
+  <style>
+    :root {
+      --color-paper: #f4f1ea;
+      --color-ink: #1b2430;
+      --color-muted: #4a5562;
+      --color-line: #c8c3b8;
+      --color-accent: #0f5c6b;
+      --color-accent-ink: #f4f1ea;
+      --color-node: #ffffff;
+      --color-node-stroke: #1b2430;
+      --color-recusado: #8a3b32;
+      --font-sans: system-ui, "Segoe UI", "Liberation Sans", Roboto, sans-serif;
+      --font-mono: ui-monospace, "Cascadia Code", "Liberation Mono", "Segoe UI Mono", monospace;
+    }
+    html, body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 24px 48px; }
+    h1 { font-size: 1.35rem; font-weight: 650; margin: 0 0 4px; }
+    .meta { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 24px; }
+    svg { width: 100%; height: auto; display: block; background: var(--color-paper); }
+    text { font-family: var(--font-sans); }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Sequência — template</h1>
+    <p class="meta">Três atores, duas mensagens. Linhas da vida em cinza de linha, setas em tinta.</p>
+    <svg viewBox="0 0 800 340" role="img" aria-labelledby="t d">
+      <title id="t">Template de sequência</title>
+      <desc id="d">A chama B, B responde a A; C observa.</desc>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-ink)"/>
+        </marker>
+      </defs>
+      <rect x="60" y="24" width="140" height="40" rx="6" fill="var(--color-accent)"/>
+      <text x="130" y="50" text-anchor="middle" font-size="14" fill="var(--color-accent-ink)">Ator A</text>
+      <line x1="130" y1="64" x2="130" y2="300" stroke="var(--color-line)" stroke-width="1.5"/>
+      <rect x="330" y="24" width="140" height="40" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="400" y="50" text-anchor="middle" font-size="14" fill="var(--color-ink)">Ator B</text>
+      <line x1="400" y1="64" x2="400" y2="300" stroke="var(--color-line)" stroke-width="1.5"/>
+      <rect x="600" y="24" width="140" height="40" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="670" y="50" text-anchor="middle" font-size="14" fill="var(--color-ink)">Ator C</text>
+      <line x1="670" y1="64" x2="670" y2="300" stroke="var(--color-line)" stroke-width="1.5"/>
+      <line x1="130" y1="130" x2="400" y2="130" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="265" y="120" text-anchor="middle" font-size="12" fill="var(--color-ink)">pedido</text>
+      <line x1="400" y1="200" x2="130" y2="200" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="265" y="190" text-anchor="middle" font-size="12" fill="var(--color-ink)">resposta</text>
+    </svg>
+
+  </main>
+</body>
+</html>

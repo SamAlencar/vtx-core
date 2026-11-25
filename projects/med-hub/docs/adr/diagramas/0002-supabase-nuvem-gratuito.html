@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ADR-002: Supabase na nuvem, começando no plano gratuito</title>
+  <style>
+    :root {
+      --color-paper: #f4f1ea;
+      --color-ink: #1b2430;
+      --color-muted: #4a5562;
+      --color-line: #c8c3b8;
+      --color-accent: #0f5c6b;
+      --color-accent-ink: #f4f1ea;
+      --color-node: #ffffff;
+      --color-node-stroke: #1b2430;
+      --color-recusado: #8a3b32;
+      --font-sans: system-ui, "Segoe UI", "Liberation Sans", Roboto, sans-serif;
+      --font-mono: ui-monospace, "Cascadia Code", "Liberation Mono", "Segoe UI Mono", monospace;
+    }
+    html, body { margin: 0; background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
+    main { max-width: 920px; margin: 0 auto; padding: 32px 24px 48px; }
+    h1 { font-size: 1.35rem; font-weight: 650; margin: 0 0 4px; }
+    .meta { color: var(--color-muted); font-size: 0.85rem; margin: 0 0 24px; }
+    svg { width: 100%; height: auto; display: block; background: var(--color-paper); }
+    text { font-family: var(--font-sans); }
+
+  </style>
+</head>
+<body>
+  <main>
+    <h1>ADR-002: Supabase na nuvem, começando no plano gratuito</h1>
+    <p class="meta">Arquitetura aceita em 24/10/2026 com o stack de referência (VTX-023). Pro, produção e região continuam A2.</p>
+    <svg viewBox="0 0 880 420" role="img" aria-labelledby="t d">
+      <title id="t">Supabase na nuvem como backend, plano Free no início</title>
+      <desc id="d">O app fala com o Supabase Cloud (Auth, Postgres com RLS, Storage, Edge Functions) usando só a chave anon no cliente. Self-host é plano de saída. Plano Pro exige nova aprovação A2.</desc>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-ink)"/>
+        </marker>
+      </defs>
+      <rect x="40" y="150" width="180" height="80" rx="8" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1.5"/>
+      <text x="130" y="184" text-anchor="middle" font-size="14" fill="var(--color-ink)">App / site</text>
+      <text x="130" y="204" text-anchor="middle" font-size="11" fill="var(--color-muted)">só chave anon</text>
+      <line x1="220" y1="190" x2="300" y2="190" stroke="var(--color-ink)" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="260" y="178" text-anchor="middle" font-size="10" fill="var(--color-muted)">HTTPS</text>
+      <rect x="300" y="70" width="360" height="260" rx="12" fill="var(--color-accent)"/>
+      <text x="480" y="100" text-anchor="middle" font-size="16" fill="var(--color-accent-ink)">Supabase Cloud</text>
+      <text x="480" y="120" text-anchor="middle" font-size="11" fill="var(--color-accent-ink)">plano Free agora · Pro é A2</text>
+      <rect x="328" y="150" width="140" height="64" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1"/>
+      <text x="398" y="178" text-anchor="middle" font-size="13" fill="var(--color-ink)">Auth</text>
+      <text x="398" y="196" text-anchor="middle" font-size="10" fill="var(--color-muted)">login</text>
+      <rect x="488" y="150" width="148" height="64" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1"/>
+      <text x="562" y="178" text-anchor="middle" font-size="13" fill="var(--color-ink)">Postgres + RLS</text>
+      <text x="562" y="196" text-anchor="middle" font-size="10" fill="var(--color-muted)">dados do produto</text>
+      <rect x="328" y="232" width="140" height="64" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1"/>
+      <text x="398" y="260" text-anchor="middle" font-size="13" fill="var(--color-ink)">Storage</text>
+      <text x="398" y="278" text-anchor="middle" font-size="10" fill="var(--color-muted)">arquivos</text>
+      <rect x="488" y="232" width="148" height="64" rx="6" fill="var(--color-node)" stroke="var(--color-node-stroke)" stroke-width="1"/>
+      <text x="562" y="260" text-anchor="middle" font-size="13" fill="var(--color-ink)">Edge Functions</text>
+      <text x="562" y="278" text-anchor="middle" font-size="10" fill="var(--color-muted)">service role só aqui</text>
+      <line x1="660" y1="190" x2="720" y2="190" stroke="var(--color-accent-ink)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <rect x="720" y="150" width="140" height="80" rx="8" fill="var(--color-node)" stroke="var(--color-line)" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="790" y="184" text-anchor="middle" font-size="13" fill="var(--color-ink)">Self-host</text>
+      <text x="790" y="204" text-anchor="middle" font-size="11" fill="var(--color-muted)">saída, NFR-15</text>
+    </svg>
+
+  </main>
+</body>
+</html>

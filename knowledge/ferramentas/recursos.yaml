@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable); VTX-141 (skill diagramas).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -664,6 +664,17 @@ recursos:
     status: "em avaliação"
     uso_agentes: "Diagramas em texto (fluxos, sequência). MIT, ~91 mil estrelas, pin 6374e52 (23/11/2026, branch develop). Útil em Markdown de PR e README. Não é o padrão de diagramas editoriais da VTX — isso é a skill diagramas (VTX-141, a partir do diagram-design)."
     riscos: "Não misturar Mermaid e a skill diagramas como fonte de verdade no mesmo ADR. Renderização no GitHub é suficiente para rascunho."
+    responsavel: orquestrador
+    revisado_em: 2026-11-24
+  - id: diagramas-editoriais
+    nome: "Skill de diagramas editoriais (VTX)"
+    area: documentacao
+    tipo: skill
+    link: "https://github.com/cathrynlavery/diagram-design"
+    licenca: MIT
+    status: adotado
+    uso_agentes: "Adaptação MIT do cathrynlavery/diagram-design, pin 7a12007 (VTX-141). Skill em .cursor/skills/diagramas/: HTML+SVG autocontido com tema VTX provisório e fontes locais. Tipos nesta cópia: arquitetura, fluxograma, sequência. Usar em ADRs, docs e sites. Mermaid fica só no rascunho; não misturar as duas como fonte de verdade no mesmo ADR."
+    riscos: "Não copiar scripts nem Google Fonts do repo de origem. O tema é provisório (não é marca oficial aprovada). Não ampliar a paleta por diagrama. Exportar PNG só com Playwright local."
     responsavel: orquestrador
     revisado_em: 2026-11-24
 

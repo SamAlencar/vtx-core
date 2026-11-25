@@ -1284,11 +1284,11 @@ tarefas:
   fase: F10
   area: Ferramentas
   prioridade: 60
-  status: pendente
+  status: concluído
   entregavel: '.cursor/skills/diagramas/ + diagramas dos ADRs do med-hub'
   depende_de:
   - VTX-125
-  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. cathrynlavery/diagram-design (MIT, pin 7a12007): copiar só SKILL.md e templates revisados, com atribuição e pin; trocar Google Fonts por fontes locais; tema VTX; não executar scripts do repo. Usar em docs/ADRs e sites.'
+  notas: 'Pedido do Samuel em 2026-10-21. Concluída em 2026-11-24: skill .cursor/skills/diagramas/ (SKILL.md pt-BR, tema-vtx.css, 3 templates, MIT/NOTICE pin 7a12007). Fontes locais, sem scripts do origin. Quatro diagramas HTML+SVG nos ADRs do med-hub. Tema VTX provisório. §3.7 e recursos.yaml atualizados.'
 - id: VTX-142
   titulo: 'Vídeos de divulgação com HyperFrames (render local)'
   fase: F12

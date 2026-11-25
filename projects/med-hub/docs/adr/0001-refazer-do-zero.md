@@ -2,6 +2,9 @@
 - **Status:** aceito (decisão do Samuel em 18/10/2026, [etapa 5](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/etapa5-reaproveitar-ou-refazer.md))
 - **Data:** 20/10/2026 · **Nível de governança:** A2 (aprovado)
 
+## Diagrama
+Fluxograma da decisão: [0001-refazer-do-zero.html](diagramas/0001-refazer-do-zero.html).
+
 ## Contexto
 O repositório `SamAlencar/4medco-platform` (React, Vite, Supabase, Stripe, Stream, Gemini/OpenAI) tem cerca de 207 migrations caóticas, nenhum teste relevante, documentação contraditória e uma camada de IA e atendimento superdimensionada que não combina com o novo desenho chat-first ([raio X](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/raio-x-repositorios.md)). Ele também tem dois riscos de segurança (ver "Lição aprendida").
 

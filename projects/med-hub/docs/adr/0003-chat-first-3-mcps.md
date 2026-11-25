@@ -2,6 +2,9 @@
 - **Status:** aceito (decisão do Samuel em 18/10/2026, [etapa 3](https://github.com/SamAlencar/4medco-base-conhecimento/blob/0da4cba/etapa3-mcps.md))
 - **Data:** 20/10/2026 · **Nível de governança:** A1 (arquitetura); os itens com dados pessoais seguem a seção 8 do PRD
 
+## Diagrama
+Chat-first e os três MCPs: [0003-chat-first-3-mcps.html](diagramas/0003-chat-first-3-mcps.html).
+
 ## Contexto
 O Samuel quer que o médico use tudo pelo chat, com algumas telas de consulta. Parceiros e admin continuam usando telas.
 

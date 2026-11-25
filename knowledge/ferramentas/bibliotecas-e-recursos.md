@@ -80,10 +80,11 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | Memória, aprendizado, codemaps | VTX-131/132/135/136/137 | Ignorar (já coberto) |
 | MCP configs (~35) | Playwright, Context7, GitHub | Nada novo grátis/local além dos já avaliados |
 
-### 3.7 diagram-design — diagramas editoriais (21/10/2026)
-[cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design), MIT, ~60 mil estrelas, pin `7a12007`. Skill de 45 tipos de diagrama em HTML + SVG autocontido (sem Mermaid), com tema de marca. Sem servidor, sem telemetria (PRIVACY.md); único acesso externo é Google Fonts. **Decisão: adaptar.**
-- Vira no Cursor: skill `.cursor/skills/diagramas/` (cópia revisada, atribuição + pin), com fontes locais/self-hosted no lugar do Google Fonts e tema VTX — **VTX-141**.
-- Uso: diagramas de ADRs, arquitetura e fluxos em `docs/` de todos os projetos (med-hub, plataforma-projetos), README e sites (site-vtx, site-med-hub, site-tekto). Não rodar os scripts do repo; exportar PNG só com o Playwright local já avaliado.
+### 3.7 diagram-design — diagramas editoriais (21/10/2026, adaptação 24/11/2026)
+[cathrynlavery/diagram-design](https://github.com/cathrynlavery/diagram-design), MIT, ~60 mil estrelas, pin `7a12007` (`7a12007b5a4246894f342a2e52e78facbc62eca3`). Skill de 45 tipos de diagrama em HTML + SVG autocontido (sem Mermaid), com tema de marca. Sem servidor, sem telemetria (PRIVACY.md); único acesso externo no original é Google Fonts. **Decisão: adaptar** — feita na VTX-141.
+- Skill no Cursor: [`.cursor/skills/diagramas/`](../../.cursor/skills/diagramas/) (SKILL.md em pt-BR, `tema-vtx.css`, 3 templates; atribuição e pin em `NOTICE.md`). Fontes locais (`system-ui` / Segoe UI / Liberation). Sem Google Fonts, sem scripts do repo de origem, sem os 45 `type-*.md`.
+- Tema VTX provisório (petróleo `#0f5c6b` no papel `#f4f1ea`) até haver marca oficial. PNG, se precisar, com o Playwright já adotado.
+- Uso: ADRs, arquitetura e fluxos em `docs/` (primeiro lote: [diagramas dos ADRs do med-hub](../../projects/med-hub/docs/adr/diagramas/)), README e sites.
 
 ### 3.8 HyperFrames (HeyGen) — vídeo a partir de HTML (21/10/2026)
 [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes), Apache-2.0, ~69 mil estrelas, pin `4371981`. Agentes escrevem HTML e o CLI renderiza MP4 local (Chrome headless + FFmpeg, Node 22+). **Decisão: adaptar, com cuidado.**

@@ -1,0 +1,27 @@
+/*
+  Tema VTX provisório para diagramas editoriais (VTX-141).
+  Ainda não há identidade visual oficial aprovada; estes tokens são o
+  padrão da skill até uma decisão de marca (A2 se houver custo/contrato).
+  Contraste relativo a --color-paper: tinta e muted pensados para WCAG AA.
+  Sem Inter, Geist, Fraunces, Plus Jakarta, Space Grotesk, coral padrão
+  do diagram-design nem degradê roxo/violeta.
+*/
+:root {
+  --color-paper: #f4f1ea;
+  --color-ink: #1b2430;
+  --color-muted: #4a5562;
+  --color-line: #c8c3b8;
+  --color-accent: #0f5c6b;
+  --color-accent-ink: #f4f1ea;
+  --color-node: #ffffff;
+  --color-node-stroke: #1b2430;
+  --color-recusado: #8a3b32;
+  --font-sans: system-ui, "Segoe UI", "Liberation Sans", Roboto, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Liberation Mono", "Segoe UI Mono", monospace;
+}
+
+html, body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
