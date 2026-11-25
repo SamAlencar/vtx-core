@@ -8,6 +8,7 @@
 - **Modelo de tenancy:** *silo* (banco/infra por cliente), *pool* (tudo compartilhado, separado por `tenant_id`) ou *bridge* (misto). A escolha é uma decisão de arquitetura (ADR) e afeta custo, segurança e LGPD.
 - **Incremento entregável:** fatia vertical (tela + API + banco + teste) que um usuário consegue usar. Preferir fatias a camadas.
 - **Doze fatores:** configuração por variáveis de ambiente, processos sem estado, logs como fluxo, paridade entre ambientes. Base para deploy simples e escalável.
+- **Ferramentas:** padrão — GitHub Actions, Cursor, Cloudflare, Supabase, Stripe, Sentry, Docker, Figma. Opcional — Vercel, Appwrite, Firebase, Google + Grok Bot. Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz); a escolha formal fica no [stack de referência](../../tecnologia/stack-de-referencia.md) e no ADR.
 
 ## 2. Etapas do fluxo
 

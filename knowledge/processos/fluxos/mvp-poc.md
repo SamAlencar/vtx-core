@@ -11,6 +11,7 @@
 - **Prazo fixo, escopo variável:** define-se o "apetite" (quanto tempo/verba a ideia merece) e corta-se escopo para caber, nunca o contrário (Shape Up).
 - **Tipos de MVP sem código pesado:** página de fumaça (landing + lista de espera), *concierge* (serviço feito à mão), Mágico de Oz (interface real, bastidor manual), recurso único, protótipo clicável. Usar o mais barato que responde à hipótese.
 - **Arquitetura sacrificial:** aceitar conscientemente que o código do teste pode ser jogado fora (Fowler); a decisão "descartar ou evoluir" é explícita no fim.
+- **Ferramentas:** padrão — GitHub Actions (CI mínimo), Cursor, Stripe (Payment Links, se houver venda). O restante é opcional e de baixo custo (Supabase Free, Cloudflare, Figma, Expo Go, Vercel Hobby só sem receita). Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
 
 ## 2. Etapas do fluxo
 

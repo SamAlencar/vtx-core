@@ -10,6 +10,7 @@
 - **Lean Inception (Paulo Caroli):** sequência curta de atividades para alinhar visão, escopo do MVP e ordem de entrega (visão, é/não é/faz/não faz, personas, jornadas, funcionalidades, revisão técnica, sequenciador, canvas MVP).
 - **MoSCoW:** priorização em Must, Should, Could, Won't (desta vez).
 - **Teoria × prática:** a teoria pressupõe um cliente disponível, uma sessão estruturada e respostas objetivas. Na prática o cliente chega com a solução pronta, mistura problema e funcionalidade, tem pouco tempo e responde aos poucos. O fluxo abaixo mostra as duas coisas em cada etapa.
+- **Ferramentas:** Agenda, Meet e ata no Drive — ver [Google e Grok Bot](../../ferramentas/comunicacao/google-workspace.md) e a [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
 
 ## 2. Papéis
 | Papel | Responsabilidade na entrevista |

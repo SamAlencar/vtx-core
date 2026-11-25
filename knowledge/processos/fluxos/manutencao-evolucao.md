@@ -8,6 +8,7 @@
 - **Testes de caracterização:** testes que registram o comportamento *atual* (certo ou errado) antes de alterar o código; viram rede de segurança (Feathers).
 - **Mudança pequena e reversível:** PRs curtos, feature flags, rollback testado. Substituição grande é gradual (padrão *Strangler Fig*), nunca reescrita "big bang".
 - **Linha de base:** métricas medidas antes da mudança (erros, latência, uso) para provar que a entrega melhorou e nada regrediu.
+- **Ferramentas:** padrão — GitHub Actions, Cursor, Sentry. As demais (Supabase, Appwrite, Firebase, Expo, Stripe, Vercel, Cloudflare, Docker, Figma) só entram se o sistema já as usa, ou na mudança aprovada por ADR. Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
 
 ## 2. Etapas do fluxo
 

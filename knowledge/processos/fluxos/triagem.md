@@ -20,6 +20,8 @@
 | Manutenção e evolução | sistema já existe, bug, lentidão, "adicionar função", código de terceiros | `manutencao-evolucao.md` (VTX-071) |
 | MVP / prova de conceito | "testar a ideia", prazo curto, verba limitada, "ver se dá certo" | `mvp-poc.md` (VTX-072) |
 
+A stack típica de cada tipo está na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
+
 ## 3. Metodologia (passo a passo)
 1. **Ler o pedido e extrair:** objetivo de negócio, usuário principal, plataformas, prazo, orçamento, integrações e se existe código prévio.
 2. **Responder às 5 perguntas de decisão, nesta ordem** (a primeira resposta "sim" define o fluxo principal):

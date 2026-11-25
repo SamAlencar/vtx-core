@@ -185,7 +185,7 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 ## F13 — Capacidades para o piloto plataforma-projetos
 
 118. **VTX-151** Versionamento de modelos IFC: versões, branches, diff e merge → `knowledge/engenharia/bim/versionamento-ifc.md`
-119. **VTX-152** Prova de conceito: diff visual de IFC e desempenho 3D no navegador → `projects/plataforma-projetos/docs/poc/`
+119. **VTX-152** Prova de conceito: banco de objetos como camada de trabalho, diff visual e desempenho 3D → `projects/plataforma-projetos/docs/poc/`
 
 ## F11 — Plataforma de acompanhamento (projeto interno)
 
