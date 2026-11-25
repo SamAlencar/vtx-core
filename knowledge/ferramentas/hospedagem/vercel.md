@@ -1,6 +1,8 @@
 # Vercel
 > Hospedagem e deploy · Status: **em avaliação** (adotada só para uso interno não comercial; uso comercial depende do Samuel) · Revisado em 2026-10-27 · VTX-099
 
+Política por tipo de produto e dono da conta: [hospedagem por cliente](../../operacao/hospedagem-por-cliente.md) (VTX-195).
+
 ## 1. O que é
 Plataforma de hospedagem feita para Next.js: cada push gera um deploy, cada PR ganha uma URL de preview e as funções (rotas de API, Server Components) rodam sem servidor para administrar. É a hospedagem web padrão do [stack de referência](../../tecnologia/stack-de-referencia.md).
 
