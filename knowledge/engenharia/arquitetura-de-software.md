@@ -49,7 +49,7 @@ Consequências: <o que fica mais fácil/difícil; custo; risco>
 - **Governança:** ADR com custo, fornecedor pago, dados pessoais ou irreversível é **A2** (Samuel aprova, ver [governança](../processos/governanca-e-aprovacoes.md)); o resto é A1 (decide e registra).
 
 ## 5. Documento de arquitetura mínimo (`docs/arquitetura.md`)
-1. Metas de qualidade (3, medíveis) e restrições · 2. C4 nível 1 e 2 · 3. Modelo de dados (entidades principais) · 4. Contratos (link do OpenAPI/AsyncAPI) · 5. Lista de ADRs · 6. Riscos e requisitos não funcionais (segurança, LGPD, custo). Cabe em 1–2 páginas; o resto mora nos ADRs.
+1. Metas de qualidade (3, medíveis) e restrições · 2. C4 nível 1 e 2 · 3. Modelo de dados (entidades principais) · 4. Contratos (link do OpenAPI/AsyncAPI) · 5. Lista de ADRs · 6. Riscos e requisitos não funcionais (segurança, LGPD, custo). Cabe em 1–2 páginas; o resto mora nos ADRs. O índice navegável do repositório (módulos, fluxos, pontos de entrada) é o `docs/CODEBASE_MAP.md` — ver [Mapa de codebase por projeto](mapa-de-codebase.md).
 
 ## 6. Exemplo
 "Agendamento para clínicas (SaaS)". Metas: isolamento entre clínicas, 99,5% ao mês, custo zero até 10 clientes. Estilo: monólito modular (módulos agenda, pacientes, lembretes), núcleo hexagonal só em agenda (regras de conflito). C4-1: recepção, profissional, serviço de e-mail. C4-2: app web, API, PostgreSQL, worker de lembretes. ADRs: 0001 monólito modular; 0002 tenancy *pool* com `tenant_id` (dados de saúde → A2); 0003 hospedagem em plano gratuito (A2 por depender de fornecedor). Microsserviços recusados: 1 time, domínio novo.

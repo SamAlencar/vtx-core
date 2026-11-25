@@ -1182,21 +1182,21 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/engenharia/mapa-de-codebase.md'
   depende_de:
   - VTX-119
-  notas: 'Pedido do Samuel em 2026-10-21. Modelo de docs/CODEBASE_MAP.md (arquitetura, módulos, fluxos, pontos de entrada) gerado por agente local e atualizado a cada incremento. Cartographer não tem licença: reescrever do zero, sem copiar texto/código. Prioridade 62 empata com VTX-129 e vem depois (ordenação estável).'
+  notas: 'Concluída em 2026-11-24: padrão original em knowledge/engenharia/mapa-de-codebase.md (modelo de docs/CODEBASE_MAP.md, geração local, atualização só das seções afetadas). Cartographer (pin a62d169) sem licença — nenhum texto ou código copiado; ferramenta não instalada. INDEX e recursos.yaml atualizados.'
 - id: VTX-132
   titulo: 'Memory bank dos projetos em arquivos (adaptado de my-claude-code-setup e claude-mem)'
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/templates/memoria-projeto/'
   depende_de:
   - VTX-119
-  notas: 'Pedido do Samuel em 2026-10-21. Arquivos de padrões, decisões (decisions.md), troubleshooting [Problema] -> [Falhou] -> [Solução] e contexto ativo, com observações tipadas e datadas (decision, bugfix, security_alert); carregados sob demanda via AGENTS.md/.cursor/rules. Sem hooks, sem serviço hospedado. Atribuição MIT (centminmod, pin 7d5c374) se copiar trecho.'
+  notas: 'Concluída em 2026-11-24: templates originais em knowledge/templates/memoria-projeto/ (padroes, decisions, troubleshooting, contexto-ativo, observacoes tipadas), copiados para docs/memoria/ e lidos sob demanda via ponteiro no AGENTS.md/.cursor/rules. Sem hooks e sem serviço hospedado. centminmod/my-claude-code-setup (MIT, pin 7d5c374) e thedotmack/claude-mem (Apache-2.0, pin bbb3379): nenhum trecho copiado; claude-mem continua descartado.'
 - id: VTX-133
   titulo: 'Regras de economia de contexto em saídas de ferramentas e piloto local do Headroom'
   fase: F12

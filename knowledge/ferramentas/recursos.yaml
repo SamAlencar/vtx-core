@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable); VTX-141 (skill diagramas).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable); VTX-141 (skill diagramas); VTX-131 (mapa de codebase); VTX-132 (memory bank).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -196,21 +196,21 @@ recursos:
     link: "https://github.com/kingbootoshi/cartographer/tree/a62d169"
     licenca: "sem licença declarada"
     status: "em avaliação"
-    uso_agentes: "~790 estrelas, pin a62d169. Gera docs/CODEBASE_MAP.md (arquitetura, módulos, fluxos) com subagentes em paralelo; v2 tem CLI (Bun) com grafo local em SQLite e 'briefs' limitados. Extrair só a IDEIA: padrão de mapa de codebase por projeto, gerado por agente local e atualizado a cada incremento, para não reler o repo inteiro (alinha com o .cursorignore/regras de contexto)."
-    riscos: "SEM LICENÇA = todos os direitos reservados: não copiar código nem texto. Plugin feito para Claude Code; subagentes Sonnet consomem muitos tokens. Dúvida de identificação: o nome também é do projeto SLAM do Google (cartographer-project) — escolhido o de agentes por contexto."
+    uso_agentes: "Só a ideia foi usada. O padrão VTX (original, sem cópia) está em knowledge/engenharia/mapa-de-codebase.md (VTX-131): docs/CODEBASE_MAP.md por projeto, gerado por agente local e atualizado por incremento. A ferramenta em si não se instala nem se executa."
+    riscos: "SEM LICENÇA = todos os direitos reservados: não copiar código nem texto. Plugin feito para Claude Code; subagentes pagos consomem muitos tokens. Dúvida de identificação: o nome também é do projeto SLAM do Google (cartographer-project) — escolhido o de agentes por contexto."
     responsavel: arquiteto
-    revisado_em: 2026-10-21
+    revisado_em: 2026-11-24
   - id: claude-code-setup-centminmod
     nome: "my-claude-code-setup (centminmod) — memory bank e templates"
     area: skills-agentes
     tipo: regras
     link: "https://github.com/centminmod/my-claude-code-setup/tree/7d5c374"
     licenca: MIT
-    status: "em avaliação"
-    uso_agentes: "Decisão: ADAPTAR (status em avaliação até o VTX-132). ~2,7 mil estrelas, pin 7d5c374. Templates de CLAUDE.md e 'memory bank' em arquivos (padrões, decisões/ADRs, troubleshooting, contexto ativo) atualizados a cada entrega. Adaptar ao Cursor: AGENTS.md + .cursor/rules/ e memória em docs do projeto (decisions.md já adotado), com atribuição se algum trecho for copiado."
-    riscos: "Hooks e settings.json executam comandos (notifier macOS) — não usar. Sugere Z.AI/provedores pagos — fora. Dúvida de identificação: 'Claude Code setup' também casa com garrytan/gstack (MIT, ~137 mil estrelas, 23 ferramentas por papel) — fica como referência secundária."
+    status: adotado
+    uso_agentes: "Adaptado na VTX-132 (pin 7d5c374, MIT). Templates originais em pt-BR em knowledge/templates/memoria-projeto/ (padroes, decisions, troubleshooting, contexto-ativo, observacoes), copiados para docs/memoria/ de cada projeto e carregados sob demanda via ponteiro no AGENTS.md ou .cursor/rules. Nenhum trecho do origin foi copiado. Sem hooks e sem CLAUDE.md de terceiros."
+    riscos: "Hooks e settings.json do origin executam comandos (notifier macOS) — não usar. Sugere provedores pagos — fora. Dúvida de identificação: 'Claude Code setup' também casa com garrytan/gstack (MIT) — fica como referência secundária."
     responsavel: orquestrador
-    revisado_em: 2026-10-21
+    revisado_em: 2026-11-24
   - id: claude-mem
     nome: "claude-mem (thedotmack) — memória persistente entre sessões"
     area: skills-agentes
@@ -218,10 +218,10 @@ recursos:
     link: "https://github.com/thedotmack/claude-mem/tree/bbb3379"
     licenca: Apache-2.0
     status: descartado
-    uso_agentes: "~102 mil estrelas, pin bbb3379. Captura tudo da sessão via hooks/worker, comprime com IA e injeta contexto depois. Não instalar. Extrair só o padrão: observações tipadas (decision, bugfix, security_alert) com data, resumo curto por sessão e busca sob demanda — a VTX faz isso em arquivos Markdown versionados."
+    uso_agentes: "Continua descartado (não instalar). O padrão de observações tipadas (decision, bugfix, security_alert) com data e resumo curto entrou em knowledge/templates/memoria-projeto/observacoes.md (VTX-132)."
     riscos: "Padrão é o 'CMEM Pro' hospedado (login, envio de dados a terceiros); modo local é opt-in. Hooks e worker em segundo plano capturam e executam código; compressão usa LLM (custo). Viola a regra de nada pago/terceiros."
     responsavel: orquestrador
-    revisado_em: 2026-10-21
+    revisado_em: 2026-11-24
   - id: headroom
     nome: "Headroom (headroomlabs-ai) — compressão de contexto"
     area: skills-agentes
