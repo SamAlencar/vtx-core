@@ -20,96 +20,99 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 
 4. **VTX-174** Human-in-the-loop verificável (evidência de aprovação A2) → `backlog/SCHEMA.md + scripts/validar_backlog.py`
 
-## F3 — Segurança e operação
-
-5. **VTX-175** Política de isolamento por cliente → `knowledge/seguranca/isolamento-clientes.md + projects/README.md`
-
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-6. **VTX-176** Empacotar o núcleo de funções de domínio (core/vtx_ifc) → `pyproject.toml + core/vtx_ifc/`
-7. **VTX-177** Harness de agente de referência (loop de tool-calling) → `core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md`
+5. **VTX-176** Empacotar o núcleo de funções de domínio (core/vtx_ifc) → `pyproject.toml + core/vtx_ifc/`
+6. **VTX-177** Harness de agente de referência (loop de tool-calling) → `core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md`
 
 ## F12 — Catálogo de ferramentas
 
-8. **VTX-135** Piloto local do Trail-code (graft map) como ferramenta do mapa de codebase → `knowledge/ferramentas/piloto-trail-code.md`
-9. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
-10. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
-11. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
+7. **VTX-135** Piloto local do Trail-code (graft map) como ferramenta do mapa de codebase → `knowledge/ferramentas/piloto-trail-code.md`
+8. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
+9. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
+10. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
 
 ## F5 — Gestão e conformidade
 
-12. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
-13. **VTX-030** Estimativas e planejamento → `knowledge/gestao/estimativas.md`
+11. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
+12. **VTX-030** Estimativas e planejamento → `knowledge/gestao/estimativas.md`
 
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-14. **VTX-178** Suíte de evals mínima com portão no CI → `evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md`
+13. **VTX-178** Suíte de evals mínima com portão no CI → `evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md`
 
 ## F5 — Gestão e conformidade
 
-15. **VTX-031** LGPD e compliance → `knowledge/seguranca/lgpd-compliance.md`
+14. **VTX-031** LGPD e compliance → `knowledge/seguranca/lgpd-compliance.md`
 
 ## F13 — Capacidades para o piloto plataforma-projetos
 
-16. **VTX-179** Log estruturado por execução de agente e custo → `core/agente/telemetria.py + knowledge/operacao/observabilidade.md`
+15. **VTX-179** Log estruturado por execução de agente e custo → `core/agente/telemetria.py + knowledge/operacao/observabilidade.md`
 
 ## F5 — Gestão e conformidade
 
-17. **VTX-032** Documentação técnica (docs-as-code) → `knowledge/gestao/documentacao-tecnica.md`
+16. **VTX-032** Documentação técnica (docs-as-code) → `knowledge/gestao/documentacao-tecnica.md`
 
 ## F8 — Consolidação e validação
 
-18. **VTX-181** Lint de código e de Markdown no CI (ruff e markdownlint) → `pyproject.toml + .markdownlint.json + .github/workflows/testes.yml`
+17. **VTX-181** Lint de código e de Markdown no CI (ruff e markdownlint) → `pyproject.toml + .markdownlint.json + .github/workflows/testes.yml`
 
 ## F6 — Templates de artefatos
 
-19. **VTX-033** Template de PRD → `knowledge/templates/prd.md`
-20. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
-21. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
-22. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
+18. **VTX-033** Template de PRD → `knowledge/templates/prd.md`
+19. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
+20. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
+21. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
 
 ## F8 — Consolidação e validação
 
-23. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
+22. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
 
 ## F6 — Templates de artefatos
 
-24. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
-25. **VTX-038** Template de relatório diário e de sprint → `knowledge/templates/relatorios.md`
+23. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
+24. **VTX-038** Template de relatório diário e de sprint → `knowledge/templates/relatorios.md`
 
 ## F7 — Diretrizes por papel
 
-26. **VTX-039** Diretrizes do agente Orquestrador → `knowledge/diretrizes/orquestrador.md`
-27. **VTX-040** Diretrizes do agente Produto → `knowledge/diretrizes/produto.md`
-28. **VTX-041** Diretrizes do agente Arquiteto → `knowledge/diretrizes/arquiteto.md`
-29. **VTX-042** Diretrizes do agente Dev Backend → `knowledge/diretrizes/dev-backend.md`
-30. **VTX-043** Diretrizes do agente Dev Frontend/Mobile → `knowledge/diretrizes/dev-frontend-mobile.md`
-31. **VTX-044** Diretrizes do agente QA → `knowledge/diretrizes/qa.md`
-32. **VTX-045** Diretrizes do agente DevOps/SRE → `knowledge/diretrizes/devops-sre.md`
-33. **VTX-046** Diretrizes dos especialistas sob demanda → `knowledge/diretrizes/especialistas.md`
+25. **VTX-039** Diretrizes do agente Orquestrador → `knowledge/diretrizes/orquestrador.md`
+26. **VTX-040** Diretrizes do agente Produto → `knowledge/diretrizes/produto.md`
+27. **VTX-041** Diretrizes do agente Arquiteto → `knowledge/diretrizes/arquiteto.md`
+28. **VTX-042** Diretrizes do agente Dev Backend → `knowledge/diretrizes/dev-backend.md`
+29. **VTX-043** Diretrizes do agente Dev Frontend/Mobile → `knowledge/diretrizes/dev-frontend-mobile.md`
+30. **VTX-044** Diretrizes do agente QA → `knowledge/diretrizes/qa.md`
+31. **VTX-045** Diretrizes do agente DevOps/SRE → `knowledge/diretrizes/devops-sre.md`
+32. **VTX-046** Diretrizes dos especialistas sob demanda → `knowledge/diretrizes/especialistas.md`
 
 ## F9 — Integração com o Cursor e operação
 
-34. **VTX-053** AGENTS.md raiz com diretrizes gerais dos agentes → `AGENTS.md`
-35. **VTX-054** Regra sempre ativa: fluxo entre papéis, DoD e aprovações → `.cursor/rules/vtx-base.mdc`
-36. **VTX-055** Regras por papel: Orquestrador, Produto e Arquiteto → `.cursor/rules/papeis/planejamento.mdc`
-37. **VTX-056** Regras por papel: Devs, QA e DevOps/SRE → `.cursor/rules/papeis/execucao.mdc`
-38. **VTX-134** Enriquecer papéis de agentes com o catálogo agency-agents → `knowledge/organizacao/papeis-de-agentes.md`
-39. **VTX-057** Regras por assunto com globs: testes e APIs → `.cursor/rules/assuntos/testes-api.mdc`
-40. **VTX-058** Regras por assunto com globs: frontend/mobile e segurança → `.cursor/rules/assuntos/frontend-seguranca.mdc`
-41. **VTX-138** Regras comuns e por stack em .cursor/rules a partir do ECC → `.cursor/rules/ (common-*, typescript, react, react-native, python) e knowledge/templates/cursor/`
-42. **VTX-139** Hooks do Cursor como guardrails locais (adaptados do ECC) → `.cursor/hooks.json e scripts/hooks/ (padrão TT-060)`
-43. **VTX-059** Estratégia de consulta sob demanda e índice para agentes → `knowledge/index.yaml`
+33. **VTX-053** AGENTS.md raiz com diretrizes gerais dos agentes → `AGENTS.md`
+34. **VTX-054** Regra sempre ativa: fluxo entre papéis, DoD e aprovações → `.cursor/rules/vtx-base.mdc`
+35. **VTX-055** Regras por papel: Orquestrador, Produto e Arquiteto → `.cursor/rules/papeis/planejamento.mdc`
+36. **VTX-056** Regras por papel: Devs, QA e DevOps/SRE → `.cursor/rules/papeis/execucao.mdc`
+37. **VTX-134** Enriquecer papéis de agentes com o catálogo agency-agents → `knowledge/organizacao/papeis-de-agentes.md`
+38. **VTX-057** Regras por assunto com globs: testes e APIs → `.cursor/rules/assuntos/testes-api.mdc`
+39. **VTX-058** Regras por assunto com globs: frontend/mobile e segurança → `.cursor/rules/assuntos/frontend-seguranca.mdc`
+40. **VTX-138** Regras comuns e por stack em .cursor/rules a partir do ECC → `.cursor/rules/ (common-*, typescript, react, react-native, python) e knowledge/templates/cursor/`
+41. **VTX-139** Hooks do Cursor como guardrails locais (adaptados do ECC) → `.cursor/hooks.json e scripts/hooks/ (padrão TT-060)`
+42. **VTX-059** Estratégia de consulta sob demanda e índice para agentes → `knowledge/index.yaml`
 
 ## F7 — Diretrizes por papel
 
-44. **VTX-182** Diretrizes por papel (F7) e sincronização da tabela Recursos por papel → `knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py`
+43. **VTX-182** Diretrizes por papel (F7) e sincronização da tabela Recursos por papel → `knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py`
 
 ## F9 — Integração com o Cursor e operação
 
-45. **VTX-060** Template de repositório de projeto → `templates/projeto/`
-46. **VTX-061** Sincronização de regras e script de bootstrap de projetos → `scripts/bootstrap_projeto.sh`
-47. **VTX-062** Ambiente dos agentes de nuvem (environment.json, segredos, permissões) → `.cursor/environment.json`
+44. **VTX-060** Template de repositório de projeto → `templates/projeto/`
+45. **VTX-061** Sincronização de regras e script de bootstrap de projetos → `scripts/bootstrap_projeto.sh`
+46. **VTX-062** Ambiente dos agentes de nuvem (environment.json, segredos, permissões) → `.cursor/environment.json`
+
+## F3 — Segurança e operação
+
+47. **VTX-187** Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos → `projects/med-hub/README.md + projects/plataforma-projetos/README.md`
+
+## F9 — Integração com o Cursor e operação
+
 48. **VTX-063** Orquestração com issues, PRs e agentes de nuvem por papel e tipo de projeto → `knowledge/processos/orquestracao-cursor.md`
 49. **VTX-064** Pontos de aprovação do Samuel (branch protegida, revisões, release) → `knowledge/processos/pontos-de-aprovacao.md`
 50. **VTX-065** Teste de validação da integração com o Cursor → `projects/validacao-cursor/`

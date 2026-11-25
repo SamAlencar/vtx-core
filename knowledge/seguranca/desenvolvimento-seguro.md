@@ -6,7 +6,7 @@
 - **SSDF (NIST SP 800-218):** quatro grupos de práticas — preparar a organização (PO), proteger o software (PS), produzir software bem protegido (PW) e responder a vulnerabilidades (RV). É o "esqueleto" do processo VTX abaixo.
 - **OWASP Top 10:** os riscos web mais comuns (controle de acesso quebrado, falhas criptográficas, injeção, design inseguro, má configuração, componentes vulneráveis, autenticação, integridade, logs, SSRF). Para APIs: **API Security Top 10 (2023)**; para IA: **LLM Top 10 (2025)**.
 - **ASVS:** lista verificável de requisitos de segurança; a VTX usa o **nível 1** por padrão e o **nível 2** quando há dado pessoal sensível, pagamento ou saúde (ex.: med-hub).
-- **Defesa em profundidade + mínimo privilégio:** nenhum controle único; cada agente e serviço só acessa o que precisa ([governança](../processos/governanca-e-aprovacoes.md)).
+- **Defesa em profundidade + mínimo privilégio:** nenhum controle único; cada agente e serviço só acessa o que precisa ([governança](../processos/governanca-e-aprovacoes.md)). O isolamento por cliente (um repositório por cliente, segredos no repo dele) está em [isolamento-clientes.md](isolamento-clientes.md).
 
 ## 2. Metodologia por fase (SSDF → VTX)
 | Fase | Prática | Quem | Evidência |

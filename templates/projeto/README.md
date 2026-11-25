@@ -17,3 +17,7 @@ Repositório de cliente da VTX, gerado por `scripts/bootstrap_projeto.sh`.
 - `docs/runbook.md` — operação e rollback (DevOps/SRE)
 - `src/hello.py` e `tests/test_hello.py` — exemplo inicial (substitua pelo código do projeto)
 - `.env.example` — variáveis de ambiente; copie para `.env` e não commite o `.env`
+
+## Isolamento e segredos
+
+Este é o repositório do cliente: código, dados e *GitHub Secrets* ficam aqui, não no vtx-core. Use `.env` local (veja `.env.example`) e nunca o commite. Política: no vtx-core, `knowledge/seguranca/isolamento-clientes.md`.

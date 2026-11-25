@@ -1632,11 +1632,11 @@ tarefas:
   fase: F3
   area: Segurança
   prioridade: 59
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/seguranca/isolamento-clientes.md + projects/README.md'
   depende_de:
   - VTX-170
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 11. ADR decidindo um repositório por cliente; segredos no repo do cliente; permissões dos papéis deixam de dizer leitura em todo o repositório; teste ou lint impede código/dados de cliente em projects/<cliente>/ no core.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 11. Concluída em 24/11/2026: ADR em knowledge/seguranca/isolamento-clientes.md (um repositório por cliente; o core só guarda ponteiro e metadados públicos). Segredos no repo do cliente. Permissões dos papéis sem "leitura em todo o repositório". Teste tests/test_isolamento_clientes.py impede código, segredo e dado operacional em projects/<cliente>/; legado (med-hub, plataforma-projetos) permanece só com documentação, a migrar. Sandbox de ferramenta (sandbox-*) não é repo de cliente.'
 
 - id: VTX-176
   titulo: Empacotar o núcleo de funções de domínio (core/vtx_ifc)
@@ -1739,3 +1739,15 @@ tarefas:
   status: concluído
   entregavel: templates/projeto/.github/workflows/ci.yml
   notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o workflow do template de cliente declarar o menor privilégio. Arquivos afetados: templates/projeto/.github/workflows/ci.yml (e o docs/plano.md do template, que registra o build provisório). Critério de aceite: o ci.yml do template tem permissions: contents: read no workflow. Concluída no PR #18 em 24/11/2026.'
+
+- id: VTX-187
+  titulo: Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos
+  fase: F3
+  area: Segurança
+  prioridade: 90
+  status: a fazer
+  entregavel: projects/med-hub/README.md + projects/plataforma-projetos/README.md
+  depende_de:
+  - VTX-175
+  notas: 'Seguimento da revisão do Tzu no PR #22 (24/11/2026). Objetivo: tirar do vtx-core o PRD, os ADRs e o restante da documentação de produto hoje em projects/med-hub/ e projects/plataforma-projetos/, deixando só ponteiro e metadados públicos, conforme a política de isolamento. Arquivos afetados: essas pastas no core e os repositórios de destino. Critério de aceite: no vtx-core, cada pasta tem só README (link do repo) e metadados públicos; o conteúdo migrado está no repositório do produto, com links atualizados no INDEX se couber. Exige o repositório de destino (pode precisar do Samuel para indicar ou criar).'
+
