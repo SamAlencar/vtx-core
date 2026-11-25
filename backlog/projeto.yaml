@@ -1094,21 +1094,21 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 55
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
-  notas: 'Inclui Playwright MCP.'
+  notas: 'Inclui Playwright MCP. Concluída em 2026-11-24: Playwright, Vitest, Testing Library e pytest adotados; Playwright MCP atualizado e em avaliação (piloto só em teste); §3.12.'
 - id: VTX-123
   titulo: 'Pesquisa de recursos: segurança e cadeia de suprimentos'
   fase: F12
   area: Ferramentas
   prioridade: 56
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
-  notas: 'Inclui checklist de revisão de skills/hooks antes de instalar.'
+  notas: 'Inclui checklist de revisão de skills/hooks antes de instalar. Concluída em 2026-11-24: gitleaks, Semgrep CE e OSV-Scanner adotados; Trivy e ZAP em avaliação; OWASP atualizado; checklist de skill/hook na §3.13. CodeQL privado e Semgrep Cloud fora (possível custo).'
 - id: VTX-124
   titulo: 'Pesquisa de recursos: documentação'
   fase: F12

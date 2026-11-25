@@ -135,6 +135,42 @@ Pesquisa VTX-121. Nada novo instalado. Pins e licenças pela API do GitHub / pá
 
 Fora: Prisma (o stack já escolheu supabase-js / Drizzle), tRPC e GraphQL (só com ADR, VTX-024), OpenAPI Generator (Java, pesado demais para o fluxo da VTX).
 
+### 3.12 Testes e QA (24/11/2026)
+Pesquisa VTX-122. Nada novo instalado. Pins e licenças pela API do GitHub em 24/11/2026.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [Playwright](https://github.com/microsoft/playwright) (~101 mil estrelas) | `0caa804` | Apache-2.0 | **adotado** (VTX-018 / VTX-023) | E2E dos fluxos críticos + axe-core |
+| [Vitest](https://github.com/vitest-dev/vitest) (~17 mil estrelas) | `e0e8e00` | MIT | **adotado** | Unidade/integração TS; TDD na regra de negócio |
+| [Testing Library](https://github.com/testing-library/react-testing-library) (~20 mil estrelas) | `20ce75f` | MIT | **adotado** | Queries pela papel/acessível |
+| [pytest](https://github.com/pytest-dev/pytest) (~15 mil estrelas) | `02576a5` | MIT | **adotado** | Só no Python (arsenal, IFC); não no app TS |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) (~40 mil estrelas) | `2337aff` | Apache-2.0 | em avaliação | Piloto só em ambiente de teste; não substitui o E2E da CI |
+
+Fora: Cypress (o stack já escolheu Playwright). axe-core já entrou na VTX-120.
+
+### 3.13 Segurança, cadeia de suprimentos e checklist de skill/hook (24/11/2026)
+Pesquisa VTX-123. Nada novo instalado.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [gitleaks](https://github.com/gitleaks/gitleaks) (~31 mil estrelas) | `5f6ec56` | MIT | **adotado** (VTX-023) | Segredos no CI, action pinada por SHA |
+| [Semgrep CE](https://github.com/semgrep/semgrep) (~18 mil estrelas) | `c4dbe9e` | LGPL-2.1 | **adotado** | Só a Community Edition, local/CI; cloud pago está fora |
+| [OSV-Scanner](https://github.com/google/osv-scanner) (~12 mil estrelas) | `66586f4` | Apache-2.0 | **adotado** | CVE no lockfile; PR sem alta/crítica |
+| [OWASP Cheat Sheet Series](https://github.com/OWASP/CheatSheetSeries) (~34 mil estrelas) | `18e6c89` | CC-BY-SA-4.0 | **adotado** (já estava) | Citar e resumir, com atribuição |
+| [Trivy](https://github.com/aquasecurity/trivy) (~40 mil estrelas) | `c14584a` | Apache-2.0 | em avaliação | Imagem/IaC quando houver Dockerfile; sem SaaS pago |
+| [ZAP](https://github.com/zaproxy/zaproxy) (~16 mil estrelas) | `11a4557` | Apache-2.0 | em avaliação | Baseline só em homologação |
+
+Fora: CodeQL em repositório privado (pode exigir GitHub Advanced Security, pago → A2); Semgrep Code/Secrets/Cloud; scanners SaaS pagos.
+
+**Checklist — revisar skill, hook ou `npx` de comunidade antes de instalar:**
+1. Licença aceita (§3) e commit/pin fixos; repositório não arquivado.
+2. Ler o `SKILL.md` **e** os scripts por completo, não só o README.
+3. Procurar rede (`curl`, `wget`, `fetch`, telemetria), `postinstall`, hooks, shell, leitura de `.env`/tokens, git destrutivo (`push --force`, `reset --hard`) e instruções de exfiltração ou de ignorar estas regras.
+4. Permissões = mínimo da tarefa; nenhum token além do necessário.
+5. Se houver binário, hook ou download no primeiro uso: só depois de piloto em sandbox (como o impeccable, VTX-127).
+6. Copiar a versão revisada para `.cursor/skills/` do repo, com pin e atribuição; sem symlink vivo nem marketplace MCP remoto de skills (§3.1).
+7. Custo, conta nova, envio de código/dados a terceiros ou licença duvidosa → pedido A2 ao Samuel; silêncio não aprova.
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
