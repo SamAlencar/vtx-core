@@ -1,6 +1,6 @@
 # Processo periódico de revisão de ferramentas
 
-> VTX-113 · Fase F12 · Ferramentas. Como a VTX **revisa o catálogo** de ferramentas uma vez por trimestre, dentro da [manutenção quinzenal](../processos/operacao-de-agentes.md). A escolha da stack continua no [stack de referência](../tecnologia/stack-de-referencia.md); os critérios de adoção, no [catálogo](README.md) §4. Recursos de agentes (skills, regras, MCP) têm cadência própria em [bibliotecas-e-recursos.md](bibliotecas-e-recursos.md) §2 — o encaixe formal neste documento é a VTX-129.
+> VTX-113 · Fase F12 · Ferramentas. Como a VTX **revisa o catálogo** de ferramentas uma vez por trimestre, dentro da [manutenção quinzenal](../processos/operacao-de-agentes.md). A escolha da stack continua no [stack de referência](../tecnologia/stack-de-referencia.md); os critérios de adoção, no [catálogo](README.md) §4. Recursos de agentes (skills, regras, MCP, bibliotecas) estão em [recursos.yaml](recursos.yaml) e [bibliotecas-e-recursos.md](bibliotecas-e-recursos.md); a varredura entra nesta mesma cadência (VTX-129, §2.1).
 
 ## 1. Conceitos essenciais
 - **Catálogo ≠ radar.** Entram neste ciclo só as ferramentas com documento em `knowledge/ferramentas/<categoria>/` e status `adotada`, `em avaliação`, `alternativa` ou `descontinuada`. Itens do [radar](radar.md) e pastas `avaliacoes/` sem registro de adoção ficam de fora até virarem ferramenta.
@@ -21,6 +21,21 @@
 
 **Gatilho fora do ciclo:** incidente de segurança, CVE explorada, mudança anunciada de preço, limite, região ou termos. Trata-se na hora, atualiza-se o arquivo e a data, e a nota entra no próximo diário. Não se espera o trimestre.
 
+### 2.1 Varredura de recursos (VTX-129)
+
+O registro [recursos.yaml](recursos.yaml) **não** é relido por inteiro em toda quinzenal. Entra no mesmo ciclo da manutenção, com recorte:
+
+- **A cada quinzenal:** rodízio de **1 ou 2 `area`** do YAML (frontend-design, backend-apis, testes-qa, seguranca, documentacao, skills-agentes, regras-cursor, mcp). Conferir pins, licença, janela de 6 meses e se algum **em avaliação** ainda cabe. Trazer no máximo **3 candidatos** novos para o diário (nome, por que, o que falta no piloto). Não promover a adotado neste passo.
+- **No trimestre** (primeiro ciclo quinzenal de jan/abr/jul/out, junto com a revisão do catálogo de ferramentas): reavaliar os **adotados** das áreas do rodízio e, no fechamento do trimestre, ter passado por todas as áreas pelo menos uma vez. Adotado sem uso no trimestre é anotado; vale a mesma regra da §2 passo 3 (dois trimestres e não ser padrão antes de propor descarte). Restrições já registradas (ex.: impeccable sem `npx install`, Semgrep só CE, MCP de produção só via Git) são reafirmadas, não reabertas por padrão.
+- Se um status mudar, atualizar o YAML, a narrativa em bibliotecas-e-recursos.md e as seções “Recursos por papel” dos [agentes](../../agents/) (VTX-128). Em divergência, vale o YAML.
+- Custo, contrato, dado pessoal ou adoção com qualquer um desses itens continua **A2**.
+
+**Ata extra no diário (quinzenal ou trimestre):**
+```markdown
+Varredura de recursos (VTX-129): áreas <lista>. Candidatos (máx. 3): <lista ou nenhum>.
+Adotados reavaliados: <lista ou “não é trimestre”>. Sem uso: <lista>. A2: <pedido ou nenhum>.
+```
+
 **Fontes práticas por eixo:** preços e limites na página oficial da ferramenta; versões no changelog/releases; segurança no advisory do fornecedor, no [NVD](https://nvd.nist.gov/) e no [catálogo KEV da CISA](https://www.cisa.gov/known-exploited-vulnerabilities-catalog) quando o componente estiver em uso.
 
 ### Modelo de ata (diário)
@@ -33,7 +48,7 @@ A2 ao Samuel: <pedido ou nenhum>.
 ```
 
 ## 3. Exemplo
-No ciclo quinzenal de abril, o Orquestrador reabre a página de preços da Vercel. O Hobby continua proibindo uso comercial — só avança o `Revisado em` em `hospedagem/vercel.md`. Se o preço do Pro ou o limite do Hobby tiverem mudado, o arquivo é atualizado e o impacto comercial vai ao Samuel (A2), com opções (manter restrição interna, migrar site estático para GitHub Pages/Cloudflare Pages, ou autorizar Pro). Uma ferramenta `adotada` que nenhum projeto usou só naquele trimestre aparece na ata como "sem uso", sem mudança de status.
+No ciclo quinzenal de abril, o Orquestrador reabre a página de preços da Vercel. O Hobby continua proibindo uso comercial — só avança o `Revisado em` em `hospedagem/vercel.md`. Se o preço do Pro ou o limite do Hobby tiverem mudado, o arquivo é atualizado e o impacto comercial vai ao Samuel (A2), com opções (manter restrição interna, migrar site estático para GitHub Pages/Cloudflare Pages, ou autorizar Pro). Uma ferramenta `adotada` que nenhum projeto usou só naquele trimestre aparece na ata como "sem uso", sem mudança de status. Na mesma quinzenal, o Orquestrador varre 1–2 áreas do `recursos.yaml` (por exemplo frontend-design e mcp), anota até 3 candidatos e, se for o ciclo de abril, reavalia os adotados dessas áreas.
 
 ## 4. Checklist
 - [ ] Revisão no primeiro ciclo quinzenal de jan/abr/jul/out, ou gatilho fora do ciclo tratado na hora
@@ -44,6 +59,9 @@ No ciclo quinzenal de abril, o Orquestrador reabre a página de preços da Verce
 - [ ] Ata no diário do backlog
 - [ ] Itens A2 no formato da governança, agrupados; nada executado no silêncio
 - [ ] Radar e `avaliacoes/` sem registro deixados de fora deste ciclo
+- [ ] Quinzenal: 1–2 áreas do `recursos.yaml` no rodízio; no máximo 3 candidatos no diário
+- [ ] Trimestre: adotados reavaliados; todas as áreas do YAML passam pelo menos uma vez
+- [ ] Mudança de status refletida no YAML, em bibliotecas-e-recursos.md e nas seções dos agentes
 
 ## Fontes
 - ThoughtWorks, *Technology Radar* (vol. 33, nov. 2025) e [FAQ](https://www.thoughtworks.com/radar/faq): anéis Adopt / Trial / Assess / Hold (no catálogo: adotada / em avaliação / alternativa / descontinuada); o Radar sai duas vezes por ano — a VTX adapta o mesmo recorte a um snapshot trimestral do catálogo pequeno.

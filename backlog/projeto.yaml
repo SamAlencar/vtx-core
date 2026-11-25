@@ -1171,12 +1171,12 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/revisao-periodica.md'
   depende_de:
   - VTX-113
   - VTX-119
-  notas: 'Rodízio de 1 a 2 áreas por ciclo, máx. 3 candidatos; reavaliar adotados por trimestre.'
+  notas: 'Concluída em 2026-11-24: §2.1 em revisao-periodica.md — quinzenal com rodízio de 1–2 áreas e máx. 3 candidatos; trimestre reavalia adotados (mesma regra de dois trimestres da VTX-113). Ata no diário; mudança de status também atualiza as seções da VTX-128. README §6 apontado.'
 - id: VTX-131
   titulo: 'Padrão de mapa de codebase por projeto (inspirado no Cartographer)'
   fase: F12
