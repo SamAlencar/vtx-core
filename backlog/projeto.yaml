@@ -503,7 +503,7 @@ tarefas:
   prioridade: 88
   status: a fazer
   entregavel: templates/projeto/
-  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). O que falta: levar as regras por papel ao template, um resumo de A0-A3/SOP que não dependa do vtx-core privado, e os templates detalhados da F6 (VTX-033 a 038).'
+  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). Já entrou no acompanhamento da VTX-170 (24/11): regras por papel no template e resumo A0-A3 no AGENTS.md do cliente (sem depender do vtx-core privado). O que falta são os templates detalhados da F6 (VTX-033 a 038).'
 - id: VTX-061
   titulo: Sincronização de regras e script de bootstrap de projetos
   fase: F9
@@ -511,7 +511,7 @@ tarefas:
   prioridade: 89
   status: a fazer
   entregavel: scripts/bootstrap_projeto.sh
-  notas: 'Reescopo após VTX-170 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. O que falta é o bootstrap copiar as regras de uma fonte única (VTX-180) e sincronizar as regras por papel nos repositórios de cliente.'
+  notas: 'Reescopo após VTX-170 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. O bootstrap já copia as regras de `.cursor/rules/` na geração (teste de igualdade enquanto as cópias existem). O que falta é uma fonte única contínua (VTX-180) e a ressincronização em repositórios já criados.'
 - id: VTX-062
   titulo: Ambiente dos agentes de nuvem (environment.json, segredos, permissões)
   fase: F9

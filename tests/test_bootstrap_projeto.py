@@ -17,6 +17,9 @@ OBRIGATORIOS = [
     ".gitignore",
     ".env.example",
     ".cursor/rules/eficiencia-de-tokens.mdc",
+    ".cursor/rules/economia-de-contexto.mdc",
+    ".cursor/rules/papeis/planejamento.mdc",
+    ".cursor/rules/papeis/execucao.mdc",
     ".github/workflows/ci.yml",
     "docs/produto/PRD.md",
     "docs/arquitetura.md",
@@ -92,6 +95,37 @@ class TestBootstrapProjeto(unittest.TestCase):
             self.assertEqual(testes.returncode, 0, testes.stdout + testes.stderr)
             build = _rodar([sys.executable, "-m", "compileall", "-q", "src"], cwd=str(dest))
             self.assertEqual(build.returncode, 0, build.stderr)
+            agents = (dest / "AGENTS.md").read_text(encoding="utf-8")
+            self.assertIn("A0", agents)
+            self.assertIn("A3", agents)
+            self.assertNotIn("github.com/SamAlencar/vtx-core", agents)
+            ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+            self.assertIn("permissions:", ci)
+            self.assertIn("contents: read", ci)
+            # bootstrap deve copiar as regras atuais da raiz, não uma cópia velha.
+            for nome in ("eficiencia-de-tokens.mdc", "economia-de-contexto.mdc"):
+                self.assertEqual(
+                    (RAIZ / ".cursor/rules" / nome).read_bytes(),
+                    (dest / ".cursor/rules" / nome).read_bytes(),
+                    nome,
+                )
+
+
+    def test_copias_das_regras_sao_iguais(self):
+        nomes = [
+            "eficiencia-de-tokens.mdc",
+            "economia-de-contexto.mdc",
+        ]
+        for nome in nomes:
+            fonte = (RAIZ / ".cursor" / "rules" / nome).read_bytes()
+            catalogo = (RAIZ / "knowledge" / "templates" / "cursor" / nome).read_bytes()
+            template = (RAIZ / "templates" / "projeto" / ".cursor" / "rules" / nome).read_bytes()
+            self.assertEqual(fonte, catalogo, nome)
+            self.assertEqual(fonte, template, nome)
+        for nome in ("planejamento.mdc", "execucao.mdc"):
+            fonte = (RAIZ / ".cursor" / "rules" / "papeis" / nome).read_bytes()
+            template = (RAIZ / "templates" / "projeto" / ".cursor" / "rules" / "papeis" / nome).read_bytes()
+            self.assertEqual(fonte, template, nome)
 
 
 if __name__ == "__main__":

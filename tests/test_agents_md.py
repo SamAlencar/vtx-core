@@ -107,8 +107,10 @@ class TestAgentsMd(unittest.TestCase):
                     falhas.append(f"{path.relative_to(RAIZ)}: {url} sai do repositório")
                     continue
                 if not alvo.exists():
+                    rel_fonte = path.relative_to(RAIZ).as_posix()
                     no_template = (RAIZ / "templates" / "projeto" / url).resolve()
-                    if no_template.exists():
+                    # O fallback vale só para regras por papel, que citam artefatos do cliente.
+                    if rel_fonte.startswith(".cursor/rules/") and no_template.exists():
                         continue
                     falhas.append(f"{path.relative_to(RAIZ)}: caminho ausente {url}")
         self.assertEqual(falhas, [])
