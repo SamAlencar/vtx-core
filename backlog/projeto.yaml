@@ -1114,20 +1114,21 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
+  notas: 'Concluída em 2026-11-24: Diátaxis, Starlight, Docusaurus, VitePress, TypeDoc, Vale e Mermaid em avaliação (gerador padrão fica para a VTX-032). Fora: Mintlify e MkDocs Insiders (pagos). §3.14.'
 - id: VTX-125
   titulo: 'Pesquisa de recursos: skills de agentes e regras do Cursor'
   fase: F12
   area: Ferramentas
   prioridade: 58
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
-  notas: 'Alinhar com tek-team (VTX-082): VTX registra o que usar; tek-team define o formato.'
+  notas: 'Alinhar com tek-team (VTX-082): VTX registra o que usar; tek-team define o formato. Concluída em 2026-11-24: verification-before-completion adotado (pin local bb92a777); Vercel Agent Skills ainda sem LICENSE (não copiar); awesome-cursorrules atualizado, no limite dos 6 meses; fronteira tek-team na §3.15.'
 - id: VTX-126
   titulo: 'Pesquisa de recursos: servidores MCP'
   fase: F12

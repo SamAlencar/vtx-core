@@ -42,3 +42,15 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "recursos.yaml: gitleaks, Semgrep CE (LGPL-2.1, só Community Edition) e OSV-Scanner adotados; Trivy e ZAP em avaliação; OWASP Cheat Sheets atualizado (pin 18e6c89). Checklist de 7 itens para revisar skill/hook/npx antes de instalar, na §3.13 de bibliotecas-e-recursos.md. Fora: CodeQL em repo privado (possível GHAS pago) e Semgrep Cloud. Skills: as da VTX-122 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-124
+    titulo: "Pesquisa de recursos: documentação"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml area documentacao: Diátaxis (CC-BY-SA-4.0), Starlight (candidato principal, casa com Astro), Docusaurus, VitePress (Vue, só ADR), TypeDoc, Vale e Mermaid (rascunho; diagramas editoriais ficam na VTX-141) — todos em avaliação até a VTX-032. Fora: Mintlify e Material Insiders (pagos). Recorte §3.14. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-124-125.md; Review Focus evitou adotar gerador antes da VTX-032, ajudou), verification-before-completion (unittest, pins, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-125
+    titulo: "Pesquisa de recursos: skills de agentes e regras do Cursor"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "superpowers-verification-before-completion adotado (já estava em .cursor/skills, pin bb92a777, igual às outras Superpowers; tip 22f0b46 não aplicada sem revisar a cópia). Vercel Agent Skills: ainda sem LICENSE na raiz em 24/11 — não copiar. awesome-cursorrules pin b044f95, último commit 30/05/2026 (limite da janela de 6 meses). Fronteira com o tek-team (VTX-082) documentada na §3.15: VTX registra o que usar; formato/exportadores são do Tek. Skills: as da VTX-124 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
