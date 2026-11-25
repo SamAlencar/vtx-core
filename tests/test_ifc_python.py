@@ -1,17 +1,17 @@
 """Testes da skill .cursor/skills/ifc-python (VTX-145)."""
 import pathlib, tempfile, unittest
 
+from importlib.resources import files as _files
+from vtx_ifc import receitas as _receitas
+
+EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
+
 try:
     import ifcopenshell  # noqa: F401
     import ifctester  # noqa: F401
-    from importlib.resources import files as _files
-    from vtx_ifc import receitas as _receitas
-    EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
     TEM_IFC = True
 except ImportError:
     TEM_IFC = False
-    _receitas = None
-    EXEMPLO_IDS = None
 
 
 def carregar():

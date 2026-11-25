@@ -1,16 +1,16 @@
 """Testes do padrão de funções de domínio para tool-calling (VTX-146)."""
 import json, pathlib, unittest
 
+from vtx_ifc import funcoes as _funcoes
+
 try:
     import ifcopenshell  # noqa: F401
     import ifcopenshell.geom
     import ifcopenshell.util.element
     import jsonschema  # noqa: F401
-    from vtx_ifc import funcoes as _funcoes
     TEM = True
 except ImportError:
     TEM = False
-    _funcoes = None
 
 
 def carregar():

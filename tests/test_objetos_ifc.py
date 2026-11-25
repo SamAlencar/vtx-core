@@ -2,17 +2,17 @@
 import json, pathlib, tempfile, unittest
 
 TEK_MODEL = pathlib.Path("/workspace/repos/tekto-model/tests/dados/catalogo_parede_exemplo.ifc")
+from importlib.resources import files as _files
+from vtx_ifc import objetos, receitas
+
+EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
+
 try:
     import ifcopenshell, ifcopenshell.api.group, ifcopenshell.api.material, ifcopenshell.api.type  # noqa: F401
     import ifcopenshell.validate, ifctester  # noqa: F401
-    from importlib.resources import files as _files
-    from vtx_ifc import objetos, receitas
-    EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
     TEM = True
 except ImportError:
     TEM = False
-    objetos = receitas = None
-    EXEMPLO_IDS = None
 
 
 def mod(nome):
