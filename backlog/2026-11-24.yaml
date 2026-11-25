@@ -103,3 +103,10 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: ".cursor/rules/economia-de-contexto.mdc (sob demanda): logs filtrados pelo erro, rg/trechos, jq em JSON, diff --stat, resumo no lugar do bruto; cópia em knowledge/templates/cursor/. Piloto do Headroom não executado (opcional; proxy e modelos de ML); segue em avaliação, sem proxy e com telemetria off se vier a ser testado. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-133.md; Review Focus evitou duplicar a regra always-on e instalar sem medir, ajudou), verification-before-completion (unittest, proxima_tarefa, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+
+  - id: VTX-166
+    titulo: "Corrigir links quebrados, INDEX e o gerador do roadmap (auditoria P0 item 5)"
+    area: "Qualidade"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Auditoria 24/11/2026 (parecer-vtx-core.md). PRD do med-hub: links dos ADRs e da pesquisa de domínio corrigidos. INDEX: cinco documentos que faltavam (versionamento IFC, funções de domínio, pagamentos, Graphify, radar). gerar_roadmap.py passa a listar só pendentes, com status efetivo. VTX-167 a VTX-172 cadastradas (pri 51–56); itens 1 e 6 ficam para o Samuel. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-166.md; Review Focus evitou inventar caminho e indexar modelos do memory bank, ajudou), verification-before-completion (unittest, test -e, gerar_roadmap, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."

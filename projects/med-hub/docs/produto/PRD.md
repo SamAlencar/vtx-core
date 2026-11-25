@@ -8,7 +8,7 @@ O médico recém-formado ou plantonista precisa abrir uma PJ para receber de hos
 
 A 4med.co é uma assinatura de **plano único (R$ 599/mês)** que **coordena três parceiros**: um escritório contábil, um escritório de advocacia e uma corretora de seguros, esta só por indicação. A 4med.co não executa os serviços técnicos. O médico usa a plataforma **conversando com um assistente de IA** (chat-first), que consulta três MCPs (plataforma, contábil e jurídico). Também há algumas telas de consulta.
 
-A plataforma antiga (`4medco-platform`) está parada e será **refeita do zero** ([ADR-001](adr/adr-001-refazer-do-zero.md)). Ela serve apenas como referência de comportamento.
+A plataforma antiga (`4medco-platform`) está parada e será **refeita do zero** ([ADR-001](../adr/0001-refazer-do-zero.md)). Ela serve apenas como referência de comportamento.
 
 ## 2. Objetivos e métricas de sucesso
 | # | Objetivo | Métrica | Meta (proposta) | Como medir |
@@ -35,7 +35,7 @@ A plataforma antiga (`4medco-platform`) está parada e será **refeita do zero**
 
 **Fora do MVP (depois):** migração de quem já tem PJ (#9), IRPF do médico (#16, perto de março/abril), demonstrações contábeis (#17), biblioteca jurídica (#20), registro de encaminhamento para comissão (#22), WhatsApp (#25), métricas (#31), simulação de distribuição de lucros com IRRF de 10% acima de R$ 50 mil/mês.
 
-**Fora do produto:** venda e cobrança de seguros na plataforma ([ADR-004](adr/adr-004-seguro-cobrado-pela-corretora.md)); emissão automática de NFS-e e transmissão de declarações (feitas pelo contador); parecer jurídico ou análise de caso concreto; defesa em processo ético no CRM; múltiplos planos; chat Stream, bots, tickets e o orquestrador antigo.
+**Fora do produto:** venda e cobrança de seguros na plataforma ([ADR-004](../adr/0004-seguro-cobrado-pela-corretora.md)); emissão automática de NFS-e e transmissão de declarações (feitas pelo contador); parecer jurídico ou análise de caso concreto; defesa em processo ético no CRM; múltiplos planos; chat Stream, bots, tickets e o orquestrador antigo.
 
 ## 5. Histórias de usuário (MoSCoW)
 Total: **25 histórias** (HU-01 a HU-25), uma por item do MVP. Must: 21 · Should: 3 · Could: 1 · Won't (nesta versão): os itens "depois" da seção 4.
@@ -334,10 +334,10 @@ Cenário: editar link
 - Só ferramentas gratuitas e abertas; nada de plataformas pagas de agentes (Composio, E2B, Browserbase etc.). Regra da VTX.
 - LGPD obrigatória.
 - Desenvolvimento pelos agentes da VTX (Cursor), seguindo o fluxo `sistema-web-saas`.
-- Refazer do zero sem copiar código do repositório antigo ([ADR-001](adr/adr-001-refazer-do-zero.md)).
-- Supabase na nuvem, plano gratuito no início ([ADR-002](adr/adr-002-supabase-nuvem-gratuito.md), aceito em 24/10/2026 com a VTX-023).
-- Chat-first com 3 MCPs ([ADR-003](adr/adr-003-chat-first-3-mcps.md)).
-- O seguro é cobrado pela corretora, fora da plataforma ([ADR-004](adr/adr-004-seguro-cobrado-pela-corretora.md)).
+- Refazer do zero sem copiar código do repositório antigo ([ADR-001](../adr/0001-refazer-do-zero.md)).
+- Supabase na nuvem, plano gratuito no início ([ADR-002](../adr/0002-supabase-nuvem-gratuito.md), aceito em 24/10/2026 com a VTX-023).
+- Chat-first com 3 MCPs ([ADR-003](../adr/0003-chat-first-3-mcps.md)).
+- O seguro é cobrado pela corretora, fora da plataforma ([ADR-004](../adr/0004-seguro-cobrado-pela-corretora.md)).
 - O MCP jurídico nunca dá parecer (Lei 8.906/1994, art. 1º, II).
 - A plataforma não emite NFS-e nem transmite declarações; quem faz isso é o contador.
 
@@ -385,7 +385,7 @@ Termos contábeis e do setor: [conhecimento/contabil/01-glossario.md](https://gi
 - **Pedido:** solicitação do médico a um parceiro, com status.
 - **Plano único:** a assinatura de R$ 599/mês.
 - **Vitrine de seguros:** lista dos seguros da corretora com link de contato, sem venda.
-Glossário do domínio: [pesquisa-dominio.md](pesquisa-dominio.md#1-glossário-do-setor).
+Glossário do domínio: [pesquisa-dominio.md](../../conhecimento/pesquisa-dominio.md#1-glossário-do-setor).
 
 ## 11. Histórico de versões
 | Versão | Data | Autor | Mudança |
