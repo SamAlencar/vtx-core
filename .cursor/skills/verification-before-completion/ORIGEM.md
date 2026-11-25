@@ -12,4 +12,4 @@
 Originais em `orig/` (diff: `diff -ru orig/ .`).
 - Adicionada seção "Regras Tekto" ao fim do SKILL.md (pt-BR, nunca `.github/workflows`, uma tarefa por execução).
 
-> VTX: copiado do original (orig/) revisado pelo Tek; obra/superpowers @ bb92a77, MIT. Na VTX, verificar = rodar tests/ e confirmar workflows testes e sincronizar-painel antes de marcar concluído.
+> VTX: copiado do original (orig/) revisado pelo Tek; obra/superpowers @ bb92a77, MIT. Na VTX, verificar = rodar tests/ e confirmar o workflow testes.yml (jobs unittest e qualidade) antes de marcar concluído.

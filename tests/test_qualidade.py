@@ -84,10 +84,6 @@ class TestPortaoNoRepoReal(unittest.TestCase):
     def test_links_relativos_atuais(self):
         self.assertEqual(verificar(RAIZ), [])
 
-
-if __name__ == "__main__":
-    unittest.main()
-
 class TestPipelinePainelAposentado(unittest.TestCase):
     def test_workflow_e_citacoes_ativas_ausentes(self):
         self.assertFalse(
@@ -96,5 +92,25 @@ class TestPipelinePainelAposentado(unittest.TestCase):
         readme = Path(RAIZ, "README.md").read_text(encoding="utf-8")
         self.assertIn("https://samalencar.github.io/painel-central/", readme)
         self.assertNotIn("Sincronização automática do painel (ativa)", readme)
-        # A menção a vtx_painel só pode aparecer como aposentadoria, não como componente ativo.
-        self.assertIn("foram aposentados", readme)
+        inicio = readme.find("## Arquitetura")
+        self.assertGreaterEqual(inicio, 0)
+        fim = readme.find('\n## ', inicio + 1)
+        secao = readme[inicio:fim if fim != -1 else None]
+        # Só a tabela de componentes; a sentença de aposentadoria pode citar o nome antigo.
+        idx = secao.find("| Componente |")
+        self.assertGreaterEqual(idx, 0, secao[:200])
+        fim_tabela = secao.find('\n\n', idx)
+        tabela = secao[idx:fim_tabela if fim_tabela != -1 else None]
+        self.assertNotIn("vtx_painel", tabela)
+        pasta = Path(RAIZ, ".github/workflows")
+        self.assertTrue(pasta.is_dir())
+        for caminho in pasta.iterdir():
+            if caminho.is_file():
+                texto = caminho.read_text(encoding="utf-8")
+                self.assertNotIn("PANEL_TOKEN", texto, caminho.name)
+                self.assertNotIn("vtx_painel", texto, caminho.name)
+                self.assertNotIn("sincronizar-painel", texto, caminho.name)
+
+
+if __name__ == "__main__":
+    unittest.main()
