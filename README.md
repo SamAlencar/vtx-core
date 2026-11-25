@@ -8,11 +8,14 @@ Este repositório **privado** concentra o código, a base de conhecimento técni
 | Componente | Onde | Função |
 |---|---|---|
 | `vtx-core` (este repositório, privado) | GitHub | Código, base de conhecimento, definições de agentes, backlog diário |
-| `vtx_painel` (público) | GitHub Pages | Painel de acompanhamento gerado automaticamente a partir do backlog (apenas dados sanitizados) |
+| [`painel-central`](https://github.com/SamAlencar/painel-central) (público) | [GitHub Pages](https://samalencar.github.io/painel-central/) | Painel de acompanhamento (Tekto, VTX, 4med.co, Dark Channel), com dados sanitizados |
 | Pasta "VTX - Empresa de Agentes IA" | Google Drive (conta VTX) | Gestão, projetos, documentos e relatórios |
 
-Fluxo: `backlog/AAAA-MM-DD.yaml` → GitHub Action `sincronizar-painel` → `vtx_painel/data/backlog.json` → GitHub Pages.
-A exportação leva o projeto (`id`, `titulo`, `fase`, `area`, `prioridade`, `status`) e os diários (`data`, `id`, `titulo`, `area`, `status`). Notas, responsáveis, caminhos e código nunca saem deste repositório.
+O painel público lê o backlog deste repositório pela API do GitHub e se atualiza no próprio `painel-central` (workflow `atualizar.yml`, a cada 30 min). Não há workflow no vtx-core publicando o painel. Campos visíveis: `id`, `titulo`, `fase`, `area`, `prioridade`, `status`. Notas, responsáveis, caminhos e código não saem daqui.
+
+A plataforma privada de acompanhamento (`SamAlencar/vtx-acompanhamento`, F11) é um projeto à parte e ainda não substitui o painel público.
+
+O repositório `vtx_painel` e o workflow `sincronizar-painel` (secret `PANEL_TOKEN`) foram aposentados em 24/11/2026 (VTX-171).
 
 ## Estrutura
 
@@ -23,9 +26,9 @@ knowledge/        Base de conhecimento (um tema por arquivo Markdown curto)
 agents/           Definições dos 7 papéis do núcleo + especialistas
 backlog/          Backlog mestre (projeto.yaml) + diário (AAAA-MM-DD.yaml) + SCHEMA.md
 projects/         Projetos de clientes / produtos (um subdiretório por projeto)
-scripts/          Exportação sanitizada para o painel e próxima tarefa (proxima_tarefa.py)
+scripts/          Scripts do backlog (proxima_tarefa, exportar_painel local, qualidade)
 tests/            Testes dos scripts do backlog (unittest)
-.github/workflows Sincronização automática do painel (ativa)
+.github/workflows CI de testes e qualidade (`testes.yml`)
 ```
 
 ## Princípio de economia de tokens

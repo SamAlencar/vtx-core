@@ -1590,9 +1590,9 @@ tarefas:
   fase: F11
   area: 'Plataforma interna'
   prioridade: 55
-  status: aguardando
-  entregavel: 'README.md + backlog/SCHEMA.md + .github/workflows/sincronizar-painel.yml'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 1. Exige aprovação do Samuel (A2): revogar o secret PANEL_TOKEN e/ou apagar o workflow sincronizar-painel.yml, ou apontar o workflow a um repositório existente. Não executar até o Samuel decidir. Documentar a arquitetura real (painel-central / vtx-acompanhamento) e deixar de citar vtx_painel se o pipeline foi abandonado.'
+  status: concluído
+  entregavel: 'README.md + backlog/SCHEMA.md'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 1. Aprovação do Samuel em 24/11/2026 às 22:32 (America/Sao_Paulo) para aposentar o pipeline e revogar o PANEL_TOKEN. Concluída no mesmo dia: workflow sincronizar-painel.yml removido; README, SCHEMA, git-e-ci-cd e plataforma-acompanhamento documentam o painel-central (https://samalencar.github.io/painel-central/) e o vtx-acompanhamento como plataforma privada (F11); exportar_painel.py permanece como helper local. Secret PANEL_TOKEN revogado no GitHub. O repositório painel-central não foi alterado.'
 - id: VTX-172
   titulo: 'Revisão obrigatória antes do merge (auditoria P0 item 6)'
   fase: F1

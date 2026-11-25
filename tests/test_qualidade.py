@@ -87,3 +87,14 @@ class TestPortaoNoRepoReal(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class TestPipelinePainelAposentado(unittest.TestCase):
+    def test_workflow_e_citacoes_ativas_ausentes(self):
+        self.assertFalse(
+            Path(RAIZ, ".github/workflows/sincronizar-painel.yml").exists()
+        )
+        readme = Path(RAIZ, "README.md").read_text(encoding="utf-8")
+        self.assertIn("https://samalencar.github.io/painel-central/", readme)
+        self.assertNotIn("Sincronização automática do painel (ativa)", readme)
+        # A menção a vtx_painel só pode aparecer como aposentadoria, não como componente ativo.
+        self.assertIn("foram aposentados", readme)
