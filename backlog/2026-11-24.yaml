@@ -30,3 +30,15 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "recursos.yaml area backend-apis: Zod, supabase-js, OpenAPI 3.1, RFC 9457, Microsoft REST API Guidelines (CC-BY-4.0) e pino adotados (já eram padrão VTX-023/024). Em avaliação: zod-openapi (samchungy, ativo), openapi-typescript, Drizzle (só com ADR fora do Supabase) e Hono (só com ADR). Fora: Prisma, tRPC, GraphQL, OpenAPI Generator. Recorte §3.11. Skills: as da VTX-120 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-122
+    titulo: "Pesquisa de recursos: testes e QA"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml: Playwright, Vitest, Testing Library e pytest adotados (já eram padrão VTX-018/023). Playwright MCP atualizado (pin 2337aff, ~40 mil estrelas), em avaliação — piloto só em ambiente de teste, não substitui o E2E da CI. Recorte §3.12. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-122-123.md; Review Focus evitou adotar o MCP sem piloto e apontá-lo a produção, ajudou), verification-before-completion (unittest, pins, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-123
+    titulo: "Pesquisa de recursos: segurança e cadeia de suprimentos"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml: gitleaks, Semgrep CE (LGPL-2.1, só Community Edition) e OSV-Scanner adotados; Trivy e ZAP em avaliação; OWASP Cheat Sheets atualizado (pin 18e6c89). Checklist de 7 itens para revisar skill/hook/npx antes de instalar, na §3.13 de bibliotecas-e-recursos.md. Fora: CodeQL em repo privado (possível GHAS pago) e Semgrep Cloud. Skills: as da VTX-122 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."

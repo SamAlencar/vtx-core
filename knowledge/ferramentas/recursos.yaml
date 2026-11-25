@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -86,10 +86,10 @@ recursos:
     link: "https://github.com/microsoft/playwright-mcp"
     licenca: Apache-2.0
     status: "em avaliação"
-    uso_agentes: Agente QA navega e testa a interface no navegador.
-    riscos: "Rodar só contra ambientes de teste."
+    uso_agentes: "Servidor MCP oficial (`@playwright/mcp`) para o agente QA navegar, clicar e inspecionar a UI. Apache-2.0, ~40 mil estrelas, pin 2337aff (18/11/2026). Complementa o Playwright de CI (item playwright), não o substitui. Continua em avaliação até um piloto curto em ambiente de teste (encaixa também na VTX-126)."
+    riscos: "Controla um navegador real: apontar só para homologação/local, nunca produção nem dado real de cliente. Não guardar sessão autenticada de produção. Sem serviço de browser na nuvem pago."
     responsavel: qa
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: shadcn-ui
     nome: "shadcn/ui"
     area: frontend-design
@@ -108,10 +108,10 @@ recursos:
     link: "https://github.com/OWASP/CheatSheetSeries"
     licenca: CC-BY-SA-4.0
     status: "adotado"
-    uso_agentes: "Consulta do AppSec e dos devs; citar e resumir, sem copiar em bloco (CC-BY-SA exige atribuição)."
-    riscos: Nenhum.
+    uso_agentes: "Consulta do AppSec e dos devs (VTX-020 / VTX-123). CC-BY-SA-4.0, ~34 mil estrelas, pin 18e6c89 (24/11/2026). Citar e resumir, com atribuição; não copiar em bloco."
+    riscos: "CC-BY-SA exige atribuição e share-alike se houver adaptação publicada. Não substitui o checklist de skill/hook (§3 de bibliotecas-e-recursos.md)."
     responsavel: especialistas
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: graphify
     nome: Graphify
     area: skills-agentes
@@ -476,4 +476,104 @@ recursos:
     uso_agentes: "Formato de erro do stack (VTX-024): `application/problem+json` com type, title, status, detail e errors[] por campo. Sem stack trace nem SQL na resposta."
     riscos: "Nenhum de cadeia de suprimentos. RFC 9110 (semântica HTTP) complementa e já está nas fontes do VTX-024."
     responsavel: dev-backend
+    revisado_em: 2026-11-24
+
+  - id: playwright
+    nome: Playwright
+    area: testes-qa
+    tipo: "referência"
+    link: "https://github.com/microsoft/playwright"
+    licenca: Apache-2.0
+    status: "adotado"
+    uso_agentes: "E2E web do stack (VTX-018 / VTX-023), com `@axe-core/playwright` no fluxo principal. Apache-2.0, ~101 mil estrelas, pin 0caa804 (24/11/2026). Poucos testes (5–15 fluxos críticos por projeto). O MCP (playwright-mcp) é separado e ainda está em avaliação."
+    riscos: "Baixo no uso local/CI. Não gravar credencial de produção no `storageState`. Evitar suíte E2E inchada (pirâmide invertida)."
+    responsavel: qa
+    revisado_em: 2026-11-24
+  - id: vitest
+    nome: Vitest
+    area: testes-qa
+    tipo: "referência"
+    link: "https://github.com/vitest-dev/vitest"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Runner de unidade/integração TypeScript do stack (VTX-018 / VTX-023). MIT, ~17 mil estrelas, pin e0e8e00 (24/11/2026). TDD obrigatório em regra de negócio; cobertura ≥ 80% só nesses módulos, com `vitest --coverage` (v8)."
+    riscos: "Baixo. Jest permanece só no React Native (não misturar os dois no mesmo app web)."
+    responsavel: qa
+    revisado_em: 2026-11-24
+  - id: testing-library
+    nome: Testing Library (React)
+    area: testes-qa
+    tipo: "referência"
+    link: "https://github.com/testing-library/react-testing-library"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Testes de componente do stack (VTX-018): consultar pela papel/acessível, não por detalhe de implementação. MIT, ~20 mil estrelas, pin 20ce75f (27/08/2026). Docs: https://testing-library.com/"
+    riscos: "Baixo. Último commit em agosto de 2026 (dentro da janela de 6 meses). Preferir queries `getByRole` / `getByLabelText`."
+    responsavel: qa
+    revisado_em: 2026-11-24
+  - id: pytest
+    nome: pytest
+    area: testes-qa
+    tipo: "referência"
+    link: "https://github.com/pytest-dev/pytest"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Runner de testes Python do stack (scripts do arsenal, skill ifc-python, VTX-018). MIT, ~15 mil estrelas, pin 02576a5 (24/11/2026). Não substitui o Vitest no app TypeScript."
+    riscos: "Baixo."
+    responsavel: qa
+    revisado_em: 2026-11-24
+  - id: gitleaks
+    nome: gitleaks
+    area: seguranca
+    tipo: "referência"
+    link: "https://github.com/gitleaks/gitleaks"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Detector de segredos no CI do stack (VTX-023 / desenvolvimento seguro). MIT, ~31 mil estrelas, pin 5f6ec56 (23/10/2026). Job `seguranca` verde é pré-requisito do review."
+    riscos: "Baixo. Rodar local e na CI; nunca commitar o relatório com o próprio segredo. A action `gitleaks/gitleaks-action` deve ser pinada por SHA."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: semgrep-ce
+    nome: Semgrep Community Edition
+    area: seguranca
+    tipo: "referência"
+    link: "https://github.com/semgrep/semgrep"
+    licenca: LGPL-2.1
+    status: "adotado"
+    uso_agentes: "SAST local e no CI do stack (VTX-023). Só a Community Edition, LGPL-2.1, ~18 mil estrelas, pin c4dbe9e (20/11/2026, branch develop). Regras OSS; rodar offline no runner."
+    riscos: "LGPL-2.1: usar o binário/CLI sem modificar, ou publicar as mudanças. Semgrep Code, Secrets, Supply Chain e o app/cloud comerciais estão FORA (pago → A2). Não enviar código de cliente para o serviço hospedado."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: osv-scanner
+    nome: OSV-Scanner
+    area: seguranca
+    tipo: "referência"
+    link: "https://github.com/google/osv-scanner"
+    licenca: Apache-2.0
+    status: "adotado"
+    uso_agentes: "Varredura de CVEs nas dependências do stack (VTX-023, PW.4). Apache-2.0, ~12 mil estrelas, pin 66586f4 (23/11/2026). Lockfile obrigatório; PR sem CVE alta/crítica."
+    riscos: "Baixo. Precisa de rede para a base OSV na CI; não substitui o pin de versão nem a revisão de skill/hook."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: trivy
+    nome: Trivy
+    area: seguranca
+    tipo: "referência"
+    link: "https://github.com/aquasecurity/trivy"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "Scanner de imagem/IaC citado no guia de desenvolvimento seguro, mas ainda não está na tabela curta do stack (VTX-023). Apache-2.0, ~40 mil estrelas, pin c14584a (24/11/2026). Candidato a entrar no job `seguranca` quando houver Dockerfile ou manifesto."
+    riscos: "Não adotar como obrigatório em todo repo (muitos ainda não têm imagem). Preferir o binário local/CI; evitar o SaaS pago da Aqua."
+    responsavel: devops-sre
+    revisado_em: 2026-11-24
+  - id: zap
+    nome: ZAP (Zed Attack Proxy)
+    area: seguranca
+    tipo: "referência"
+    link: "https://github.com/zaproxy/zaproxy"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "DAST baseline em homologação, citado no guia de desenvolvimento seguro. Apache-2.0, ~16 mil estrelas, pin 11a4557 (24/11/2026). Não está na tabela curta do stack."
+    riscos: "Só contra ambiente de teste/homologação, nunca produção nem dado real. Scan completo é barulhento e lento; começar pelo baseline. Sem serviço cloud pago."
+    responsavel: devops-sre
     revisado_em: 2026-11-24
