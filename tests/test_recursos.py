@@ -1,7 +1,7 @@
 import unittest, yaml, pathlib
 
 CAMPOS = {"id", "nome", "area", "tipo", "link", "licenca", "status", "uso_agentes", "riscos", "responsavel", "revisado_em"}
-STATUS = {"em avaliação", "adotado", "descartado"}
+STATUS = {"em avaliação", "adotado", "adotado com restrições", "descartado"}
 TIPOS = {"skill", "regras", "mcp", "componentes", "referência", "lista"}
 
 

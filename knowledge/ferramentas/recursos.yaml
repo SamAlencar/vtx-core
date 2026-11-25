@@ -1,5 +1,5 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
-# status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
+# status: em avaliação | adotado | adotado com restrições | descartado · tipo: skill | regras | mcp | componentes | referência | lista
 # Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras); VTX-126 (MCP); VTX-127 (piloto impeccable); VTX-141 (skill diagramas); VTX-131 (mapa de codebase); VTX-132 (memory bank).
 recursos:
   - id: impeccable
@@ -250,7 +250,7 @@ recursos:
     tipo: mcp
     link: "https://github.com/trailhq/Trail-Code/tree/b1211ef"
     licenca: MIT
-    status: adotado
+    status: adotado com restrições
     uso_agentes: "Adotado com restrições (piloto VTX-135, pin b1211ef). No pin o npm é @nanonets/graft@0.23.1 e o binário é graft, não trail. Usar só no sandbox projects/sandbox-trail-code/ (script rodar-piloto.sh): DO_NOT_TRACK=1 antes do npm, HOME isolado, graft telemetry disable, e os comandos build/ask/skeleton/check sem --deep. Não ligar o MCP no vtx-core, não rodar init, não conectar workspace, não dar upgrade para fora do pin, não instalar na raiz nem com -g. Relato em knowledge/ferramentas/piloto-trail-code.md. O modelo decisão/preferência/guardrail em .trail/ não foi exercitado e segue como insumo da VTX-132."
     riscos: "Telemetria anônima LIGADA por padrão, inclusive ping no postinstall do npm — usar DO_NOT_TRACK=1 antes de instalar e 'graft telemetry disable'. 'graft init' lê transcrições e comentários de PRs e envia à Anthropic — não usar. 'graft build --deep' manda código ao provedor de LLM (custo) — não usar. Trail workspace envia aprendizados e buscas à Trail — não conectar. No piloto o npm 11 pulou scripts de postinstall; mesmo assim o opt-out permanece obrigatório. Hooks do npm executam código: instalar só no sandbox. Nome: antes identificado por engano como grft-dev/graftcode."
     responsavel: arquiteto

@@ -20,6 +20,8 @@ class TestPilotoTrailCode(unittest.TestCase):
         self.assertTrue((SANDBOX / "exemplos/skeleton-medida.txt").is_file())
         self.assertTrue((SANDBOX / "exemplos/tempo-build.txt").is_file())
         self.assertTrue((SANDBOX / "exemplos/ask-proxima-tarefa-amostra.txt").is_file())
+        self.assertTrue((SANDBOX / "exemplos/build-resumo.txt").is_file())
+        self.assertTrue((SANDBOX / "package-lock.json").is_file())
 
     def test_pin_telemetria_e_comandos_proibidos(self):
         script = SCRIPT.read_text(encoding="utf-8")
@@ -28,6 +30,10 @@ class TestPilotoTrailCode(unittest.TestCase):
         self.assertIn("telemetry disable", script)
         self.assertIn("@nanonets/graft", package)
         self.assertIn("0.23.1", package)
+        self.assertIn("npm ci", script)
+        self.assertIn("--ignore-scripts", script)
+        self.assertIn('"$GRAFT" stats', script)
+        self.assertNotIn('"$GRAFT" status', script)
         # Isola HOME no sandbox, não no usuário do agente.
         self.assertIn('.home', script)
         # Não invoca init nem --deep (podem aparecer só como proibição).
@@ -41,6 +47,7 @@ class TestPilotoTrailCode(unittest.TestCase):
         texto = GITIGNORE.read_text(encoding="utf-8")
         for trecho in ("node_modules", ".home", ".npm-cache", ".trail", "tmp-repo", "saida-bruta"):
             self.assertIn(trecho, texto)
+        self.assertNotIn("package-lock.json", texto)
 
     def test_relato_registra_decisao_e_medidas(self):
         texto = DOC.read_text(encoding="utf-8")
@@ -53,10 +60,16 @@ class TestPilotoTrailCode(unittest.TestCase):
             "init",
             "scripts/backlog_lib.py",
             "27%",
+            "81",
+            "169",
         ):
             self.assertIn(trecho.lower(), lower)
         self.assertIn("mcp", lower)
         self.assertIn("entra no vtx-core nesta etapa", lower)
+        resumo = (SANDBOX / "exemplos/build-resumo.txt").read_text(encoding="utf-8")
+        self.assertIn("81 nodes", resumo)
+        self.assertIn("169 edges", resumo)
+        self.assertIn("12 of 12", resumo)
 
     def test_index_aponta_para_o_piloto(self):
         index = (RAIZ / "knowledge/INDEX.md").read_text(encoding="utf-8")

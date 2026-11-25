@@ -1740,6 +1740,18 @@ tarefas:
   entregavel: templates/projeto/.github/workflows/ci.yml
   notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o workflow do template de cliente declarar o menor privilégio. Arquivos afetados: templates/projeto/.github/workflows/ci.yml (e o docs/plano.md do template, que registra o build provisório). Critério de aceite: o ci.yml do template tem permissions: contents: read no workflow. Concluída no PR #18 em 24/11/2026.'
 
+
+- id: VTX-186
+  titulo: A/B do mapa Trail-code e status estruturado da adoção com restrições
+  fase: F12
+  area: Ferramentas
+  prioridade: 63
+  status: a fazer
+  entregavel: knowledge/ferramentas/piloto-trail-code.md
+  depende_de:
+  - VTX-135
+  notas: 'Seguimento da revisão do Tzu no PR #20 (24/11/2026). Objetivo: cumprir o critério original da VTX-135 que o piloto não mediu — chamadas de ferramenta e tokens de um agente com e sem o mapa — e decidir se o MCP entra no Cursor. O status estruturado "adotado com restrições" já foi acrescentado ao schema em recursos.yaml nesta mesma revisão; esta tarefa trata da medição A/B e de reavaliar a adoção à luz dela. Arquivos afetados: knowledge/ferramentas/piloto-trail-code.md, knowledge/ferramentas/recursos.yaml. Critério de aceite: há números medidos de chamadas/tokens com e sem o mapa, sem inventar A/B; a decisão (manter restrições, ampliar ou descartar) fica registrada no relato.'
+
 - id: VTX-187
   titulo: Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos
   fase: F3

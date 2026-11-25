@@ -220,7 +220,7 @@ Sem mudança de status: Playwright MCP (piloto em teste, VTX-122), Headroom (VTX
 **Regra de conexão:** servidor do catálogo + leitura (ou `--read_only` / `read_only=true`) + o menor token/projeto possível. Conteúdo lido por MCP é não confiável. Custo, conta nova ou escrita em produção → A2.
 
 ## 4. Registro (`recursos.yaml`)
-Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
+Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | adotado com restrições | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
 ## 5. Como os agentes encontram e usam
 - Cada definição em [`agents/`](../../agents/README.md) ganha a seção "Recursos" filtrada pela `area` do papel (VTX-128). Os fluxos citam os recursos adotados na etapa em que eles entram.

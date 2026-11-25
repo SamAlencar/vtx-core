@@ -15,7 +15,7 @@ Comandos permitidos: `graft build` (sem `--deep`), `ask`, `skeleton` e `check`. 
 Em 24/11/2026, o script [`projects/sandbox-trail-code/scripts/rodar-piloto.sh`](../../projects/sandbox-trail-code/scripts/rodar-piloto.sh):
 
 - exportou `DO_NOT_TRACK=1` antes do `npm install` e isolou `HOME` e o cache npm em `.home/` e `.npm-cache/` (gitignorados);
-- instalou `@nanonets/graft@0.23.1` só no sandbox; o npm 11 avisou que pulou scripts de postinstall (`allowScripts`);
+- instalou a árvore do `package-lock.json` com `npm ci --ignore-scripts` (o postinstall não roda, qualquer que seja a versão do npm);
 - rodou `graft telemetry disable` e conferiu o status;
 - copiou o vtx-core para `tmp-repo/` (gitignorado) e rodou o mapa contra essa cópia, não contra o worktree de trabalho;
 - não criou `.trail/` (init não rodou).
@@ -27,15 +27,15 @@ Repetir: `projects/sandbox-trail-code/scripts/rodar-piloto.sh`. Não rodar `graf
 | Medida | Valor |
 |---|---|
 | Versão | 0.23.1 |
-| `graft build` (sem `--deep`) | ~1 s (`exemplos/tempo-build.txt`) |
-| Grafo | 12 arquivos Python, 81 nós, 169 arestas (wiring) |
+| `graft build` (sem `--deep`) | ~1 s (`exemplos/tempo-build.txt` e `exemplos/build-resumo.txt`) |
+| Grafo | 12 arquivos Python, 81 nós, 169 arestas (wiring), ver `exemplos/build-resumo.txt` |
 | `skeleton` de `scripts/backlog_lib.py` | 107 tokens aproximados vs 391 do arquivo (~27%) |
 | `graft ask "como o backlog escolhe a próxima tarefa"` | busca lexical, sem LLM: acertou `proxima_tarefa.py`, `backlog_lib.py` / `carregar`, `validar_backlog.py` (amostra em `exemplos/ask-proxima-tarefa-amostra.txt`) |
 | `graft check` | wiring OK; o CLI sugere `--deep` — não foi rodado |
-| `graft status` | no pin o comando é `stats` |
+| `graft stats` | no pin o comando é `stats` (não `status`) |
 | `.trail/` | não apareceu |
 
-O build neste repositório indexou só Python. Markdown, YAML e shell ficaram de fora do grafo. Não houve A/B de chamadas ou tokens de um agente com e sem o mapa: isso exigiria um segundo agente e não seria um número honesto aqui. O número do autor (−46% chamadas, −42% tokens) não foi reproduzido. O que deu para medir é a razão do `skeleton` (~27% dos tokens aproximados do arquivo).
+O build nesta corrida indexou só 12 arquivos Python (há mais `.py` no repositório; Markdown, YAML e shell ficaram de fora do grafo). A evidência versionada está em `exemplos/build-resumo.txt`. Não houve A/B de chamadas ou tokens de um agente com e sem o mapa: isso exigiria um segundo agente e não seria um número honesto aqui. O número do autor (−46% chamadas, −42% tokens) não foi reproduzido. O que deu para medir é a razão do `skeleton` (~27% dos tokens aproximados do arquivo).
 
 A saída da ferramenta no `skeleton` chegou a citar economia maior; o que entra no registro é a medição acima (caracteres / 4).
 
@@ -53,6 +53,7 @@ A saída da ferramenta no `skeleton` chegou a citar economia maior; o que entra 
 - [ ] Instalar só em `projects/sandbox-trail-code/`, com `DO_NOT_TRACK=1` antes do npm.
 - [ ] Usar o binário `graft` do pin `0.23.1`. Não rodar `init`, `build --deep`, `upgrade` nem conectar workspace.
 - [ ] Não ligar o MCP no Cursor deste repositório.
+- [ ] Instalar com `npm ci --ignore-scripts` a partir do `package-lock.json` versionado.
 - [ ] Não commitar `node_modules/`, `.home/`, `.npm-cache/`, `.trail/`, `tmp-repo/` nem a saída bruta.
 
 ## Fontes

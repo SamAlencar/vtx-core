@@ -10,13 +10,17 @@ export npm_config_cache="$SANDBOX/.npm-cache"
 mkdir -p "$HOME" "$npm_config_cache" "$SANDBOX/exemplos/saida-bruta"
 
 cd "$SANDBOX"
+if [[ ! -f "$SANDBOX/package-lock.json" ]]; then
+  echo "package-lock.json ausente; não instalar sem a árvore travada" >&2
+  exit 1
+fi
 if [[ ! -x "$SANDBOX/node_modules/.bin/graft" ]]; then
-  echo "Instalando @nanonets/graft@0.23.1 com DO_NOT_TRACK=1 (sem -g)..."
-  npm install --no-fund --no-audit --package-lock-only=false @nanonets/graft@0.23.1
+  echo "Instalando a árvore do package-lock com DO_NOT_TRACK=1 e --ignore-scripts (sem -g)..."
+  npm ci --ignore-scripts --no-fund --no-audit
 fi
 
 GRAFT="$SANDBOX/node_modules/.bin/graft"
-[[ -x "$GRAFT" ]] || { echo "graft não encontrado após o npm install" >&2; exit 1; }
+[[ -x "$GRAFT" ]] || { echo "graft não encontrado após o npm ci" >&2; exit 1; }
 
 echo "=== versão ==="
 "$GRAFT" --version || true
@@ -38,7 +42,7 @@ echo "=== graft build (sem --deep) ==="
 START=$(date +%s)
 "$GRAFT" build "$ALVO" | tee "$SANDBOX/exemplos/saida-bruta/build.log"
 END=$(date +%s)
-echo "tempo_build_s=$((END-START))" | tee "$SANDBOX/exemplos/tempo-build.txt"
+echo "tempo_build_s=$((END-START))" | tee "$SANDBOX/exemplos/saida-bruta/tempo-build.txt"
 
 ARQ_REL="scripts/backlog_lib.py"
 echo "=== skeleton vs arquivo completo ($ARQ_REL) ==="
@@ -62,7 +66,7 @@ linhas = [
     f"skeleton_tokens_aprox={toks(skel)}",
     f"razao_tokens={toks(skel)/toks(full) if toks(full) else 'n/a'}",
 ]
-(sandbox / "exemplos/skeleton-medida.txt").write_text("\n".join(linhas) + "\n", encoding="utf-8")
+(sandbox / "exemplos/saida-bruta/skeleton-medida.txt").write_text("\n".join(linhas) + "\n", encoding="utf-8")
 print("\n".join(linhas))
 PY
 
@@ -74,16 +78,16 @@ wc -c "$SANDBOX/exemplos/saida-bruta/ask-proxima-tarefa.txt"
 echo "=== check (sem learnings, esperado não conflitante) ==="
 "$GRAFT" check "$ALVO" > "$SANDBOX/exemplos/saida-bruta/check.txt" 2>&1 || true
 
-echo "=== status ==="
-"$GRAFT" status "$ALVO" > "$SANDBOX/exemplos/saida-bruta/status.txt" 2>&1 || true
-cat "$SANDBOX/exemplos/saida-bruta/status.txt"
+echo "=== stats ==="
+"$GRAFT" stats "$ALVO" > "$SANDBOX/exemplos/saida-bruta/stats.txt" 2>&1 || true
+cat "$SANDBOX/exemplos/saida-bruta/stats.txt"
 
 # Sanitiza uma amostra curta para versionar (sem despejar o grafo inteiro).
 python3 - << PY
 from pathlib import Path
 p = Path("$SANDBOX/exemplos/saida-bruta/ask-proxima-tarefa.txt")
 texto = p.read_text(encoding="utf-8", errors="replace")
-Path("$SANDBOX/exemplos/ask-proxima-tarefa-amostra.txt").write_text(texto[:2000] + ("\n… [recorte]\n" if len(texto) > 2000 else ""), encoding="utf-8")
+Path("$SANDBOX/exemplos/saida-bruta/ask-proxima-tarefa-amostra.txt").write_text(texto[:2000] + ("\n… [recorte]\n" if len(texto) > 2000 else ""), encoding="utf-8")
 PY
 
 echo "Piloto concluído. HOME isolado em $HOME"

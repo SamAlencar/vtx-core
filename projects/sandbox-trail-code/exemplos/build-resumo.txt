@@ -1,0 +1,8 @@
+# Resumo do graft build em 24/11/2026 (America/Sao_Paulo), pin @nanonets/graft@0.23.1.
+# Corrida contra uma cópia temporária do vtx-core naquele momento.
+wiring: 81 nodes (38 method, 19 function, 12 file, 12 class), 169 edges, 12 cards [python]
+parsed: 12 of 12 files (0 replayed from cache)
+tempo_build_s=1
+# O pin indexou só Python. O repositório tinha mais arquivos .py do que esses 12
+# (hoje há dezenas, inclusive fora de scripts/); Markdown, YAML e shell ficaram de fora.
+# O build.log bruto continua em exemplos/saida-bruta/ (gitignorado).
