@@ -1863,9 +1863,9 @@ tarefas:
   fase: F14
   area: Templates
   prioridade: 1
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/ + scripts/bootstrap_projeto.sh
-  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado.'
+  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado. Concluída em 24/11/2026 (PR a abrir): templates/web-next/ com Next.js 15, TypeScript, Tailwind, Zod, Vitest e cliente Supabase; bootstrap --tipo web|python (padrão python). CI do template com permissions: contents: read, gitleaks 8.30.1 e o pipeline npm. Preview comercial documentado no runbook (Cloudflare Pages; Vercel Hobby não serve). Verificação: bootstrap --tipo web demo /tmp/... && npm ci && npm run lint && npm run typecheck && npm test && npm run build, verde.'
 
 - id: VTX-195
   titulo: Política técnica de hospedagem por cliente e de custos de infra

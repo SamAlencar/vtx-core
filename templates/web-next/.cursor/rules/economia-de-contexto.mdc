@@ -1,0 +1,31 @@
+---
+description: Economia de contexto em saídas de ferramentas (logs, arquivos, JSON, diffs) — VTX-133
+alwaysApply: false
+---
+# Economia de contexto em saídas de ferramentas
+
+Aplique antes de rodar comandos que podem devolver muito texto. Complementa `.cursor/rules/eficiencia-de-tokens.mdc` (§2 e §7). Vale para humano e para execução autônoma.
+
+## 1. Logs e saída de testes/CI
+- Rode primeiro com filtro: mostre só o erro principal e ~10 linhas ao redor (`| rg -n -C5 "error|fail|Traceback"`, `| tail -n 40`).
+- Para CI: `gh run view <id> --log-failed | tail -n 60`, não o log inteiro.
+- Se o filtro não bastar, aumente o recorte aos poucos; não despeje o log completo.
+- Saída grande que precisa ser guardada vai para arquivo (`> /tmp/saida.log`) e é consultada com `rg`.
+
+## 2. Arquivos
+- Localize com `rg -n termo` e leia só o trecho (offset/limit). Arquivo inteiro apenas se for pequeno (< ~200 linhas) e todo relevante.
+- Liste diretórios com profundidade limitada; ignore `node_modules`, `.git`, builds e binários.
+
+## 3. JSON, YAML e respostas de API
+- Extraia só os campos usados (`jq '{id,status}'`, `--jq` no `gh`, `python -c` com chaves). Use `| head`/`[:5]` e informe o total (`length`).
+- Nunca cole resposta de API completa no chat; resuma em tabela curta.
+
+## 4. Diffs e listas longas
+- Comece por `git diff --stat`; leia o diff só dos arquivos relevantes.
+- Lista longa (PRs, issues, tarefas): filtre e limite (`--limit 10`), diga quantos faltam.
+
+## 5. Resumo no lugar do bruto
+- Ao relatar, entregue conclusão + evidência mínima (comando, código de saída, 1–3 linhas). O bruto fica no arquivo, se precisar.
+
+## 6. Ferramentas externas de compressão
+- Não use proxy nem compressor que intercepte chamadas ao modelo. O Headroom segue "em avaliação" no registro de ferramentas do vtx-core; piloto só conforme a nota da VTX-133 (ambiente isolado, `HEADROOM_TELEMETRY=off`, `HEADROOM_BEACON=off`, sem proxy). Estas regras valem sem ele.
