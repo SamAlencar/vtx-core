@@ -49,176 +49,201 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 ## F6 — Templates de artefatos
 
 16. **VTX-033** Template de PRD → `knowledge/templates/prd.md`
-17. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
-18. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
-19. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
 
-## F8 — Consolidação e validação
+## F9 — Integração com o Cursor e operação
 
-20. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
+17. **VTX-188** Remover a cópia redundante das regras de tokens em knowledge/templates/cursor → `knowledge/templates/cursor/README.md`
 
 ## F6 — Templates de artefatos
 
-21. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
-22. **VTX-038** Template de relatório diário e de sprint → `knowledge/templates/relatorios.md`
-
-## F7 — Diretrizes por papel
-
-23. **VTX-039** Diretrizes do agente Orquestrador → `knowledge/diretrizes/orquestrador.md`
-24. **VTX-040** Diretrizes do agente Produto → `knowledge/diretrizes/produto.md`
-25. **VTX-041** Diretrizes do agente Arquiteto → `knowledge/diretrizes/arquiteto.md`
-26. **VTX-042** Diretrizes do agente Dev Backend → `knowledge/diretrizes/dev-backend.md`
-27. **VTX-043** Diretrizes do agente Dev Frontend/Mobile → `knowledge/diretrizes/dev-frontend-mobile.md`
-28. **VTX-044** Diretrizes do agente QA → `knowledge/diretrizes/qa.md`
-29. **VTX-045** Diretrizes do agente DevOps/SRE → `knowledge/diretrizes/devops-sre.md`
-30. **VTX-046** Diretrizes dos especialistas sob demanda → `knowledge/diretrizes/especialistas.md`
+18. **VTX-034** Template de história de usuário e critérios de aceite → `knowledge/templates/historia-de-usuario.md`
 
 ## F9 — Integração com o Cursor e operação
 
-31. **VTX-053** AGENTS.md raiz com diretrizes gerais dos agentes → `AGENTS.md`
-32. **VTX-054** Regra sempre ativa: fluxo entre papéis, DoD e aprovações → `.cursor/rules/vtx-base.mdc`
-33. **VTX-055** Regras por papel: Orquestrador, Produto e Arquiteto → `.cursor/rules/papeis/planejamento.mdc`
-34. **VTX-056** Regras por papel: Devs, QA e DevOps/SRE → `.cursor/rules/papeis/execucao.mdc`
-35. **VTX-134** Enriquecer papéis de agentes com o catálogo agency-agents → `knowledge/organizacao/papeis-de-agentes.md`
-36. **VTX-057** Regras por assunto com globs: testes e APIs → `.cursor/rules/assuntos/testes-api.mdc`
-37. **VTX-058** Regras por assunto com globs: frontend/mobile e segurança → `.cursor/rules/assuntos/frontend-seguranca.mdc`
-38. **VTX-138** Regras comuns e por stack em .cursor/rules a partir do ECC → `.cursor/rules/ (common-*, typescript, react, react-native, python) e knowledge/templates/cursor/`
-39. **VTX-139** Hooks do Cursor como guardrails locais (adaptados do ECC) → `.cursor/hooks.json e scripts/hooks/ (padrão TT-060)`
-40. **VTX-059** Estratégia de consulta sob demanda e índice para agentes → `knowledge/index.yaml`
+19. **VTX-189** Bootstrap criar docs/memoria/ no repositório do cliente → `scripts/bootstrap_projeto.sh + templates/projeto/docs/memoria/`
 
-## F7 — Diretrizes por papel
+## F6 — Templates de artefatos
 
-41. **VTX-182** Diretrizes por papel (F7) e sincronização da tabela Recursos por papel → `knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py`
-
-## F9 — Integração com o Cursor e operação
-
-42. **VTX-060** Template de repositório de projeto → `templates/projeto/`
-43. **VTX-061** Sincronização de regras e script de bootstrap de projetos → `scripts/bootstrap_projeto.sh`
-44. **VTX-062** Ambiente dos agentes de nuvem (environment.json, segredos, permissões) → `.cursor/environment.json`
+20. **VTX-035** Template de ADR → `knowledge/templates/adr.md`
 
 ## F3 — Segurança e operação
 
-45. **VTX-187** Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos → `projects/med-hub/README.md + projects/plataforma-projetos/README.md`
+21. **VTX-190** Levar o pre-commit com gitleaks ao template de projeto → `templates/projeto/.pre-commit-config.yaml`
 
-## F9 — Integração com o Cursor e operação
+## F6 — Templates de artefatos
 
-46. **VTX-063** Orquestração com issues, PRs e agentes de nuvem por papel e tipo de projeto → `knowledge/processos/orquestracao-cursor.md`
-47. **VTX-064** Pontos de aprovação do Samuel (branch protegida, revisões, release) → `knowledge/processos/pontos-de-aprovacao.md`
-48. **VTX-065** Teste de validação da integração com o Cursor → `projects/validacao-cursor/`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-49. **VTX-086** Plataforma: PRD do MVP, hipóteses e critérios de sucesso → `vtx-acompanhamento/docs/prd-mvp.md`
-50. **VTX-087** Formatos de registro: eventos, handoffs, decisões e custos → `registro/ + backlog/SCHEMA.md`
-51. **VTX-088** Formato da fila de aprovações do Samuel → `registro/aprovacoes.yaml + backlog/SCHEMA.md`
-52. **VTX-115** Esquema do manifesto de conexões por projeto → `projects/CONEXOES.md + projects/<p>/conexoes.yaml`
-53. **VTX-089** Gerador de dados da plataforma (JSON privado único) → `vtx-acompanhamento/gerador/`
-54. **VTX-116** Verificador de status das conexões (somente leitura) → `vtx-acompanhamento/verificador/`
-55. **VTX-090** Painel Markdown (semana 1): portfólio, fases e progresso → `vtx-acompanhamento/painel/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-56. **VTX-147** Execução isolada de código gerado por IA (sandbox) → `knowledge/seguranca/sandbox-codigo-ia.md`
-57. **VTX-148** Orquestração de LLM: roteamento por modelo, streaming e fallback → `knowledge/engenharia/ia/orquestracao-llm.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-58. **VTX-117** Painel Markdown: conexões por projeto e alertas de conexão → `vtx-acompanhamento/painel/conexoes.md`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-59. **VTX-149** Medição de tokens, franquia com pausa e chave própria (BYOK) → `knowledge/engenharia/ia/medicao-tokens-byok.md`
-60. **VTX-150** Privacidade em IA: retenção zero, não treino e LGPD nos prompts → `knowledge/conformidade/ia-privacidade.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-61. **VTX-095** Plataforma: ADR da interface web com acesso restrito → `vtx-acompanhamento/docs/adr/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-62. **VTX-152** Prova de conceito: banco de objetos como camada de trabalho, diff visual e desempenho 3D → `projects/plataforma-projetos/docs/poc/`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-63. **VTX-096** Interface web: estrutura, login restrito e portfólio → `vtx-acompanhamento/web/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-64. **VTX-153** Importação de arquivos: DWG/DXF só leitura e extração de PDF, DOCX e XLSX → `knowledge/engenharia/importacao-arquivos.md`
-65. **VTX-154** Armazenamento de arquivos grandes com custo zero inicial → `knowledge/operacao/armazenamento-arquivos-grandes.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-66. **VTX-091** Interface web: atividade dos agentes e handoffs → `vtx-acompanhamento/web/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-67. **VTX-155** Assinaturas SaaS no Brasil: planos, créditos pré-pagos, Pix e webhooks → `knowledge/engenharia/assinaturas-saas-br.md`
-68. **VTX-156** SaaS multi-inquilino: login Google, papéis por disciplina e convites → `knowledge/engenharia/saas-multitenant-auth.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-69. **VTX-092** Interface web: fila de aprovações e registro de decisões → `vtx-acompanhamento/web/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-70. **VTX-157** Comentários no modelo 3D (BCF) e notificações de andamento → `knowledge/engenharia/bim/comentarios-notificacoes.md`
-71. **VTX-158** Páginas públicas de portfólio com SEO → `knowledge/engenharia/paginas-publicas-seo.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-72. **VTX-118** Interface web: ferramentas e conexões por projeto → `vtx-acompanhamento/web/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-73. **VTX-159** Quantitativos e memoriais gerados a partir do IFC → `.cursor/skills/ifc-quantitativos/`
-74. **VTX-160** Termos de uso, política de privacidade e mapa de dados do piloto → `projects/plataforma-projetos/docs/juridico/`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-75. **VTX-093** Interface web: métricas, custos e alertas → `vtx-acompanhamento/web/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-76. **VTX-161** Programa alpha com 5 a 10 projetistas → `knowledge/processos/programa-alpha.md`
-77. **VTX-162** Captura de dados para fine-tuning futuro (pedido → ação no IFC) → `knowledge/engenharia/ia/dataset-fine-tuning.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-78. **VTX-094** Plataforma: uso real por uma semana e decisão continuar ou pivotar → `vtx-acompanhamento/docs/relatorio-mvp.md`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-79. **VTX-163** Avaliação de qualidade da IA (evals de modelagem IFC) → `knowledge/engenharia/ia/evals.md`
-80. **VTX-164** Inventário das ferramentas Tekto para a v1 (Calc, Docs, Model) → `projects/plataforma-projetos/conhecimento/tekto-ferramentas.md`
-
-## F11 — Plataforma de acompanhamento (projeto interno)
-
-81. **VTX-097** Plataforma: incluir projetos de cliente e outros repositórios → `vtx-acompanhamento/gerador/`
-
-## F13 — Capacidades para o piloto plataforma-projetos
-
-82. **VTX-165** Métricas de produto SaaS (pagantes, churn, custo de IA por projeto) → `knowledge/operacao/metricas-produto-saas.md`
+22. **VTX-036** Template de plano e relatório de testes → `knowledge/templates/plano-de-testes.md`
 
 ## F8 — Consolidação e validação
 
-83. **VTX-047** Glossário técnico → `knowledge/glossario.md`
-84. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
-85. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
-86. **VTX-050** Projeto piloto: definição, triagem do tipo e PRD → `projects/plataforma-projetos/`
-87. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/plataforma-projetos/`
-88. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/plataforma-projetos/`
-89. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
-90. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
-91. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`
+23. **VTX-183** Exemplo ponta a ponta de agente rodando (onboarding) → `projects/exemplo-agente/`
+
+## F3 — Segurança e operação
+
+24. **VTX-191** Validar o hook pre-commit de gitleaks no CI → `.github/workflows/testes.yml`
+
+## F6 — Templates de artefatos
+
+25. **VTX-037** Template de runbook e postmortem → `knowledge/templates/runbook-postmortem.md`
+26. **VTX-038** Template de relatório diário e de sprint → `knowledge/templates/relatorios.md`
+
+## F7 — Diretrizes por papel
+
+27. **VTX-039** Diretrizes do agente Orquestrador → `knowledge/diretrizes/orquestrador.md`
+28. **VTX-040** Diretrizes do agente Produto → `knowledge/diretrizes/produto.md`
+29. **VTX-041** Diretrizes do agente Arquiteto → `knowledge/diretrizes/arquiteto.md`
+30. **VTX-042** Diretrizes do agente Dev Backend → `knowledge/diretrizes/dev-backend.md`
+31. **VTX-043** Diretrizes do agente Dev Frontend/Mobile → `knowledge/diretrizes/dev-frontend-mobile.md`
+32. **VTX-044** Diretrizes do agente QA → `knowledge/diretrizes/qa.md`
+33. **VTX-045** Diretrizes do agente DevOps/SRE → `knowledge/diretrizes/devops-sre.md`
+34. **VTX-046** Diretrizes dos especialistas sob demanda → `knowledge/diretrizes/especialistas.md`
+
+## F9 — Integração com o Cursor e operação
+
+35. **VTX-053** AGENTS.md raiz com diretrizes gerais dos agentes → `AGENTS.md`
+36. **VTX-054** Regra sempre ativa: fluxo entre papéis, DoD e aprovações → `.cursor/rules/vtx-base.mdc`
+37. **VTX-055** Regras por papel: Orquestrador, Produto e Arquiteto → `.cursor/rules/papeis/planejamento.mdc`
+38. **VTX-056** Regras por papel: Devs, QA e DevOps/SRE → `.cursor/rules/papeis/execucao.mdc`
+39. **VTX-134** Enriquecer papéis de agentes com o catálogo agency-agents → `knowledge/organizacao/papeis-de-agentes.md`
+40. **VTX-057** Regras por assunto com globs: testes e APIs → `.cursor/rules/assuntos/testes-api.mdc`
+41. **VTX-058** Regras por assunto com globs: frontend/mobile e segurança → `.cursor/rules/assuntos/frontend-seguranca.mdc`
+42. **VTX-138** Regras comuns e por stack em .cursor/rules a partir do ECC → `.cursor/rules/ (common-*, typescript, react, react-native, python) e knowledge/templates/cursor/`
+43. **VTX-139** Hooks do Cursor como guardrails locais (adaptados do ECC) → `.cursor/hooks.json e scripts/hooks/ (padrão TT-060)`
+44. **VTX-059** Estratégia de consulta sob demanda e índice para agentes → `knowledge/index.yaml`
+
+## F7 — Diretrizes por papel
+
+45. **VTX-182** Diretrizes por papel (F7) e sincronização da tabela Recursos por papel → `knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py`
+
+## F9 — Integração com o Cursor e operação
+
+46. **VTX-060** Template de repositório de projeto → `templates/projeto/`
+47. **VTX-061** Sincronização de regras e script de bootstrap de projetos → `scripts/bootstrap_projeto.sh`
+48. **VTX-062** Ambiente dos agentes de nuvem (environment.json, segredos, permissões) → `.cursor/environment.json`
+
+## F3 — Segurança e operação
+
+49. **VTX-187** Migrar a documentação de med-hub e plataforma-projetos para os repositórios dos produtos → `projects/med-hub/README.md + projects/plataforma-projetos/README.md`
+
+## F9 — Integração com o Cursor e operação
+
+50. **VTX-063** Orquestração com issues, PRs e agentes de nuvem por papel e tipo de projeto → `knowledge/processos/orquestracao-cursor.md`
+51. **VTX-064** Pontos de aprovação do Samuel (branch protegida, revisões, release) → `knowledge/processos/pontos-de-aprovacao.md`
+52. **VTX-065** Teste de validação da integração com o Cursor → `projects/validacao-cursor/`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+53. **VTX-086** Plataforma: PRD do MVP, hipóteses e critérios de sucesso → `vtx-acompanhamento/docs/prd-mvp.md`
+54. **VTX-087** Formatos de registro: eventos, handoffs, decisões e custos → `registro/ + backlog/SCHEMA.md`
+55. **VTX-088** Formato da fila de aprovações do Samuel → `registro/aprovacoes.yaml + backlog/SCHEMA.md`
+56. **VTX-115** Esquema do manifesto de conexões por projeto → `projects/CONEXOES.md + projects/<p>/conexoes.yaml`
+57. **VTX-089** Gerador de dados da plataforma (JSON privado único) → `vtx-acompanhamento/gerador/`
+58. **VTX-116** Verificador de status das conexões (somente leitura) → `vtx-acompanhamento/verificador/`
+59. **VTX-090** Painel Markdown (semana 1): portfólio, fases e progresso → `vtx-acompanhamento/painel/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+60. **VTX-147** Execução isolada de código gerado por IA (sandbox) → `knowledge/seguranca/sandbox-codigo-ia.md`
+61. **VTX-148** Orquestração de LLM: roteamento por modelo, streaming e fallback → `knowledge/engenharia/ia/orquestracao-llm.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+62. **VTX-117** Painel Markdown: conexões por projeto e alertas de conexão → `vtx-acompanhamento/painel/conexoes.md`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+63. **VTX-149** Medição de tokens, franquia com pausa e chave própria (BYOK) → `knowledge/engenharia/ia/medicao-tokens-byok.md`
+64. **VTX-150** Privacidade em IA: retenção zero, não treino e LGPD nos prompts → `knowledge/conformidade/ia-privacidade.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+65. **VTX-095** Plataforma: ADR da interface web com acesso restrito → `vtx-acompanhamento/docs/adr/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+66. **VTX-152** Prova de conceito: banco de objetos como camada de trabalho, diff visual e desempenho 3D → `projects/plataforma-projetos/docs/poc/`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+67. **VTX-096** Interface web: estrutura, login restrito e portfólio → `vtx-acompanhamento/web/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+68. **VTX-153** Importação de arquivos: DWG/DXF só leitura e extração de PDF, DOCX e XLSX → `knowledge/engenharia/importacao-arquivos.md`
+69. **VTX-154** Armazenamento de arquivos grandes com custo zero inicial → `knowledge/operacao/armazenamento-arquivos-grandes.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+70. **VTX-091** Interface web: atividade dos agentes e handoffs → `vtx-acompanhamento/web/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+71. **VTX-155** Assinaturas SaaS no Brasil: planos, créditos pré-pagos, Pix e webhooks → `knowledge/engenharia/assinaturas-saas-br.md`
+72. **VTX-156** SaaS multi-inquilino: login Google, papéis por disciplina e convites → `knowledge/engenharia/saas-multitenant-auth.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+73. **VTX-092** Interface web: fila de aprovações e registro de decisões → `vtx-acompanhamento/web/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+74. **VTX-157** Comentários no modelo 3D (BCF) e notificações de andamento → `knowledge/engenharia/bim/comentarios-notificacoes.md`
+75. **VTX-158** Páginas públicas de portfólio com SEO → `knowledge/engenharia/paginas-publicas-seo.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+76. **VTX-118** Interface web: ferramentas e conexões por projeto → `vtx-acompanhamento/web/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+77. **VTX-159** Quantitativos e memoriais gerados a partir do IFC → `.cursor/skills/ifc-quantitativos/`
+78. **VTX-160** Termos de uso, política de privacidade e mapa de dados do piloto → `projects/plataforma-projetos/docs/juridico/`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+79. **VTX-093** Interface web: métricas, custos e alertas → `vtx-acompanhamento/web/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+80. **VTX-161** Programa alpha com 5 a 10 projetistas → `knowledge/processos/programa-alpha.md`
+81. **VTX-162** Captura de dados para fine-tuning futuro (pedido → ação no IFC) → `knowledge/engenharia/ia/dataset-fine-tuning.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+82. **VTX-094** Plataforma: uso real por uma semana e decisão continuar ou pivotar → `vtx-acompanhamento/docs/relatorio-mvp.md`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+83. **VTX-163** Avaliação de qualidade da IA (evals de modelagem IFC) → `knowledge/engenharia/ia/evals.md`
+84. **VTX-164** Inventário das ferramentas Tekto para a v1 (Calc, Docs, Model) → `projects/plataforma-projetos/conhecimento/tekto-ferramentas.md`
+
+## F11 — Plataforma de acompanhamento (projeto interno)
+
+85. **VTX-097** Plataforma: incluir projetos de cliente e outros repositórios → `vtx-acompanhamento/gerador/`
+
+## F13 — Capacidades para o piloto plataforma-projetos
+
+86. **VTX-165** Métricas de produto SaaS (pagantes, churn, custo de IA por projeto) → `knowledge/operacao/metricas-produto-saas.md`
+
+## F8 — Consolidação e validação
+
+87. **VTX-047** Glossário técnico → `knowledge/glossario.md`
+88. **VTX-048** Revisão geral da base (consistência, links, fontes) → `knowledge/`
+89. **VTX-049** Índice final e guia de navegação para agentes → `knowledge/INDEX.md`
+90. **VTX-050** Projeto piloto: definição, triagem do tipo e PRD → `projects/plataforma-projetos/`
+91. **VTX-051** Projeto piloto: execução do fluxo completo → `projects/plataforma-projetos/`
+92. **VTX-052** Projeto piloto: retrospectiva e ajustes na base → `projects/plataforma-projetos/`
+93. **VTX-073** Validação automática do backlog no CI (ids, campos, status, dependências) → `scripts/validar_backlog.py`
+94. **VTX-074** Verificação automática de links e fontes da base de conhecimento → `.github/workflows/links.yml`
+95. **VTX-075** ROADMAP gerado com status efetivo (só tarefas pendentes) → `scripts/gerar_roadmap.py`
 
 ## F10 — Arsenal de scripts e papéis administrativos
 
-92. **VTX-076** Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts → `scripts/arsenal/INVENTARIO.md`
-93. **VTX-077** Script de estrutura inicial de projeto por tipo → `scripts/arsenal/scaffold.py`
-94. **VTX-078** Script de checklist automatizado de revisão de código e qualidade → `scripts/arsenal/revisao.py`
-95. **VTX-079** Script de verificações de segurança (dependências e segredos) → `scripts/arsenal/seguranca.py`
-96. **VTX-080** Script de verificação de prontidão para deploy → `scripts/arsenal/prontidao_deploy.py`
-97. **VTX-081** Skills: receitas curtas que usam o arsenal de scripts → `skills/`
-98. **VTX-082** Adotar o formato-fonte de agentes e os exportadores compartilhados → `agentes/`
-99. **VTX-083** Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD) → `knowledge/papeis/administrativos/`
+96. **VTX-076** Inventário de tarefas recorrentes de desenvolvimento para o arsenal de scripts → `scripts/arsenal/INVENTARIO.md`
+97. **VTX-077** Script de estrutura inicial de projeto por tipo → `scripts/arsenal/scaffold.py`
+98. **VTX-078** Script de checklist automatizado de revisão de código e qualidade → `scripts/arsenal/revisao.py`
+99. **VTX-079** Script de verificações de segurança (dependências e segredos) → `scripts/arsenal/seguranca.py`
+100. **VTX-080** Script de verificação de prontidão para deploy → `scripts/arsenal/prontidao_deploy.py`
+101. **VTX-081** Skills: receitas curtas que usam o arsenal de scripts → `skills/`
+102. **VTX-082** Adotar o formato-fonte de agentes e os exportadores compartilhados → `agentes/`
+103. **VTX-083** Papéis administrativos para software house (comercial, financeiro, jurídico e LGPD) → `knowledge/papeis/administrativos/`

@@ -248,3 +248,28 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "Cadastrada a partir da revisão do Tzu no PR #22. Não executada neste passo; pode precisar do Samuel para o repositório de destino."
 
+  - id: VTX-188
+    titulo: "Remover a cópia redundante das regras de tokens em knowledge/templates/cursor"
+    area: "Integração Cursor"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 4. Não executada neste passo."
+  - id: VTX-189
+    titulo: "Bootstrap criar docs/memoria/ no repositório do cliente"
+    area: "Integração Cursor"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 5. Não executada neste passo."
+  - id: VTX-190
+    titulo: "Levar o pre-commit com gitleaks ao template de projeto"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 7. Não executada neste passo."
+  - id: VTX-191
+    titulo: "Validar o hook pre-commit de gitleaks no CI"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #21, item 3. Não executada neste passo. Mexe em workflow."
+
