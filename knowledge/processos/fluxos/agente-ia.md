@@ -6,7 +6,7 @@
 
 - **Agente:** um laço que recebe um objetivo, chama ferramentas, observa o resultado e para com critério explícito (máximo de iterações, timeout, erro interno).
 - **IA embutida:** o produto (site, sistema ou API) chama um modelo para uma tarefa delimitada (classificar, redigir, extrair), sem necessariamente um laço aberto.
-- Nos dois casos este fluxo **exige**, no plano do projeto, quatro peças técnicas: harness de referência (VTX-177), evals com portão no CI (VTX-178), telemetria de custo (VTX-179) e privacidade nos prompts (VTX-150). Sem isso o tipo não está completo.
+- Nos dois casos este fluxo **exige**, no plano do projeto, quatro peças técnicas: harness de referência (VTX-177), evals com portão no CI (VTX-178), telemetria de custo (VTX-179) e privacidade nos prompts (VTX-150). Sem isso o tipo não está completo. Enquanto essas quatro tarefas estiverem `a fazer` no vtx-core, um projeto para cliente externo só começa com A2 do Samuel, e o plano tem que incluir o equivalente das quatro peças no repositório do cliente (não esperar o core). Piloto interno segue o teto da F14.
 - Hospedagem do app segue a política de hospedagem por cliente (VTX-195 / PR #26). Custo de token de plano pago é A2.
 
 ## 2. Metodologia (etapas)
@@ -19,7 +19,7 @@
 | 4 | Evals | QA + Dev | Conjunto mínimo de casos (entrada, ferramenta esperada, saída aceitável) e portão no CI (VTX-178). Roda sem rede e sem custo no CI, com cliente falso | CI vermelho impede merge |
 | 5 | Telemetria de custo | DevOps + Dev | Contagem de tokens e chamadas por requisição/projeto (VTX-179), alerta quando passa do teto técnico de desenvolvimento | Plano pago do provedor é A2. Teto contratual com o cliente é dependência externa |
 | 6 | Implementação | Dev | Laço, ferramentas e UI ou API no repositório do cliente. Testes do harness com cliente LLM falso | PR com CI verde, inclusive evals |
-| 7 | Lançamento | DevOps + Orquestrador | Variáveis só no painel, runbook, primeiro deploy de produção | Primeiro deploy de produção é A2 (política de hospedagem) |
+| 7 | Lançamento | DevOps + Orquestrador | Variáveis só no painel, runbook, deploy de produção | Deploy em produção é A2 (política de hospedagem) |
 | 8 | Operação | DevOps + QA | Revisar evals quando o comportamento mudar; incidentes viram postmortem no repo do cliente | Nova ferramenta, novo provedor ou dado pessoal extra é A2 |
 
 As etapas 4 a 6 repetem por incremento. Nada vai a produção sem evals no CI e sem o checklist de privacidade preenchido.
@@ -49,7 +49,7 @@ As etapas 4 a 6 repetem por incremento. Nada vai a produção sem evals no CI e 
 - [ ] ADR do harness (VTX-177) no repositório do cliente
 - [ ] Checklist de privacidade (VTX-150) preenchido; dado pessoal tratado como A2
 - [ ] Evals no CI (VTX-178) e telemetria de custo (VTX-179) no runbook
-- [ ] Primeiro deploy de produção com A2
+- [ ] Deploy em produção com A2
 - [ ] Teto contratual, se houver, ficou com os agentes de vendas — não é aceite deste fluxo
 
 ## Fontes

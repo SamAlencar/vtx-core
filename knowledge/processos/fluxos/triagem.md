@@ -45,6 +45,7 @@ Regras:
 - **Contrato primeiro:** quando houver app + backend ou sistema + integração, o contrato da API (ex.: OpenAPI) é o primeiro artefato da arquitetura, para os times trabalharem em paralelo.
 - **Portões somam:** vale o portão mais rigoroso entre os fluxos envolvidos (ex.: publicação em loja de apps exige aprovação do Samuel mesmo que o principal seja SaaS).
 - **Máximo de 2 módulos.** Acima disso, dividir em subprojetos com fichas próprias.
+- **IA é módulo obrigatório:** sempre que a entrega usar um modelo de IA (assistente, agente, RAG, classificação, extração ou geração), o fluxo [agente-ia.md](agente-ia.md) entra como módulo, qualquer que seja o fluxo principal (manutenção, API, MVP, site ou SaaS). Se o principal já for agente de IA, as quatro peças entram pelo próprio fluxo, não como módulo extra. Esse módulo é requisito técnico e **não conta** no limite de 2 módulos acima.
 
 | Combinação comum | Principal | Módulos |
 |---|---|---|
@@ -81,7 +82,7 @@ duvidas_para_samuel: []
 ## 7. Checklist da triagem
 - [ ] Objetivo de negócio e usuário principal identificados
 - [ ] As 6 perguntas respondidas na ordem; fluxo principal definido
-- [ ] No máximo 2 módulos híbridos; se mais, projeto dividido
+- [ ] No máximo 2 módulos híbridos (o módulo de IA, quando obrigatório, não conta nesse limite); se mais, projeto dividido
 - [ ] Incerteza classificada; MVP considerado se ambas forem altas
 - [ ] Riscos de escalonamento (LGPD, pagamento, custo, prazo) listados
 - [ ] Ficha salva em `projects/<projeto>/ficha.yaml` e enviada ao Samuel
