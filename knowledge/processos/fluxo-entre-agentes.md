@@ -10,6 +10,8 @@
 5. **Humano no controle.** Samuel aprova escopo, publicação em produção, gastos e qualquer comunicação externa.
 6. **Contexto mínimo.** Cada agente carrega só a definição do seu papel, o artefato de entrada e os documentos da base que a tarefa pede.
 
+A stack de cada tipo de projeto está na [matriz ferramenta × fluxo](../ferramentas/README.md#matriz).
+
 ## 2. Etapas padrão
 
 | # | Etapa | Dono | Entrada | Saída (artefato) | Portão de saída |

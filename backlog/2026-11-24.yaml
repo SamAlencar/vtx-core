@@ -1,0 +1,14 @@
+data: "2026-11-24"
+tarefas:
+  - id: VTX-112
+    titulo: "Matriz ferramenta × fluxo completa e links nos fluxos"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/ferramentas/README.md §5 preenchida (P/O/—) só com ferramentas já documentadas (VTX-099 a VTX-111) e a §5 de cada uma; âncora #matriz. Links curtos nos fluxos VTX-010/066-072 e na entrevista. INDEX atualizado. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-112.md; Review Focus evitou P inventado e o status cancelada, que viraria a fazer), verification-before-completion (unittest, test -e nos links, proxima_tarefa, ajudou). Bibliotecas: nenhuma. Ferramentas: git, gh, unittest. Correu bem, custo baixo."
+  - id: VTX-142
+    titulo: "Vídeos de divulgação com HyperFrames (render local)"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Cancelada por Samuel em 2026-11-24 (julgou desnecessária); reversível. SCHEMA.md e backlog_lib só admitem a fazer / em andamento / concluído; status desconhecido vira a fazer e o proxima_tarefa.py a pegaria (prioridade 40). Por isso o status efetivo ficou concluído, único valor permitido que sai da fila."

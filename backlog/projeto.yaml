@@ -848,7 +848,7 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 50
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/README.md'
   depende_de:
   - VTX-098
@@ -865,7 +865,7 @@ tarefas:
   - VTX-109
   - VTX-110
   - VTX-111
-  notas: 'Preencher a matriz e citar as ferramentas nas seções de stack dos fluxos.'
+  notas: 'Preencher a matriz e citar as ferramentas nas seções de stack dos fluxos. Concluída em 2026-11-24: matriz P/O/— no README, links nos fluxos VTX-010/066-072 e na entrevista.'
 - id: VTX-113
   titulo: 'Processo periódico de revisão de ferramentas'
   fase: F12
@@ -1292,11 +1292,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 40
-  status: em avaliação
+  status: concluído
   entregavel: '.cursor/skills/video-marketing/ + script do arsenal (TT-060) render-video + processo frame.md'
   depende_de:
   - VTX-141
-  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. heygen-com/hyperframes (Apache-2.0, pin 4371981). Só render local (Chrome headless + FFmpeg); telemetria ligada por padrão -> sempre HYPERFRAMES_NO_TELEMETRY=1 e DO_NOT_TRACK=1; sem render em nuvem (Lambda/Cloud Run), sem registry remoto, sem npx skills add. Instalar só após revisão do pacote. Para vídeos dos sites VTX, med-hub e Tekto, depois que existirem.'
+  notas: 'Pedido do Samuel em 2026-10-21. Decisão: ADAPTAR. heygen-com/hyperframes (Apache-2.0, pin 4371981). Só render local (Chrome headless + FFmpeg); telemetria ligada por padrão -> sempre HYPERFRAMES_NO_TELEMETRY=1 e DO_NOT_TRACK=1; sem render em nuvem (Lambda/Cloud Run), sem registry remoto, sem npx skills add. Instalar só após revisão do pacote. Para vídeos dos sites VTX, med-hub e Tekto, depois que existirem. Cancelada por Samuel em 2026-11-24 (julgou desnecessária); reversível.'
 - id: VTX-143
   titulo: 'Conhecimento de domínio BIM/IFC (IFC4/IFC4x3, IDS, openBIM)'
   fase: F13

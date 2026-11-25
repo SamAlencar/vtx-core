@@ -8,6 +8,7 @@
 - **Estilos:** síncrono (REST/HTTP, resposta na hora), assíncrono (webhook, fila, evento) e lote (arquivo ou carga agendada). A escolha é ADR e depende de volume, latência e de quem inicia a troca.
 - **Idempotência:** repetir a mesma chamada não duplica o efeito. GET, PUT e DELETE já são idempotentes (RFC 9110); POST com efeito usa chave `Idempotency-Key`. É o que permite retentativa segura.
 - **Camada anticorrupção:** um adaptador traduz o modelo do terceiro para o nosso, para que mudanças do parceiro não se espalhem pelo código.
+- **Ferramentas:** padrão — GitHub Actions, Cursor, Cloudflare, Supabase, Stripe, Sentry, Docker. Opcional — Vercel, Appwrite. Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz); a escolha formal fica no [stack de referência](../../tecnologia/stack-de-referencia.md) e no ADR.
 
 ## 2. Etapas do fluxo
 

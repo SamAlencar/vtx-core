@@ -7,6 +7,7 @@
 - **Landing page:** página única (ou poucas) com um objetivo de conversão: lead, demo, inscrição ou venda. Mensagem, prova social e formulário curtos.
 - **Conteúdo primeiro:** textos, imagens e estrutura de URLs são artefatos de Produto/UX antes do código. CMS headless ou Markdown/docs-as-code quando o cliente atualiza sozinho.
 - **Performance e SEO:** Core Web Vitals (LCP ≤ 2,5 s, INP ≤ 200 ms, CLS ≤ 0,1 no percentil 75) e HTML semântico indexável. Formulário simples; lógica de lead ou CRM entra como módulo [API e integrações](api-integracoes.md).
+- **Ferramentas:** padrão — GitHub Actions (Pages), Cursor, Cloudflare, Figma. Vercel só se precisar de Next.js dinâmico; Supabase só para guardar leads (com consentimento). Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz); a escolha formal fica no [stack de referência](../../tecnologia/stack-de-referencia.md) e no ADR.
 
 ## 2. Etapas do fluxo
 
@@ -31,7 +32,7 @@ As etapas 5 e 6 repetem por página ou seção. Cada incremento termina em previ
 4. Publicação em produção e mudanças que alterem a URL canônica ou redirecionamentos críticos (etapa 7).
 
 ## 4. Itens específicos de site e landing
-- **Stack típica:** site estático ou SSG (HTML/CSS, Astro, Next estático, Hugo) em Pages/Netlify/Vercel; CMS headless só se o cliente edita com frequência. Evitar SPA pura se SEO for requisito.
+- **Stack típica:** site estático ou SSG (HTML/CSS, Astro, Next estático, Hugo) em Pages/Netlify/Vercel; CMS headless só se o cliente edita com frequência. Evitar SPA pura se SEO for requisito. Ver a [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
 - **SEO técnico:** título e meta description únicos, headings hierárquicos, `canonical`, Open Graph, sitemap.xml, robots.txt, dados estruturados básicos (Organization/WebSite) quando couber.
 - **Formulário:** campos mínimos, validação no cliente e no servidor/serverless, proteção anti-spam (honeypot ou Turnstile/hCaptcha), confirmação ao usuário e registro no CRM/e-mail. Sem armazenar dado sensível sem necessidade.
 - **Imagens e fontes:** formatos modernos (WebP/AVIF), dimensões explícitas (reduz CLS), lazy-load abaixo da dobra, fontes com `font-display: swap`.

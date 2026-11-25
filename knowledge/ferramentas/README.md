@@ -50,32 +50,46 @@ Para adotar uma ferramenta, registra-se no arquivo dela (formato ADR curto: cont
 
 O Orquestrador e o Arquiteto decidem as ferramentas `em avaliação` e `alternativa`. Passar uma ferramenta para `adotada` com custo, dados pessoais ou contrato exige aprovação do Samuel.
 
-## 5. Matriz ferramenta × fluxo (esqueleto)
-Legenda: **P** = padrão · **O** = opcional · **—** = não se aplica · *?* = a definir (VTX-112).
+## 5. Matriz ferramenta × fluxo
+<a id="matriz"></a>
+
+Legenda: **P** = padrão do fluxo · **O** = opcional ou alternativa · **—** = não se aplica.
+
+Preenchida em 2026-11-24 (VTX-112) só com o que já está documentado: a §5 de cada ferramenta e o esqueleto do VTX-098. Sem ferramenta nova. [Avaliações](avaliacoes/graphify.md) e o [radar](radar.md) ficam de fora até haver registro de adoção. A **escolha** formal da stack continua no [stack de referência](../tecnologia/stack-de-referencia.md) e no ADR do projeto.
 
 | Ferramenta | [SaaS](../processos/fluxos/sistema-web-saas.md) | [Mobile](../processos/fluxos/app-mobile.md) | [API](../processos/fluxos/api-integracoes.md) | [Site](../processos/fluxos/site-landing-page.md) | [Manutenção](../processos/fluxos/manutencao-evolucao.md) | [MVP/PoC](../processos/fluxos/mvp-poc.md) |
 |---|---|---|---|---|---|---|
-| GitHub + Actions | P | P | P | P | P | P |
-| Cursor | P | P | P | P | P | P |
-| Vercel | ? | — | ? | ? | ? | ? |
-| Cloudflare | P | — | P | P | O | O |
-| Supabase | ? | ? | ? | — | ? | ? |
-| Appwrite | ? | ? | ? | — | ? | ? |
-| Firebase | ? | ? | — | — | ? | ? |
-| Expo / EAS | — | ? | — | — | ? | ? |
-| Stripe / Mercado Pago | P | P | P | — | ? | P |
-| Sentry | P | P | P | — | P | O |
-| Docker | P | — | P | — | O | O |
-| Figma | P | P | — | P | O | O |
-| Google Workspace | O | O | O | O | O | O |
+| [GitHub + Actions](ci-cd/github-actions.md) | P | P | P | P | P | P |
+| [Cursor](ia-dev/cursor.md) | P | P | P | P | P | P |
+| [Vercel](hospedagem/vercel.md) | O | — | O | O | O | O |
+| [Cloudflare](ci-cd/cloudflare.md) | P | — | P | P | O | O |
+| [Supabase](backend/supabase.md) | P | P | P | O | O | O |
+| [Appwrite](backend/appwrite.md) | O | O | O | — | O | O |
+| [Firebase](backend/firebase.md) | O | O | — | — | O | O |
+| [Expo / EAS](mobile/expo.md) | — | O | — | — | O | O |
+| [Stripe / Mercado Pago](pagamentos/stripe-mercado-pago.md) | P | P | P | — | O | P |
+| [Sentry](observabilidade/sentry.md) | P | P | P | — | P | O |
+| [Docker](ci-cd/docker.md) | P | — | P | — | O | O |
+| [Figma](design/figma.md) | P | P | — | P | O | O |
+| [Google + Grok Bot](comunicacao/google-workspace.md) | O | O | O | O | O | O |
+
+Notas (células que não são um P óbvio):
+- **Vercel** está em avaliação. Hobby não cobre uso comercial; site estático vai para GitHub Pages ou Cloudflare Pages; Pro/comercial é decisão do Samuel.
+- **Appwrite** e **Firebase** não são o backend padrão (é o Supabase). Entram se o cliente já usa ou pedir. No mobile, o Firebase pode entrar só para FCM e Crashlytics, mesmo com backend Supabase.
+- **Expo / EAS** só quando o ADR de mobile escolhe React Native.
+- **Supabase** no site só para guardar leads (com consentimento). Na manutenção e no MVP, só se o sistema tiver backend.
+- **Stripe** na manutenção só se o sistema já cobra. **Sentry** no MVP é opcional (não aparece na §5 da ferramenta).
+- **Cloudflare** na manutenção: DNS e proteção de domínio já existente (o status da ferramenta cobre todo domínio; a §5 não cita esse fluxo).
+- **Google + Grok Bot** é o canal da operação. Na [entrevista com o cliente](../processos/fluxos/entrevista-cliente.md) entram Agenda, Meet e ata no Drive.
 
 ## 6. Revisão periódica
 Uma vez por trimestre, dentro da manutenção quinzenal (VTX-113), revisam-se custos, limites dos planos gratuitos, versões e mudanças de preço, incidentes de segurança e ferramentas sem uso. Status e datas são atualizados, e o que muda custo ou contrato vai para o Samuel.
 
 ## Checklist
 - [x] Estrutura, categorias, modelo, critérios e esqueleto da matriz
-- [ ] Um documento por ferramenta (VTX-099 a VTX-111) — feito: [Vercel](hospedagem/vercel.md), [Supabase](backend/supabase.md), [GitHub Actions](ci-cd/github-actions.md), [Cursor](ia-dev/cursor.md), [Appwrite](backend/appwrite.md), [Firebase](backend/firebase.md), [Expo](mobile/expo.md), [Stripe/MP](pagamentos/stripe-mercado-pago.md), [Sentry](observabilidade/sentry.md), [Cloudflare](ci-cd/cloudflare.md), [Docker](ci-cd/docker.md)
-- [ ] Matriz completa (VTX-112) e processo de revisão (VTX-113)
+- [x] Um documento por ferramenta (VTX-099 a VTX-111): [Vercel](hospedagem/vercel.md), [Supabase](backend/supabase.md), [GitHub Actions](ci-cd/github-actions.md), [Cursor](ia-dev/cursor.md), [Appwrite](backend/appwrite.md), [Firebase](backend/firebase.md), [Expo](mobile/expo.md), [Stripe/MP](pagamentos/stripe-mercado-pago.md), [Sentry](observabilidade/sentry.md), [Cloudflare](ci-cd/cloudflare.md), [Docker](ci-cd/docker.md), [Figma](design/figma.md), [Google + Grok Bot](comunicacao/google-workspace.md)
+- [x] Matriz completa (VTX-112)
+- [ ] Processo de revisão (VTX-113)
 
 ## Fontes
 - Nygard, M. *Documenting Architecture Decisions* (2011): formato ADR.

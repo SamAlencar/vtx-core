@@ -6,6 +6,7 @@
 - **App mobile:** aplicativo instalado no Android ou iOS e publicado na Play Store ou App Store. A entrega passa por revisão da loja, assinatura do binário e recursos do aparelho (câmera, GPS, push, uso sem rede).
 - **Stack (ADR):** nativo (Kotlin e Swift), **Flutter** (Dart, UI própria), **React Native** (JavaScript/TypeScript, UI nativa) ou **Kotlin Multiplatform** (lógica compartilhada; UI nativa ou Compose). Pesam o time, os plugins e o prazo de loja.
 - **Contrato primeiro:** o backend entra por OpenAPI, para o app e a API andarem em paralelo. Se a API for entrega própria, é módulo [API e integrações](api-integracoes.md). O incremento é uma fatia (tela + integração + teste no aparelho) numa trilha de teste.
+- **Ferramentas:** padrão — GitHub Actions, Cursor, Supabase, Stripe, Sentry, Figma. Expo/EAS só se o ADR escolher React Native; Firebase pode entrar só para FCM/Crashlytics. Detalhe na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz); a escolha formal fica no [stack de referência](../../tecnologia/stack-de-referencia.md) e no ADR.
 
 ## 2. Etapas do fluxo
 
