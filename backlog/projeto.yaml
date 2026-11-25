@@ -1134,11 +1134,11 @@ tarefas:
   fase: F12
   area: Ferramentas
   prioridade: 59
-  status: a fazer
+  status: concluído
   entregavel: 'knowledge/ferramentas/recursos.yaml'
   depende_de:
   - VTX-119
-  notas: 'Fontes: MCP Registry oficial e listas; só leitura/escopo mínimo.'
+  notas: 'Fontes: MCP Registry oficial e listas; só leitura/escopo mínimo. Concluída em 2026-11-24: Registry adotado como descoberta (listing ≠ auditoria); GitHub/Supabase/Figma/Vercel adotados com escopo mínimo e leitura; filesystem de referência só com --read-only; Stripe MCP em avaliação (chave de teste). §3.16.'
 - id: VTX-127
   titulo: 'Piloto do impeccable em uma tela de teste (fluxo frontend)'
   fase: F12

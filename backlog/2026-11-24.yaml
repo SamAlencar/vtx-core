@@ -54,3 +54,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "superpowers-verification-before-completion adotado (já estava em .cursor/skills, pin bb92a777, igual às outras Superpowers; tip 22f0b46 não aplicada sem revisar a cópia). Vercel Agent Skills: ainda sem LICENSE na raiz em 24/11 — não copiar. awesome-cursorrules pin b044f95, último commit 30/05/2026 (limite da janela de 6 meses). Fronteira com o tek-team (VTX-082) documentada na §3.15: VTX registra o que usar; formato/exportadores são do Tek. Skills: as da VTX-124 no mesmo plano. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."
+  - id: VTX-126
+    titulo: "Pesquisa de recursos: servidores MCP"
+    area: "Ferramentas"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "recursos.yaml: Registry oficial adotado como fonte de descoberta (preview, listing não é auditoria, pin 0c74fa6). awesome-mcp-servers atualizado (pin ac5cc37). GitHub, Supabase (dev + read_only=true), Figma (handoff de leitura, sem escrita no canvas) e Vercel (logs/deploys; produção só pelo Git) registrados como adotados. Filesystem/fetch de referência em avaliação, filesystem só com --read-only. Stripe MCP em avaliação, só chave de teste. Playwright MCP, Headroom e Trail-code sem mudança de status. Agensi continua descartado. Recorte §3.16. Skills: writing-plans (plano em docs/planos/2026-11-24-vtx-126.md; Review Focus evitou tratar listing como auditoria e filesystem sem --read-only, ajudou), verification-before-completion (unittest, pins, URLs, ajudou), brainstorming não aplicada. Bibliotecas: nenhuma instalada. Ferramentas: git, gh, unittest, curl. Correu bem, custo baixo."

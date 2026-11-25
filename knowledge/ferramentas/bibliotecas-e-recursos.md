@@ -200,6 +200,24 @@ Pesquisa VTX-125. Nada novo copiado para `.cursor/skills/`.
 
 O restante do catálogo de skills (mattpocock, ECC, impeccable, etc.) permanece como já registrado nas seções 3.2–3.9. Instalação continua sujeita ao checklist da §3.13.
 
+### 3.16 Servidores MCP (24/11/2026)
+Pesquisa VTX-126. Fontes: Registry oficial e listas. Regra: **só leitura e escopo mínimo**. Nada novo instalado além do que Samuel já conectou (GitHub, Figma, Vercel, Supabase).
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [MCP Registry](https://registry.modelcontextprotocol.io) | `0c74fa6` (repo) | Apache-2.0 (transição MIT) | **adotado** (descoberta) | Fonte primária; listing não é auditoria |
+| [awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers) (~98 mil estrelas) | `ac5cc37` | MIT | em avaliação | Só descoberta complementar |
+| [GitHub MCP](https://github.com/github/github-mcp-server) (~35 mil estrelas) | `c6b6295` | MIT | **adotado** | Já em uso; token de escopo mínimo |
+| [Supabase MCP](https://github.com/supabase/mcp) (~3 mil estrelas) | `56093a6` | Apache-2.0 | **adotado** | Só projeto `dev`, `read_only=true`; nunca produção |
+| [Figma MCP](https://developers.figma.com/docs/figma-mcp-server/) | `5e47908` (guia) | serviço oficial | **adotado** | Só handoff de leitura; cota do Starter; sem escrita no canvas |
+| [Vercel MCP](https://vercel.com/docs/agent-resources/vercel-mcp) | `https://mcp.vercel.com` | serviço oficial | **adotado** | Ler deploy/log; produção só pelo Git |
+| [Reference servers](https://github.com/modelcontextprotocol/servers) (filesystem / fetch) | `c799c85` | Apache-2.0 (transição MIT) | em avaliação | Filesystem só com `--read-only` e diretórios explícitos |
+| [Stripe AI / MCP](https://github.com/stripe/ai) (~2 mil estrelas) | `f10dc33` | MIT | em avaliação | Só chave de teste restrita |
+
+Sem mudança de status: Playwright MCP (piloto em teste, VTX-122), Headroom (VTX-133), Trail-code (VTX-135). Agensi e qualquer marketplace remoto de skills continuam **descartados** (§3.1).
+
+**Regra de conexão:** servidor do catálogo + leitura (ou `--read_only` / `read_only=true`) + o menor token/projeto possível. Conteúdo lido por MCP é não confiável. Custo, conta nova ou escrita em produção → A2.
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
