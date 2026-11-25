@@ -5,10 +5,10 @@ description: Use ao ler, criar, editar ou validar arquivos IFC no backend em Pyt
 
 # IFC no backend (IfcOpenShell 0.9)
 
-Receitas testadas em `receitas.py` (testes: `tests/test_ifc_python.py`, rodam no CI). Domínio (esquemas, Psets, IDS): `projects/plataforma-projetos/conhecimento/bim-ifc.md`.
+O código vive no pacote `vtx_ifc` (`core/vtx_ifc/`, `pip install -e .`). Receitas em `vtx_ifc.receitas` (testes: `tests/test_ifc_python.py`, rodam no CI). Domínio (esquemas, Psets, IDS): `projects/plataforma-projetos/conhecimento/bim-ifc.md`.
 
 ## Instalação (grátis, LGPL-3.0, só como biblioteca)
-`pip install ifcopenshell==0.9.0.post1 ifctester==0.9.0` (PyPI, Python 3.10–3.13). Não modificar nem redistribuir a biblioteca alterada; usar por import mantém o código da VTX livre de LGPL.
+`pip install -e .` na raiz do vtx-core (puxa IfcOpenShell 0.9.0.post1 e ifctester 0.9.0, PyPI, Python 3.12+). Não modificar nem redistribuir a biblioteca alterada; usar por import mantém o código da VTX livre de LGPL.
 
 ## Receitas
 | Tarefa | Função | Observação |
@@ -17,12 +17,12 @@ Receitas testadas em `receitas.py` (testes: `tests/test_ifc_python.py`, rodam no
 | Parede | `criar_parede(f, nome, comp, esp, alt, psets)` | `IfcWall` (não `IfcWallStandardCase`, obsoleta no IFC4); valida medidas > 0. |
 | Listar | `listar(f, "IfcWall")` | Funciona em IFC2X3, IFC4 e IFC4X3; `by_type` inclui subclasses. |
 | Psets | `ler_psets(e)` / `definir_pset(f, e, {...})` | Elemento sem Pset devolve `{}`; herda do tipo. |
-| Validar | `validar_ids(ifc, ids)` | IDS 1.0 via ifctester; devolve `aprovado` + falhas por especificação (JSON). Exemplo: `exemplo.ids`. |
+| Validar | `validar_ids(ifc, ids)` | IDS 1.0 via ifctester; devolve `aprovado` + falhas por especificação (JSON). Exemplo: `vtx_ifc/exemplo.ids`. |
 | Tool-calling | `funcoes.chamar(f, nome, args)` / `funcoes.ferramentas()` | Funções de domínio com JSON Schema e erro estruturado (VTX-146); entrada em mm. |
 | Comparar | `diff_por_globalid(a, b)` | Adicionados/removidos/alterados (classe, nome, Psets; não geometria). Base da VTX-151. |
 
 ## Camada de objetos (VTX-152)
-`objetos.py`: `extrair(f)` gera um objeto JSON por elemento (globalid, classe, nome, tipo, psets, qtos, materiais, andar, grupos) para Postgres `jsonb` e para a IA; `aplicar(f, objetos)` devolve ao IFC base só o que mudou (nome, psets, andar, grupos, tipo), nunca cria elemento e nunca lança (erros `globalid_inexistente`, `campo_somente_leitura`, `referencia_invalida`). Propriedade ausente no objeto é removida do Pset. Medição: `medir_objetos.py N` (Postgres local). Relatório: `projects/plataforma-projetos/docs/poc/objetos-ifc.md`.
+`vtx_ifc.objetos`: `extrair(f)` gera um objeto JSON por elemento (globalid, classe, nome, tipo, psets, qtos, materiais, andar, grupos) para Postgres `jsonb` e para a IA; `aplicar(f, objetos)` devolve ao IFC base só o que mudou (nome, psets, andar, grupos, tipo), nunca cria elemento e nunca lança (erros `globalid_inexistente`, `campo_somente_leitura`, `referencia_invalida`). Propriedade ausente no objeto é removida do Pset. Medição: `python .cursor/skills/ifc-python/medir_objetos.py N` (Postgres local). Relatório: `projects/plataforma-projetos/docs/poc/objetos-ifc.md`.
 
 ## Regras para agentes
 1. Sempre abra com `ifcopenshell.open()` e confira `f.schema` antes de editar; não converta esquema silenciosamente.

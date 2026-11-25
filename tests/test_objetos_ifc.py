@@ -1,22 +1,22 @@
 """Testes da camada de objetos IFC <-> JSON (VTX-152, parte 1)."""
-import importlib.util, json, pathlib, sys, tempfile, unittest
+import json, pathlib, tempfile, unittest
 
-RAIZ = pathlib.Path(__file__).resolve().parent.parent / ".cursor/skills/ifc-python"
 TEK_MODEL = pathlib.Path("/workspace/repos/tekto-model/tests/dados/catalogo_parede_exemplo.ifc")
 try:
     import ifcopenshell, ifcopenshell.api.group, ifcopenshell.api.material, ifcopenshell.api.type  # noqa: F401
     import ifcopenshell.validate, ifctester  # noqa: F401
+    from importlib.resources import files as _files
+    from vtx_ifc import objetos, receitas
+    EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
     TEM = True
 except ImportError:
     TEM = False
+    objetos = receitas = None
+    EXEMPLO_IDS = None
 
 
 def mod(nome):
-    sys.path.insert(0, str(RAIZ))
-    spec = importlib.util.spec_from_file_location(nome, RAIZ / f"{nome}.py")
-    m = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(m)
-    return m
+    return receitas if nome == "receitas" else objetos
 
 
 @unittest.skipUnless(TEM, "ifcopenshell/ifctester não instalados")
@@ -87,7 +87,7 @@ class TestObjetos(unittest.TestCase):
         def ids():
             with tempfile.TemporaryDirectory() as d:
                 self.f.write(f"{d}/v.ifc")
-                return self.r.validar_ids(f"{d}/v.ifc", RAIZ / "exemplo.ids")["aprovado"]
+                return self.r.validar_ids(f"{d}/v.ifc", EXEMPLO_IDS)["aprovado"]
         objs = self.por_id(self.o.extrair(self.f))
         objs[self.p2.GlobalId]["psets"]["Pset_WallCommon"] = {"IsExternal": False}
         self.o.aplicar(self.f, list(objs.values()))

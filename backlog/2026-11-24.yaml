@@ -182,9 +182,9 @@ tarefas:
   - id: VTX-176
     titulo: "Empacotar o núcleo de funções de domínio (core/vtx_ifc)"
     area: "Domínio BIM"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Cadastrada a partir da auditoria 24/11/2026, P1 item 7. Não executada neste passo."
+    notas: "Auditoria P1 item 7. Pacote core/vtx_ifc, pyproject.toml, testes sem sys.path, CI com pip install -e . Skills: writing-plans, verification-before-completion (unittest, ajudou). Ferramentas: git, gh, pip, unittest. Correu bem, custo médio."
   - id: VTX-177
     titulo: "Harness de agente de referência (loop de tool-calling)"
     area: "Engenharia"

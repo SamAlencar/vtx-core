@@ -1,7 +1,7 @@
 """Medição de diff/armazenamento entre duas versões IFC (VTX-151). Uso: python medir_diff.py 2000 (grava v1.ifc, v2.ifc no diretório atual)."""
-import sys, time, gzip, difflib, importlib.util, os, random
+import sys, time, gzip, difflib, os, random
 import ifcopenshell, ifcopenshell.guid, ifcopenshell.api.geometry
-spec=importlib.util.spec_from_file_location("r",__import__("os").path.join(__import__("os").path.dirname(__file__),"receitas.py"));r=importlib.util.module_from_spec(spec);spec.loader.exec_module(r)
+from vtx_ifc import receitas as r
 N=int(sys.argv[1]); random.seed(1)
 t=time.time(); a=r.criar_modelo()
 for i in range(N): r.criar_parede(a,f"P{i}",random.uniform(1,6),0.15,3.0,{"Pset_WallCommon":{"IsExternal":i%2==0}})

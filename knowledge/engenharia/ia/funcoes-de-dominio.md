@@ -1,6 +1,6 @@
 # Funções de domínio para tool-calling da IA
 
-> VTX-146 · 31/10/2026 · Status: padrão adotado para a plataforma-projetos. Código de referência: `.cursor/skills/ifc-python/funcoes.py` (testes: `tests/test_funcoes_dominio.py`).
+> VTX-146 · 31/10/2026 · Status: padrão adotado para a plataforma-projetos. Código de referência: `core/vtx_ifc/funcoes.py` (testes: `tests/test_funcoes_dominio.py`).
 
 ## 1. Por que
 Gerar script IfcOpenShell a cada pedido é lento (muitos tokens), difícil de revisar e arriscado de executar. Com funções de domínio a IA só **escolhe uma função e preenche parâmetros JSON**; o código determinístico, testado e versionado faz o resto. Script livre fica como exceção (regra 5 da skill `ifc-python`: processo isolado, nova versão, validação).

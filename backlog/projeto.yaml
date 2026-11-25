@@ -1643,9 +1643,9 @@ tarefas:
   fase: F13
   area: 'Domínio BIM'
   prioridade: 60
-  status: a fazer
+  status: concluído
   entregavel: 'pyproject.toml + core/vtx_ifc/'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Mover .cursor/skills/ifc-python/{funcoes,objetos,receitas}.py para core/vtx_ifc/ (ou equivalente); skill fica só com SKILL.md apontando o pacote. Aceite: pip install -e . e unittest sem manipular sys.path; CI instala pelo pyproject.toml.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Concluída em 24/11/2026: funcoes.py, objetos.py e receitas.py em core/vtx_ifc/; skill aponta o pacote; pip install -e .; testes importam vtx_ifc sem sys.path; o job unittest do CI instala pelo pyproject.toml. exemplo.ids vai no pacote; scripts de medição na skill importam vtx_ifc.'
 
 - id: VTX-177
   titulo: Harness de agente de referência (loop de tool-calling)

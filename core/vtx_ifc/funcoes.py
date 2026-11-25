@@ -20,7 +20,7 @@ import ifcopenshell.util.placement
 import ifcopenshell.util.unit
 import jsonschema
 
-import receitas
+from . import receitas
 
 VERSAO_ESQUEMA = "0.1.0"
 MM = 0.001
