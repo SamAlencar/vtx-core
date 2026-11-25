@@ -57,7 +57,7 @@ Nada instalado nem executado; detalhes em `recursos.yaml`.
 | Projeto | Pin | Licença | Decisão | O que extrair |
 |---|---|---|---|---|
 | [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) (~163 mil estrelas) | `4e3ac3c` | MIT | adaptar | Processo, entregáveis e métricas por persona para enriquecer os papéis de `papeis-de-agentes.md`; novos especialistas sob demanda (mudança mínima, onboarding de codebase, fluxo git, resposta a incidentes) — VTX-134 |
-| [trailhq/Trail-Code](https://github.com/trailhq/Trail-Code) (antigo graft, ~10,6 mil estrelas) | `b1211ef` | MIT | em avaliação | Mapa de código local (tree-sitter, sem rede) via MCP/CLI e aprendizados versionados em `.trail/` (decisão/preferência/guardrail); piloto local com telemetria desligada, sem `init`, `--deep` nem workspace — VTX-135. Corrige a identificação anterior (graftcode) |
+| [trailhq/Trail-Code](https://github.com/trailhq/Trail-Code) (antigo graft, ~10,6 mil estrelas) | `b1211ef` | MIT | **adotado** com restrições (VTX-135) | Mapa local (`graft` 0.23.1: `build`/`ask`/`skeleton`/`check`) no [sandbox](../../projects/sandbox-trail-code/); sem `init`, `--deep`, workspace, upgrade ou MCP no vtx-core. Relato em [piloto-trail-code.md](piloto-trail-code.md). |
 
 ### 3.5 Melhoria contínua de skills (21/10/2026)
 Nada instalado nem executado; detalhes em `recursos.yaml`.
@@ -215,12 +215,12 @@ Pesquisa VTX-126. Fontes: Registry oficial e listas. Regra: **só leitura e esco
 | [Reference servers](https://github.com/modelcontextprotocol/servers) (filesystem / fetch) | `c799c85` | Apache-2.0 (transição MIT) | em avaliação | Filesystem só com `--read-only` e diretórios explícitos |
 | [Stripe AI / MCP](https://github.com/stripe/ai) (~2 mil estrelas) | `f10dc33` | MIT | em avaliação | Só chave de teste restrita |
 
-Sem mudança de status: Playwright MCP (piloto em teste, VTX-122), Headroom (VTX-133), Trail-code (VTX-135). Agensi e qualquer marketplace remoto de skills continuam **descartados** (§3.1).
+Sem mudança de status: Playwright MCP (piloto em teste, VTX-122), Headroom (VTX-133). Trail-code passou a **adotado com restrições** (VTX-135; [piloto-trail-code.md](piloto-trail-code.md)). Agensi e qualquer marketplace remoto de skills continuam **descartados** (§3.1).
 
 **Regra de conexão:** servidor do catálogo + leitura (ou `--read_only` / `read_only=true`) + o menor token/projeto possível. Conteúdo lido por MCP é não confiável. Custo, conta nova ou escrita em produção → A2.
 
 ## 4. Registro (`recursos.yaml`)
-Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
+Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | adotado com restrições | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
 ## 5. Como os agentes encontram e usam
 - Cada definição em [`agents/`](../../agents/README.md) ganha a seção "Recursos" filtrada pela `area` do papel (VTX-128). Os fluxos citam os recursos adotados na etapa em que eles entram.

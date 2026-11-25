@@ -1,0 +1,30 @@
+graft ask — "como o backlog escolhe a próxima tarefa"  (lexical)
+
+1. proxima_tarefa.py · file  [symbol]
+   scripts/proxima_tarefa.py
+
+2. validar · function  [symbol]
+   scripts/validar_backlog.py:L56-L129
+   def validar(raiz: str, dir_backlog: str) -> list[str]
+
+3. carregar · function  [symbol]
+   scripts/backlog_lib.py:L17-L39
+   def carregar(dir_backlog)
+
+4. gerar_roadmap.py · file  [symbol]
+   scripts/gerar_roadmap.py
+
+5. main · function  [symbol]
+   scripts/exportar_painel.py:L20-L43
+   def main(dir_backlog, saida)
+
+6. test_proxima_tarefa_pula_e_progresso_exclui_cancelado · method  [symbol]
+   tests/test_backlog.py:L235-L253
+   def test_proxima_tarefa_pula_e_progresso_exclui_cancelado(self)
+
+7. _backlog_minimo · function  [symbol]
+   tests/test_qualidade.py:L22-L28
+   def _backlog_minimo(pasta: Path, tarefas)
+
+8. validar_backlog.py · file  [symbol]
+   scripts/validar_backlog.py

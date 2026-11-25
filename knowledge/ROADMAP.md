@@ -16,14 +16,20 @@ Ao concluir um documento, adicioná-lo ao `INDEX.md`.
 
 ## F12 — Catálogo de ferramentas
 
-5. **VTX-135** Piloto local do Trail-code (graft map) como ferramenta do mapa de codebase → `knowledge/ferramentas/piloto-trail-code.md`
-6. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
-7. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
-8. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
+5. **VTX-136** Observação contínua de skills e revisão na manutenção quinzenal (adaptado do task-observer) → `knowledge/processos/observacao-de-skills.md`
+6. **VTX-137** Processo de melhoria do harness da VTX no Cursor (metodologia do Harness²) → `knowledge/processos/melhoria-do-harness.md`
+7. **VTX-140** Skills do ECC que preenchem lacunas do stack VTX → `.cursor/skills/ (verification-loop, tdd-workflow, search-first, context-budget, security-review, e2e-testing, api-design, postgres-patterns, deployment-patterns, mcp-dependency-review)`
 
 ## F5 — Gestão e conformidade
 
-9. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
+8. **VTX-029** Gestão de projetos, riscos e comunicação com cliente → `knowledge/gestao/gestao-de-projetos.md`
+
+## F12 — Catálogo de ferramentas
+
+9. **VTX-186** A/B do mapa Trail-code e decisão sobre o MCP → `knowledge/ferramentas/piloto-trail-code.md`
+
+## F5 — Gestão e conformidade
+
 10. **VTX-030** Estimativas e planejamento → `knowledge/gestao/estimativas.md`
 
 ## F13 — Capacidades para o piloto plataforma-projetos

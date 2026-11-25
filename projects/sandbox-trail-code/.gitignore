@@ -1,0 +1,9 @@
+/node_modules/
+/.home/
+/.npm-cache/
+/.trail/
+/graft/
+/alvo/
+/tmp-repo/
+/exemplos/*.log
+/exemplos/saida-bruta/

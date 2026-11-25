@@ -55,6 +55,7 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 48 | [Memory bank do projeto (arquivos)](templates/memoria-projeto/README.md) | Templates | v1 | 2026-11-24 |
 | 54 | [Template de repositório de cliente](templates/projeto.md) | Templates | v1 | 2026-11-24 |
 | 55 | [Isolamento por cliente](seguranca/isolamento-clientes.md) | Segurança | v1 | 2026-11-24 |
+| 56 | [Piloto local do Trail-code](ferramentas/piloto-trail-code.md) | Ferramentas | v1 | 2026-11-24 |
 | 49 | [Versionamento de modelos IFC](engenharia/bim/versionamento-ifc.md) | Engenharia | v1 | 2026-10-31 |
 | 50 | [Funções de domínio para tool-calling](engenharia/ia/funcoes-de-dominio.md) | Engenharia | v1 | 2026-10-31 |
 | 51 | [Padrão de pagamentos](engenharia/pagamentos.md) | Engenharia | v1 | 2026-10-23 |

@@ -1,0 +1,9 @@
+# Resumo do graft build em 24/11/2026 (America/Sao_Paulo), pin @nanonets/graft@0.23.1.
+# Corrida no commit 3327caa93358712fb08998cdb0bd73116dfcbb5b
+# (vtx-135 rebaseada sobre main 02a028f, que já inclui os PRs #21 e #22).
+# Cópia temporária via `git checkout-index -a` desse commit.
+wiring: 130 nodes (63 method, 28 function, 21 file, 18 class), 249 edges, 21 cards [python]
+parsed: 21 of 21 files (0 replayed from cache)
+tempo_build_s=0
+# O pin indexou só Python. Markdown, YAML e shell ficaram de fora.
+# O build.log bruto continua em exemplos/saida-bruta/ (gitignorado).

@@ -27,7 +27,7 @@ No fim do incremento, atualizar **só as seções afetadas** (não reescrever o 
 ### 2.4 O que não fazer
 - Não copiar texto ou código de ferramenta sem licença — em especial [kingbootoshi/cartographer](https://github.com/kingbootoshi/cartographer) (pin `a62d169`).
 - Não exigir subagentes pagos nem varrer o repositório inteiro “para ficar completo”.
-- Não versionar grafo gerado por ferramenta até o piloto da VTX-135 (Trail-code). O Markdown basta.
+- Não versionar grafo gerado por ferramenta. O Markdown do mapa é o que se commita. O piloto do Trail-code (VTX-135) está em [piloto-trail-code.md](../ferramentas/piloto-trail-code.md).
 
 ## 3. Modelo (`docs/CODEBASE_MAP.md`)
 
@@ -78,4 +78,4 @@ Arquitetura: ver `docs/arquitetura.md` (C4 e ADRs).
 - Ideia apenas (não o texto nem o código): [kingbootoshi/cartographer](https://github.com/kingbootoshi/cartographer/tree/a62d169), pin `a62d169`. Sem licença declarada (API `/license` retornou 404 em 24/11/2026). Não copiar.
 - C4 e `docs/arquitetura.md`: [Arquitetura de software](arquitetura-de-software.md).
 - Ponteiros e divulgação progressiva: [Operação de agentes](../processos/operacao-de-agentes.md) · [agents.md](https://agents.md).
-- Piloto futuro de grafo local: VTX-135 (Trail-code), ainda não adotado.
+- Piloto do grafo local: [Trail-code](../ferramentas/piloto-trail-code.md) (VTX-135), adotado com restrições — só `graft build`/`ask`/`skeleton`/`check` no sandbox, sem `init`, `--deep`, workspace ou MCP no vtx-core.
