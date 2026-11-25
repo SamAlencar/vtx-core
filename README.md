@@ -2,6 +2,7 @@
 
 A **VTX** é uma empresa de desenvolvimento de sistemas, aplicativos e plataformas operada por agentes de IA, sob supervisão humana (Samuel).
 Este repositório **privado** concentra o código, a base de conhecimento técnico e o backlog da empresa.
+Agentes começam pelo [AGENTS.md](AGENTS.md). Projetos de cliente novos saem de `templates/projeto/` via `scripts/bootstrap_projeto.sh`.
 
 ## Arquitetura
 
@@ -20,14 +21,17 @@ O repositório `vtx_painel` e o workflow `sincronizar-painel` (secret `PANEL_TOK
 ## Estrutura
 
 ```
+AGENTS.md         Camada 1 de contexto dos agentes (ponteiros para SOP, governança e papéis)
 knowledge/        Base de conhecimento (um tema por arquivo Markdown curto)
   INDEX.md        Índice de todos os documentos
   ROADMAP.md      Próximos temas a pesquisar, em ordem de prioridade
 agents/           Definições dos 7 papéis do núcleo + especialistas
 backlog/          Backlog mestre (projeto.yaml) + diário (AAAA-MM-DD.yaml) + SCHEMA.md
 projects/         Projetos de clientes / produtos (um subdiretório por projeto)
+templates/        Template de repositório de cliente (bootstrap em scripts/bootstrap_projeto.sh)
 scripts/          Scripts do backlog (proxima_tarefa, exportar_painel local, qualidade)
 tests/            Testes dos scripts do backlog (unittest)
+.cursor/rules     Regras do Cursor (eficiência, economia de contexto, papéis)
 .github/workflows CI de testes e qualidade (`testes.yml`)
 ```
 

@@ -451,6 +451,7 @@ tarefas:
   prioridade: 81
   status: a fazer
   entregavel: AGENTS.md
+  notas: 'Reescopo após VTX-169 (24/11/2026): o AGENTS.md raiz já existe (camada 1, ~32 linhas, só ponteiros). O que falta é aprofundar as diretrizes gerais (sem copiar SOP/governança) e manter o arquivo curto.'
 - id: VTX-054
   titulo: 'Regra sempre ativa: fluxo entre papéis, DoD e aprovações'
   fase: F9
@@ -465,6 +466,7 @@ tarefas:
   prioridade: 83
   status: a fazer
   entregavel: .cursor/rules/papeis/planejamento.mdc
+  notas: 'Reescopo após VTX-169 (24/11/2026): planejamento.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Orquestrador, Produto, Arquiteto), sem alwaysApply, alinhado às diretrizes da F7.'
 - id: VTX-056
   titulo: 'Regras por papel: Devs, QA e DevOps/SRE'
   fase: F9
@@ -472,6 +474,7 @@ tarefas:
   prioridade: 84
   status: a fazer
   entregavel: .cursor/rules/papeis/execucao.mdc
+  notas: 'Reescopo após VTX-169 (24/11/2026): execucao.mdc já existe (opt-in com globs). O que falta é enriquecer a regra com o detalhe por papel (Devs, QA, DevOps/SRE), sem alwaysApply, alinhado às diretrizes da F7.'
 - id: VTX-057
   titulo: 'Regras por assunto com globs: testes e APIs'
   fase: F9
@@ -500,6 +503,7 @@ tarefas:
   prioridade: 88
   status: a fazer
   entregavel: templates/projeto/
+  notas: 'Reescopo após VTX-170 (24/11/2026): o esqueleto templates/projeto/ já existe (PRD, arquitetura, ADR, plano, testes, runbook, CI hello). Já entrou no acompanhamento da VTX-170 e da revisão do PR #18 (24/11): regras por papel próprias do template, com caminhos válidos no cliente (PRD, plano, testes, runbook, A0–A3 em AGENTS.md), e resumo A0-A3 no AGENTS.md sem URL do vtx-core. O que falta são os templates detalhados da F6 (VTX-033 a 038).'
 - id: VTX-061
   titulo: Sincronização de regras e script de bootstrap de projetos
   fase: F9
@@ -507,6 +511,7 @@ tarefas:
   prioridade: 89
   status: a fazer
   entregavel: scripts/bootstrap_projeto.sh
+  notas: 'Reescopo após VTX-170 e a revisão do PR #18 (24/11/2026): scripts/bootstrap_projeto.sh já cria o esqueleto e troca o nome. Copia da raiz só as regras de tokens/contexto (teste de igualdade enquanto as cópias existem); as regras por papel ficam as do template, com caminhos do cliente. O que falta é uma fonte única contínua (VTX-180) e a ressincronização em repositórios já criados.'
 - id: VTX-062
   titulo: Ambiente dos agentes de nuvem (environment.json, segredos, permissões)
   fase: F9
@@ -1572,19 +1577,19 @@ tarefas:
   fase: F9
   area: 'Integração Cursor'
   prioridade: 53
-  status: a fazer
+  status: concluído
   entregavel: 'AGENTS.md + .cursor/rules/papeis/planejamento.mdc + .cursor/rules/papeis/execucao.mdc'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 2. AGENTS.md com até ~60 linhas apontando SOP, governança A0-A3, INDEX e agents/<papel>.md; regras por papel com globs ou descrição; teste confirma que os caminhos citados existem. Recobre em parte VTX-053, VTX-055 e VTX-056.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 2. Concluída em 2026-11-24: AGENTS.md com 32 linhas (ponteiros para SOP, governança A0-A3, INDEX e agents/<papel>.md). Regras planejamento.mdc e execucao.mdc com globs e alwaysApply: false. Teste test_agents_md.py confere caminhos citados. Ponteiro em operacao-de-agentes.md. VTX-053, 055 e 056 seguem a fazer (detalhe por papel).'
 - id: VTX-170
   titulo: 'Template de projeto de cliente e script de bootstrap (auditoria P0 item 3)'
   fase: F6
   area: Templates
   prioridade: 54
-  status: a fazer
+  status: concluído
   entregavel: 'templates/projeto/ + scripts/bootstrap_projeto.sh'
   depende_de:
   - VTX-169
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 3. scripts/bootstrap_projeto.sh demo /tmp/demo gera repo com CI verde num exemplo hello; caminhos exigidos em agents/*.md existem no template; teste no vtx-core gera o projeto em diretório temporário e confere a estrutura.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 3. Concluída em 2026-11-24: bootstrap troca __NOME_DO_PROJETO__, recusa destino ocupado e gera hello com compileall + unittest. Artefatos canônicos no template (PRD, arquitetura, ADR, plano, testes, runbook, CI). Ponteiro em knowledge/templates/projeto.md. Caminhos em agents/produto.md, qa.md e orquestrador.md alinhados ao template. VTX-033 a 038, 060 e 061 seguem a fazer.'
 - id: VTX-171
   titulo: 'Corrigir ou aposentar o pipeline do painel (auditoria P0 item 1)'
   fase: F11
@@ -1601,3 +1606,136 @@ tarefas:
   status: aguardando
   entregavel: '.github/pull_request_template.md + .github/CODEOWNERS + knowledge/processos/governanca-e-aprovacoes.md'
   notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P0 item 6. Exige aprovação do Samuel (A2): branch protection no plano atual é impossível (API 403); alternativas são tornar o repositório público, assinar o Pro, ou aceitar um job de CI que cobre review de outro papel. Não executar até o Samuel decidir.'
+
+- id: VTX-173
+  titulo: Higiene de segredos (.gitignore, .env.example e pre-commit com gitleaks)
+  fase: F3
+  area: Segurança
+  prioridade: 57
+  status: a fazer
+  entregavel: '.gitignore + .env.example + .pre-commit-config.yaml'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 12. .gitignore da raiz deve cobrir .env* (exceto .env.example), node_modules/, dist/, *.db, *.sqlite e .venv/. Pre-commit roda gitleaks. README documenta a instalação. O template de projeto (VTX-170) já tem .gitignore e .env.example no cliente; esta tarefa cobre a raiz do vtx-core.'
+
+- id: VTX-174
+  titulo: Human-in-the-loop verificável (evidência de aprovação A2)
+  fase: F1
+  area: 'Base de Conhecimento'
+  prioridade: 58
+  status: a fazer
+  entregavel: 'backlog/SCHEMA.md + scripts/validar_backlog.py'
+  depende_de:
+  - VTX-167
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 13. O status aguardando já existe (VTX-167). Falta o campo aprovacao (pedido_em, respondido_em, evidencia) e o validador recusar concluído em tarefa A2 sem evidencia. Relacionada à VTX-088 (fila de aprovações), que continua a fazer.'
+
+- id: VTX-175
+  titulo: Política de isolamento por cliente
+  fase: F3
+  area: Segurança
+  prioridade: 59
+  status: a fazer
+  entregavel: 'knowledge/seguranca/isolamento-clientes.md + projects/README.md'
+  depende_de:
+  - VTX-170
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 11. ADR decidindo um repositório por cliente; segredos no repo do cliente; permissões dos papéis deixam de dizer leitura em todo o repositório; teste ou lint impede código/dados de cliente em projects/<cliente>/ no core.'
+
+- id: VTX-176
+  titulo: Empacotar o núcleo de funções de domínio (core/vtx_ifc)
+  fase: F13
+  area: 'Domínio BIM'
+  prioridade: 60
+  status: a fazer
+  entregavel: 'pyproject.toml + core/vtx_ifc/'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 7. Mover .cursor/skills/ifc-python/{funcoes,objetos,receitas}.py para core/vtx_ifc/ (ou equivalente); skill fica só com SKILL.md apontando o pacote. Aceite: pip install -e . e unittest sem manipular sys.path; CI instala pelo pyproject.toml.'
+
+- id: VTX-177
+  titulo: Harness de agente de referência (loop de tool-calling)
+  fase: F13
+  area: Engenharia
+  prioridade: 61
+  status: a fazer
+  entregavel: 'core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md'
+  depende_de:
+  - VTX-176
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma).'
+
+- id: VTX-178
+  titulo: Suíte de evals mínima com portão no CI
+  fase: F13
+  area: Qualidade
+  prioridade: 64
+  status: a fazer
+  entregavel: 'evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md'
+  depende_de:
+  - VTX-177
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto).'
+
+- id: VTX-179
+  titulo: Log estruturado por execução de agente e custo
+  fase: F13
+  area: Operação
+  prioridade: 65
+  status: a fazer
+  entregavel: 'core/agente/telemetria.py + knowledge/operacao/observabilidade.md'
+  depende_de:
+  - VTX-177
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 10. Linha JSON por execução (run_id, trace_id, cliente, tokens, custo, duração), redação de PII (teste com CPF, e-mail e token), soma de custo por cliente/dia e orçamento que interrompe a execução. Relacionada à VTX-149, que continua a fazer.'
+
+- id: VTX-180
+  titulo: Remover a duplicação da regra de eficiência de tokens
+  fase: F9
+  area: 'Integração Cursor'
+  prioridade: 57
+  status: a fazer
+  entregavel: '.cursor/rules/eficiencia-de-tokens.mdc + knowledge/templates/cursor/eficiencia-de-tokens.mdc'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 16. Uma fonte única copiada pelo bootstrap, com teste de igualdade enquanto as duas cópias existirem. Hoje .cursor/rules/eficiencia-de-tokens.mdc e knowledge/templates/cursor/eficiencia-de-tokens.mdc são idênticos. Na revisão do PR #18 (24/11/2026), o Tzu registrou que economia-de-contexto.mdc (e eficiencia-de-tokens.mdc) ainda citam caminhos do vtx-core (ex.: knowledge/) que não existem no cliente após o bootstrap copiar a fonte da raiz; tratar nesta tarefa junto com a fonte única.'
+- id: VTX-181
+  titulo: Lint de código e de Markdown no CI (ruff e markdownlint)
+  fase: F8
+  area: Qualidade
+  prioridade: 66
+  status: a fazer
+  entregavel: 'pyproject.toml + .markdownlint.json + .github/workflows/testes.yml'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 17. CI roda ruff e markdownlint com 0 erros. Ferramentas grátis. Pode apoiar-se no pyproject.toml da VTX-176, mas não depende dela (pode criar o arquivo se ainda não existir).'
+
+- id: VTX-182
+  titulo: Diretrizes por papel (F7) e sincronização da tabela Recursos por papel
+  fase: F7
+  area: 'Diretrizes'
+  prioridade: 87
+  status: a fazer
+  entregavel: 'knowledge/diretrizes/ + scripts/gerar_recursos_por_papel.py'
+  depende_de:
+  - VTX-039
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 14. Tabelas em agents/*.md geradas a partir de recursos.yaml; CI falha se houver divergência. Complementa as diretrizes VTX-039 a 046 (não as substitui).'
+
+- id: VTX-183
+  titulo: Exemplo ponta a ponta de agente rodando (onboarding)
+  fase: F8
+  area: Qualidade
+  prioridade: 70
+  status: a fazer
+  entregavel: 'projects/exemplo-agente/'
+  depende_de:
+  - VTX-170
+  - VTX-177
+  - VTX-178
+  - VTX-179
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P2 item 15. Agente simples com 1 ferramenta, eval, log de custo e deploy em homologação gratuita, seguindo só o SOP e os templates. O tempo gasto é métrica de onboarding. Pode ser repositório gerado pelo bootstrap.'
+
+- id: VTX-184
+  titulo: Fechar a brecha do teste de caminhos citados (sem fallback para o template)
+  fase: F8
+  area: Qualidade
+  prioridade: 57
+  status: concluído
+  entregavel: tests/test_agents_md.py + .cursor/rules/papeis/planejamento.mdc + .cursor/rules/papeis/execucao.mdc
+  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o teste de caminhos citados falhar quando o arquivo não existir no repositório, em vez de aceitar um equivalente em templates/projeto/. Arquivos afetados: tests/test_agents_md.py, .cursor/rules/papeis/*.mdc, templates/projeto/.cursor/rules/papeis/*.mdc, scripts/bootstrap_projeto.sh, tests/test_bootstrap_projeto.py. Critério de aceite: test_caminhos_citados_existem não consulta templates/projeto/ como fallback; todo caminho em crase nos arquivos conferidos da raiz existe neste repo; as regras por papel do template são próprias do cliente (não iguais às da raiz) e, no projeto gerado pelo bootstrap, todo caminho citado nessas regras existe lá. Concluída no PR #18 em 24/11/2026: fallback removido; revisão posterior (Mudanças necessárias) separou as regras do cliente das do core.'
+
+- id: VTX-185
+  titulo: 'permissions: contents: read no CI do template de projeto'
+  fase: F6
+  area: Templates
+  prioridade: 57
+  status: concluído
+  entregavel: templates/projeto/.github/workflows/ci.yml
+  notas: 'Autorizada pelo Samuel em 24/11/2026 às 22:51 (America/Sao_Paulo), a partir da revisão do Tzu no PR #18. Objetivo: o workflow do template de cliente declarar o menor privilégio. Arquivos afetados: templates/projeto/.github/workflows/ci.yml (e o docs/plano.md do template, que registra o build provisório). Critério de aceite: o ci.yml do template tem permissions: contents: read no workflow. Concluída no PR #18 em 24/11/2026.'

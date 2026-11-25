@@ -1,0 +1,36 @@
+---
+description: Regras globais de eficiência de tokens e conduta (padrão VTX, base do Samuel 20/10/2026)
+alwaysApply: true
+---
+# Eficiência global de tokens
+
+Modo de uso: em sessão **com humano** valem as regras como estão. Em execução **autônoma** (rotinas/agentes da VTX), onde a regra diz "pergunte" ou "aguarde Ok", o agente registra o plano/dúvida e segue com a opção conservadora, escalando só segurança, jurídico, dinheiro, irreversível ou estratégico (governanca-e-aprovacoes.md).
+
+## 1. Roteamento e regras modulares
+- Antes de tarefa técnica, identifique domínio, linguagem ou framework.
+- Verifique se há regras em `.cursor/rules/`, skills em `.cursor/skills/` e docs em `knowledge/`. Se não houver: com humano, pergunte se deseja fornecer ou buscar diretrizes; autônomo, use `knowledge/` e registre a lacuna no backlog.
+
+## 2. Interceptação de contexto
+- Não indexe `@Codebase` nem leia arquivos inteiros para dúvidas pontuais; use busca (rg) e leia só o trecho.
+- Arquivo citado sem linha/função: com humano, pergunte qual bloco; autônomo, localize por busca.
+
+## 3. Plano de voo
+- Mudança em vários arquivos, novas rotas ou mais de 30 linhas: apresente antes um plano curto (lógica e arquivos afetados). Com humano, aguarde "Ok". Autônomo: grave o plano em `docs/planos/` e siga.
+
+## 4. Saída em diffs
+- Nunca reescreva o arquivo inteiro na resposta; mostre só o trecho alterado com `// ... (código existente)`.
+- Direto e conciso; sem saudações ou teoria longa, salvo pedido.
+
+## 5. Auditoria de recursos e GUI-first
+- Alteração puramente visual ou trivial: sugira a ferramenta nativa da GUI em vez de script.
+- Tarefa trivial (regex, typo): sugira modelo mais leve.
+
+## 6. Memory log
+- O bank do projeto está em `docs/memoria/` e o mapa em `docs/CODEBASE_MAP.md`. Leia só o arquivo que a tarefa pedir (ponteiro no `AGENTS.md`; modelo em `knowledge/templates/memoria-projeto/`). Não carregue a pasta inteira em toda sessão.
+- Ao contornar limite, corrigir erro persistente ou achar solução não óbvia, registre em `docs/memoria/troubleshooting.md`: `[Problema] -> [Falhou] -> [Solução]`. Decisão leve vai em `docs/memoria/decisions.md`.
+
+## 7. Isolamento de erros
+- Em stack traces, ignore caminhos do SO e bibliotecas de terceiros; foque na exceção de topo e nas linhas de arquivos do projeto.
+
+## 8. Checkpoint de chat
+- Passadas 10 interações no mesmo problema, faça um checkpoint de 4 linhas e sugira novo chat com esse resumo.
