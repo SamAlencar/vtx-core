@@ -1,6 +1,6 @@
 # Registro de bibliotecas e recursos para agentes. Ver bibliotecas-e-recursos.md.
 # status: em avaliação | adotado | descartado · tipo: skill | regras | mcp | componentes | referência | lista
-# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança).
+# Verificado em 2026-10-18 (estrelas aproximadas, licença pela API do GitHub / README). VTX-120 em 2026-11-24 (frontend/UI/design); VTX-121 (backend/APIs); VTX-122 (testes/QA); VTX-123 (segurança); VTX-124 (documentação); VTX-125 (skills/regras).
 recursos:
   - id: impeccable
     nome: Impeccable
@@ -29,12 +29,12 @@ recursos:
     area: skills-agentes
     tipo: skill
     link: "https://github.com/vercel-labs/agent-skills"
-    licenca: "não declarada na API do GitHub (verificar por skill/arquivo)"
+    licenca: "não declarada (sem LICENSE na raiz em 24/11/2026; verificar por skill/arquivo)"
     status: "em avaliação"
-    uso_agentes: "Skills de React/Next.js e deploy; casa com VTX-099 (Vercel)."
-    riscos: "Licença a confirmar por skill; tratar como biblioteca (revisar scripts) antes de copiar para .cursor/skills/."
+    uso_agentes: "Skills de React/Next.js e deploy; casa com VTX-099. ~35 mil estrelas, ativa em 20/11/2026. Ainda não copiar para `.cursor/skills/`."
+    riscos: "Repositório sem arquivo de licença na raiz (API e contents conferidos em 24/11/2026). Sem licença clara, não copiar. Revisar de novo na VTX-125/manutenção quando aparecer LICENSE."
     responsavel: dev-frontend-mobile
-    revisado_em: 2026-10-18
+    revisado_em: 2026-11-24
   - id: awesome-cursorrules
     nome: awesome-cursorrules
     area: regras-cursor
@@ -42,10 +42,10 @@ recursos:
     link: "https://github.com/PatrickJS/awesome-cursorrules"
     licenca: CC0-1.0
     status: "em avaliação"
-    uso_agentes: "Fonte de ideias para as regras da F9; adaptar, não copiar em bloco."
-    riscos: Qualidade irregular; revisar cada regra.
+    uso_agentes: "Fonte de ideias para regras da F9 e da VTX-138; adaptar, não copiar em bloco. CC0-1.0, ~41 mil estrelas, pin b044f95 (30/05/2026). O formato das regras no Cursor segue o tek-team (VTX-082), não esta lista."
+    riscos: "Qualidade irregular; revisar cada regra com o checklist de skill/hook (§3.13). Último commit em 30/05/2026 — no limite da janela de 6 meses; não tratar como fonte viva."
     responsavel: orquestrador
-    revisado_em: 2026-10-17
+    revisado_em: 2026-11-24
   - id: mcp-registry
     nome: MCP Registry oficial
     area: mcp
@@ -576,4 +576,93 @@ recursos:
     uso_agentes: "DAST baseline em homologação, citado no guia de desenvolvimento seguro. Apache-2.0, ~16 mil estrelas, pin 11a4557 (24/11/2026). Não está na tabela curta do stack."
     riscos: "Só contra ambiente de teste/homologação, nunca produção nem dado real. Scan completo é barulhento e lento; começar pelo baseline. Sem serviço cloud pago."
     responsavel: devops-sre
+    revisado_em: 2026-11-24
+
+  - id: superpowers-verification-before-completion
+    nome: "Superpowers — verification-before-completion"
+    area: skills-agentes
+    tipo: skill
+    link: "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/verification-before-completion"
+    licenca: MIT
+    status: "adotado"
+    uso_agentes: "Obrigatória no fluxo VTX: não afirmar que testes/links/CI passaram sem rodar de novo. Já está em `.cursor/skills/verification-before-completion`, mesmo pin bb92a77741419a4ab5f06e711a283343f1ada0c3 das outras Superpowers adotadas. A tip do repo subiu para 22f0b46 (03/11/2026); não atualizar o pin sem revisar a cópia local."
+    riscos: "Só SKILL.md (sem scripts). Atualizar apenas por nova revisão com novo pin, junto com writing-plans e brainstorming."
+    responsavel: orquestrador
+    revisado_em: 2026-11-24
+  - id: diataxis
+    nome: "Diátaxis"
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/evildmp/diataxis-documentation-framework"
+    licenca: CC-BY-SA-4.0
+    status: "em avaliação"
+    uso_agentes: "Framework de tipos de doc (tutorial, how-to, referência, explicação). CC-BY-SA-4.0, pin 957c09c (06/08/2026); site https://diataxis.fr/. Candidato a inspirar a VTX-032. O INDEX da VTX hoje usa Conceitos → Metodologia → Exemplos → Checklist → Fontes — não substituir isso ad hoc."
+    riscos: "CC-BY-SA: citar e resumir, com atribuição; não copiar o texto em bloco. Não adotar como padrão antes da VTX-032."
+    responsavel: orquestrador
+    revisado_em: 2026-11-24
+  - id: astro-starlight
+    nome: "Astro Starlight"
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/withastro/starlight"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Gerador de site de documentação no Astro. MIT, ~9,6 mil estrelas, pin 80f3055 (24/11/2026). Encaixa na alternativa Astro já prevista no stack (VTX-023) para site de conteúdo. Candidato principal a padrão docs-as-code (VTX-032)."
+    riscos: "Não instalar no vtx-core nem adotar como padrão antes da VTX-032. Conferir plugins e serviços de busca hospedados (muitos são pagos)."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: docusaurus
+    nome: Docusaurus
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/facebook/docusaurus"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Gerador React/MDX de documentação. MIT, ~67 mil estrelas, pin 809ffff (19/11/2026). Alternativa ao Starlight; só com ADR se a VTX-032 não escolher o Astro."
+    riscos: "Não misturar dois geradores no mesmo site. Evitar plugins pagos / Algolia DocSearch pago se houver plano gratuito insuficiente (custo → A2)."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: vitepress
+    nome: VitePress
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/vuejs/vitepress"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Gerador Vite + Markdown. MIT, ~18 mil estrelas, pin 40b2e09 (12/11/2026). Alternativa mais leve; o stack da VTX é React/Next, não Vue — só faz sentido para um site de docs isolado, com ADR."
+    riscos: "Stack Vue fora do padrão TypeScript/React da VTX. Não adotar sem ADR na VTX-032."
+    responsavel: dev-frontend-mobile
+    revisado_em: 2026-11-24
+  - id: typedoc
+    nome: TypeDoc
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/TypeStrong/typedoc"
+    licenca: Apache-2.0
+    status: "em avaliação"
+    uso_agentes: "Gera referência de API a partir de TypeScript. Apache-2.0, ~8,5 mil estrelas, pin 6d8c856 (13/07/2026). Complementa (não substitui) a documentação narrativa."
+    riscos: "Último commit em julho de 2026 (ainda dentro de 6 meses). Saída crua demais se não houver texto humano por cima."
+    responsavel: dev-backend
+    revisado_em: 2026-11-24
+  - id: vale
+    nome: Vale
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/errata-ai/vale"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Linter de prosa, local, com pacotes de estilo versionados. MIT, ~6,4 mil estrelas, pin 7498767 (23/11/2026, branch v3). Candidato a CI de docs depois da VTX-032."
+    riscos: "Pacotes de estilo têm licenças próprias — conferir antes de vender/entregar texto gerado com regras copiadas. Sem serviço cloud pago."
+    responsavel: orquestrador
+    revisado_em: 2026-11-24
+  - id: mermaid
+    nome: Mermaid
+    area: documentacao
+    tipo: "referência"
+    link: "https://github.com/mermaid-js/mermaid"
+    licenca: MIT
+    status: "em avaliação"
+    uso_agentes: "Diagramas em texto (fluxos, sequência). MIT, ~91 mil estrelas, pin 6374e52 (23/11/2026, branch develop). Útil em Markdown de PR e README. Não é o padrão de diagramas editoriais da VTX — isso é a skill diagramas (VTX-141, a partir do diagram-design)."
+    riscos: "Não misturar Mermaid e a skill diagramas como fonte de verdade no mesmo ADR. Renderização no GitHub é suficiente para rascunho."
+    responsavel: orquestrador
     revisado_em: 2026-11-24

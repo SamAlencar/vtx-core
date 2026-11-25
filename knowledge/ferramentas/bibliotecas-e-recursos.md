@@ -171,6 +171,35 @@ Fora: CodeQL em repositório privado (pode exigir GitHub Advanced Security, pago
 6. Copiar a versão revisada para `.cursor/skills/` do repo, com pin e atribuição; sem symlink vivo nem marketplace MCP remoto de skills (§3.1).
 7. Custo, conta nova, envio de código/dados a terceiros ou licença duvidosa → pedido A2 ao Samuel; silêncio não aprova.
 
+### 3.14 Documentação (24/11/2026)
+Pesquisa VTX-124. Nada instalado. A escolha do gerador padrão fica para a VTX-032 (docs-as-code). Pins e licenças pela API do GitHub / LICENSE em 24/11/2026.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [Diátaxis](https://github.com/evildmp/diataxis-documentation-framework) | `957c09c` · [diataxis.fr](https://diataxis.fr/) | CC-BY-SA-4.0 | em avaliação | Inspiração de tipos de doc; citar com atribuição; não trocar o formato do INDEX ad hoc |
+| [Astro Starlight](https://github.com/withastro/starlight) (~9,6 mil estrelas) | `80f3055` | MIT | em avaliação | Candidato principal (casa com a alternativa Astro do stack) |
+| [Docusaurus](https://github.com/facebook/docusaurus) (~67 mil estrelas) | `809ffff` | MIT | em avaliação | Alternativa React/MDX, só com ADR |
+| [VitePress](https://github.com/vuejs/vitepress) (~18 mil estrelas) | `40b2e09` | MIT | em avaliação | Stack Vue, só com ADR |
+| [TypeDoc](https://github.com/TypeStrong/typedoc) (~8,5 mil estrelas) | `6d8c856` | Apache-2.0 | em avaliação | Referência de API TS, complementar |
+| [Vale](https://github.com/errata-ai/vale) (~6,4 mil estrelas) | `7498767` | MIT | em avaliação | Linter de prosa local, depois da VTX-032 |
+| [Mermaid](https://github.com/mermaid-js/mermaid) (~91 mil estrelas) | `6374e52` | MIT | em avaliação | Rascunho em Markdown; diagramas editoriais ficam com a VTX-141 |
+
+Fora: Mintlify e Material for MkDocs Insiders (pagos). OpenAPI já entrou na VTX-121.
+
+### 3.15 Skills de agentes e regras do Cursor (24/11/2026)
+Pesquisa VTX-125. Nada novo copiado para `.cursor/skills/`.
+
+**Fronteira com o tek-team (VTX-082):** a VTX **registra o que usar** neste YAML e nas cópias revisadas em `.cursor/skills/`. O **formato-fonte e os exportadores** de agentes são do [tek-team](https://github.com/SamAlencar/tek-team) (TT-096 e TT-100 a TT-103). Não duplicar isso em `agentes/`. A VTX-082 continua à espera do Tek.
+
+| Recurso | Pin / fonte | Licença | Decisão | O que fazer |
+|---|---|---|---|---|
+| [Superpowers — verification-before-completion](https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/verification-before-completion) | `bb92a777` (já no repo) | MIT | **adotado** | Já usada em toda tarefa; faltava no registro. Pin local não sobe para `22f0b46` sem revisão da cópia |
+| Superpowers writing-plans e brainstorming | `bb92a777` | MIT | **adotado** (já estavam) | Sem mudança de pin |
+| [Vercel Agent Skills](https://github.com/vercel-labs/agent-skills) (~35 mil estrelas) | ativa em 20/11 | licença não declarada | em avaliação | Sem LICENSE na raiz — não copiar |
+| [awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules) (~41 mil estrelas) | `b044f95` (30/05/2026) | CC0-1.0 | em avaliação | Só ideias; no limite da janela de 6 meses |
+
+O restante do catálogo de skills (mattpocock, ECC, impeccable, etc.) permanece como já registrado nas seções 3.2–3.9. Instalação continua sujeita ao checklist da §3.13.
+
 ## 4. Registro (`recursos.yaml`)
 Campos: `id`, `nome`, `area`, `tipo` (skill | regras | mcp | componentes | referência | lista), `link`, `licenca`, `status` (em avaliação | adotado | descartado), `uso_agentes`, `riscos`, `responsavel` (papel de `agents/`), `revisado_em`. O CI valida os campos (teste `tests/test_recursos.py`). Um item descartado continua no registro com o motivo, para não ser reavaliado à toa.
 
