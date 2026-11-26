@@ -1872,9 +1872,9 @@ tarefas:
   fase: F14
   area: Operação
   prioridade: 2
-  status: a fazer
+  status: concluído
   entregavel: knowledge/operacao/hospedagem-por-cliente.md
-  notas: 'Auditoria §7 item 8 (id sugerido VTX-193, mapeado para VTX-195), só o lado técnico. Objetivo: decidir, neste repositório, de quem é cada conta de hospedagem e como documentar custos de infra, sem violar termos de planos gratuitos. Arquivos afetados: knowledge/operacao/hospedagem-por-cliente.md, knowledge/ferramentas/hospedagem/vercel.md, templates/web-next/docs/runbook.md. Critério de aceite: tabela por tipo de produto com hospedagem padrão, plano gratuito permitido para uso comercial, limites e pausa por inatividade, inclusive o caso do piloto interno (med-hub); contas no nome do cliente por padrão e domínio do cliente; qualquer plano pago é A2. Cláusula de repasse no contrato é dependência externa (agentes de vendas/contabilidade), não aceite desta tarefa.'
+  notas: 'Auditoria §7 item 8 (id sugerido VTX-193, mapeado para VTX-195), só o lado técnico. Objetivo: decidir, neste repositório, de quem é cada conta de hospedagem e como documentar custos de infra, sem violar termos de planos gratuitos. Arquivos afetados: knowledge/operacao/hospedagem-por-cliente.md, knowledge/ferramentas/hospedagem/vercel.md, templates/web-next/docs/runbook.md. Critério de aceite: tabela por tipo de produto com hospedagem padrão, plano gratuito permitido para uso comercial, limites e pausa por inatividade, inclusive o caso do piloto interno (med-hub); contas no nome do cliente por padrão e domínio do cliente; qualquer plano pago é A2. Cláusula de repasse no contrato é dependência externa (agentes de vendas/contabilidade), não aceite desta tarefa. Concluída em 24/11/2026: política em knowledge/operacao/hospedagem-por-cliente.md; ponteiro no Vercel e no INDEX. Conta e domínio no nome do cliente; plano pago é A2; med-hub no Cloudflare Free, não no Vercel Hobby. Repasse de custo permanece dependência externa. O runbook de templates/web-next/docs/runbook.md depende do PR #25 (VTX-194), ainda não no main; a política não depende dele para valer. Depois que o #25 entrar, trocar a menção ao runbook por link relativo.'
 
 - id: VTX-196
   titulo: 'med-hub: incremento 1 interno, com prazo e teto de esforço'

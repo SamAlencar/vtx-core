@@ -859,3 +859,10 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "Aplicação da auditoria de backlog, recorte técnico. Ver notas no mestre."
 
+  - id: VTX-195
+    titulo: "Política técnica de hospedagem por cliente e de custos de infra"
+    area: "Operação"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Documento de política, tabela por tipo, piloto med-hub. A2 alinhado à governança: todo deploy em produção e qualquer plano pago. OpenNext com teste no primeiro projeto e plano B; Workers com static assets como padrão de site novo; dependência do runbook no #25 registrada; 5 h/semana liga ao SCHEMA; termo EAS fica com a VTX-203. Skills: verification-before-completion. Ferramentas: git. Correu bem."
+
