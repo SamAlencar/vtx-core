@@ -25,8 +25,9 @@ As regras usam `globs` e só entram quando o contexto combina. O detalhe do pape
 - Sem serviço pago e sem produção sem A2.
 - Contexto mínimo: busque com `rg` e leia trechos; não varra o repositório.
 - Memory bank e mapa de codebase são leitura sob demanda nos repositórios de cliente (modelos em [memoria-projeto](knowledge/templates/memoria-projeto/README.md) e [mapa de codebase](knowledge/engenharia/mapa-de-codebase.md)).
-- Skills em [`.cursor/skills/`](.cursor/skills/) sob demanda, conforme o SKILL.md de cada uma.
+- Skills em [`.cursor/skills/`](.cursor/skills/) sob demanda, conforme o SKILL.md de cada uma. Skill, regra ou MCP de terceiro só entra depois da [auditoria](knowledge/seguranca/auditoria-de-skills.md).
+- Uma sessão não planeja, implementa e aprova a mesma entrega ([topologia de agentes](knowledge/processos/topologia-de-agentes.md)).
 
 ## Pronto
 
-Só encerre com critério verificável (teste, comando ou checklist). O handoff aponta caminhos e o que falta, sem copiar o artefato.
+Só encerre com critério verificável (teste, comando ou checklist). Merge só pela [porta para produção](knowledge/processos/porta-para-producao.md): CI verde, veredito do revisor na HEAD e classe de risco. O handoff aponta caminhos e o que falta, sem copiar o artefato.

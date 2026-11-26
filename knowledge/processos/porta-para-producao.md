@@ -1,0 +1,57 @@
+# Porta para produção: CI com autofix, revisão cruzada e revisão humana por risco
+
+> VTX-222 · Fase F1 · Processo. O caminho que um PR percorre até o merge (e, em projeto de cliente, até produção), com o peso da revisão proporcional ao risco. Vale para o vtx-core e para os repositórios de cliente. Regra geral de aprovação: [governança](governanca-e-aprovacoes.md). Topologia de quem revisa: [topologia-de-agentes.md](topologia-de-agentes.md).
+
+## 1. Três portões, nesta ordem
+
+1. **CI verde** com autofix do próprio agente (§2).
+2. **Revisão cruzada por IA** com contexto limpo e veredito na HEAD exata (§3).
+3. **Revisão humana calibrada por risco**, mais smoke test em staging quando a classe pede (§4).
+
+O repositório privado no plano gratuito do GitHub não tem proteção de branch, então a plataforma não bloqueia merge com CI vermelho. Até a [VTX-214](../../backlog/projeto.yaml) (script de merge que confere checks e veredito) existir, o portão é a disciplina: `gh pr checks <n> --watch` e depois `gh pr merge <n> --squash --match-head-commit <sha>`, só com os três portões cumpridos.
+
+## 2. CI com autofix
+
+- Antes de abrir o PR, o agente roda localmente o que o CI roda. No vtx-core: `pip install -e .`, `python -m unittest discover -s tests`, `python scripts/validar_backlog.py`, `python scripts/verificar_links.py`. Com a [VTX-215](../../backlog/projeto.yaml): `ruff check --fix` e `mypy`.
+- CI vermelho: quem abriu o PR lê o log (`gh run view <id> --log-failed`), corrige na mesma branch e espera de novo. Até **3 tentativas**; na quarta, para, registra no PR o que tentou e escala ao orquestrador.
+- O autofix é feito pelo agente, não por um bot de CI com permissão de escrita (isso seria `contents: write` no workflow, mudança sensível).
+- Nunca "consertar" CI apagando teste, baixando limiar ou pulando check. Se o teste estiver errado, isso vai explícito na descrição do PR.
+
+## 3. Revisão cruzada por IA
+
+- O revisor é outra sessão, com **contexto limpo** (lê o diff, a descrição e os documentos citados, não a conversa de quem escreveu) e, quando o plano oferecer, **modelo diferente** do autor ([topologia §4](topologia-de-agentes.md)).
+- O veredito fica escrito no PR, com a HEAD revisada: **Aprovado**, **Aprovado com ressalvas** ou **Mudanças necessárias**, e a lista de achados com arquivo e linha.
+- O veredito vale para aquele commit. Push novo (inclusive rebase) pede veredito novo, exceto no caso abaixo.
+- **Aprovado com ressalvas:** o autor aplica as ressalvas que o revisor marcou como "corrigir antes do merge", registra no PR o que mudou e pode mesclar, desde que a classe do PR (§4) não peça mais que isso. Ressalva não bloqueante vira tarefa de acompanhamento.
+- Autor e revisor nunca são a mesma sessão. Aprovar o próprio trabalho é A3.
+
+## 4. Classes de risco
+
+| Classe | Exemplos | Portões para o merge | Antes de produção (cliente) |
+|---|---|---|---|
+| **Trivial** | Erro de digitação, status de backlog, ROADMAP regerado, link | CI verde + veredito do revisor | — |
+| **Normal** | Documento de processo, código com teste, template sem workflow | CI verde + veredito do revisor | Preview verde |
+| **Sensível** | Workflow de CI, permissões, ferramentas de agente, segredos, dependência ou skill nova, regra de governança | CI verde + veredito do revisor + etiqueta "precisa do Samuel" + OK do Samuel registrado no PR | Preview verde + smoke test |
+| **Crítica** | Produção de cliente, dado pessoal, pagamento, migração de banco, auth | Tudo da classe sensível + revisor humano (Samuel ou quem ele indicar) | Smoke test em staging e deploy em produção com A2 |
+
+- Na dúvida entre duas classes, vale a mais alta (mesma regra da governança).
+- **Trivial sem revisor** (merge só com CI verde) fica **adiado**: só depois que a VTX-214 conferir os checks por script e o Samuel aceitar a mudança. Até lá, todo PR tem veredito do revisor.
+- **Smoke test:** o mínimo que prova que o sistema sobe e o caminho principal responde (abrir a página inicial, chamar o endpoint de saúde, fazer login de teste). Fica no runbook do projeto e roda no preview ou no staging, nunca contra dado real de cliente.
+
+## 5. Exemplo
+
+PR que adiciona um job ao `.github/workflows/testes.yml`: classe sensível. O agente roda os testes locais, abre o PR com a etiqueta "precisa do Samuel", espera o CI, corrige um erro de YAML (1ª tentativa), recebe "Aprovado" do Tzu na HEAD nova e deixa o PR pronto. O merge acontece só depois do OK do Samuel escrito no PR.
+
+## 6. Checklist
+
+- [ ] Verificação local feita antes de abrir o PR
+- [ ] CI verde na HEAD final, sem teste removido nem limiar baixado
+- [ ] Veredito do revisor na HEAD exata (ou ressalvas aplicadas e registradas)
+- [ ] Classe de risco declarada na descrição do PR; etiqueta "precisa do Samuel" quando sensível ou crítica
+- [ ] Smoke test em preview ou staging quando a classe pede
+
+## Fontes
+
+- Google, "Code Review Developer Guide": https://google.github.io/eng-practices/review/
+- DORA, capacidade "Code maintainability" e lotes pequenos: https://dora.dev/capabilities/
+- GitHub Docs, proteção de branch (indisponível em repositório privado no plano Free): https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches
