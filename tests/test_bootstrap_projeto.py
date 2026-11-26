@@ -1,6 +1,7 @@
 """VTX-170: bootstrap gera a estrutura do template e o hello passa lint/testes/build."""
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -193,6 +194,13 @@ class TestBootstrapProjeto(unittest.TestCase):
         r = _rodar(["bash", str(SCRIPT), "--tipo", "cobol", "demo", "/tmp/x"], cwd=str(RAIZ))
         self.assertNotEqual(r.returncode, 0)
 
+    def test_tipo_web_rejeita_nome_que_o_npm_recusa(self):
+        for nome in (".oculto", "_interno"):
+            with tempfile.TemporaryDirectory() as tmp:
+                dest = Path(tmp) / "x"
+                r = _rodar(["bash", str(SCRIPT), "--tipo", "web", nome, str(dest)], cwd=str(RAIZ))
+                self.assertEqual(r.returncode, 2, nome)
+
     def test_gera_projeto_web_com_ci_de_menor_privilegio(self):
         with tempfile.TemporaryDirectory() as tmp:
             dest = Path(tmp) / "demo-web"
@@ -220,6 +228,9 @@ class TestBootstrapProjeto(unittest.TestCase):
             pkg = (dest / "package.json").read_text(encoding="utf-8")
             self.assertIn('"name": "demo-web"', pkg)
             self.assertNotIn("projeto-cliente", pkg)
+            lock = json.loads((dest / "package-lock.json").read_text(encoding="utf-8"))
+            self.assertEqual(lock["name"], "demo-web")
+            self.assertEqual(lock["packages"][""]["name"], "demo-web")
             for script in ("lint", "typecheck", "test", "build"):
                 self.assertIn(f'"{script}"', pkg)
             ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")

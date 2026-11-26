@@ -58,6 +58,13 @@ if [[ ! "$NOME" =~ ^[A-Za-z0-9._-]+$ ]]; then
   exit 2
 fi
 
+# No tipo web o nome vira nome de pacote npm, que não pode começar com . ou _.
+PKG_NOME="$(printf '%s' "$NOME" | tr '[:upper:]' '[:lower:]')"
+if [[ "$TIPO" == "web" && ! "$PKG_NOME" =~ ^[a-z0-9] ]]; then
+  echo "Nome inválido para --tipo web: $NOME (precisa começar com letra ou número)" >&2
+  exit 2
+fi
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="$ROOT/$SRC_REL"
 if [[ ! -d "$SRC" ]]; then
@@ -101,9 +108,27 @@ while IFS= read -r -d '' arquivo; do
 done < <(find "$DEST" -type f ! -path '*/.git/*' ! -path '*/node_modules/*' -print0)
 
 # Nome do pacote npm: minúsculo, para não sair todo cliente como "projeto-cliente".
+# Vale para package.json e para o package-lock.json (name e packages[""].name),
+# senão o lockfile fica incoerente até o primeiro npm install.
 if [[ -f "$DEST/package.json" ]]; then
-  PKG_NOME="$(printf '%s' "$NOME" | tr '[:upper:]' '[:lower:]')"
-  python3 -c 'import json,sys; p=sys.argv[1]; n=sys.argv[2]; d=json.load(open(p,encoding="utf-8")); d["name"]=n; json.dump(d, open(p,"w",encoding="utf-8"), indent=2); open(p,"a").write("\n")' "$DEST/package.json" "$PKG_NOME"
+  python3 - "$DEST" "$PKG_NOME" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+dest, nome = Path(sys.argv[1]), sys.argv[2]
+pkg = dest / "package.json"
+dados = json.loads(pkg.read_text(encoding="utf-8"))
+dados["name"] = nome
+pkg.write_text(json.dumps(dados, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+lock = dest / "package-lock.json"
+if lock.is_file():
+    dados = json.loads(lock.read_text(encoding="utf-8"))
+    dados["name"] = nome
+    if "" in dados.get("packages", {}):
+        dados["packages"][""]["name"] = nome
+    lock.write_text(json.dumps(dados, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+PY
 fi
 
 if [[ ! -d "$DEST/.git" ]]; then
