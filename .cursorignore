@@ -9,6 +9,18 @@ out/
 .cache/
 coverage/
 .next/
+# 1b. Segredos e chaves (VTX-224). Camada extra: o .gitignore e o gitleaks continuam valendo.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.npmrc
+.netrc
 # 2. Logs
 *.log
 *.err

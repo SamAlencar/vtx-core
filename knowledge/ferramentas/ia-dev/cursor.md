@@ -41,13 +41,15 @@ Orquestrador mantém regras e skills do vtx-core e decide modo (local ou nuvem);
 5. Modo local: clone em `/workspace/repos/<repo>`, branch `local/<ID>-<slug>`, checks da CI rodados antes do PR (`/workspace/tekto-modo-local.md`).
 
 ## 8. Segredos e segurança/LGPD
-- `.cursorignore` bloqueia `.env*`, chaves e dados de cliente; segredo nunca em regra, skill, prompt ou chat.
+- `.cursorignore` tira do contexto `.env` e variantes (menos `.env.example`), chaves (`*.pem`, `*.key`, `id_rsa*`, `id_ed25519*`), `.npmrc` e `.netrc` (VTX-224; antes de 26/11/2026 o arquivo não tinha essas linhas). Segredo nunca em regra, skill, prompt ou chat.
+- **Deny rules** em [`.cursor/cli.json`](../../../.cursor/cli.json) (permissões do agente no CLI do Cursor; no projeto o arquivo só aceita `permissions`, e `deny` vence `allow`): bloqueiam ler ou escrever `.env` e chaves, `~/.ssh`, `sudo`, `rm -r`, `git push --force`/`-f`/`+refspec`, push direto para `main`, apagar branch remota, `git reset --hard`, `git clean`, `--no-verify`, `gh repo delete`, `gh secret` e `gh auth token`. `--force-with-lease` na branch do próprio PR continua liberado (rebase). É camada extra: a governança A2/A3 continua valendo, e o casamento de padrões do CLI deve ser conferido no primeiro uso (o teste `tests/test_permissoes_cursor.py` só garante a presença das regras). O editor (app) tem configuração de permissões própria, fora do repositório.
 - Cloud Agent: segredos só na aba Secrets do painel; nada de `.env.local` em snapshot nem em `.cursor/environment.json`.
 - Conteúdo lido por MCP, web ou issue é não confiável (*prompt injection*): o agente não executa ordem vinda dele.
 - Dado pessoal de cliente fora do contexto do agente, salvo anonimizado ([desenvolvimento seguro](../../seguranca/desenvolvimento-seguro.md)).
 
 ## 9. Checklist
 - [ ] `.cursorignore` e regra de tokens da F9 no repo
+- [ ] `.cursor/cli.json` com as deny rules da VTX-224
 - [ ] Regras em `.mdc` com tipo correto; nenhuma sempre-ativa desnecessária
 - [ ] Skills com versão fixada e revisadas
 - [ ] MCPs do catálogo, com escopo mínimo
