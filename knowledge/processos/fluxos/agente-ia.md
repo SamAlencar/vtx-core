@@ -6,8 +6,8 @@
 
 - **Agente:** um laço que recebe um objetivo, chama ferramentas, observa o resultado e para com critério explícito (máximo de iterações, timeout, erro interno).
 - **IA embutida:** o produto (site, sistema ou API) chama um modelo para uma tarefa delimitada (classificar, redigir, extrair), sem necessariamente um laço aberto.
-- Nos dois casos este fluxo **exige**, no plano do projeto, quatro peças técnicas: harness de referência (VTX-177), evals com portão no CI (VTX-178), telemetria de custo (VTX-179) e privacidade nos prompts (VTX-150). Sem isso o tipo não está completo. Enquanto essas quatro tarefas estiverem `a fazer` no vtx-core, um projeto para cliente externo só começa com A2 do Samuel, e o plano tem que incluir o equivalente das quatro peças no repositório do cliente (não esperar o core). Piloto interno segue o teto da F14.
-- Hospedagem do app segue a política de hospedagem por cliente (VTX-195 / PR #26). Custo de token de plano pago é A2.
+- Nos dois casos este fluxo **exige**, no plano do projeto, quatro peças técnicas: harness de referência (VTX-177), evals com portão no CI (VTX-178), telemetria de custo (VTX-179) e privacidade nos prompts (VTX-150). Sem isso o tipo não está completo. Enquanto essas quatro tarefas estiverem `a fazer` no vtx-core, um projeto para cliente externo só começa com A2 do Samuel, e o plano tem que incluir o equivalente das quatro peças no repositório do cliente (não esperar o core). Piloto interno segue o teto da F14: no máximo 1,5 h/semana do Samuel no piloto (critério de aceite da VTX-196 em [projeto.yaml](../../../backlog/projeto.yaml)), dentro das [5 h/semana da F14](../../../backlog/SCHEMA.md), com o trilho de receita primeiro; passar disso é A2.
+- Hospedagem do app segue a [política de hospedagem por cliente](../../operacao/hospedagem-por-cliente.md) (VTX-195). Custo de token de plano pago é A2.
 
 ## 2. Metodologia (etapas)
 
@@ -28,7 +28,7 @@ As etapas 4 a 6 repetem por incremento. Nada vai a produção sem evals no CI e 
 
 1. Escopo: o que o agente pode e não pode fazer (etapa 1).
 2. Provedor de modelo pago, cota paga ou dado pessoal no prompt (etapas 2 e 3).
-3. Primeiro deploy de produção (etapa 7).
+3. Todo deploy em produção (etapa 7), como na §3 de [governanca-e-aprovacoes.md](../governanca-e-aprovacoes.md).
 4. O teto de custo *no contrato* com o cliente não é tarefa deste repositório (agentes de vendas).
 
 ## 4. Itens específicos
@@ -41,7 +41,7 @@ As etapas 4 a 6 repetem por incremento. Nada vai a produção sem evals no CI e 
 
 ## 5. Exemplo
 
-"Assistente que preenche um rascunho de laudo a partir do prontuário, para o profissional revisar." Etapa 1: o agente não publica o laudo sozinho. Etapa 2: ADR do laço com no máximo N iterações e ferramentas só de leitura no prontuário. Etapa 3: dado de saúde no prompt é A2. Etapa 4: evals com laudo típico, recusa quando falta dado, e falha da ferramenta. Etapa 7: primeiro deploy é A2.
+"Assistente que preenche um rascunho de laudo a partir do prontuário, para o profissional revisar." Etapa 1: o agente não publica o laudo sozinho. Etapa 2: ADR do laço com no máximo N iterações e ferramentas só de leitura no prontuário. Etapa 3: dado de saúde no prompt é A2. Etapa 4: evals com laudo típico, recusa quando falta dado, e falha da ferramenta. Etapa 7: deploy em produção é A2.
 
 ## 6. Checklist de conclusão
 
@@ -55,5 +55,5 @@ As etapas 4 a 6 repetem por incremento. Nada vai a produção sem evals no CI e 
 ## Fontes
 
 - Padrão de funções de domínio para tool-calling: [funcoes-de-dominio.md](../../engenharia/ia/funcoes-de-dominio.md)
-- Hospedagem: política VTX-195 (PR #26); o link relativo entra depois que esse PR estiver no `main`.
+- Hospedagem: [hospedagem-por-cliente.md](../../operacao/hospedagem-por-cliente.md) (VTX-195).
 - Governança A0–A3: [governanca-e-aprovacoes.md](../governanca-e-aprovacoes.md)
