@@ -16,7 +16,7 @@
 | 1 | Escopo e recorte | Produto + Orquestrador | PRD com tarefas do modelo, o que o agente *não* faz, e usuário dono da ação | Samuel aprova escopo |
 | 2 | Arquitetura do laço | Arquiteto | ADR do harness: `max_iteracoes`, `timeout_s`, retry com backoff, fallback de modelo, parada em `ERRO_INTERNO` (VTX-177). Lista de ferramentas e permissões | A1 no ADR; ferramenta paga ou dado pessoal é A2 |
 | 3 | Privacidade e dados | Arquiteto + Produto | Checklist da VTX-150: o que entra no prompt, retenção, se o provedor treina com os dados, base legal | Dado pessoal ou envio a provedor novo é A2 |
-| 4 | Evals | QA + Dev | Conjunto mínimo de casos (entrada, ferramenta esperada, saída aceitável) e portão no CI (VTX-178). Roda sem rede e sem custo no CI, com cliente falso | CI vermelho impede merge |
+| 4 | Evals | QA + Dev | Conjunto mínimo de casos (entrada, ferramenta esperada, saída aceitável) e portão no CI (VTX-178). Roda sem rede e sem custo no CI, com cliente falso | CI vermelho impede merge pelo processo: sem proteção de branch no plano gratuito, a plataforma não bloqueia; o portão por script é a VTX-214 (auditoria técnica de 25/11) |
 | 5 | Telemetria de custo | DevOps + Dev | Contagem de tokens e chamadas por requisição/projeto (VTX-179), alerta quando passa do teto técnico de desenvolvimento | Plano pago do provedor é A2. Teto contratual com o cliente é dependência externa |
 | 6 | Implementação | Dev | Laço, ferramentas e UI ou API no repositório do cliente. Testes do harness com cliente LLM falso | PR com CI verde, inclusive evals |
 | 7 | Lançamento | DevOps + Orquestrador | Variáveis só no painel, runbook, deploy de produção | Deploy em produção é A2 (política de hospedagem) |
