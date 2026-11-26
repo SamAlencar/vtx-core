@@ -9,7 +9,7 @@
 3. **Não violar termo de plano gratuito.** O Vercel Hobby não admite uso comercial (incluindo trabalho de consultor pago). Cliente e sites comerciais da VTX não entram no Hobby.
 4. Quando o trilho de receita e o piloto interno competirem pelas [5 h/semana do Samuel](../../backlog/SCHEMA.md) (regra da F14 no SCHEMA), o de receita vem primeiro. O piloto med-hub tem teto próprio.
 
-O passo a passo de preview do template web fica no runbook de `templates/web-next/` (VTX-194, PR #25; o arquivo entra no `main` quando esse PR for mesclado). Até lá, esta política vale sozinha. Detalhes de produto: [Vercel](../ferramentas/hospedagem/vercel.md) e [Cloudflare](../ferramentas/ci-cd/cloudflare.md).
+O passo a passo de preview do template web fica no [runbook do template web-next](../../templates/web-next/docs/runbook.md) (VTX-194). Detalhes de produto: [Vercel](../ferramentas/hospedagem/vercel.md) e [Cloudflare](../ferramentas/ci-cd/cloudflare.md).
 
 ## Quem é dono de quê
 

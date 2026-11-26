@@ -1,25 +1,72 @@
 #!/usr/bin/env bash
-# Cria um repositório de cliente a partir de templates/projeto/.
-# Uso: scripts/bootstrap_projeto.sh <nome> <destino>
+# Cria um repositório de cliente a partir do template.
+# Uso: scripts/bootstrap_projeto.sh [--tipo python|web] <nome> <destino>
 set -euo pipefail
 
 uso() {
-  echo "Uso: $0 <nome> <destino>" >&2
+  echo "Uso: $0 [--tipo python|web] <nome> <destino>" >&2
   echo "Exemplo: $0 demo /tmp/demo" >&2
+  echo "         $0 --tipo web demo /tmp/demo" >&2
+  echo "O padrão é --tipo python (templates/projeto/)." >&2
   exit 2
 }
+
+TIPO="python"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --tipo)
+      [[ $# -ge 2 ]] || uso
+      TIPO="$2"
+      shift 2
+      ;;
+    --tipo=*)
+      TIPO="${1#--tipo=}"
+      shift
+      ;;
+    -h|--help)
+      uso
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      echo "Opção desconhecida: $1" >&2
+      uso
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
 
 [[ $# -eq 2 ]] || uso
 NOME="$1"
 DEST="$2"
+
+case "$TIPO" in
+  python) SRC_REL="templates/projeto" ;;
+  web) SRC_REL="templates/web-next" ;;
+  *)
+    echo "Tipo inválido: $TIPO (use python ou web)" >&2
+    exit 2
+    ;;
+esac
 
 if [[ ! "$NOME" =~ ^[A-Za-z0-9._-]+$ ]]; then
   echo "Nome inválido: $NOME (use letras, números, ponto, _ ou -)" >&2
   exit 2
 fi
 
+# No tipo web o nome vira nome de pacote npm, que não pode começar com . ou _.
+PKG_NOME="$(printf '%s' "$NOME" | tr '[:upper:]' '[:lower:]')"
+if [[ "$TIPO" == "web" && ! "$PKG_NOME" =~ ^[a-z0-9] ]]; then
+  echo "Nome inválido para --tipo web: $NOME (precisa começar com letra ou número)" >&2
+  exit 2
+fi
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/templates/projeto"
+SRC="$ROOT/$SRC_REL"
 if [[ ! -d "$SRC" ]]; then
   echo "Template não encontrado: $SRC" >&2
   exit 1
@@ -41,9 +88,11 @@ fi
 DEST="$(cd "$DEST" && pwd)"
 
 # Copia incluindo arquivos ocultos, sem sobrepor o destino por engano.
+# Não leva node_modules/ nem .next/ se alguém gerou o template localmente.
 shopt -s dotglob
 cp -a "$SRC"/. "$DEST"/
 shopt -u dotglob
+rm -rf "$DEST/node_modules" "$DEST/.next" "$DEST/out" "$DEST/coverage"
 
 # Regras de tokens/contexto vêm da fonte do vtx-core.
 # As regras por papel ficam as do template (caminhos válidos no cliente).
@@ -56,10 +105,34 @@ while IFS= read -r -d '' arquivo; do
   if grep -q '__NOME_DO_PROJETO__' "$arquivo" 2>/dev/null; then
     sed -i "s/__NOME_DO_PROJETO__/${NOME}/g" "$arquivo"
   fi
-done < <(find "$DEST" -type f ! -path '*/.git/*' -print0)
+done < <(find "$DEST" -type f ! -path '*/.git/*' ! -path '*/node_modules/*' -print0)
+
+# Nome do pacote npm: minúsculo, para não sair todo cliente como "projeto-cliente".
+# Vale para package.json e para o package-lock.json (name e packages[""].name),
+# senão o lockfile fica incoerente até o primeiro npm install.
+if [[ -f "$DEST/package.json" ]]; then
+  python3 - "$DEST" "$PKG_NOME" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+dest, nome = Path(sys.argv[1]), sys.argv[2]
+pkg = dest / "package.json"
+dados = json.loads(pkg.read_text(encoding="utf-8"))
+dados["name"] = nome
+pkg.write_text(json.dumps(dados, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+lock = dest / "package-lock.json"
+if lock.is_file():
+    dados = json.loads(lock.read_text(encoding="utf-8"))
+    dados["name"] = nome
+    if "" in dados.get("packages", {}):
+        dados["packages"][""]["name"] = nome
+    lock.write_text(json.dumps(dados, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+PY
+fi
 
 if [[ ! -d "$DEST/.git" ]]; then
   git -C "$DEST" init -q
 fi
 
-echo "Projeto '$NOME' criado em $DEST"
+echo "Projeto '$NOME' ($TIPO) criado em $DEST"

@@ -1,6 +1,7 @@
 """VTX-170: bootstrap gera a estrutura do template e o hello passa lint/testes/build."""
 from __future__ import annotations
 
+import json
 import os
 import subprocess
 import sys
@@ -187,6 +188,78 @@ class TestBootstrapProjeto(unittest.TestCase):
                     if not alvo.exists():
                         falhas.append(f"{nome}: caminho ausente {url}")
             self.assertEqual(falhas, [])
+
+
+    def test_tipo_invalido_falha(self):
+        r = _rodar(["bash", str(SCRIPT), "--tipo", "cobol", "demo", "/tmp/x"], cwd=str(RAIZ))
+        self.assertNotEqual(r.returncode, 0)
+
+    def test_tipo_web_rejeita_nome_que_o_npm_recusa(self):
+        for nome in (".oculto", "_interno"):
+            with tempfile.TemporaryDirectory() as tmp:
+                dest = Path(tmp) / "x"
+                r = _rodar(["bash", str(SCRIPT), "--tipo", "web", nome, str(dest)], cwd=str(RAIZ))
+                self.assertEqual(r.returncode, 2, nome)
+
+    def test_gera_projeto_web_com_ci_de_menor_privilegio(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp) / "demo-web"
+            r = _rodar(["bash", str(SCRIPT), "--tipo", "web", "demo-web", str(dest)], cwd=str(RAIZ))
+            self.assertEqual(r.returncode, 0, r.stderr)
+            for rel in (
+                "package.json",
+                "package-lock.json",
+                "app/page.tsx",
+                "lib/env.ts",
+                "lib/supabase.ts",
+                "tests/unit/env.test.ts",
+                ".github/workflows/ci.yml",
+                "docs/runbook.md",
+                "AGENTS.md",
+                ".env.example",
+                ".cursor/rules/papeis/planejamento.mdc",
+            ):
+                self.assertTrue((dest / rel).is_file(), rel)
+            self.assertFalse((dest / "node_modules").exists())
+            self.assertFalse((dest / ".next").exists())
+            readme = (dest / "README.md").read_text(encoding="utf-8")
+            self.assertIn("demo-web", readme)
+            self.assertNotIn("__NOME_DO_PROJETO__", readme)
+            pkg = (dest / "package.json").read_text(encoding="utf-8")
+            self.assertIn('"name": "demo-web"', pkg)
+            self.assertNotIn("projeto-cliente", pkg)
+            lock = json.loads((dest / "package-lock.json").read_text(encoding="utf-8"))
+            self.assertEqual(lock["name"], "demo-web")
+            self.assertEqual(lock["packages"][""]["name"], "demo-web")
+            for script in ("lint", "typecheck", "test", "build"):
+                self.assertIn(f'"{script}"', pkg)
+            ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")
+            self.assertIn("permissions:", ci)
+            self.assertIn("contents: read", ci)
+            self.assertIn("gitleaks", ci)
+            self.assertIn("8.30.1", ci)
+            self.assertIn("sha256sum", ci)
+            self.assertIn("branches: [main]", ci)
+            self.assertIn("npm ci", ci)
+            self.assertIn("npm run lint", ci)
+            self.assertIn("npm run typecheck", ci)
+            self.assertIn("npm test", ci)
+            self.assertIn("npm run build", ci)
+            runbook = (dest / "docs/runbook.md").read_text(encoding="utf-8")
+            self.assertIn("Cloudflare Pages", runbook)
+            self.assertIn("uso comercial", runbook)
+            self.assertIn("Vercel", runbook)
+            agents = (dest / "AGENTS.md").read_text(encoding="utf-8")
+            self.assertIn("A0", agents)
+            self.assertNotIn("github.com/SamAlencar/vtx-core", agents)
+            # bootstrap deve copiar as regras atuais da raiz
+            for nome in ("eficiencia-de-tokens.mdc", "economia-de-contexto.mdc"):
+                self.assertEqual(
+                    (RAIZ / ".cursor/rules" / nome).read_bytes(),
+                    (dest / ".cursor/rules" / nome).read_bytes(),
+                    nome,
+                )
+
 
 
 

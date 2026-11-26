@@ -866,3 +866,23 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "Documento de política, tabela por tipo, piloto med-hub. A2 alinhado à governança: todo deploy em produção e qualquer plano pago. OpenNext com teste no primeiro projeto e plano B; Workers com static assets como padrão de site novo; dependência do runbook no #25 registrada; 5 h/semana liga ao SCHEMA; termo EAS fica com a VTX-203. Skills: verification-before-completion. Ferramentas: git. Correu bem."
 
+  - id: VTX-194
+    titulo: "Template TypeScript de web e plataforma no bootstrap"
+    area: "Templates"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "templates/web-next + bootstrap --tipo web. CI do template com contents: read e gitleaks. Pipeline npm verde no projeto gerado. Skills: writing-plans, verification-before-completion (unittest, npm lint/typecheck/test/build, ajudou). Ferramentas: npm, git. Correu bem."
+
+  - id: VTX-208
+    titulo: "Tratar o alerta de npm audit do template web-next (postcss no Next)"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #25, item 1. Não executada neste passo."
+  - id: VTX-209
+    titulo: "CI do vtx-core rodar o pipeline npm do template web"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Cadastrada a partir da revisão do Tzu no PR #25, item 3. Não executada neste passo. Mexe em workflow do vtx-core."
+

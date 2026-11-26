@@ -1863,9 +1863,9 @@ tarefas:
   fase: F14
   area: Templates
   prioridade: 1
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/ + scripts/bootstrap_projeto.sh
-  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado.'
+  notas: 'Auditoria §7 item 7 (id sugerido VTX-192, mapeado para VTX-194). Objetivo: alinhar o template ao stack de referência, ao piloto interno e ao que se entrega. Arquivos afetados: templates/web-next/ (Next.js, Tailwind, Supabase, Zod, Vitest, Playwright), scripts/bootstrap_projeto.sh (--tipo web|python), tests/test_bootstrap_projeto.py. Critério de aceite: bootstrap_projeto.sh --tipo web demo /tmp/demo gera um projeto em que npm ci && npm run lint && npm run typecheck && npm test && npm run build passam; o CI do template roda isso com permissions: contents: read e gitleaks; um preview em hospedagem gratuita com uso comercial permitido está documentado. Concluída em 24/11/2026 (PR #25): templates/web-next/ com Next.js 15, TypeScript, Tailwind, Zod, Vitest e cliente Supabase; bootstrap --tipo web|python (padrão python). CI do template com permissions: contents: read, gitleaks 8.30.1 e o pipeline npm. Preview comercial documentado no runbook (Cloudflare Pages; Vercel Hobby não serve). Verificação: bootstrap --tipo web demo /tmp/... && npm ci && npm run lint && npm run typecheck && npm test && npm run build, verde. Em 26/11/2026: rebase sobre o main depois do #26; ressalvas finais do Tzu na a7846d2 aplicadas (package-lock.json com name e packages[""].name do projeto; no tipo web o nome precisa começar com letra ou número, como o npm exige); link relativo do runbook na política de hospedagem (VTX-195).'
 
 - id: VTX-195
   titulo: Política técnica de hospedagem por cliente e de custos de infra
@@ -1874,7 +1874,7 @@ tarefas:
   prioridade: 2
   status: concluído
   entregavel: knowledge/operacao/hospedagem-por-cliente.md
-  notas: 'Auditoria §7 item 8 (id sugerido VTX-193, mapeado para VTX-195), só o lado técnico. Objetivo: decidir, neste repositório, de quem é cada conta de hospedagem e como documentar custos de infra, sem violar termos de planos gratuitos. Arquivos afetados: knowledge/operacao/hospedagem-por-cliente.md, knowledge/ferramentas/hospedagem/vercel.md, templates/web-next/docs/runbook.md. Critério de aceite: tabela por tipo de produto com hospedagem padrão, plano gratuito permitido para uso comercial, limites e pausa por inatividade, inclusive o caso do piloto interno (med-hub); contas no nome do cliente por padrão e domínio do cliente; qualquer plano pago é A2. Cláusula de repasse no contrato é dependência externa (agentes de vendas/contabilidade), não aceite desta tarefa. Concluída em 24/11/2026: política em knowledge/operacao/hospedagem-por-cliente.md; ponteiro no Vercel e no INDEX. Conta e domínio no nome do cliente; plano pago é A2; med-hub no Cloudflare Free, não no Vercel Hobby. Repasse de custo permanece dependência externa. O runbook de templates/web-next/docs/runbook.md depende do PR #25 (VTX-194), ainda não no main; a política não depende dele para valer. Depois que o #25 entrar, trocar a menção ao runbook por link relativo.'
+  notas: 'Auditoria §7 item 8 (id sugerido VTX-193, mapeado para VTX-195), só o lado técnico. Objetivo: decidir, neste repositório, de quem é cada conta de hospedagem e como documentar custos de infra, sem violar termos de planos gratuitos. Arquivos afetados: knowledge/operacao/hospedagem-por-cliente.md, knowledge/ferramentas/hospedagem/vercel.md, templates/web-next/docs/runbook.md. Critério de aceite: tabela por tipo de produto com hospedagem padrão, plano gratuito permitido para uso comercial, limites e pausa por inatividade, inclusive o caso do piloto interno (med-hub); contas no nome do cliente por padrão e domínio do cliente; qualquer plano pago é A2. Cláusula de repasse no contrato é dependência externa (agentes de vendas/contabilidade), não aceite desta tarefa. Concluída em 24/11/2026: política em knowledge/operacao/hospedagem-por-cliente.md; ponteiro no Vercel e no INDEX. Conta e domínio no nome do cliente; plano pago é A2; med-hub no Cloudflare Free, não no Vercel Hobby. Repasse de custo permanece dependência externa. O runbook de templates/web-next/docs/runbook.md depende do PR #25 (VTX-194), ainda não no main; a política não depende dele para valer. Depois que o #25 entrar, trocar a menção ao runbook por link relativo. Feito no próprio #25 (26/11/2026).'
 
 - id: VTX-196
   titulo: 'med-hub: incremento 1 interno, com prazo e teto de esforço'
@@ -1987,3 +1987,25 @@ tarefas:
   status: a fazer
   entregavel: agents/
   notas: 'Fusão das VTX-039 a VTX-046 e VTX-182 (auditoria §5). Objetivo: detalhar o papel que a lacuna exigir, sem criar camada paralela às regras já existentes. Arquivos afetados: agents/*.md e, se ainda fizer sentido, a tabela de Recursos. Critério de aceite: um projeto real justifica o detalhe; as tarefas 039 a 046 e 182 permanecem canceladas.'
+
+- id: VTX-208
+  titulo: Tratar o alerta de npm audit do template web-next (postcss no Next)
+  fase: F14
+  area: Templates
+  prioridade: 13
+  status: a fazer
+  entregavel: templates/web-next/package-lock.json
+  depende_de:
+  - VTX-194
+  notas: 'Seguimento da revisão do Tzu no PR #25 (item 1), 24/11/2026. Objetivo: decidir se o template aceita o alerta conhecido (postcss embutido no Next, GHSA-qx2v-qp2m-jg93) até uma versão do Next que o feche, ou subir de versão agora. Arquivos afetados: templates/web-next/package.json, package-lock.json, docs/runbook.md se a decisão for aceitar. Critério de aceite: npm audit --omit=dev no projeto gerado não deixa alerta sem registro; ou o Next foi atualizado e o pipeline npm continua verde.'
+
+- id: VTX-209
+  titulo: CI do vtx-core rodar o pipeline npm do template web
+  fase: F14
+  area: Templates
+  prioridade: 14
+  status: a fazer
+  entregavel: .github/workflows/testes.yml
+  depende_de:
+  - VTX-194
+  notas: 'Seguimento da revisão do Tzu no PR #25 (item 3), 24/11/2026. Objetivo: o CI do vtx-core gerar um projeto com bootstrap --tipo web e rodar npm ci && lint && typecheck && test && build, para regressão no template não passar só com teste de strings. Arquivos afetados: .github/workflows/testes.yml (ou workflow irmão). Critério de aceite: um job verde no CI do core reproduz o pipeline do template; falha se o template quebrar. Mexe no workflow do vtx-core e, quando for executada, precisa do Samuel.'

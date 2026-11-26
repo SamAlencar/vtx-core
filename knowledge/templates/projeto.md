@@ -5,11 +5,13 @@
 ## Uso
 
 ```bash
-scripts/bootstrap_projeto.sh <nome> <destino>
-# exemplo: scripts/bootstrap_projeto.sh demo /tmp/demo
+scripts/bootstrap_projeto.sh [--tipo python|web] <nome> <destino>
+# python (padrão): scripts/bootstrap_projeto.sh demo /tmp/demo
+# web (Next.js):   scripts/bootstrap_projeto.sh --tipo web demo /tmp/demo
 ```
 
-O script copia [`templates/projeto/`](../../templates/projeto/), troca `__NOME_DO_PROJETO__` e deixa um exemplo `hello` cujo [`.github/workflows/ci.yml`](../../templates/projeto/.github/workflows/ci.yml) roda lint (`compileall`), testes (`unittest`) e build.
+- `--tipo python` (padrão) copia [`templates/projeto/`](../../templates/projeto/) e deixa um exemplo `hello` cujo [CI](../../templates/projeto/.github/workflows/ci.yml) roda lint (`compileall`), testes (`unittest`) e build, com `permissions: contents: read`.
+- `--tipo web` copia [`templates/web-next/`](../../templates/web-next/) (Next.js, TypeScript, Tailwind, Zod, Vitest, cliente Supabase). O [CI](../../templates/web-next/.github/workflows/ci.yml) roda gitleaks e `npm ci && npm run lint && npm run typecheck && npm test && npm run build`, também com `permissions: contents: read`. O preview comercial fica documentado no runbook (Cloudflare Pages; Vercel Hobby não serve para uso comercial).
 
 ## Artefatos
 
