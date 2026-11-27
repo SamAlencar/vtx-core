@@ -8,7 +8,7 @@
 2. **Revisão cruzada por IA** com contexto limpo e veredito na HEAD exata (§3).
 3. **Revisão humana calibrada por risco**, mais smoke test em staging quando a classe pede (§4).
 
-O repositório privado no plano gratuito do GitHub não tem proteção de branch, então a plataforma não bloqueia merge com CI vermelho. Até a [VTX-214](../../backlog/projeto.yaml) (script de merge que confere checks e veredito) existir, o portão é a disciplina: `gh pr checks <n> --watch` e depois `gh pr merge <n> --squash --match-head-commit <sha>`, só com os três portões cumpridos.
+O repositório privado no plano gratuito do GitHub não tem proteção de branch, então a plataforma não bloqueia merge com CI vermelho. O caminho previsto é `scripts/mesclar_pr.sh <n>` (VTX-214): o script confere os checks e o veredito na HEAD exata e só então chama `gh pr merge <n> --squash --match-head-commit <sha>`. Não use `gh pr merge` direto.
 
 ## 2. CI com autofix
 
