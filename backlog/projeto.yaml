@@ -1934,7 +1934,7 @@ tarefas:
   fase: F14
   area: Operação
   prioridade: 7
-  status: em andamento
+  status: concluído
   entregavel: knowledge/operacao/suporte-e-sla.md
   notas: 'Auditoria §7 item 15 (id sugerido VTX-196, mapeado para VTX-199), só o lado técnico. Objetivo: suporte previsível e operação com SLA. Arquivos afetados: knowledge/operacao/suporte-e-sla.md, knowledge/processos/fluxos/manutencao-evolucao.md, templates/web-next/docs/runbook.md. Critério de aceite: dois níveis de SLA com tempo de resposta e horas incluídas; canal de suporte (e-mail ou formulário, triado por agente); monitor de disponibilidade gratuito configurado no template; incidentes viram postmortem curto no repositório do cliente. Preço e venda do plano de manutenção são dependência externa (agentes de vendas), não aceite desta tarefa.'
 
@@ -2271,3 +2271,14 @@ tarefas:
   - VTX-199
   - VTX-232
   notas: 'Follow-up da revisão do Tzu no PR #45 (VTX-199), 27/11/2026. Hoje o monitor (UptimeRobot ou Better Stack, tier free, a cada 5 min) está só descrito, com "_preencher no go-live_". Tarefa: deixar no template um modo reproduzível de configurar o monitor (passos e artefato versionável, sem plano pago). Aceite: um projeto gerado pelo bootstrap tem instrução operacional completa e um lugar explícito para registrar a URL do monitor; não depende de SMS pago nem de dezenas de monitores extras.'
+
+- id: VTX-234
+  titulo: Essencial e Evolução com SLA de 1ª resposta igual
+  fase: F14
+  area: Operação
+  prioridade: 78
+  status: a fazer
+  entregavel: knowledge/operacao/suporte-e-sla.md
+  depende_de:
+  - VTX-199
+  notas: 'Observação do Tzu no PR #45 (VTX-199), 27/11/2026, não bloqueante. Os níveis Essencial e Evolução têm os mesmos tempos de 1ª resposta (SEV1: 4 h úteis, SEV2: 1 dia útil, SEV3: 3 dias úteis) e diferem só nas horas incluídas (4 h vs 12 h). Atende ao aceite da VTX-199, mas vale revisar se o Evolução deve ter resposta mais curta. Tarefa: decidir e, se for o caso, diferenciar os tempos no documento, no runbook do template e nos testes. Preço/venda do plano continuam fora de escopo (dependência externa). Aceite: ou os dois níveis passam a ter tempos distintos e documentados, ou fica registrado (no próprio suporte-e-sla.md) por que a 1ª resposta permanece igual e só as horas mudam.'
