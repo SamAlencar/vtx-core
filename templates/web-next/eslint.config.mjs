@@ -39,6 +39,7 @@ const config = [
               group: [
                 "ai/*",
                 "@ai-sdk/*",
+                "**/agentes",
                 "**/agentes/**",
                 "@/src/agentes",
                 "@/src/agentes/**",

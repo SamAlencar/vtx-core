@@ -17,14 +17,15 @@ function saida(r: ReturnType<typeof eslint>): string {
 }
 
 describe("fronteiras de camada", () => {
-  it("npx eslint tests/fronteiras/violacao.ts acusa as duas importações", () => {
+  it("npx eslint tests/fronteiras/violacao.ts acusa as três importações", () => {
     const r = eslint("tests/fronteiras/violacao.ts");
     const texto = saida(r);
     expect(r.status, texto).not.toBe(0);
     const erros = (texto.match(/no-restricted-imports/g) ?? []).length;
-    expect(erros, texto).toBeGreaterThanOrEqual(2);
+    expect(erros, texto).toBeGreaterThanOrEqual(3);
     expect(texto).toMatch(/@\/src\/agentes/);
     expect(texto).toMatch(/\bai\b/);
+    expect(texto).toMatch(/src\/agentes(?!\/)/);
   });
 
   it("npx eslint tests/fronteiras/sdk-fora-harness.ts barra o SDK fora do harness", () => {
