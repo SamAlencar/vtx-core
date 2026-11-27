@@ -11,7 +11,7 @@ Use as classes do Tailwind (`tailwind.config.ts`, `app/globals.css`). Não inven
 | Fundo | Página | `bg-white` (escuro: `dark:bg-zinc-950` quando houver tema) |
 | Texto | Título e corpo | `text-zinc-900`, corpo auxiliar `text-zinc-600` |
 | Destaque | Ação primária | `bg-zinc-900 text-white` |
-| Espaço | Página | `p-8`, largura `max-w-2xl mx-auto`, folego `gap-4` |
+| Espaço | Página | `p-8`, largura `max-w-2xl mx-auto`, fôlego `gap-4` |
 | Tipo | Título | `text-3xl font-semibold`; corpo no tamanho padrão do template |
 
 ## Componentes

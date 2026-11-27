@@ -9,7 +9,7 @@ alwaysApply: false
 - Versões de referência: Next.js 15, TypeScript, Tailwind, Zod, Vitest e o cliente JavaScript do Supabase, como em `package.json`.
 - Pastas: interface em `app/`, regras de negócio em `src/dominio/`, agentes em `src/agentes/`, utilitários em `lib/`, testes em `tests/`. Tokens e tom da interface em `DESIGN.md`.
 - Zod entra nas bordas (env, body de API, tools). Não valide só com `as` ou tipos soltos.
-- Erros de API seguem RFC 9457 (`lib/http/problema.ts`): `type`, `title`, `status` e, se houver, `detail`.
+- Erros de API seguem RFC 9457 (`lib/http/problema.ts`): `type`, `title`, `status` e, se houver, `detail`. No detalhe do Zod, use `z.prettifyError`, não `error.message`.
 - Supabase só com RLS nas tabelas de cliente. O browser usa `lib/supabase.ts` (URL e chave anônima). Segredo de serviço não entra no cliente.
 
 ```ts
@@ -21,7 +21,7 @@ const entrada = z.object({ nome: z.string().min(1) });
 export function validarNome(bruto: unknown) {
   const lido = entrada.safeParse(bruto);
   if (!lido.success) {
-    return { ok: false as const, problema: problema(422, "Entrada inválida", lido.error.message) };
+    return { ok: false as const, problema: problema(422, "Entrada inválida", z.prettifyError(lido.error)) };
   }
   return { ok: true as const, nome: lido.data.nome };
 }

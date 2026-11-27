@@ -9,7 +9,7 @@ alwaysApply: false
 - Prompt em `src/agentes/prompts/`. Regra de negócio nunca vai no prompt: a tool chama `src/dominio/`.
 - Toda tool tem schema Zod e vive em `src/agentes/tools/`.
 - Chamada ao modelo só via `src/agentes/harness/` (função `executarAgente`). Não instancie o SDK de modelo em outro lugar.
-- Tool crítica (gasto, dado pessoal, publicação, efeito irreversível) exige aprovação antes de executar.
+- Tool crítica (gasto, dado pessoal, publicação, efeito irreversível) exige aprovação antes de executar. O mecanismo de aprovação entra na VTX-213; o harness de referência entra na VTX-177. O esboço em `src/agentes/harness/executar.ts` ainda não implementa aprovação nem chamada a modelo — não trate esse stub como se a aprovação já existisse.
 
 ```ts
 import { z } from "zod";

@@ -6,7 +6,7 @@ alwaysApply: false
 
 # API (Route Handlers)
 
-Todo handler em `app/api/` declara schema Zod de entrada e de saída. Entrada inválida responde 422 no formato RFC 9457 (`lib/http/problema.ts`). Não devolva stack trace.
+Todo handler em `app/api/` declara schema Zod de entrada e de saída. JSON inválido responde 400 e entrada que não passa no schema responde 422, ambos no formato RFC 9457 (`lib/http/problema.ts`). No detalhe do Zod, use `z.prettifyError`. Não devolva stack trace.
 
 O esboço de referência está em `app/api/exemplo/route.ts`.
 
@@ -19,11 +19,19 @@ const entrada = z.object({ mensagem: z.string().min(1) });
 const saida = z.object({ eco: z.string() });
 
 export async function postExemplo(req: Request): Promise<Response> {
-  const bruto: unknown = await req.json();
+  let bruto: unknown;
+  try {
+    bruto = await req.json();
+  } catch {
+    return NextResponse.json(
+      problema(400, "JSON inválido", "O corpo precisa ser um JSON válido."),
+      { status: 400 },
+    );
+  }
   const lido = entrada.safeParse(bruto);
   if (!lido.success) {
     return NextResponse.json(
-      problema(422, "Entrada inválida", lido.error.message),
+      problema(422, "Entrada inválida", z.prettifyError(lido.error)),
       { status: 422 },
     );
   }

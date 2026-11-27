@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "regras:extrair": "node scripts/extrair-exemplos-regras.mjs",
+    "regras:check": "node scripts/extrair-exemplos-regras.mjs --check",
+    "typecheck": "node scripts/extrair-exemplos-regras.mjs --check && tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test"
   },
