@@ -6,7 +6,8 @@
 # Variáveis opcionais:
 #   PG_BIN  diretório com initdb e pg_ctl (senão: PATH, depois `pg_config --bindir`)
 #   PSQL    cliente psql (senão: PATH, ou $PG_BIN/psql)
-#   DADOS   data dir temporário (padrão: /workspace/pg-acoes-rls-tmp, ou mktemp)
+#   DADOS   data dir temporário (padrão: /workspace/pg-acoes-rls-tmp, ou mktemp).
+#          Só aceita /workspace/pg-acoes-* ou ${TMPDIR:-/tmp}/pg-acoes-*; recusa o resto.
 #   PORTA   porta de escuta (padrão: 55432; recusa 5432)
 set -euo pipefail
 
@@ -52,12 +53,22 @@ if [[ -z "${PSQL:-}" ]]; then
   fi
 fi
 
+NOME="teste-rls-acoes"
+LIB_GUARDA="$(cd "$(dirname "$0")" && pwd)/lib/guarda_dados_pg.sh"
+if [[ ! -f "$LIB_GUARDA" ]]; then
+  echo "teste-rls-acoes: não achei $LIB_GUARDA" >&2
+  exit 2
+fi
+# shellcheck source=lib/guarda_dados_pg.sh
+source "$LIB_GUARDA"
+
 if [[ -d /workspace ]]; then
   DADOS="${DADOS:-/workspace/pg-acoes-rls-tmp}"
 else
   DADOS="${DADOS:-$(mktemp -d "${TMPDIR:-/tmp}/pg-acoes-rls.XXXXXX")}"
 fi
 PORTA="${PORTA:-55432}"
+validar_dados "$DADOS"
 LOG="$DADOS/postgres.log"
 if [[ ! -f "$MIGRACAO" ]]; then
   echo "teste-rls-acoes: migração não encontrada: $MIGRACAO" >&2
@@ -76,11 +87,11 @@ derrubar() {
   if [[ -d "$DADOS" && -f "$DADOS/postmaster.pid" ]]; then
     "$PGCTL" -D "$DADOS" -w stop -m fast >/dev/null 2>&1 || true
   fi
-  rm -rf "$DADOS"
+  remover_dados
 }
 trap derrubar EXIT
 
-rm -rf "$DADOS"
+remover_dados
 "$INITDB" -D "$DADOS" -E UTF8 --locale=C --no-sync --auth=trust --username=postgres >/dev/null
 cat >> "$DADOS/postgresql.conf" << EOF
 listen_addresses = '127.0.0.1'
