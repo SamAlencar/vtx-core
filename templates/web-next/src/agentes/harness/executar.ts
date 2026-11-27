@@ -7,16 +7,29 @@ import {
   type LanguageModel,
 } from "ai";
 import { z } from "zod";
+import type {
+  AcaoPendente,
+  ContextoRetomada,
+  RepositorioAcoes,
+} from "@/src/agentes/memoria/acoes";
 import { ErroAgente } from "./erros";
 
 export type ModeloAgente = LanguageModel;
+
+/** Contexto repassado à tool: o signal dispara no TIMEOUT e ao fim da execução. */
+export type ContextoTool = { signal: AbortSignal };
 
 export type ToolDefinicao<Entrada = unknown, Saida = unknown> = {
   nome: string;
   descricao: string;
   entrada: z.ZodType<Entrada>;
   saida: z.ZodType<Saida>;
-  executar: (input: Entrada) => Promise<Saida> | Saida;
+  /**
+   * Gasto, dado pessoal, publicação ou efeito irreversível. O harness não executa:
+   * grava a ação pendente e devolve PENDENTE_APROVACAO (VTX-213).
+   */
+  critica?: boolean;
+  executar: (input: Entrada, ctx: ContextoTool) => Promise<Saida> | Saida;
 };
 
 /** Versão apagada para listas heterogêneas (parâmetro de executar é contravariante). */
@@ -25,7 +38,14 @@ export type ToolRegistro = {
   descricao: string;
   entrada: z.ZodType;
   saida: z.ZodType;
-  executar: (input: never) => Promise<unknown> | unknown;
+  critica?: boolean;
+  executar: (input: never, ctx: ContextoTool) => Promise<unknown> | unknown;
+};
+
+/** Onde gravar a ação pendente de tool crítica e de quem ela é. */
+export type AprovacaoAgente = {
+  repositorio: RepositorioAcoes;
+  usuarioId: string;
 };
 
 export type PedidoAgente<Saida = unknown> = {
@@ -44,16 +64,34 @@ export type PedidoAgente<Saida = unknown> = {
    */
   fallback?: ModeloAgente;
   saida?: z.ZodType<Saida>;
+  /** Obrigatório se alguma tool for crítica; sem ele a chamada crítica falha com REGRA_VIOLADA. */
+  aprovacao?: AprovacaoAgente;
   /** Só para testes: substitui o atraso do backoff. */
   esperar?: (ms: number) => Promise<void>;
 };
 
 export type ResultadoAgente<Saida = unknown> = {
+  status: "CONCLUIDO" | "PENDENTE_APROVACAO";
+  /** Presente quando status é PENDENTE_APROVACAO. */
+  acao_id?: string;
   texto: string;
   trace_id: string;
   passos: number;
   toolsChamadas: string[];
   dados?: Saida;
+};
+
+/** Modelo, tools e prazos para retomar o loop depois da aprovação. */
+export type PedidoRetomada<Saida = unknown> = {
+  tools: ToolRegistro[];
+  modelo: ModeloAgente;
+  sistema?: string;
+  saida?: z.ZodType<Saida>;
+  fallback?: ModeloAgente;
+  maxIteracoes?: number;
+  timeoutMs?: number;
+  esperar?: (ms: number) => Promise<void>;
+  aprovacao?: AprovacaoAgente;
 };
 
 const MAX_STEPS_PADRAO = 8;
@@ -96,6 +134,11 @@ function campoDe(erro: unknown): string {
     return m[1];
   }
   return "entrada";
+}
+
+/** 401/403: credencial inválida; não adianta chamar o mesmo provedor de novo. */
+function ehErroDeAutenticacao(erro: unknown): boolean {
+  return APICallError.isInstance(erro) && (erro.statusCode === 401 || erro.statusCode === 403);
 }
 
 function ehTransitorio(erro: unknown): boolean {
@@ -167,6 +210,8 @@ async function gerarPasso(args: {
   esperar?: (ms: number) => Promise<void>;
   fallback?: ModeloAgente;
   sistema?: string;
+  /** Circuit breaker da execução: true depois de 401/403 do principal. */
+  disjuntor: { principalInvalido: boolean };
 }) {
   const tentar = async (modelo: ModeloAgente) =>
     generateText({
@@ -197,9 +242,16 @@ async function gerarPasso(args: {
     throw ultimo;
   };
 
+  const principalLiberado = !(args.disjuntor.principalInvalido && args.fallback);
   try {
+    if (!principalLiberado) {
+      throw new Error("Modelo principal desligado nesta execução (erro de autenticação).");
+    }
     return await chamarComRetry(args.modelo);
   } catch (erro) {
+    if (ehErroDeAutenticacao(erro)) {
+      args.disjuntor.principalInvalido = true;
+    }
     if (erro instanceof ErroAgente) {
       throw erro;
     }
@@ -249,110 +301,27 @@ function validarSaida<Saida>(texto: string, saida?: z.ZodType<Saida>): Saida | u
 export async function executarAgente<Saida = unknown>(
   pedido: PedidoAgente<Saida>,
 ): Promise<ResultadoAgente<Saida>> {
-  const maxIteracoes = pedido.maxIteracoes ?? lerMaxIteracoes();
   const timeoutMs = pedido.timeoutMs ?? lerTimeoutMs();
   const trace_id = crypto.randomUUID();
-  const toolsChamadas: string[] = [];
   const inicio = Date.now();
   const controlador = new AbortController();
   const temporizador = setTimeout(() => controlador.abort(), timeoutMs);
-
+  const disjuntor = { principalInvalido: false };
   const mensagens: Mensagem[] = [
     { role: "user", content: pedido.objetivo } as Mensagem,
   ];
 
   try {
-    for (let passo = 1; passo <= maxIteracoes; passo += 1) {
-      if (Date.now() - inicio >= timeoutMs || controlador.signal.aborted) {
-        throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
-      }
-      const gerado = await gerarPasso({
-        modelo: pedido.modelo,
-        mensagens,
-        tools: pedido.tools,
-        signal: controlador.signal,
-        esperar: pedido.esperar,
-        fallback: pedido.fallback,
-        sistema: pedido.sistema,
-      });
-
-      const chamadas = gerado.toolCalls ?? [];
-      const invalida = chamadas.find((c) => "invalid" in c && c.invalid);
-      if (invalida && "error" in invalida) {
-        const erro = invalida.error;
-        if (NoSuchToolError.isInstance(erro)) {
-          throw new ErroAgente(
-            "FUNCAO_DESCONHECIDA",
-            `Ferramenta desconhecida: ${invalida.toolName}.`,
-          );
-        }
-        if (InvalidToolInputError.isInstance(erro)) {
-          throw new ErroAgente(
-            "PARAMETRO_INVALIDO",
-            erro.message,
-            campoDe(erro),
-          );
-        }
-        throw new ErroAgente("ERRO_INTERNO", erro instanceof Error ? erro.message : "Tool inválida.");
-      }
-
-      if (chamadas.length === 0) {
-        const texto = gerado.text;
-        const dados = validarSaida(texto, pedido.saida);
-        return { texto, trace_id, passos: passo, toolsChamadas, dados };
-      }
-
-      const resultados: Array<{
-        type: "tool-result";
-        toolCallId: string;
-        toolName: string;
-        output: unknown;
-      }> = [];
-
-      for (const chamada of chamadas) {
-        const def = pedido.tools.find((t) => t.nome === chamada.toolName);
-        if (!def) {
-          throw new ErroAgente(
-            "FUNCAO_DESCONHECIDA",
-            `Ferramenta desconhecida: ${chamada.toolName}.`,
-          );
-        }
-        toolsChamadas.push(chamada.toolName);
-        try {
-          const executar = def.executar as (input: unknown) => Promise<unknown> | unknown;
-          const bruto = await comTimeout(Promise.resolve(executar(chamada.input)), controlador.signal);
-          const saidaTool = def.saida.parse(bruto);
-          resultados.push({
-            type: "tool-result",
-            toolCallId: chamada.toolCallId,
-            toolName: chamada.toolName,
-            output: saidaTool,
-          });
-        } catch (erro) {
-          if (erro instanceof ErroAgente) {
-            throw erro;
-          }
-          if (erro instanceof z.ZodError) {
-            throw new ErroAgente("ERRO_INTERNO", z.prettifyError(erro));
-          }
-          throw new ErroAgente(
-            "ERRO_INTERNO",
-            erro instanceof Error ? erro.message : "Falha ao executar a tool.",
-          );
-        }
-      }
-
-      mensagens.push(...(gerado.response.messages as Mensagem[]));
-      mensagens.push({
-        role: "tool",
-        content: resultados,
-      } as Mensagem);
-    }
-
-    throw new ErroAgente(
-      "MAX_ITERACOES",
-      `Parou em maxIteracoes (${maxIteracoes}).`,
-    );
+    return await rodarLoop({
+      pedido,
+      mensagens,
+      passoInicial: 1,
+      toolsChamadas: [],
+      trace_id,
+      inicio,
+      controlador,
+      disjuntor,
+    });
   } catch (erro) {
     if (erro instanceof ErroAgente) {
       throw erro.comTrace(trace_id);
@@ -368,7 +337,276 @@ export async function executarAgente<Saida = unknown>(
     );
   } finally {
     clearTimeout(temporizador);
+    // Encerra tool que ainda esteja rodando (erro, timeout ou pendência).
+    controlador.abort();
   }
+}
+
+/**
+ * Continua o loop a partir do contexto gravado na ação, incluindo o resultado
+ * da tool crítica aprovada e os resultados não críticos do mesmo passo.
+ */
+export async function retomarAgente<Saida = unknown>(
+  acao: AcaoPendente,
+  resultadoTool: unknown,
+  pedido: PedidoRetomada<Saida>,
+): Promise<ResultadoAgente<Saida>> {
+  const ctx = acao.contexto_retomada;
+  if (!ctx) {
+    throw new ErroAgente(
+      "ERRO_INTERNO",
+      "A ação não tem contexto de retomada.",
+      undefined,
+      acao.trace_id,
+    );
+  }
+  const timeoutMs = pedido.timeoutMs ?? lerTimeoutMs();
+  const inicio = Date.now();
+  const controlador = new AbortController();
+  const temporizador = setTimeout(() => controlador.abort(), timeoutMs);
+  const disjuntor = { principalInvalido: false };
+  const mensagens: Mensagem[] = [
+    ...(ctx.mensagens as Mensagem[]),
+    ...(ctx.mensagensAssistente as Mensagem[]),
+    {
+      role: "tool",
+      content: [
+        ...ctx.resultadosParciais,
+        {
+          type: "tool-result",
+          toolCallId: ctx.toolCallId,
+          toolName: acao.tool,
+          output: resultadoTool,
+        },
+      ],
+    } as Mensagem,
+  ];
+  const pedidoLoop: PedidoAgente<Saida> = {
+    objetivo: "",
+    sistema: pedido.sistema ?? ctx.sistema,
+    tools: pedido.tools,
+    modelo: pedido.modelo,
+    maxIteracoes: pedido.maxIteracoes ?? ctx.maxIteracoes,
+    timeoutMs,
+    fallback: pedido.fallback,
+    saida: pedido.saida,
+    aprovacao: pedido.aprovacao,
+    esperar: pedido.esperar,
+  };
+  try {
+    return await rodarLoop({
+      pedido: pedidoLoop,
+      mensagens,
+      passoInicial: ctx.passo + 1,
+      toolsChamadas: [...ctx.toolsChamadas],
+      trace_id: acao.trace_id,
+      inicio,
+      controlador,
+      disjuntor,
+    });
+  } catch (erro) {
+    if (erro instanceof ErroAgente) {
+      throw erro.comTrace(acao.trace_id);
+    }
+    if (controlador.signal.aborted) {
+      throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.", undefined, acao.trace_id);
+    }
+    throw new ErroAgente(
+      "ERRO_INTERNO",
+      erro instanceof Error ? erro.message : "Falha interna no harness.",
+      undefined,
+      acao.trace_id,
+    );
+  } finally {
+    clearTimeout(temporizador);
+    controlador.abort();
+  }
+}
+
+async function rodarLoop<Saida>(args: {
+  pedido: PedidoAgente<Saida>;
+  mensagens: Mensagem[];
+  passoInicial: number;
+  toolsChamadas: string[];
+  trace_id: string;
+  inicio: number;
+  controlador: AbortController;
+  disjuntor: { principalInvalido: boolean };
+}): Promise<ResultadoAgente<Saida>> {
+  const { pedido, mensagens, toolsChamadas, trace_id, inicio, controlador, disjuntor } = args;
+  const maxIteracoes = pedido.maxIteracoes ?? lerMaxIteracoes();
+  const timeoutMs = pedido.timeoutMs ?? lerTimeoutMs();
+
+  for (let passo = args.passoInicial; passo <= maxIteracoes; passo += 1) {
+    if (Date.now() - inicio >= timeoutMs || controlador.signal.aborted) {
+      throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
+    }
+    const gerado = await gerarPasso({
+      modelo: pedido.modelo,
+      mensagens,
+      tools: pedido.tools,
+      signal: controlador.signal,
+      esperar: pedido.esperar,
+      fallback: pedido.fallback,
+      sistema: pedido.sistema,
+      disjuntor,
+    });
+
+    const chamadas = gerado.toolCalls ?? [];
+    const invalida = chamadas.find((c) => "invalid" in c && c.invalid);
+    if (invalida && "error" in invalida) {
+      const erro = invalida.error;
+      if (NoSuchToolError.isInstance(erro)) {
+        throw new ErroAgente(
+          "FUNCAO_DESCONHECIDA",
+          `Ferramenta desconhecida: ${invalida.toolName}.`,
+        );
+      }
+      if (InvalidToolInputError.isInstance(erro)) {
+        throw new ErroAgente(
+          "PARAMETRO_INVALIDO",
+          erro.message,
+          campoDe(erro),
+        );
+      }
+      throw new ErroAgente("ERRO_INTERNO", erro instanceof Error ? erro.message : "Tool inválida.");
+    }
+
+    if (chamadas.length === 0) {
+      const texto = gerado.text;
+      const dados = validarSaida(texto, pedido.saida);
+      return { status: "CONCLUIDO", texto, trace_id, passos: passo, toolsChamadas, dados };
+    }
+
+    const resultados: Array<{
+      type: "tool-result";
+      toolCallId: string;
+      toolName: string;
+      output: unknown;
+    }> = [];
+    let critica:
+      | { def: ToolRegistro; chamada: (typeof chamadas)[number] }
+      | undefined;
+
+    for (const chamada of chamadas) {
+      const def = pedido.tools.find((t) => t.nome === chamada.toolName);
+      if (!def) {
+        throw new ErroAgente(
+          "FUNCAO_DESCONHECIDA",
+          `Ferramenta desconhecida: ${chamada.toolName}.`,
+        );
+      }
+      toolsChamadas.push(chamada.toolName);
+      if (def.critica) {
+        if (critica) {
+          throw new ErroAgente(
+            "REGRA_VIOLADA",
+            "No máximo uma tool crítica por passo do harness.",
+          );
+        }
+        critica = { def, chamada };
+        continue;
+      }
+      try {
+        const executar = def.executar as (input: unknown, ctx: ContextoTool) => Promise<unknown> | unknown;
+        const bruto = await comTimeout(
+          Promise.resolve(executar(chamada.input, { signal: controlador.signal })),
+          controlador.signal,
+        );
+        const saidaTool = def.saida.parse(bruto);
+        resultados.push({
+          type: "tool-result",
+          toolCallId: chamada.toolCallId,
+          toolName: chamada.toolName,
+          output: saidaTool,
+        });
+      } catch (erro) {
+        if (erro instanceof ErroAgente) {
+          throw erro;
+        }
+        if (erro instanceof z.ZodError) {
+          throw new ErroAgente("ERRO_INTERNO", z.prettifyError(erro));
+        }
+        throw new ErroAgente(
+          "ERRO_INTERNO",
+          erro instanceof Error ? erro.message : "Falha ao executar a tool.",
+        );
+      }
+    }
+
+    if (critica) {
+      const contexto: ContextoRetomada = {
+        mensagens: structuredClone(mensagens),
+        mensagensAssistente: structuredClone(gerado.response.messages),
+        resultadosParciais: resultados,
+        toolCallId: critica.chamada.toolCallId,
+        passo,
+        toolsChamadas: [...toolsChamadas],
+        maxIteracoes,
+        sistema: pedido.sistema,
+      };
+      const acao_id = await registrarPendente(
+        critica.def,
+        critica.chamada.input,
+        trace_id,
+        pedido.aprovacao,
+        contexto,
+      );
+      return {
+        status: "PENDENTE_APROVACAO",
+        acao_id,
+        texto: `A ação ${critica.def.nome} aguarda aprovação (acao_id ${acao_id}).`,
+        trace_id,
+        passos: passo,
+        toolsChamadas,
+      };
+    }
+
+    mensagens.push(...(gerado.response.messages as Mensagem[]));
+    mensagens.push({
+      role: "tool",
+      content: resultados,
+    } as Mensagem);
+  }
+
+  throw new ErroAgente(
+    "MAX_ITERACOES",
+    `Parou em maxIteracoes (${maxIteracoes}).`,
+  );
+}
+
+async function registrarPendente(
+  def: ToolRegistro,
+  input: unknown,
+  trace_id: string,
+  aprovacao: AprovacaoAgente | undefined,
+  contexto: ContextoRetomada,
+): Promise<string> {
+  if (!aprovacao) {
+    throw new ErroAgente(
+      "REGRA_VIOLADA",
+      `A tool ${def.nome} é crítica e exige aprovação; configure pedido.aprovacao.`,
+    );
+  }
+  const id = crypto.randomUUID();
+  const em = new Date().toISOString();
+  await aprovacao.repositorio.criar({
+    id,
+    usuario_id: aprovacao.usuarioId,
+    tool: def.nome,
+    input,
+    status: "pendente",
+    trace_id,
+    criado_em: em,
+    contexto_retomada: contexto,
+  });
+  await aprovacao.repositorio.auditar({
+    acao_id: id,
+    usuario_id: aprovacao.usuarioId,
+    evento: "criada",
+    em,
+  });
+  return id;
 }
 
 export type { CodigoErro } from "./erros";

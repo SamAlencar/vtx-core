@@ -2127,11 +2127,11 @@ tarefas:
   fase: F13
   area: Templates
   prioridade: 68
-  status: a fazer
+  status: em andamento
   entregavel: templates/web-next/app/api/agentes/acoes/
   depende_de:
   - VTX-177
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 8), importada em 26/11/2026. Tarefa: flag critica: true na definição da tool; o harness devolve PENDENTE_APROVACAO com acao_id, persiste a ação pendente e só executa via POST /api/agentes/acoes/[id]/aprovar, com usuário autenticado e registro de auditoria. Arquivos: templates/web-next/src/agentes/harness/, app/api/agentes/acoes/, supabase/migrations/, tests/integracao/aprovacao.test.ts. Aceite: a tool crítica não executa sem aprovação; executa uma única vez após aprovar (idempotente); grava auditoria com usuário e horário. Follow-ups da revisão do harness (VTX-177): (a) a tool não recebe AbortSignal e segue em segundo plano após TIMEOUT — no escopo desta tarefa, repasse o signal à tool (inclusive crítica); (b) o modelo principal é chamado de novo a cada iteração mesmo após 401 — precisa de circuit breaker / marcar o provedor como inválido na mesma execução.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 8), importada em 26/11/2026. Tarefa: flag critica: true na definição da tool; o harness devolve PENDENTE_APROVACAO com acao_id, persiste a ação pendente e só executa via POST /api/agentes/acoes/[id]/aprovar, com usuário autenticado e registro de auditoria. Arquivos: templates/web-next/src/agentes/harness/, app/api/agentes/acoes/, supabase/migrations/, tests/integracao/aprovacao.test.ts. Aceite: a tool crítica não executa sem aprovação; executa uma única vez após aprovar (idempotente); grava auditoria com usuário e horário. Follow-ups da revisão do harness (VTX-177): (a) a tool não recebe AbortSignal e segue em segundo plano após TIMEOUT — no escopo desta tarefa, repasse o signal à tool (inclusive crítica); (b) o modelo principal é chamado de novo a cada iteração mesmo após 401 — precisa de circuit breaker / marcar o provedor como inválido na mesma execução. Revisão do PR #42 (27/11/2026): escrita só no servidor (RLS authenticated só SELECT); rejeitar, TTL, lease de executando e retomada do fluxo após aprovar. Teste estático da migração neste PR; RLS ao vivo na VTX-216; repositório Supabase na VTX-230.'
 
 - id: VTX-216
   titulo: Estado e memória de sessão do agente
@@ -2142,7 +2142,7 @@ tarefas:
   entregavel: templates/web-next/src/agentes/memoria/
   depende_de:
   - VTX-177
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 10), importada em 26/11/2026. Tarefa: tabelas execucoes_agente e mensagens_agente com migração SQL e RLS por usuário, e repositório em src/agentes/memoria/ para retomar uma sessão. Arquivos: templates/web-next/supabase/migrations/, src/agentes/memoria/, tests/integracao/memoria.test.ts. Aceite: com supabase start local (gratuito), supabase db reset aplica a migração sem erro; o usuário A não lê a sessão do usuário B (RLS); retomar a sessão recupera as mensagens anteriores.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 10), importada em 26/11/2026. Tarefa: tabelas execucoes_agente e mensagens_agente com migração SQL e RLS por usuário, e repositório em src/agentes/memoria/ para retomar uma sessão. Arquivos: templates/web-next/supabase/migrations/, src/agentes/memoria/, tests/integracao/memoria.test.ts. Aceite: com supabase start local (gratuito), supabase db reset aplica a migração sem erro; o usuário A não lê a sessão do usuário B (RLS); retomar a sessão recupera as mensagens anteriores. Também cobre o aceite ao vivo de RLS das tabelas acoes_pendentes e acoes_auditoria (VTX-213): o teste ao vivo faz SELECT na view (e nas colunas permitidas da tabela) como authenticated — o dono lê as próprias linhas, não lê contexto_retomada, não vê as de outro usuário, não insere/atualiza/aprova; o service_role executa as RPCs. Há um script em templates/web-next/scripts/teste-rls-acoes.sh (cluster temporário; opcional no CI). A escrita é do servidor (service_role ou RPC security definer).'
 
 - id: VTX-217
   titulo: e2e no CI do template web
@@ -2226,3 +2226,14 @@ tarefas:
   status: concluído
   entregavel: .github/workflows/testes.yml
   notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; unittest, ifc-web, qualidade e os demais jobs herdam (unittest também declara o mesmo, vindo do PR #39); o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel. Concluída no PR #40 em 27/11/2026 (HEAD 78176c7, merge 92397bb): permissions: contents: read no topo de testes.yml.'
+
+- id: VTX-230
+  titulo: Repositório Supabase de ações pendentes (escrita no servidor)
+  fase: F13
+  area: Templates
+  prioridade: 74
+  status: a fazer
+  entregavel: templates/web-next/src/agentes/memoria/acoes-supabase.ts
+  depende_de:
+  - VTX-213
+  notas: 'Follow-up da revisão do Tzu no PR #42 (VTX-213), 27/11/2026. A migração já restringe a escrita ao servidor (service_role ou RPC security definer com search_path fixo e grants mínimos); o authenticated só faz SELECT das próprias linhas. Tarefa: implementar RepositorioAcoes em Supabase no template web, usando service_role (ou as RPCs acoes_criar/reivindicar/concluir/rejeitar/auditar) nas rotas e no harness — nunca o JWT do usuário para insert/update/delete. Arquivos: templates/web-next/src/agentes/memoria/acoes-supabase.ts (ou equivalente), ligação nas rotas de aprovar/rejeitar, testes de contrato com o repositório em memória. Aceite: o repositório persiste ação e auditoria; reivindicar é atômico; rejeitar, expirar e o lease de executando (derivado de AGENT_TIMEOUT_MS + margem, passado em p_lease) seguem o contrato; a leitura do usuário é GRANT SELECT por coluna (nunca contexto_retomada) e/ou a view acoes_pendentes_leitura; as RPCs já auditam criar/reivindicar/concluir/rejeitar — não chamar acoes_auditar de novo nesses caminhos; falha segura se o service_role não estiver configurado (não executa a tool). Mexe em autenticação e dado de agente: PR com etiqueta precisa do Samuel.'

@@ -8,6 +8,7 @@ Orquestração de agente: prompts, tools, harness e memória.
 - `src/agentes/tools/`: schema Zod e chamada a `src/dominio/`.
 - `src/agentes/harness/`: único lugar que importa o SDK de modelo.
 - `src/agentes/memoria/`: sessão e histórico (a VTX-216 completa).
+- `src/agentes/memoria/acoes.ts`: ações pendentes de tool crítica (`critica: true`), aprovadas ou rejeitadas em `app/api/agentes/acoes/[id]/aprovar/` e `.../rejeitar/` (VTX-213). Escrita no banco só no servidor; a leitura autenticada é SELECT por coluna (sem `contexto_retomada`), com a view `acoes_pendentes_leitura` como superfície. O repositório Supabase fica na VTX-230.
 
 ## Não pode
 
