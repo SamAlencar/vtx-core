@@ -2223,6 +2223,6 @@ tarefas:
   fase: F1
   area: Processo
   prioridade: 73
-  status: em andamento
+  status: concluído
   entregavel: .github/workflows/testes.yml
-  notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; unittest, ifc-web, qualidade e os demais jobs herdam (unittest também declara o mesmo, vindo do PR #39); o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+  notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; unittest, ifc-web, qualidade e os demais jobs herdam (unittest também declara o mesmo, vindo do PR #39); o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel. Concluída no PR #40 em 27/11/2026 (HEAD 78176c7, merge 92397bb): permissions: contents: read no topo de testes.yml.'

@@ -21,9 +21,9 @@ tarefas:
   - id: VTX-229
     titulo: "permissions: contents: read no topo do workflow testes.yml"
     area: "Processo"
-    status: "em andamento"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Entregue neste PR (fica em andamento até o merge): permissions no topo de testes.yml para unittest, ifc-web, qualidade e os demais jobs herdarem contents: read. Follow-up da observação do Tzu no #39. Skills: writing-plans (docs/planos/2026-11-27-vtx-229.md), verification-before-completion. Ferramentas: git, gh. Como foi: ajudou; mudança pequena."
+    notas: "PR #40 mesclado em 27/11/2026 (HEAD 78176c7, merge 92397bb): permissions no topo de testes.yml para unittest, ifc-web, qualidade e os demais jobs herdarem contents: read. Follow-up da observação do Tzu no #39. Skills: writing-plans (docs/planos/2026-11-27-vtx-229.md), verification-before-completion. Ferramentas: git, gh. Como foi: ajudou; mudança pequena."
   - id: VTX-179
     titulo: "Log estruturado por execução de agente e custo"
     area: "Operação"
