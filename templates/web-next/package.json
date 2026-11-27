@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint . --ignore-pattern 'tests/fronteiras/**'",
     "regras:extrair": "node scripts/extrair-exemplos-regras.mjs",
     "regras:check": "node scripts/extrair-exemplos-regras.mjs --check",
     "typecheck": "node scripts/extrair-exemplos-regras.mjs --check && tsc --noEmit",

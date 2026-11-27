@@ -222,10 +222,20 @@ class TestBootstrapProjeto(unittest.TestCase):
                 ".cursor/rules/stack.mdc",
                 ".cursor/rules/api.mdc",
                 ".cursor/rules/agentes.mdc",
+                "src/dominio/AGENTS.md",
+                "src/agentes/AGENTS.md",
+                "src/agentes/memoria/index.ts",
+                "evals/README.md",
+                "tests/fronteiras/violacao.ts",
+                "tests/fronteiras/sdk-fora-harness.ts",
             ):
                 self.assertTrue((dest / rel).is_file(), rel)
             agents_web = (dest / "AGENTS.md").read_text(encoding="utf-8")
             self.assertIn("DESIGN.md", agents_web)
+            for rel in ("src/dominio/AGENTS.md", "src/agentes/AGENTS.md"):
+                texto = (dest / rel).read_text(encoding="utf-8")
+                self.assertIn("Pode", texto)
+                self.assertIn("Não pode", texto)
             self.assertFalse((dest / "node_modules").exists())
             self.assertFalse((dest / ".next").exists())
             readme = (dest / "README.md").read_text(encoding="utf-8")
