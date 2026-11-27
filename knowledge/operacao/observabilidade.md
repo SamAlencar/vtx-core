@@ -53,9 +53,23 @@ import { registerOTel } from "@vercel/otel";
 export function register() { registerOTel({ serviceName: "app-web" }); }
 ```
 
+## 5b. Execução de agente: log e custo (VTX-179)
+Cada execução de agente grava **uma linha JSON** com run_id, trace_id, cliente, agente, modelo, tokens_entrada, tokens_saida, custo_usd, duracao_ms, status, erro e ts (UTC). A implementação de referência é [core/agente/telemetria.py](../../core/agente/telemetria.py) e usa só a biblioteca padrão:
+- `redigir()` troca CPF, e-mail e tokens (`sk-`, `ghp_`, JWT, `Bearer`) por marcadores antes de gravar. A redação vale também para a mensagem de erro.
+- `custo_usd()` calcula o custo pelo preço por milhão de tokens. `custo_por_cliente_dia()` soma por cliente e dia, em UTC.
+- `Telemetria.execucao()` confere o orçamento diário do cliente **antes** de começar. Se ele estiver esgotado, levanta `OrcamentoExcedido` e nada roda. A linha é gravada mesmo quando a execução falha.
+```python
+t = Telemetria(Path("logs/agentes.jsonl"), orcamento_dia={"cliente-a": 2.0})
+with t.execucao("cliente-a", "dev", "modelo-x", trace_id=trace_id) as ex:
+    resp = chamar_modelo(...)
+    ex.somar(resp.in_tok, resp.out_tok, custo_usd(resp.in_tok, resp.out_tok, 3.0, 15.0))
+```
+Os testes estão em `tests/test_telemetria.py` e cobrem os campos, a PII, a soma e o orçamento. Franquia por cliente e BYOK ficam na VTX-149.
+
 ## 6. Checklist
 - [ ] Logs em JSON com `service`, `env`, `trace_id`, `request_id`; nível `info` em produção.
 - [ ] Redação de PII/segredos configurada e testada.
+- [ ] Agentes: uma linha JSON por execução com custo e orçamento diário por cliente (§5b).
 - [ ] OTel instrumentado (`instrumentation.ts`) e `traceparent` propagado.
 - [ ] Painel RED + saturação por serviço; SLO visível.
 - [ ] Alertas por *burn rate* com dono e runbook; health check agendado.

@@ -1,0 +1,8 @@
+data: "2026-11-27"
+tarefas:
+  - id: VTX-179
+    titulo: "Log estruturado por execução de agente e custo"
+    area: "Operação"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Entregue no PR (fica em andamento até o merge): core/agente/telemetria.py (JSONL por execução, redação de CPF/e-mail/tokens, soma por cliente/dia, orçamento diário que barra antes de rodar), tests/test_telemetria.py (5 testes), §5b em knowledge/operacao/observabilidade.md. Skills: writing-plans (docs/planos/2026-11-27-vtx-179.md), verification-before-completion (unittest, ruff, mypy, validadores). Ferramentas: git, gh, python, ruff, mypy. Como foi: ajudou; só biblioteca padrão, custo baixo. Na mesma rodada: correções do PR #37 (VTX-215) pedidas pelo Tzu."

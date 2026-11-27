@@ -1707,7 +1707,7 @@ tarefas:
   fase: F13
   area: Operação
   prioridade: 65
-  status: a fazer
+  status: em andamento
   entregavel: 'core/agente/telemetria.py + knowledge/operacao/observabilidade.md'
   depende_de:
   - VTX-177
