@@ -21,8 +21,8 @@ O repositório privado no plano gratuito do GitHub não tem proteção de branch
 
 - O revisor é outra sessão, com **contexto limpo** (lê o diff, a descrição e os documentos citados, não a conversa de quem escreveu) e, quando o plano oferecer, **modelo diferente** do autor ([topologia §4](topologia-de-agentes.md)).
 - O veredito fica escrito no PR, com a HEAD revisada: **Aprovado**, **Aprovado com ressalvas** ou **Mudanças necessárias**, e a lista de achados com arquivo e linha.
-- O veredito vale para aquele commit. Push novo (inclusive rebase) pede veredito novo, exceto no caso abaixo.
-- **Aprovado com ressalvas:** o autor aplica as ressalvas que o revisor marcou como "corrigir antes do merge", registra no PR o que mudou e pode mesclar, desde que a classe do PR (§4) não peça mais que isso. Ressalva não bloqueante vira tarefa de acompanhamento.
+- O veredito vale para aquele commit. Push novo (inclusive rebase) pede veredito novo.
+- **Aprovado com ressalvas:** o autor aplica as ressalvas que o revisor marcou como "corrigir antes do merge", registra no PR o que mudou e pede veredito novo na HEAD final. O merge só acontece com veredito do Tzu nessa HEAD (**Aprovado**, ou **Aprovado com ressalvas** só de itens não bloqueantes). Não é preciso perguntar ao Samuel sobre as ressalvas em si; o OK dele no PR, quando a classe for sensível ou crítica, continua valendo. Ressalva não bloqueante vira tarefa de acompanhamento. Esta é a prática atual da rotina; pode ser afrouxada se o Samuel decidir o contrário.
 - Autor e revisor nunca são a mesma sessão. Aprovar o próprio trabalho é A3.
 
 ## 4. Classes de risco
@@ -46,7 +46,7 @@ PR que adiciona um job ao `.github/workflows/testes.yml`: classe sensível. O ag
 
 - [ ] Verificação local feita antes de abrir o PR
 - [ ] CI verde na HEAD final, sem teste removido nem limiar baixado
-- [ ] Veredito do revisor na HEAD exata (ou ressalvas aplicadas e registradas)
+- [ ] Veredito do revisor na HEAD final (depois de ressalvas, veredito novo nessa HEAD)
 - [ ] Classe de risco declarada na descrição do PR; etiqueta "precisa do Samuel" quando sensível ou crítica
 - [ ] Smoke test em preview ou staging quando a classe pede
 

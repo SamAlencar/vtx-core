@@ -54,3 +54,9 @@ tarefas:
     status: "aguardando"
     responsavel: "agente-orquestrador"
     notas: "Aguardando o OK do Samuel no PR #28 (permissões de agente, etiqueta precisa do Samuel) e o veredito do Tzu. Skills: verification-before-completion (unittest 63, json.tool). Ferramentas: git, gh."
+  - id: VTX-225
+    titulo: "Proteção real da branch main (ruleset ou hook de pre-push)"
+    area: "Qualidade"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Aberta pela revisão do Tzu no PR #28 (item 1): o plano gratuito não tem proteção de branch; cli.json é a única barreira técnica e não cobre git push sem argumentos. Ver mestre."

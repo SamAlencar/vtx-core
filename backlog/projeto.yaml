@@ -2039,7 +2039,7 @@ tarefas:
   prioridade: 66
   status: a fazer
   entregavel: scripts/mesclar_pr.sh
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 12), importada em 26/11/2026. Tarefa: o repositório privado no plano gratuito não aceita required checks (API 403). Criar scripts/mesclar_pr.sh <n> que só chama gh pr merge se gh pr checks <n> estiver todo verde e a HEAD tiver a aprovação registrada, e tornar esse script o único caminho de merge previsto no AGENTS.md. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, AGENTS.md. Aceite: teste com gh simulado (stub no PATH) mostra que o script sai com código diferente de 0 e não chama merge quando há check vermelho ou pendente, e chama merge quando tudo está verde. Relacionada à VTX-172 (aguardando decisão do Samuel), que esta tarefa contorna sem custo. Ampliação de 26/11/2026 (orientações do Samuel, item 4; knowledge/processos/porta-para-producao.md): a aprovação conferida é o veredito do revisor de IA escrito no PR com o SHA da HEAD (Aprovado, ou Aprovado com ressalvas seguido do registro das ressalvas aplicadas); PR com a etiqueta precisa do Samuel exige também o OK do Samuel no PR; o script usa --match-head-commit. Depois dela, decidir com o Samuel se PR trivial pode mesclar só com CI verde.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 12), importada em 26/11/2026. Tarefa: o repositório privado no plano gratuito não aceita required checks (API 403). Criar scripts/mesclar_pr.sh <n> que só chama gh pr merge se gh pr checks <n> estiver todo verde e a HEAD tiver a aprovação registrada, e tornar esse script o único caminho de merge previsto no AGENTS.md. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, AGENTS.md. Aceite: teste com gh simulado (stub no PATH) mostra que o script sai com código diferente de 0 e não chama merge quando há check vermelho ou pendente, e chama merge quando tudo está verde. Relacionada à VTX-172 (aguardando decisão do Samuel), que esta tarefa contorna sem custo. Ampliação de 26/11/2026 (orientações do Samuel, item 4; knowledge/processos/porta-para-producao.md): a aprovação conferida é o veredito do revisor de IA escrito no PR com o SHA da HEAD final (Aprovado, ou Aprovado com ressalvas só de itens não bloqueantes, depois de aplicadas as ressalvas bloqueantes e de um veredito novo nessa HEAD); PR com a etiqueta precisa do Samuel exige também o OK do Samuel no PR; o script usa --match-head-commit. Depois dela, decidir com o Samuel se PR trivial pode mesclar só com CI verde.'
 
 - id: VTX-215
   titulo: Lint e tipos em Python no CI
@@ -2057,7 +2057,7 @@ tarefas:
   prioridade: 57
   status: a fazer
   entregavel: knowledge/processos/topologia-de-agentes.md + knowledge/processos/orientacoes-agentes-ia.md
-  notas: 'Orientações de agentes de IA do Samuel (itens 1 e 2), adaptadas à VTX. Mapeamento orientação → estado → ação em knowledge/processos/orientacoes-agentes-ia.md. Topologia: orquestrador + subagentes verificadores, critério agente novo × subagente × ferramenta, modelos por perfil dentro da cota semanal, tabela de escopos AGENTS.md / .mdc / agents/ / SKILL.md / DESIGN.md. Texto de origem truncado (item 2 parcial, item 3 ausente): revisar quando aparecer. Concluída em 26/11/2026.'
+  notas: 'Orientações de agentes de IA do Samuel (itens 1 e 2), adaptadas à VTX. Mapeamento orientação → estado → ação em knowledge/processos/orientacoes-agentes-ia.md. Topologia: orquestrador + subagentes verificadores, critério agente novo × subagente × ferramenta, modelos por perfil dentro da cota semanal, tabela de escopos AGENTS.md / .mdc / agents/ / SKILL.md / DESIGN.md. Texto de origem truncado (item 2 parcial, item 3 ausente): revisar quando aparecer. Status efetivo no diário.'
 
 - id: VTX-222
   titulo: Porta para produção com revisão calibrada por risco
@@ -2066,7 +2066,7 @@ tarefas:
   prioridade: 57
   status: a fazer
   entregavel: knowledge/processos/porta-para-producao.md
-  notas: 'Orientações do Samuel, item 4. CI com autofix pelo agente (até 3 tentativas), revisão cruzada por IA com contexto limpo e veredito na HEAD, classes de risco (trivial, normal, sensível, crítica) com smoke test em preview ou staging. Merge de PR trivial sem revisor adiado até a VTX-214. Concluída em 26/11/2026.'
+  notas: 'Orientações do Samuel, item 4. CI com autofix pelo agente (até 3 tentativas), revisão cruzada por IA com contexto limpo e veredito na HEAD, classes de risco (trivial, normal, sensível, crítica) com smoke test em preview ou staging. Merge de PR trivial sem revisor adiado até a VTX-214. Status efetivo no diário.'
 
 - id: VTX-223
   titulo: Checklist de auditoria de skills, regras e MCPs de terceiros
@@ -2075,7 +2075,7 @@ tarefas:
   prioridade: 57
   status: a fazer
   entregavel: knowledge/seguranca/auditoria-de-skills.md
-  notas: 'Orientações do Samuel, item 5 (auditar skills de terceiros como dependências). Fluxo pin → revisão de todo código e Markdown → cópia com NOTICE.md → recursos.yaml; skill nova é mudança sensível (precisa do Samuel). Concluída em 26/11/2026.'
+  notas: 'Orientações do Samuel, item 5 (auditar skills de terceiros como dependências). Fluxo pin → revisão de todo código e Markdown → cópia com NOTICE.md → recursos.yaml; skill nova é mudança sensível (precisa do Samuel). Status efetivo no diário.'
 
 - id: VTX-224
   titulo: Deny rules do Cursor e segredos fora do contexto do agente
@@ -2085,3 +2085,12 @@ tarefas:
   status: a fazer
   entregavel: .cursor/cli.json
   notas: 'Orientações do Samuel, item 5 (deny rules explícitas). .cursor/cli.json só com permissions.deny (ler ou escrever .env e chaves, ~/.ssh, sudo, rm -r, push --force, push direto para main, apagar branch remota, reset --hard, clean, --no-verify, gh repo delete, gh secret, gh auth token; --force-with-lease em branch própria liberado), .cursorignore escondendo .env e chaves (raiz e knowledge/templates/cursor/), correção do cursor.md §8 e tests/test_permissoes_cursor.py. Executada no PR #28 com a etiqueta precisa do Samuel (mexe em permissões de agente). Depois do #25: levar .cursorignore e cli.json ao projeto gerado pelo bootstrap.'
+
+- id: VTX-225
+  titulo: Proteção real da branch main (ruleset ou hook de pre-push)
+  fase: F1
+  area: Qualidade
+  prioridade: 65
+  status: a fazer
+  entregavel: .githooks/pre-push
+  notas: 'Seguimento da revisão do Tzu no PR #28 (item 1), 26/11/2026. O repositório privado no plano gratuito não tem proteção de branch (API 403); o .cursor/cli.json é hoje a única barreira técnica contra push direto em main, e não cobre git push sem argumentos nem contorno via Shell. Tarefa: hook de pre-push local que rejeita push para main (incluindo refspec e git push sem argumentos quando o upstream é main) e, quando o plano do GitHub permitir, ruleset de proteção. Arquivos: .githooks/pre-push (ou caminho equivalente documentado no AGENTS.md), teste do hook, knowledge/ferramentas/ia-dev/cursor.md §8. Aceite: o hook rejeita git push origin main, git push origin HEAD:main e git push sem argumentos com upstream em main, e deixa passar push da branch do PR; documentar o limite se o hook puder ser contornado com --no-verify (já negado no cli.json). Relacionada à VTX-214 (script de merge).'

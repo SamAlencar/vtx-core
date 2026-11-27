@@ -30,4 +30,4 @@ As regras usam `globs` e só entram quando o contexto combina. O detalhe do pape
 
 ## Pronto
 
-Só encerre com critério verificável (teste, comando ou checklist). Merge só pela [porta para produção](knowledge/processos/porta-para-producao.md): CI verde, veredito do revisor na HEAD e classe de risco. O handoff aponta caminhos e o que falta, sem copiar o artefato.
+Só encerre com critério verificável (teste, comando ou checklist). Merge só pela [porta para produção](knowledge/processos/porta-para-producao.md): CI verde, veredito do revisor na HEAD final (depois de aplicar ressalvas, pede-se veredito novo nessa HEAD) e classe de risco. O handoff aponta caminhos e o que falta, sem copiar o artefato.

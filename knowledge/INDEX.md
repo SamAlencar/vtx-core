@@ -22,9 +22,6 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 15 | [Scrum e Kanban adaptados a agentes](processos/scrum-kanban-agentes.md) | Processos | v1 | 2026-10-18 |
 | 16 | [Operação de agentes: prompts, contexto e memória](processos/operacao-de-agentes.md) | Processos | v1 | 2026-10-19 |
 | 17 | [Governança e aprovações (humano no circuito)](processos/governanca-e-aprovacoes.md) | Processos | v1 | 2026-10-19 |
-| 59 | [Orientações de agentes de IA: mapeamento no vtx-core](processos/orientacoes-agentes-ia.md) | Processos | v1 | 2026-11-26 |
-| 60 | [Topologia de agentes: orquestrador, subagentes e modelos por perfil](processos/topologia-de-agentes.md) | Processos | v1 | 2026-11-26 |
-| 61 | [Porta para produção: CI com autofix e revisão por risco](processos/porta-para-producao.md) | Processos | v1 | 2026-11-26 |
 | 18 | [Arquitetura de software (estilos, C4, ADRs)](engenharia/arquitetura-de-software.md) | Engenharia | v1 | 2026-10-20 |
 | 19 | [Padrões de projeto e DDD](engenharia/padroes-de-projeto-ddd.md) | Engenharia | v1 | 2026-10-20 |
 | 20 | [Pesquisa de domínio e base de conhecimento do projeto do cliente](processos/pesquisa-de-dominio.md) | Processos | v1 | 2026-10-21 |
@@ -61,6 +58,9 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 55 | [Isolamento por cliente](seguranca/isolamento-clientes.md) | Segurança | v1 | 2026-11-24 |
 | 56 | [Piloto local do Trail-code](ferramentas/piloto-trail-code.md) | Ferramentas | v1 | 2026-11-24 |
 | 57 | [Hospedagem por cliente](operacao/hospedagem-por-cliente.md) | Operação | v1 | 2026-11-24 |
+| 59 | [Orientações de agentes de IA: mapeamento no vtx-core](processos/orientacoes-agentes-ia.md) | Processos | v1 | 2026-11-26 |
+| 60 | [Topologia de agentes: orquestrador, subagentes e modelos por perfil](processos/topologia-de-agentes.md) | Processos | v1 | 2026-11-26 |
+| 61 | [Porta para produção: CI com autofix e revisão por risco](processos/porta-para-producao.md) | Processos | v1 | 2026-11-26 |
 | 49 | [Versionamento de modelos IFC](engenharia/bim/versionamento-ifc.md) | Engenharia | v1 | 2026-10-31 |
 | 50 | [Funções de domínio para tool-calling](engenharia/ia/funcoes-de-dominio.md) | Engenharia | v1 | 2026-10-31 |
 | 51 | [Padrão de pagamentos](engenharia/pagamentos.md) | Engenharia | v1 | 2026-10-23 |
