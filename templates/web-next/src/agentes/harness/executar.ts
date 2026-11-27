@@ -33,7 +33,13 @@ export type PedidoAgente<Saida = unknown> = {
   tools: ToolRegistro[];
   modelo: ModeloAgente;
   maxIteracoes?: number;
+  /** Prazo da execução inteira, inclusive das tools — não só da chamada ao modelo. */
   timeoutMs?: number;
+  /**
+   * Modelo alternativo se o principal falhar, inclusive em erro não transitório
+   * (por exemplo 401). Erro transitório (429, 5xx, isRetryable) ainda tenta
+   * retry com backoff no modelo corrente antes de trocar.
+   */
   fallback?: ModeloAgente;
   saida?: z.ZodType<Saida>;
   /** Só para testes: substitui o atraso do backoff. */
@@ -109,6 +115,30 @@ async function dormir(ms: number, esperar?: (ms: number) => Promise<void>) {
   await new Promise((ok) => setTimeout(ok, ms));
 }
 
+/** Encerra com TIMEOUT se o signal disparar enquanto a promessa ainda corre. */
+async function comTimeout<T>(promessa: Promise<T>, signal: AbortSignal): Promise<T> {
+  if (signal.aborted) {
+    throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
+  }
+  return await new Promise<T>((resolve, reject) => {
+    const aoAbortar = () => {
+      signal.removeEventListener("abort", aoAbortar);
+      reject(new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs."));
+    };
+    signal.addEventListener("abort", aoAbortar, { once: true });
+    promessa.then(
+      (valor) => {
+        signal.removeEventListener("abort", aoAbortar);
+        resolve(valor);
+      },
+      (erro) => {
+        signal.removeEventListener("abort", aoAbortar);
+        reject(erro);
+      },
+    );
+  });
+}
+
 function ferramentasSdk(tools: ToolRegistro[]) {
   return Object.fromEntries(
     tools.map((t) => [
@@ -144,40 +174,55 @@ async function gerarPasso(args: {
       maxRetries: 0,
     });
 
-  const modelos: ModeloAgente[] = args.fallback
-    ? [args.modelo, args.fallback]
-    : [args.modelo];
-
-  let ultimo: unknown;
-  for (let i = 0; i < modelos.length; i += 1) {
-    const modelo = modelos[i];
-    const tentativas = i === 0 ? TENTATIVAS_TRANSITORIAS : TENTATIVAS_TRANSITORIAS;
-    for (let n = 0; n < tentativas; n += 1) {
+  const chamarComRetry = async (modelo: ModeloAgente) => {
+    let ultimo: unknown;
+    for (let n = 0; n < TENTATIVAS_TRANSITORIAS; n += 1) {
       try {
         return await tentar(modelo);
       } catch (erro) {
-        if (args.signal.aborted) {
+        if (args.signal.aborted || erro instanceof ErroAgente && erro.codigo === "TIMEOUT") {
           throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
         }
         ultimo = erro;
-        if (!ehTransitorio(erro) || n === tentativas - 1) {
+        if (!ehTransitorio(erro) || n === TENTATIVAS_TRANSITORIAS - 1) {
           break;
         }
         await dormir(10 * 2 ** n, args.esperar);
       }
     }
-    // Só cai no fallback depois de esgotar o principal em erro transitório.
-    if (i === 0 && !ehTransitorio(ultimo) && modelos.length > 1) {
-      break;
-    }
-  }
-  if (ultimo instanceof ErroAgente) {
     throw ultimo;
+  };
+
+  try {
+    return await chamarComRetry(args.modelo);
+  } catch (erro) {
+    if (erro instanceof ErroAgente) {
+      throw erro;
+    }
+    if (args.signal.aborted) {
+      throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
+    }
+    if (args.fallback) {
+      try {
+        return await chamarComRetry(args.fallback);
+      } catch (erroFallback) {
+        if (erroFallback instanceof ErroAgente) {
+          throw erroFallback;
+        }
+        if (args.signal.aborted) {
+          throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
+        }
+        throw new ErroAgente(
+          "ERRO_INTERNO",
+          erroFallback instanceof Error ? erroFallback.message : "Falha ao chamar o modelo.",
+        );
+      }
+    }
+    throw new ErroAgente(
+      "ERRO_INTERNO",
+      erro instanceof Error ? erro.message : "Falha ao chamar o modelo.",
+    );
   }
-  throw new ErroAgente(
-    "ERRO_INTERNO",
-    ultimo instanceof Error ? ultimo.message : "Falha ao chamar o modelo.",
-  );
 }
 
 function validarSaida<Saida>(texto: string, saida?: z.ZodType<Saida>): Saida | undefined {
@@ -192,11 +237,7 @@ function validarSaida<Saida>(texto: string, saida?: z.ZodType<Saida>): Saida | u
   }
   const lido = saida.safeParse(bruto);
   if (!lido.success) {
-    throw new ErroAgente(
-      "PARAMETRO_INVALIDO",
-      z.prettifyError(lido.error),
-      "saida",
-    );
+    throw new ErroAgente("ERRO_INTERNO", z.prettifyError(lido.error));
   }
   return lido.data;
 }
@@ -274,7 +315,7 @@ export async function executarAgente<Saida = unknown>(
         toolsChamadas.push(chamada.toolName);
         try {
           const executar = def.executar as (input: unknown) => Promise<unknown> | unknown;
-          const bruto = await executar(chamada.input);
+          const bruto = await comTimeout(Promise.resolve(executar(chamada.input)), controlador.signal);
           const saidaTool = def.saida.parse(bruto);
           resultados.push({
             type: "tool-result",
@@ -287,11 +328,7 @@ export async function executarAgente<Saida = unknown>(
             throw erro;
           }
           if (erro instanceof z.ZodError) {
-            throw new ErroAgente(
-              "PARAMETRO_INVALIDO",
-              z.prettifyError(erro),
-              "saida",
-            );
+            throw new ErroAgente("ERRO_INTERNO", z.prettifyError(erro));
           }
           throw new ErroAgente(
             "ERRO_INTERNO",
@@ -313,14 +350,16 @@ export async function executarAgente<Saida = unknown>(
     );
   } catch (erro) {
     if (erro instanceof ErroAgente) {
-      throw erro;
+      throw erro.comTrace(trace_id);
     }
     if (controlador.signal.aborted) {
-      throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.");
+      throw new ErroAgente("TIMEOUT", "A execução excedeu o timeoutMs.", undefined, trace_id);
     }
     throw new ErroAgente(
       "ERRO_INTERNO",
       erro instanceof Error ? erro.message : "Falha interna no harness.",
+      undefined,
+      trace_id,
     );
   } finally {
     clearTimeout(temporizador);

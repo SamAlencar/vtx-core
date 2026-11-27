@@ -201,7 +201,7 @@ describe("executarAgente", () => {
     expect(r.passos).toBe(2);
   });
 
-  it("saída que não passa no schema vira PARAMETRO_INVALIDO", async () => {
+  it("saída que não passa no schema vira ERRO_INTERNO", async () => {
     const modelo = modeloTexto("nao-e-json");
     await expect(
       executarAgente({
@@ -212,9 +212,52 @@ describe("executarAgente", () => {
         timeoutMs: 2000,
         saida: saidaFinal,
       }),
-    ).rejects.toMatchObject({
-      codigo: "PARAMETRO_INVALIDO",
-      campo: "saida",
-    } satisfies Partial<ErroAgente>);
+    ).rejects.toMatchObject({ codigo: "ERRO_INTERNO" } satisfies Partial<ErroAgente>);
+  });
+
+  it("timeout também cobre tool que não resolve", async () => {
+    const travada: typeof somar = {
+      ...somar,
+      executar: () => new Promise(() => undefined),
+    };
+    const modelo = modeloSequencia([{ tipo: "tool", nome: "somar", input: { a: 1, b: 2 } }]);
+    const inicio = Date.now();
+    await expect(
+      executarAgente({
+        objetivo: "some e trave",
+        tools: [travada],
+        modelo,
+        maxIteracoes: 3,
+        timeoutMs: 80,
+      }),
+    ).rejects.toMatchObject({ codigo: "TIMEOUT" } satisfies Partial<ErroAgente>);
+    expect(Date.now() - inicio).toBeLessThan(1500);
+  });
+
+  it("fallback também vale para erro não transitório do principal (401)", async () => {
+    const principal = modeloSequencia([
+      {
+        tipo: "erro",
+        erro: new APICallError({
+          message: "unauthorized",
+          url: "http://exemplo.local/modelo",
+          requestBodyValues: {},
+          statusCode: 401,
+          isRetryable: false,
+        }),
+      },
+    ]);
+    const fallback = modeloTexto('{"total":3}');
+    const r = await executarAgente({
+      objetivo: "some 1 e 2",
+      tools: [somar],
+      modelo: principal,
+      fallback,
+      maxIteracoes: 2,
+      timeoutMs: 2000,
+      esperar: async () => undefined,
+      saida: saidaFinal,
+    });
+    expect(r.dados).toEqual({ total: 3 });
   });
 });
