@@ -2232,7 +2232,7 @@ tarefas:
   fase: F13
   area: Templates
   prioridade: 74
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/src/agentes/memoria/acoes-supabase.ts
   depende_de:
   - VTX-213

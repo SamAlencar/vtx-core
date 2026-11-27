@@ -8,7 +8,7 @@ Orquestração de agente: prompts, tools, harness e memória.
 - `src/agentes/tools/`: schema Zod e chamada a `src/dominio/`.
 - `src/agentes/harness/`: único lugar que importa o SDK de modelo.
 - `src/agentes/memoria/`: sessão e histórico (a VTX-216 completa).
-- `src/agentes/memoria/acoes.ts`: ações pendentes de tool crítica (`critica: true`), aprovadas ou rejeitadas em `app/api/agentes/acoes/[id]/aprovar/` e `.../rejeitar/` (VTX-213). Escrita no banco só no servidor; a leitura autenticada é SELECT por coluna (sem `contexto_retomada`), com a view `acoes_pendentes_leitura` como superfície. O repositório Supabase fica na VTX-230.
+- `src/agentes/memoria/acoes.ts`: ações pendentes de tool crítica (`critica: true`), aprovadas ou rejeitadas em `app/api/agentes/acoes/[id]/aprovar/` e `.../rejeitar/` (VTX-213). Escrita no banco só no servidor; a leitura autenticada é SELECT por coluna (sem `contexto_retomada`), com a view `acoes_pendentes_leitura` como superfície. O repositório Supabase é `acoes-supabase.ts` (VTX-230), ligado em `acoes-padrao.ts` via service_role; sem a chave, o padrão cai em memória (falha segura). Quem cria a ação (harness/`executarAgente`) precisa usar o mesmo repositório das rotas de aprovar/rejeitar (`repositorioAcoesPadrao` ou a mesma instância injetada); senão a aprovação responde 404.
 
 ## Não pode
 

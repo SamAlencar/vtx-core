@@ -6,7 +6,11 @@ const raiz = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   resolve: {
-    alias: { "@": raiz },
+    alias: {
+      "@": raiz,
+      // vitest não usa a condição react-server; o Next continua usando o pacote real.
+      "server-only": path.join(raiz, "node_modules/server-only/empty.js"),
+    },
   },
   test: {
     environment: "node",
