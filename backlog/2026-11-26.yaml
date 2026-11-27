@@ -39,9 +39,9 @@ tarefas:
   - id: VTX-215
     titulo: "Lint e tipos em Python no CI"
     area: "Qualidade"
-    status: "em andamento"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Entregue no PR #37 (fica em andamento até o merge, como no #36): ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff. Skills: writing-plans (docs/planos/2026-11-26-vtx-215.md), verification-before-completion. Ferramentas: git, gh, python, ruff, mypy."
+    notas: "Concluída com o merge do PR #37 em 27/11/2026: ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff. Skills: writing-plans (docs/planos/2026-11-26-vtx-215.md), verification-before-completion. Ferramentas: git, gh, python, ruff, mypy."
   - id: VTX-147
     titulo: "Execução isolada de código gerado por IA (sandbox)"
     area: "Segurança"
