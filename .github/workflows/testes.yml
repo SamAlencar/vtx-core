@@ -4,8 +4,8 @@ on:
   push:
   pull_request:
 
-# VTX-229: padrão do workflow; ifc-web e qualidade herdam (antes ficavam
-# com as permissões padrão do token). Jobs que já declaram o mesmo ficam explícitos.
+# VTX-229: padrão do workflow. unittest, ifc-web, qualidade e os demais
+# herdam contents: read (jobs que já declaram o mesmo ficam explícitos).
 permissions:
   contents: read
 

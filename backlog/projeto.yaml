@@ -1707,11 +1707,11 @@ tarefas:
   fase: F13
   area: Operação
   prioridade: 65
-  status: em andamento
+  status: concluído
   entregavel: 'core/agente/telemetria.py + knowledge/operacao/observabilidade.md'
   depende_de:
   - VTX-177
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 10. Linha JSON por execução (run_id, trace_id, cliente, tokens, custo, duração), redação de PII (teste com CPF, e-mail e token), soma de custo por cliente/dia e orçamento que interrompe a execução. Relacionada à VTX-149, que continua a fazer.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 10. Linha JSON por execução (run_id, trace_id, cliente, tokens, custo, duração), redação de PII (teste com CPF, e-mail e token), soma de custo por cliente/dia e orçamento que interrompe a execução. Relacionada à VTX-149, que continua a fazer. Concluída no PR #38 em 27/11/2026 (HEAD bee55c1, merge b812895). Notas não bloqueantes da revisão do Tzu no PR #38: (1) o padrão de 14 dígitos troca qualquer número de 14 dígitos por [CNPJ]; considerar marcador genérico; (2) CPF sem máscara (11 dígitos) passa limpo para o log — a escolha está documentada, mas é PII; um marcador como [DOC11] cobriria CPF e celular; (3) o teste do .gitignore falha fora de um checkout git (`git archive`); usar skipUnless((RAIZ / ".git").exists()).'
 
 - id: VTX-180
   titulo: Remover a duplicação da regra de eficiência de tokens
@@ -2019,11 +2019,11 @@ tarefas:
   fase: F14
   area: Templates
   prioridade: 14
-  status: em andamento
+  status: concluído
   entregavel: .github/workflows/testes.yml
   depende_de:
   - VTX-194
-  notas: 'Seguimento da revisão do Tzu no PR #25 (item 3), 24/11/2026. Objetivo: o CI do vtx-core gerar um projeto com bootstrap --tipo web e rodar npm ci && lint && typecheck && test && build, para regressão no template não passar só com teste de strings. Arquivos afetados: .github/workflows/testes.yml (ou workflow irmão). Critério de aceite: um job verde no CI do core reproduz o pipeline do template; falha se o template quebrar. Mexe no workflow do vtx-core e, quando for executada, precisa do Samuel.'
+  notas: 'Seguimento da revisão do Tzu no PR #25 (item 3), 24/11/2026. Objetivo: o CI do vtx-core gerar um projeto com bootstrap --tipo web e rodar npm ci && lint && typecheck && test && build, para regressão no template não passar só com teste de strings. Arquivos afetados: .github/workflows/testes.yml (ou workflow irmão). Critério de aceite: um job verde no CI do core reproduz o pipeline do template; falha se o template quebrar. Mexe no workflow do vtx-core e, quando for executada, precisa do Samuel. Concluída no PR #39 em 27/11/2026 (HEAD 600d694, merge 34facaf): job web-gerado roda bootstrap --tipo web e o pipeline npm no projeto gerado; CI verde.'
 
 - id: VTX-210
   titulo: Regras do Cursor de engenharia e de agentes no template web
@@ -2212,11 +2212,11 @@ tarefas:
   fase: F1
   area: Processo
   prioridade: 72
-  status: em andamento
+  status: concluído
   entregavel: .github/workflows/testes.yml
   depende_de:
   - VTX-215
-  notas: 'Follow-up adiado da revisão do Tzu no PR #37 (VTX-215), 27/11/2026. Os jobs lint-python e web-next já declaram permissions: contents: read; o job unittest de .github/workflows/testes.yml ainda herda as permissões padrão. Tarefa: declarar o menor privilégio no job unittest (ou no workflow inteiro, conferindo que nenhum job precisa de mais). Arquivos: .github/workflows/testes.yml. Aceite: o job unittest declara permissions: contents: read e o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+  notas: 'Follow-up adiado da revisão do Tzu no PR #37 (VTX-215), 27/11/2026. Os jobs lint-python e web-next já declaram permissions: contents: read; o job unittest de .github/workflows/testes.yml ainda herda as permissões padrão. Tarefa: declarar o menor privilégio no job unittest (ou no workflow inteiro, conferindo que nenhum job precisa de mais). Arquivos: .github/workflows/testes.yml. Aceite: o job unittest declara permissions: contents: read e o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel. Concluída no PR #39 em 27/11/2026 (declaração explícita no job unittest) e confirmada no PR #40 (o job também herda contents: read do topo do workflow; VTX-229).'
 
 - id: VTX-229
   titulo: "permissions: contents: read no topo do workflow testes.yml"
@@ -2225,4 +2225,4 @@ tarefas:
   prioridade: 73
   status: em andamento
   entregavel: .github/workflows/testes.yml
-  notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; ifc-web e qualidade herdam; o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+  notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; unittest, ifc-web, qualidade e os demais jobs herdam (unittest também declara o mesmo, vindo do PR #39); o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
