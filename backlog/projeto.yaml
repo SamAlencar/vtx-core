@@ -1388,7 +1388,7 @@ tarefas:
   depende_de:
   - VTX-020
   - VTX-109
-  notas: 'Processo separado sem rede, sem acesso a outros projetos, limite de tempo/memória/CPU, só o arquivo do projeto montado. Aceite: padrão com Docker/nsjail ou similar grátis e teste de fuga básico. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga.'
+  notas: 'Processo separado sem rede, sem acesso a outros projetos, limite de tempo/memória/CPU, só o arquivo do projeto montado. Aceite: padrão com Docker/nsjail ou similar grátis e teste de fuga básico. Levantamento de 31/10 (pedido do Samuel) a partir do briefing de plataforma-projetos; ver projects/plataforma-projetos/docs/lacunas-vtx.md. Só ferramentas grátis/open-source; sem texto de ABNT ou fonte paga. Ampliada em 26/11/2026 (orientações de agentes de IA do Samuel, item 5; mapeamento em knowledge/processos/orientacoes-agentes-ia.md): o padrão também cobre a execução dos próprios agentes de desenvolvimento num contêiner local descartável (Docker Engine, grátis), com só o repositório da tarefa montado, sem .env, ~/.ssh nem tokens do host, sem docker.sock e com rede desligada por padrão. Sem nuvem paga (E2B, Browserbase e similares ficam fora).'
 - id: VTX-148
   titulo: 'Orquestração de LLM: roteamento por modelo, streaming e fallback'
   fase: F13
@@ -2009,3 +2009,88 @@ tarefas:
   depende_de:
   - VTX-194
   notas: 'Seguimento da revisão do Tzu no PR #25 (item 3), 24/11/2026. Objetivo: o CI do vtx-core gerar um projeto com bootstrap --tipo web e rodar npm ci && lint && typecheck && test && build, para regressão no template não passar só com teste de strings. Arquivos afetados: .github/workflows/testes.yml (ou workflow irmão). Critério de aceite: um job verde no CI do core reproduz o pipeline do template; falha se o template quebrar. Mexe no workflow do vtx-core e, quando for executada, precisa do Samuel.'
+
+- id: VTX-210
+  titulo: Regras do Cursor de engenharia e de agentes no template web
+  fase: F9
+  area: Integração Cursor
+  prioridade: 59
+  status: a fazer
+  entregavel: templates/web-next/.cursor/rules/
+  depende_de:
+  - VTX-194
+  notas: 'Auditoria técnica de 25/11/2026 (auditoria-tecnica-cursor.md §4, P0 item 2), importada em 26/11/2026. Tarefa: criar regras .mdc objetivas, com globs e exemplos de código: stack.mdc (versões, pastas, Zod nas bordas, erros RFC 9457, Supabase com RLS), api.mdc (Route Handler com schema de entrada e de saída), agentes.mdc (prompt em src/agentes/prompts/, tool com schema Zod que chama src/dominio/, chamada ao modelo só via harness, regra de negócio nunca em prompt, tool crítica exige aprovação). Arquivos: templates/web-next/.cursor/rules/{stack,api,agentes}.mdc, .cursor/rules/ do vtx-core (só ponteiro), templates/web-next/AGENTS.md, tests/test_bootstrap_projeto.py. Aceite: o projeto gerado contém os 3 arquivos com globs não vazios (teste); todo caminho citado nas regras existe no projeto gerado; cada regra tem ao menos um bloco de código que compila (npm run typecheck sobre os exemplos extraídos para tests/regras/). A auditoria propõe que esta tarefa substitua a VTX-206; a VTX-206 fica como está até a importação completa da lista. Ampliação de 26/11/2026 (orientações do Samuel, item 2; mapeamento em knowledge/processos/orientacoes-agentes-ia.md): o template web ganha também um DESIGN.md (tokens, componentes e tom da interface), citado no AGENTS.md do template e coberto pelo mesmo teste de existência. Toca regras de agente: PR com etiqueta precisa do Samuel.'
+
+- id: VTX-212
+  titulo: Fronteira de camadas imposta por lint no template web
+  fase: F13
+  area: Templates
+  prioridade: 60
+  status: a fazer
+  entregavel: templates/web-next/eslint.config.mjs
+  depende_de:
+  - VTX-194
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 3), importada em 26/11/2026. Tarefa: criar src/dominio/, src/agentes/{prompts,tools,harness,memoria}/, app/api/ e evals/ no template, e regras ESLint (no-restricted-imports ou eslint-plugin-boundaries) que proíbam src/dominio/** de importar src/agentes/** e o SDK de modelo, e proíbam importar o SDK de modelo fora de src/agentes/harness/. Arquivos: templates/web-next/src/, templates/web-next/eslint.config.mjs, templates/web-next/tests/fronteiras/. Aceite: npm run lint passa no template; um fixture que importa ai dentro de src/dominio/ faz npx eslint tests/fronteiras/violacao.ts sair com código diferente de 0 (verificado por teste). Ampliação de 26/11/2026 (orientações do Samuel, item 2): cada camada ganha um AGENTS.md curto (src/dominio/ e src/agentes/) com o que pode e o que não pode importar, e o teste confere que os dois arquivos existem no projeto gerado.'
+
+- id: VTX-214
+  titulo: Portão de merge sem proteção de branch
+  fase: F1
+  area: Qualidade
+  prioridade: 66
+  status: a fazer
+  entregavel: scripts/mesclar_pr.sh
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 12), importada em 26/11/2026. Tarefa: o repositório privado no plano gratuito não aceita required checks (API 403). Criar scripts/mesclar_pr.sh <n> que só chama gh pr merge se gh pr checks <n> estiver todo verde e a HEAD tiver a aprovação registrada, e tornar esse script o único caminho de merge previsto no AGENTS.md. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, AGENTS.md. Aceite: teste com gh simulado (stub no PATH) mostra que o script sai com código diferente de 0 e não chama merge quando há check vermelho ou pendente, e chama merge quando tudo está verde. Relacionada à VTX-172 (aguardando decisão do Samuel), que esta tarefa contorna sem custo. Ampliação de 26/11/2026 (orientações do Samuel, item 4; knowledge/processos/porta-para-producao.md): a aprovação conferida é o veredito do revisor de IA escrito no PR com o SHA da HEAD final (Aprovado, ou Aprovado com ressalvas só de itens não bloqueantes, depois de aplicadas as ressalvas bloqueantes e de um veredito novo nessa HEAD); PR com a etiqueta precisa do Samuel exige também o OK do Samuel no PR; o script usa --match-head-commit. Depois dela, decidir com o Samuel se PR trivial pode mesclar só com CI verde.'
+
+- id: VTX-215
+  titulo: Lint e tipos em Python no CI
+  fase: F8
+  area: Qualidade
+  prioridade: 67
+  status: a fazer
+  entregavel: pyproject.toml
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 13), importada em 26/11/2026. Tarefa: corrigir os 14 achados do ruff e os 3 erros do mypy, configurar ruff e mypy no pyproject.toml, adicionar o passo no CI e trocar o Lint falso (compileall) do templates/projeto/.github/workflows/ci.yml por ruff. Arquivos: pyproject.toml, core/vtx_ifc/, scripts/, tests/, .github/workflows/testes.yml, templates/projeto/.github/workflows/ci.yml. Aceite: ruff check core scripts tests e mypy core/vtx_ifc saem com 0 localmente e no CI. Ampliação de 26/11/2026 (orientações do Samuel, item 4): o autofix é do agente, não do CI. ruff check --fix e ruff format entram na verificação local antes do PR (porta-para-producao.md §2); o CI só verifica, com permissions: contents: read. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+
+- id: VTX-221
+  titulo: Topologia de agentes, critérios de agente novo e modelos por perfil
+  fase: F1
+  area: Processo
+  prioridade: 57
+  status: a fazer
+  entregavel: knowledge/processos/topologia-de-agentes.md + knowledge/processos/orientacoes-agentes-ia.md
+  notas: 'Orientações de agentes de IA do Samuel (itens 1 e 2), adaptadas à VTX. Mapeamento orientação → estado → ação em knowledge/processos/orientacoes-agentes-ia.md. Topologia: orquestrador + subagentes verificadores, critério agente novo × subagente × ferramenta, modelos por perfil dentro da cota semanal, tabela de escopos AGENTS.md / .mdc / agents/ / SKILL.md / DESIGN.md. Texto de origem truncado (item 2 parcial, item 3 ausente): revisar quando aparecer. Status efetivo no diário.'
+
+- id: VTX-222
+  titulo: Porta para produção com revisão calibrada por risco
+  fase: F1
+  area: Processo
+  prioridade: 57
+  status: a fazer
+  entregavel: knowledge/processos/porta-para-producao.md
+  notas: 'Orientações do Samuel, item 4. CI com autofix pelo agente (até 3 tentativas), revisão cruzada por IA com contexto limpo e veredito na HEAD, classes de risco (trivial, normal, sensível, crítica) com smoke test em preview ou staging. Merge de PR trivial sem revisor adiado até a VTX-214. Status efetivo no diário.'
+
+- id: VTX-223
+  titulo: Checklist de auditoria de skills, regras e MCPs de terceiros
+  fase: F3
+  area: Segurança
+  prioridade: 57
+  status: a fazer
+  entregavel: knowledge/seguranca/auditoria-de-skills.md
+  notas: 'Orientações do Samuel, item 5 (auditar skills de terceiros como dependências). Fluxo pin → revisão de todo código e Markdown → cópia com NOTICE.md → recursos.yaml; skill nova é mudança sensível (precisa do Samuel). Status efetivo no diário.'
+
+- id: VTX-224
+  titulo: Deny rules do Cursor e segredos fora do contexto do agente
+  fase: F9
+  area: Integração Cursor
+  prioridade: 62
+  status: a fazer
+  entregavel: .cursor/cli.json
+  notas: 'Orientações do Samuel, item 5 (deny rules explícitas). .cursor/cli.json só com permissions.deny (ler ou escrever .env e chaves, ~/.ssh, sudo, rm -r, push --force, push direto para main, apagar branch remota, reset --hard, clean, --no-verify, gh repo delete, gh secret, gh auth token; --force-with-lease em branch própria liberado), .cursorignore escondendo .env e chaves (raiz e knowledge/templates/cursor/), correção do cursor.md §8 e tests/test_permissoes_cursor.py. Executada no PR #28 com a etiqueta precisa do Samuel (mexe em permissões de agente). Depois do #25: levar .cursorignore e cli.json ao projeto gerado pelo bootstrap.'
+
+- id: VTX-225
+  titulo: Proteção real da branch main (ruleset ou hook de pre-push)
+  fase: F1
+  area: Qualidade
+  prioridade: 65
+  status: a fazer
+  entregavel: .githooks/pre-push
+  notas: 'Seguimento da revisão do Tzu no PR #28 (item 1), 26/11/2026. O repositório privado no plano gratuito não tem proteção de branch (API 403); o .cursor/cli.json é hoje a única barreira técnica contra push direto em main, e não cobre git push sem argumentos nem contorno via Shell. Tarefa: hook de pre-push local que rejeita push para main (incluindo refspec e git push sem argumentos quando o upstream é main) e, quando o plano do GitHub permitir, ruleset de proteção. Arquivos: .githooks/pre-push (ou caminho equivalente documentado no AGENTS.md), teste do hook, knowledge/ferramentas/ia-dev/cursor.md §8. Aceite: o hook rejeita git push origin main, git push origin HEAD:main e git push sem argumentos com upstream em main, e deixa passar push da branch do PR; documentar o limite se o hook puder ser contornado com --no-verify (já negado no cli.json). Relacionada à VTX-214 (script de merge).'

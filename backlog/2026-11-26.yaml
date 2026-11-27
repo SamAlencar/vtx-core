@@ -1,0 +1,62 @@
+data: "2026-11-26"
+tarefas:
+  - id: VTX-210
+    titulo: "Regras do Cursor de engenharia e de agentes no template web"
+    area: "Integração Cursor"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Importada da auditoria técnica de 25/11 e ampliada com DESIGN.md (orientações do Samuel, item 2). Ver mestre."
+  - id: VTX-212
+    titulo: "Fronteira de camadas imposta por lint no template web"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Importada da auditoria técnica e ampliada com AGENTS.md por camada. Ver mestre."
+  - id: VTX-214
+    titulo: "Portão de merge sem proteção de branch"
+    area: "Qualidade"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Importada da auditoria técnica e ampliada: o script confere o veredito do revisor na HEAD e o OK do Samuel em PR sensível. Ver mestre."
+  - id: VTX-215
+    titulo: "Lint e tipos em Python no CI"
+    area: "Qualidade"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Importada da auditoria técnica e ampliada: autofix (ruff --fix) é do agente, CI só verifica. Ver mestre."
+  - id: VTX-147
+    titulo: "Execução isolada de código gerado por IA (sandbox)"
+    area: "Segurança"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Ampliada: também a execução dos agentes de desenvolvimento em contêiner local descartável, sem segredos do host. Ver mestre."
+  - id: VTX-221
+    titulo: "Topologia de agentes, critérios de agente novo e modelos por perfil"
+    area: "Processo"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/topologia-de-agentes.md e mapeamento em knowledge/processos/orientacoes-agentes-ia.md. Ponteiros no AGENTS.md e na operação de agentes. Texto de origem truncado (item 2 parcial, item 3 ausente). Skills: writing-plans (plano em docs/planos/2026-11-26-vtx-221-224.md), verification-before-completion (unittest, validar_backlog, verificar_links, gerar_roadmap). Ferramentas: git, gh. Correu bem."
+  - id: VTX-222
+    titulo: "Porta para produção com revisão calibrada por risco"
+    area: "Processo"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/processos/porta-para-producao.md. Classes de risco, autofix com até 3 tentativas, veredito na HEAD. Merge trivial sem revisor adiado até a VTX-214. Skills: writing-plans, verification-before-completion. Ferramentas: git, gh."
+  - id: VTX-223
+    titulo: "Checklist de auditoria de skills, regras e MCPs de terceiros"
+    area: "Segurança"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "knowledge/seguranca/auditoria-de-skills.md. Skill nova passa a ser mudança sensível. Skills: verification-before-completion. Ferramentas: git."
+  - id: VTX-224
+    titulo: "Deny rules do Cursor e segredos fora do contexto do agente"
+    area: "Integração Cursor"
+    status: "aguardando"
+    responsavel: "agente-orquestrador"
+    notas: "Aguardando o OK do Samuel no PR #28 (permissões de agente, etiqueta precisa do Samuel) e o veredito do Tzu. Skills: verification-before-completion (unittest 63, json.tool). Ferramentas: git, gh."
+  - id: VTX-225
+    titulo: "Proteção real da branch main (ruleset ou hook de pre-push)"
+    area: "Qualidade"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Aberta pela revisão do Tzu no PR #28 (item 1): o plano gratuito não tem proteção de branch; cli.json é a única barreira técnica e não cobre git push sem argumentos. Ver mestre."
