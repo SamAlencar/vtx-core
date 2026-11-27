@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { executarAgente, type ToolDefinicao } from "@/src/agentes/harness";
 import { modeloGravado } from "@/src/agentes/harness/modelo-falso";
-import { repositorioAcoesEmMemoria, type OpcoesRepositorioAcoes } from "@/src/agentes/memoria/acoes";
+import { leaseMsDeTimeout, repositorioAcoesEmMemoria, type OpcoesRepositorioAcoes } from "@/src/agentes/memoria/acoes";
 import { criarPostAprovar, saidaAprovar } from "@/src/agentes/rotas/aprovar";
 import { criarPostRejeitar } from "@/src/agentes/rotas/rejeitar";
 import { aprovarAcao } from "@/src/agentes/harness";
@@ -289,5 +289,53 @@ describe("aprovação de tool crítica (VTX-213)", () => {
       "aprovada",
       "executada",
     ]);
+  });
+
+  it("o timeoutMs da aprovação prevalece sobre o lease padrão do repositório", async () => {
+    const anterior = process.env.AGENT_TIMEOUT_MS;
+    delete process.env.AGENT_TIMEOUT_MS;
+    let agora = Date.parse("2026-11-27T12:00:00.000Z");
+    const timeoutAprovacao = 70_000;
+    const leasePadrao = leaseMsDeTimeout(30_000);
+    let liberar!: (valor: string) => void;
+    const barreiro = new Promise<string>((resolve) => {
+      liberar = resolve;
+    });
+    let comecou!: () => void;
+    const iniciou = new Promise<void>((resolve) => {
+      comecou = resolve;
+    });
+    try {
+      const { aprovar, pedirPagamento, repositorio } = cenario({
+        timeoutMs: timeoutAprovacao,
+        repo: { agora: () => new Date(agora) },
+        executar: async ({ valor }) => {
+          comecou();
+          return barreiro.then(() => `pago ${valor}`);
+        },
+      });
+      const { acao_id } = await pedirPagamento();
+      const primeira = aprovar(acao_id!);
+      await iniciou;
+      agora += leasePadrao + 5_000;
+      const segunda = await aprovar(acao_id!);
+      expect(segunda.status).toBe(409);
+      expect((await segunda.json()).acao).toMatchObject({ status: "executando" });
+      liberar("ok");
+      const res = await primeira;
+      expect(res.status).toBe(200);
+      expect(await res.json()).toMatchObject({ status: "executada", resultado: "pago 50" });
+      expect((await repositorio.auditoria(acao_id!)).map((ev) => ev.evento)).toEqual([
+        "criada",
+        "aprovada",
+        "executada",
+      ]);
+    } finally {
+      if (anterior === undefined) {
+        delete process.env.AGENT_TIMEOUT_MS;
+      } else {
+        process.env.AGENT_TIMEOUT_MS = anterior;
+      }
+    }
   });
 });

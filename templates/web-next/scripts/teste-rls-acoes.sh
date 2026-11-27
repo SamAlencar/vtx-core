@@ -2,22 +2,63 @@
 # Teste ao vivo de RLS e grants da migração acoes_pendentes.
 # Sobe um cluster Postgres temporário (não usa a porta 5432 nem o data
 # dir da Evolution). Opcional no CI: rode à mão quando houver initdb.
+#
+# Variáveis opcionais:
+#   PG_BIN  diretório com initdb e pg_ctl (senão: PATH, depois `pg_config --bindir`)
+#   PSQL    cliente psql (senão: PATH, ou $PG_BIN/psql)
+#   DADOS   data dir temporário (padrão: /workspace/pg-acoes-rls-tmp, ou mktemp)
+#   PORTA   porta de escuta (padrão: 55432; recusa 5432)
 set -euo pipefail
 
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 MIGRACAO="$RAIZ/supabase/migrations/20261127000000_acoes_pendentes.sql"
-PG_BIN="${PG_BIN:-/home/box/pg-local/root/usr/lib/postgresql/17/bin}"
-PSQL="${PSQL:-/usr/lib/postgresql/17/bin/psql}"
-# Cluster temporário sob /workspace, nunca em /home/box/evolution-pgdata.
-DADOS="${DADOS:-/workspace/pg-acoes-rls-tmp}"
-PORTA="${PORTA:-55432}"
-LOG="$DADOS/postgres.log"
-export PATH="$PG_BIN:$PATH"
 
-if [[ ! -x "$PG_BIN/initdb" || ! -x "$PG_BIN/pg_ctl" ]]; then
-  echo "teste-rls-acoes: initdb/pg_ctl não encontrados em $PG_BIN" >&2
+resolver_binario() {
+  local nome="$1"
+  if command -v "$nome" >/dev/null 2>&1; then
+    command -v "$nome"
+    return 0
+  fi
+  if [[ -n "${PG_BIN:-}" && -x "$PG_BIN/$nome" ]]; then
+    echo "$PG_BIN/$nome"
+    return 0
+  fi
+  return 1
+}
+
+if [[ -z "${PG_BIN:-}" ]]; then
+  if command -v pg_config >/dev/null 2>&1; then
+    PG_BIN="$(pg_config --bindir)"
+  fi
+fi
+if [[ -n "${PG_BIN:-}" ]]; then
+  export PATH="$PG_BIN:$PATH"
+fi
+
+INITDB="$(resolver_binario initdb || true)"
+PGCTL="$(resolver_binario pg_ctl || true)"
+if [[ -z "$INITDB" || -z "$PGCTL" ]]; then
+  echo "teste-rls-acoes: initdb e pg_ctl não estão no PATH." >&2
+  echo "  Defina PG_BIN para o diretório dos binários do Postgres (o que contém initdb e pg_ctl)," >&2
+  echo "  ou instale o servidor e deixe initdb/pg_ctl no PATH, ou tenha pg_config --bindir acessível." >&2
   exit 2
 fi
+if [[ -z "${PSQL:-}" ]]; then
+  if resolver_binario psql >/dev/null; then
+    PSQL="$(resolver_binario psql)"
+  else
+    echo "teste-rls-acoes: psql não está no PATH. Defina PSQL ou PG_BIN." >&2
+    exit 2
+  fi
+fi
+
+if [[ -d /workspace ]]; then
+  DADOS="${DADOS:-/workspace/pg-acoes-rls-tmp}"
+else
+  DADOS="${DADOS:-$(mktemp -d "${TMPDIR:-/tmp}/pg-acoes-rls.XXXXXX")}"
+fi
+PORTA="${PORTA:-55432}"
+LOG="$DADOS/postgres.log"
 if [[ ! -f "$MIGRACAO" ]]; then
   echo "teste-rls-acoes: migração não encontrada: $MIGRACAO" >&2
   exit 2
@@ -33,14 +74,14 @@ fi
 
 derrubar() {
   if [[ -d "$DADOS" && -f "$DADOS/postmaster.pid" ]]; then
-    pg_ctl -D "$DADOS" -w stop -m fast >/dev/null 2>&1 || true
+    "$PGCTL" -D "$DADOS" -w stop -m fast >/dev/null 2>&1 || true
   fi
   rm -rf "$DADOS"
 }
 trap derrubar EXIT
 
 rm -rf "$DADOS"
-initdb -D "$DADOS" -E UTF8 --locale=C --no-sync --auth=trust --username=postgres >/dev/null
+"$INITDB" -D "$DADOS" -E UTF8 --locale=C --no-sync --auth=trust --username=postgres >/dev/null
 cat >> "$DADOS/postgresql.conf" << EOF
 listen_addresses = '127.0.0.1'
 port = $PORTA
@@ -48,7 +89,7 @@ unix_socket_directories = '$DADOS'
 logging_collector = off
 EOF
 
-pg_ctl -D "$DADOS" -w start -l "$LOG" >/dev/null
+"$PGCTL" -D "$DADOS" -w start -l "$LOG" >/dev/null
 
 psqlq() {
   "$PSQL" -h 127.0.0.1 -p "$PORTA" -U postgres -d postgres -v ON_ERROR_STOP=1 --no-psqlrc "$@"
@@ -245,6 +286,82 @@ select status from public.acoes_concluir('$ACAO'::uuid, 'executada', '{\"ok\": t
 else
   falhou "service_role deveria executar as RPCs: $saida"
 fi
+
+
+como_anon() {
+  psqlq -tA << SQL
+\\set QUIET on
+set role anon;
+\\set QUIET off
+$1
+SQL
+}
+
+# 9. Dono lê só a própria auditoria.
+if saida=$(como_autenticado "$USUARIO_A" "select count(*) || '|' || string_agg(evento, ',' order by em, id) from public.acoes_auditoria;"); then
+  if [[ "$saida" == "3|criada,aprovada,executada" ]]; then
+    ok "dono lê só a própria auditoria (criada, aprovada, executada)"
+  else
+    falhou "auditoria do dono deveria ser 3|criada,aprovada,executada, veio: $saida"
+  fi
+else
+  falhou "select em acoes_auditoria como dono"
+fi
+
+# 10. Outro usuário não vê a auditoria do dono.
+if saida=$(como_autenticado "$USUARIO_B" "select count(*) from public.acoes_auditoria;"); then
+  if [[ "$saida" == "0" ]]; then
+    ok "outro usuário não vê a auditoria do dono"
+  else
+    falhou "usuário B viu auditoria count=$saida (deveria ser 0)"
+  fi
+else
+  falhou "select de auditoria do usuário B falhou"
+fi
+
+# 11. Authenticated não insere, atualiza nem apaga auditoria.
+set +e
+saida=$(como_autenticado "$USUARIO_A" "insert into public.acoes_auditoria (acao_id, usuario_id, evento) values ('$ACAO', '$USUARIO_A', 'aprovada');" 2>&1)
+rc=$?
+set -e
+if [[ $rc -ne 0 ]] && echo "$saida" | grep -qi 'permission denied'; then
+  ok "authenticated não insere auditoria"
+else
+  falhou "insert em acoes_auditoria deveria ser negado, veio (rc=$rc): $saida"
+fi
+
+set +e
+saida=$(como_autenticado "$USUARIO_A" "update public.acoes_auditoria set evento = 'executada' where acao_id = '$ACAO';" 2>&1)
+rc=$?
+set -e
+if [[ $rc -ne 0 ]] && echo "$saida" | grep -qi 'permission denied'; then
+  ok "authenticated não atualiza auditoria"
+else
+  falhou "update em acoes_auditoria deveria ser negado, veio (rc=$rc): $saida"
+fi
+
+set +e
+saida=$(como_autenticado "$USUARIO_A" "delete from public.acoes_auditoria where acao_id = '$ACAO';" 2>&1)
+rc=$?
+set -e
+if [[ $rc -ne 0 ]] && echo "$saida" | grep -qi 'permission denied'; then
+  ok "authenticated não apaga auditoria"
+else
+  falhou "delete em acoes_auditoria deveria ser negado, veio (rc=$rc): $saida"
+fi
+
+# 12. anon não lê ações, view nem auditoria.
+for alvo in public.acoes_pendentes public.acoes_pendentes_leitura public.acoes_auditoria; do
+  set +e
+  saida=$(como_anon "select count(*) from $alvo;" 2>&1)
+  rc=$?
+  set -e
+  if [[ $rc -ne 0 ]] && echo "$saida" | grep -qi 'permission denied'; then
+    ok "anon não lê $alvo"
+  else
+    falhou "anon deveria ter permission denied em $alvo, veio (rc=$rc): $saida"
+  fi
+done
 
 if [[ "$falhas" -ne 0 ]]; then
   echo "teste-rls-acoes: $falhas falha(s)" >&2
