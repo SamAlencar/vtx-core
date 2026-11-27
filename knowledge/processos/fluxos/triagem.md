@@ -3,13 +3,13 @@
 > VTX-066 · Fase F1 · Base de Conhecimento. Detalha a **etapa 0 (Triagem)** do [SOP entre agentes](../fluxo-entre-agentes.md): como o Orquestrador identifica o tipo de projeto, escolhe o fluxo e combina fluxos em projetos híbridos.
 
 ## 1. Conceitos
-- **Tipo de projeto:** categoria que define o fluxo a seguir (etapas, papéis, portões). A VTX trabalha com 6 tipos, cada um com seu documento em `knowledge/processos/fluxos/`.
+- **Tipo de projeto:** categoria que define o fluxo a seguir (etapas, papéis, portões). A VTX trabalha com 7 tipos, cada um com seu documento em `knowledge/processos/fluxos/`.
 - **Ficha do projeto:** artefato de saída da triagem (modelo na seção 5). É a entrada do agente de Produto.
 - **Fluxo principal e módulos:** projeto híbrido segue **um** fluxo principal e incorpora etapas de outros fluxos como módulos, nunca dois fluxos completos em paralelo.
 - **Incerteza:** quanto menos claros forem o problema e a solução, mais curto deve ser o ciclo e mais cedo deve vir a validação (Cynefin; Stacey). Por isso a triagem também avalia incerteza, não só a tecnologia.
 - **Adaptação (tailoring):** o PMBOK 7 recomenda escolher a abordagem de desenvolvimento pelo contexto do projeto. A triagem é esse momento.
 
-## 2. Os 6 tipos
+## 2. Os 7 tipos
 
 | Tipo | Sinais no pedido | Fluxo |
 |---|---|---|
@@ -19,17 +19,19 @@
 | Site / landing page | divulgação, SEO, formulário de contato, conteúdo mais que lógica | `site-landing-page.md` (VTX-070) |
 | Manutenção e evolução | sistema já existe, bug, lentidão, "adicionar função", código de terceiros | `manutencao-evolucao.md` (VTX-071) |
 | MVP / prova de conceito | "testar a ideia", prazo curto, verba limitada, "ver se dá certo" | `mvp-poc.md` (VTX-072) |
+| Agente de IA ou IA embutida | assistente, "agente", tool-calling, RAG, o modelo executa uma tarefa no produto | `agente-ia.md` (VTX-198) |
 
 A stack típica de cada tipo está na [matriz ferramenta × fluxo](../../ferramentas/README.md#matriz).
 
 ## 3. Metodologia (passo a passo)
 1. **Ler o pedido e extrair:** objetivo de negócio, usuário principal, plataformas, prazo, orçamento, integrações e se existe código prévio.
-2. **Responder às 5 perguntas de decisão, nesta ordem** (a primeira resposta "sim" define o fluxo principal):
+2. **Responder às 6 perguntas de decisão, nesta ordem** (a primeira resposta "sim" define o fluxo principal):
    1. Já existe um sistema em produção que será alterado? → **Manutenção e evolução**
    2. O objetivo é validar uma ideia antes de investir (prazo fixo, escopo variável)? → **MVP / PoC**
    3. A entrega principal é um app instalado no celular? → **App mobile**
    4. A entrega não tem interface própria (só troca de dados entre sistemas)? → **API e integrações**
    5. É majoritariamente conteúdo e divulgação, com pouca regra de negócio? → **Site / landing page**
+   6. A entrega principal é um agente de IA ou uma IA embutida (assistente, tool-calling, RAG)? → **Agente de IA ou IA embutida**
    - Nenhuma das anteriores → **Sistema web / SaaS**
 3. **Listar módulos híbridos:** para cada parte que não pertence ao fluxo principal, anexar as etapas do fluxo correspondente (seção 4).
 4. **Classificar incerteza** (baixa / média / alta) em requisitos e em tecnologia. Se as duas forem altas, propor começar como MVP/PoC.
@@ -43,6 +45,7 @@ Regras:
 - **Contrato primeiro:** quando houver app + backend ou sistema + integração, o contrato da API (ex.: OpenAPI) é o primeiro artefato da arquitetura, para os times trabalharem em paralelo.
 - **Portões somam:** vale o portão mais rigoroso entre os fluxos envolvidos (ex.: publicação em loja de apps exige aprovação do Samuel mesmo que o principal seja SaaS).
 - **Máximo de 2 módulos.** Acima disso, dividir em subprojetos com fichas próprias.
+- **IA é módulo obrigatório:** sempre que a entrega usar um modelo de IA (assistente, agente, RAG, classificação, extração ou geração), o fluxo [agente-ia.md](agente-ia.md) entra como módulo, qualquer que seja o fluxo principal (manutenção, API, MVP, site ou SaaS). Se o principal já for agente de IA, as quatro peças entram pelo próprio fluxo, não como módulo extra. Esse módulo é requisito técnico e **não conta** no limite de 2 módulos acima.
 
 | Combinação comum | Principal | Módulos |
 |---|---|---|
@@ -51,6 +54,7 @@ Regras:
 | Site institucional com área do cliente | Sistema web / SaaS | Site / landing page |
 | Teste de app antes do produto | MVP / PoC | App mobile |
 | Nova integração em sistema antigo | Manutenção e evolução | API e integrações |
+| Sistema web com assistente ou agente embutido | Sistema web / SaaS | Agente de IA |
 
 ## 5. Modelo da ficha do projeto
 ```yaml
@@ -58,7 +62,7 @@ projeto: "nome-curto"
 pedido: "resumo em 1–2 frases"
 objetivo_negocio: ""
 usuario_principal: ""
-tipo_principal: "sistema-web-saas"   # um dos 6 tipos
+tipo_principal: "sistema-web-saas"   # um dos 7 tipos
 modulos: []                          # ex.: ["app-mobile"]
 incerteza: {requisitos: "media", tecnologia: "baixa"}
 restricoes: {prazo: "", orcamento: "", stack_obrigatoria: ""}
@@ -73,11 +77,12 @@ duvidas_para_samuel: []
 - **"Nosso ERP precisa enviar pedidos para o Mercado Livre."** Sem tela própria, ERP de terceiro. Principal: **API e integrações**.
 - **"Tenho R$ 5 mil e 3 semanas para ver se um app de caronas funciona."** Prazo fixo e validação. Principal: **MVP / PoC**; módulo: **App mobile**.
 - **"O site da loja ficou lento e queremos um blog."** Já está em produção. Principal: **Manutenção e evolução**; módulo: **Site / landing page**.
+- **"Quero um assistente que preencha o rascunho do laudo para o profissional revisar."** A entrega principal é o agente, não o cadastro. Principal: **Agente de IA ou IA embutida**; risco: dado de saúde (LGPD), escalar ao Samuel.
 
 ## 7. Checklist da triagem
 - [ ] Objetivo de negócio e usuário principal identificados
-- [ ] As 5 perguntas respondidas na ordem; fluxo principal definido
-- [ ] No máximo 2 módulos híbridos; se mais, projeto dividido
+- [ ] As 6 perguntas respondidas na ordem; fluxo principal definido
+- [ ] No máximo 2 módulos híbridos (o módulo de IA, quando obrigatório, não conta nesse limite); se mais, projeto dividido
 - [ ] Incerteza classificada; MVP considerado se ambas forem altas
 - [ ] Riscos de escalonamento (LGPD, pagamento, custo, prazo) listados
 - [ ] Ficha salva em `projects/<projeto>/ficha.yaml` e enviada ao Samuel

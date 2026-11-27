@@ -886,3 +886,10 @@ tarefas:
     responsavel: "agente-orquestrador"
     notas: "Cadastrada a partir da revisão do Tzu no PR #25, item 3. Não executada neste passo. Mexe em workflow do vtx-core."
 
+  - id: VTX-198
+    titulo: "Fluxo de projeto: agente de IA ou IA embutida"
+    area: "Processo"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Fluxo novo e triagem atualizada (7 tipos). Skills: writing-plans, verification-before-completion (validar_backlog, verificar_links). Ferramentas: git. Correu bem."
+

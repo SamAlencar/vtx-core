@@ -73,6 +73,8 @@ Preenchida em 2026-11-24 (VTX-112) só com o que já está documentado: a §5 de
 | [Figma](design/figma.md) | P | P | — | P | O | O |
 | [Google + Grok Bot](comunicacao/google-workspace.md) | O | O | O | O | O | O |
 
+Há um sétimo fluxo, [agente de IA ou IA embutida](../processos/fluxos/agente-ia.md) (VTX-198). A infra de app segue o fluxo web; o laço, as evals, a telemetria de custo e a privacidade dos prompts são obrigatórios nesse tipo.
+
 Notas (células que não são um P óbvio):
 - **Vercel** está em avaliação. Hobby não cobre uso comercial; site estático vai para GitHub Pages ou Cloudflare Pages; Pro/comercial é decisão do Samuel.
 - **Appwrite** e **Firebase** não são o backend padrão (é o Supabase). Entram se o cliente já usa ou pedir. No mobile, o Firebase pode entrar só para FCM e Crashlytics, mesmo com backend Supabase.
