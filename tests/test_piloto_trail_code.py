@@ -37,8 +37,8 @@ class TestPilotoTrailCode(unittest.TestCase):
         # Isola HOME no sandbox, não no usuário do agente.
         self.assertIn('.home', script)
         # Não invoca init nem --deep (podem aparecer só como proibição).
-        invocacoes_init = re.findall(r'^\s*"?\$\{?GRAFT\}?"?\s+init\b', script, re.M)
-        invocacoes_deep = re.findall(r'^\s*"?\$\{?GRAFT\}?"?\s+build\s+--deep\b', script, re.M)
+        invocacoes_init = re.findall(r'^\s*"?\$\{?GRAFT\}?"?\s+init\b', script, re.MULTILINE)
+        invocacoes_deep = re.findall(r'^\s*"?\$\{?GRAFT\}?"?\s+build\s+--deep\b', script, re.MULTILINE)
         self.assertEqual(invocacoes_init, [])
         self.assertEqual(invocacoes_deep, [])
         self.assertNotRegex(script, r"(?m)^\s*npm\s+install\s+-g\b")

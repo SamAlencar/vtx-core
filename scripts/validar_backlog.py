@@ -14,7 +14,7 @@ import sys
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from backlog_lib import STATUS_VALIDOS, carregar  # noqa: E402
+from backlog_lib import STATUS_VALIDOS, carregar
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 RE_ID = re.compile(r"^VTX-\d{3}$")

@@ -6,7 +6,7 @@ IfcOpenShell e ifctester (LGPL-3.0) são usados como biblioteca, sem modificar.
 """
 from __future__ import annotations
 
-from pathlib import Path
+from typing import Literal
 
 import ifcopenshell
 import ifcopenshell.api.aggregate
@@ -20,7 +20,7 @@ import ifcopenshell.api.unit
 import ifcopenshell.util.element
 
 
-def criar_modelo(schema: str = "IFC4", nome: str = "Projeto") -> ifcopenshell.file:
+def criar_modelo(schema: Literal["IFC2X3", "IFC4", "IFC4X3"] = "IFC4", nome: str = "Projeto") -> ifcopenshell.file:
     """IFC novo com projeto, unidades padrão do IfcOpenShell (mm, m², m³), contexto Body e Site/Edifício/Pavimento.
 
     A API (`ifcopenshell.api.*`) recebe medidas em metro e converte para mm no arquivo.
@@ -90,7 +90,7 @@ def ler_psets(elemento) -> dict:
 
 def validar_ids(caminho_ifc, caminho_ids) -> dict:
     """Valida o IFC contra um arquivo IDS 1.0; devolve resumo JSON-serializável."""
-    from ifctester import ids, reporter
+    from ifctester import ids, reporter  # type: ignore[import-untyped]
 
     regras = ids.open(str(caminho_ids))
     modelo = ifcopenshell.open(str(caminho_ifc))  # manter vivo até o report (senão "Instance #n not found")

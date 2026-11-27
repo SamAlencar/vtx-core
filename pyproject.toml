@@ -19,3 +19,27 @@ where = ["core"]
 
 [tool.setuptools.package-data]
 vtx_ifc = ["exemplo.ids"]
+
+[project.optional-dependencies]
+dev = [
+  "ruff==0.17.6",
+  "mypy==2.4.1",
+  "types-jsonschema==4.26.0.20261006",
+]
+
+[tool.ruff]
+target-version = "py312"
+src = ["core", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "RUF", "BLE", "EXE", "PLW", "FURB"]
+
+[tool.ruff.lint.per-file-ignores]
+# scripts e testes inserem sys.path antes de importar módulos locais.
+"scripts/*" = ["E402"]
+"tests/*" = ["E402"]
+
+[tool.mypy]
+python_version = "3.12"
+packages = ["vtx_ifc"]
+warn_unused_ignores = true

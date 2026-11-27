@@ -7,7 +7,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from backlog_lib import carregar  # noqa: E402
+from backlog_lib import carregar
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 projeto, _ = carregar(os.path.join(RAIZ, "backlog"))

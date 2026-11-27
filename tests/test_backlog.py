@@ -12,8 +12,8 @@ import yaml
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, os.path.join(RAIZ, "scripts"))
 
-import exportar_painel  # noqa: E402
-from backlog_lib import carregar  # noqa: E402
+import exportar_painel
+from backlog_lib import carregar
 
 CHAVES_PROIBIDAS = ("notas", "responsavel", "entregavel", "depende_de")
 CHAVES_TAREFA_PROJETO = {"id", "titulo", "fase", "area", "prioridade", "status"}
@@ -109,10 +109,7 @@ class TestExportarPainel(unittest.TestCase):
         for chave in CHAVES_PROIBIDAS:
             self.assertNotIn(chave, chaves)
             self.assertNotIn(f'"{chave}"', texto)
-        for valor in list(sentinelas.values()) + [
-            "PRIVADO-ENTREGAVEL-MESTRE-b2c1",
-            "PRIVADO-NOTAS-MESTRE-b2c1",
-        ]:
+        for valor in [*sentinelas.values(), "PRIVADO-ENTREGAVEL-MESTRE-b2c1", "PRIVADO-NOTAS-MESTRE-b2c1"]:
             self.assertNotIn(valor, texto)
 
         tarefas = doc["projeto"]["tarefas"]

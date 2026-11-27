@@ -1,4 +1,7 @@
-import unittest, yaml, pathlib
+import pathlib
+import unittest
+
+import yaml
 
 CAMPOS = {"id", "nome", "area", "tipo", "link", "licenca", "status", "uso_agentes", "riscos", "responsavel", "revisado_em"}
 STATUS = {"em avaliação", "adotado", "adotado com restrições", "descartado"}

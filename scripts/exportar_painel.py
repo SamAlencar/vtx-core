@@ -11,16 +11,16 @@ este script é um helper local e não publica o site (VTX-171).
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from backlog_lib import _status, carregar  # noqa: E402
+from backlog_lib import _status, carregar
 
 
 def main(dir_backlog, saida):
     projeto, dias = carregar(dir_backlog)
     out = {
-        "gerado_em": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "gerado_em": datetime.now(UTC).isoformat(timespec="seconds"),
         "projeto": {
             "nome": str(projeto.get("projeto", "")),
             "fases": [{"id": str(f["id"]), "nome": str(f["nome"])} for f in projeto.get("fases", [])],

@@ -1,7 +1,6 @@
 """VTX-210: regras do template web com globs, caminhos e exemplos sincronizados."""
 from __future__ import annotations
 
-import os
 import re
 import subprocess
 import tempfile
@@ -16,7 +15,7 @@ except ModuleNotFoundError:
 RAIZ = Path(__file__).resolve().parents[1]
 TEMPLATE = RAIZ / "templates" / "web-next"
 REGRAS = ("stack.mdc", "api.mdc", "agentes.mdc")
-CERCAS = re.compile(r"^```(?:ts|tsx|typescript)\s*\n([\s\S]*?)```", re.M)
+CERCAS = re.compile(r"^```(?:ts|tsx|typescript)\s*\n([\s\S]*?)```", re.MULTILINE)
 SCRIPT = RAIZ / "scripts" / "bootstrap_projeto.sh"
 
 

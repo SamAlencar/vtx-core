@@ -103,6 +103,8 @@ class TestBootstrapProjeto(unittest.TestCase):
             ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")
             self.assertIn("permissions:", ci)
             self.assertIn("contents: read", ci)
+            self.assertIn("ruff check src tests", ci)
+            self.assertNotIn("compileall -q src tests", ci)
             # bootstrap deve copiar as regras atuais da raiz, não uma cópia velha.
             for nome in ("eficiencia-de-tokens.mdc", "economia-de-contexto.mdc"):
                 self.assertEqual(
