@@ -1,5 +1,17 @@
 data: "2026-11-27"
 tarefas:
+  - id: VTX-215
+    titulo: "Lint e tipos em Python no CI"
+    area: "Qualidade"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "PR #37 mesclado em 27/11/2026. Status atualizado neste PR (VTX-229), fora do PR da VTX-179. Skills: verification-before-completion. Ferramentas: git, gh."
+  - id: VTX-229
+    titulo: "permissions: contents: read no topo do workflow testes.yml"
+    area: "Processo"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Entregue neste PR (fica em andamento até o merge): permissions no topo de testes.yml para ifc-web e qualidade herdarem contents: read. Follow-up da observação do Tzu no #39. Skills: writing-plans (docs/planos/2026-11-27-vtx-229.md), verification-before-completion. Ferramentas: git, gh. Como foi: ajudou; mudança pequena."
   - id: VTX-179
     titulo: "Log estruturado por execução de agente e custo"
     area: "Operação"

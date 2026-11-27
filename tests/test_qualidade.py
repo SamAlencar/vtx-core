@@ -85,6 +85,16 @@ class TestPortaoNoRepoReal(unittest.TestCase):
     def test_links_relativos_atuais(self):
         self.assertEqual(verificar(RAIZ), [])
 
+
+    def test_testes_yml_permissions_no_topo(self) -> None:
+        texto = Path(RAIZ, ".github", "workflows", "testes.yml").read_text(encoding="utf-8")
+        perm = texto.find("\npermissions:")
+        jobs = texto.find("\njobs:")
+        self.assertNotEqual(perm, -1)
+        self.assertLess(perm, jobs)
+        bloco = texto[perm:jobs]
+        self.assertIn("contents: read", bloco)
+
 class TestPipelinePainelAposentado(unittest.TestCase):
     def test_workflow_e_citacoes_ativas_ausentes(self):
         self.assertFalse(
@@ -111,7 +121,6 @@ class TestPipelinePainelAposentado(unittest.TestCase):
                 self.assertNotIn("PANEL_TOKEN", texto, caminho.name)
                 self.assertNotIn("vtx_painel", texto, caminho.name)
                 self.assertNotIn("sincronizar-painel", texto, caminho.name)
-
 
 if __name__ == "__main__":
     unittest.main()

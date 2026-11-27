@@ -2061,9 +2061,9 @@ tarefas:
   fase: F8
   area: Qualidade
   prioridade: 67
-  status: em andamento
+  status: concluído
   entregavel: pyproject.toml + .github/workflows/testes.yml + templates/projeto/.github/workflows/ci.yml
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 13), importada em 26/11/2026. Tarefa: corrigir os 14 achados do ruff e os 3 erros do mypy, configurar ruff e mypy no pyproject.toml, adicionar o passo no CI e trocar o Lint falso (compileall) do templates/projeto/.github/workflows/ci.yml por ruff. Arquivos: pyproject.toml, core/vtx_ifc/, scripts/, tests/, .github/workflows/testes.yml, templates/projeto/.github/workflows/ci.yml. Aceite: ruff check core scripts tests e mypy core/vtx_ifc saem com 0 localmente e no CI. Ampliação de 26/11/2026 (orientações do Samuel, item 4): o autofix é do agente, não do CI. ruff check --fix e ruff format entram na verificação local antes do PR (porta-para-producao.md §2); o CI só verifica, com permissions: contents: read. Mexe em workflow: PR com etiqueta precisa do Samuel. Entregue no PR #37 (fica em andamento até o merge, como no #36): ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 13), importada em 26/11/2026. Tarefa: corrigir os 14 achados do ruff e os 3 erros do mypy, configurar ruff e mypy no pyproject.toml, adicionar o passo no CI e trocar o Lint falso (compileall) do templates/projeto/.github/workflows/ci.yml por ruff. Arquivos: pyproject.toml, core/vtx_ifc/, scripts/, tests/, .github/workflows/testes.yml, templates/projeto/.github/workflows/ci.yml. Aceite: ruff check core scripts tests e mypy core/vtx_ifc saem com 0 localmente e no CI. Ampliação de 26/11/2026 (orientações do Samuel, item 4): o autofix é do agente, não do CI. ruff check --fix e ruff format entram na verificação local antes do PR (porta-para-producao.md §2); o CI só verifica, com permissions: contents: read. Mexe em workflow: PR com etiqueta precisa do Samuel. Concluída com o merge do PR #37 em 27/11/2026: ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff.'
 
 - id: VTX-221
   titulo: Topologia de agentes, critérios de agente novo e modelos por perfil
@@ -2217,3 +2217,12 @@ tarefas:
   depende_de:
   - VTX-215
   notas: 'Follow-up adiado da revisão do Tzu no PR #37 (VTX-215), 27/11/2026. Os jobs lint-python e web-next já declaram permissions: contents: read; o job unittest de .github/workflows/testes.yml ainda herda as permissões padrão. Tarefa: declarar o menor privilégio no job unittest (ou no workflow inteiro, conferindo que nenhum job precisa de mais). Arquivos: .github/workflows/testes.yml. Aceite: o job unittest declara permissions: contents: read e o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+
+- id: VTX-229
+  titulo: "permissions: contents: read no topo do workflow testes.yml"
+  fase: F1
+  area: Processo
+  prioridade: 73
+  status: em andamento
+  entregavel: .github/workflows/testes.yml
+  notas: 'Follow-up da revisão do Tzu no PR #39 (VTX-209/VTX-228), 27/11/2026. Os jobs ifc-web e qualidade ainda herdam as permissões padrão do token do GitHub. Tarefa: declarar permissions: contents: read no topo de .github/workflows/testes.yml, para todos os jobs herdarem o menor privilégio, conferindo que nenhum precisa de mais. Arquivos: .github/workflows/testes.yml, teste de que a chave aparece antes de jobs. Aceite: o workflow declara contents: read no topo; ifc-web e qualidade herdam; o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
