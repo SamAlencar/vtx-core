@@ -58,6 +58,25 @@ function timeoutAtualMs(): number {
   return Number.isFinite(bruto) && bruto > 0 ? bruto : 30_000;
 }
 
+
+/**
+ * `acoes_reivindicar` e `acoes_rejeitar` retornam o composto
+ * `public.acoes_pendentes` (não `setof`) e fazem `return null`. O PostgREST
+ * chama `select * from f(...)`; no Postgres isso devolve uma linha com todas
+ * as colunas nulas, não zero linhas. O cliente recebe um objeto truthy com
+ * `id: null`, então `if (!data)` não basta — use `data?.id`.
+ */
+export function acaoDaRpc(data: unknown): AcaoPendente | null {
+  if (!data || typeof data !== "object") {
+    return null;
+  }
+  const linha = data as LinhaAcao;
+  if (linha.id == null || linha.id === "") {
+    return null;
+  }
+  return deLinha(linha);
+}
+
 /**
  * Repositório Supabase: escrita só via service_role / RPC security definer.
  * Nunca usa o JWT do usuário para insert/update/delete.
@@ -87,7 +106,7 @@ export function repositorioAcoesSupabase(
       const em = agora().toISOString();
       const expira_em =
         acao.expira_em ?? new Date(agora().getTime() + ttlMs).toISOString();
-      const { error } = await cliente.rpc("acoes_criar", {
+      const { data, error } = await cliente.rpc("acoes_criar", {
         p_id: acao.id,
         p_usuario_id: acao.usuario_id,
         p_tool: acao.tool,
@@ -99,6 +118,9 @@ export function repositorioAcoesSupabase(
       });
       if (error) {
         throw new Error(`acoes_criar: ${error.message}`);
+      }
+      if (!acaoDaRpc(data)) {
+        throw new Error("acoes_criar: resposta sem id");
       }
     },
 
@@ -114,7 +136,7 @@ export function repositorioAcoesSupabase(
       if (error) {
         throw new Error(`buscar ação: ${error.message}`);
       }
-      return data ? deLinha(data as LinhaAcao) : null;
+      return acaoDaRpc(data);
     },
 
     async reivindicar(id, usuarioId, _em, timeoutMs) {
@@ -128,10 +150,7 @@ export function repositorioAcoesSupabase(
       if (error) {
         throw new Error(`acoes_reivindicar: ${error.message}`);
       }
-      if (!data) {
-        return null;
-      }
-      return deLinha(data as LinhaAcao);
+      return acaoDaRpc(data);
     },
 
     async rejeitar(id, usuarioId) {
@@ -144,10 +163,7 @@ export function repositorioAcoesSupabase(
       if (error) {
         throw new Error(`acoes_rejeitar: ${error.message}`);
       }
-      if (!data) {
-        return null;
-      }
-      return deLinha(data as LinhaAcao);
+      return acaoDaRpc(data);
     },
 
     async concluir(id, desfecho: DesfechoAcao) {
@@ -161,10 +177,11 @@ export function repositorioAcoesSupabase(
       if (error) {
         throw new Error(`acoes_concluir: ${error.message}`);
       }
-      if (!data) {
+      const acao = acaoDaRpc(data);
+      if (!acao) {
         throw new Error(`ação ${id} não está em executando`);
       }
-      return deLinha(data as LinhaAcao);
+      return acao;
     },
 
     async auditar() {
