@@ -86,7 +86,7 @@ class TestRegrasTemplateWeb(unittest.TestCase):
                 "DESIGN.md",
                 "AGENTS.md",
                 "lib/http/problema.ts",
-                "src/dominio/exemplo.ts",
+                "src/dominio/exemplo/index.ts",
                 "src/agentes/prompts/exemplo.ts",
                 "src/agentes/tools/exemplo.ts",
                 "src/agentes/harness/executar.ts",
