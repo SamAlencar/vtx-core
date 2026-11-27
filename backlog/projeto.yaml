@@ -1686,8 +1686,10 @@ tarefas:
   area: Engenharia
   prioridade: 61
   status: a fazer
-  entregavel: 'core/agente/loop.py + tests/test_loop_agente.py + knowledge/engenharia/ia/orquestracao-llm.md'
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma). Reescopo da auditoria: não depende mais da VTX-176 (já concluída e o BIM da plataforma-projetos foi adiado). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5).'
+  entregavel: templates/web-next/src/agentes/harness/
+  depende_de:
+  - VTX-194
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma). Reescopo da auditoria: não depende mais da VTX-176 (já concluída e o BIM da plataforma-projetos foi adiado). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5). Auditoria técnica de 25/11/2026 (§4, P0 item 4): o harness de referência passa a ser TypeScript no template web (`executarAgente` sobre o AI SDK, modelo injetável, testes sem rede). Entregável e aceite desta tarefa seguem essa auditoria, não o loop Python original.'
 
 - id: VTX-178
   titulo: Suíte de evals mínima com portão no CI
@@ -1695,10 +1697,10 @@ tarefas:
   area: Qualidade
   prioridade: 64
   status: a fazer
-  entregavel: 'evals/README.md + evals/executar.py + knowledge/engenharia/ia/evals.md'
+  entregavel: templates/web-next/evals/
   depende_de:
   - VTX-177
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto).'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto). Auditoria técnica de 25/11/2026 (§4, P0 item 6): a suíte de evals e o portão no CI passam a viver no template web (`evals/`, `npm run evals`, passo no ci.yml do template). Entregável e aceite seguem essa auditoria. Mexe em workflow do template: PR com etiqueta precisa do Samuel.'
 
 - id: VTX-179
   titulo: Log estruturado por execução de agente e custo
@@ -1883,6 +1885,13 @@ tarefas:
   prioridade: 3
   status: a fazer
   entregavel: projects/med-hub/docs/plano.md
+  depende_de:
+  - VTX-194
+  - VTX-210
+  - VTX-212
+  - VTX-177
+  - VTX-211
+  - VTX-178
   notas: 'Auditoria §7 item 5 (id sugerido VTX-190, mapeado para VTX-196). Objetivo: usar o med-hub como piloto interno para validar o pipeline de entrega, sem tratá-lo como receita. Arquivos afetados: projects/med-hub/docs/plano.md, projects/med-hub/README.md (registrar que não há pagamento). Critério de aceite: incremento 1 recortado (HU-01, 02 e 04, e só o indispensável para o pipeline); data-alvo até a semana 10 e teto de esforço do Samuel (no máximo 1,5 h por semana no piloto); incrementos 5 e 6 e o restante do MVP ficam fora até o teto ser revisto com A2; autorização do colega para estudo de caso ou a decisão explícita de não publicar. Não há critério de fatura ou pagamento da VTX.'
 
 - id: VTX-197
@@ -1894,6 +1903,12 @@ tarefas:
   entregavel: backlog/projeto.yaml
   depende_de:
   - VTX-196
+  - VTX-194
+  - VTX-210
+  - VTX-212
+  - VTX-177
+  - VTX-211
+  - VTX-178
   notas: 'Auditoria §7 item 6 (id sugerido VTX-191, mapeado para VTX-197). Objetivo: criar o repositório do med-hub pelo bootstrap e uma tarefa por história do incremento 1. Arquivos afetados: backlog/projeto.yaml (IDs MH-xxx ou VTX com área med-hub) e o repositório SamAlencar/med-hub (A2). Critério de aceite: cada tarefa cita a HU e usa os cenários Gherkin do PRD como aceite; CI verde no repositório novo; teste de isolamento entre parceiros (HU-22) se essa história entrar no incremento 1 (senão, tarefa seguinte, fora do teto). proxima_tarefa.py pode devolver tarefas do med-hub, mas o piloto não passa à frente do trabalho técnico F14 nem das 5 h/semana do Samuel reserváveis ao trilho de receita (dependência externa). Não há critério de fatura ou pagamento.'
 
 - id: VTX-204
@@ -1912,7 +1927,7 @@ tarefas:
   prioridade: 6
   status: concluído
   entregavel: knowledge/processos/fluxos/agente-ia.md
-  notas: 'Auditoria §7 item 14 (id sugerido VTX-195, mapeado para VTX-198). Objetivo: dar a esse tipo de projeto um fluxo próprio na triagem. Arquivos afetados: knowledge/processos/fluxos/agente-ia.md, knowledge/processos/fluxos/triagem.md. Critério de aceite: a triagem classifica o tipo; o fluxo exige harness (VTX-177), evals (VTX-178), telemetria de custo (VTX-179) e privacidade (VTX-150). Teto de custo no contrato é dependência externa (agentes de vendas), não aceite desta tarefa. Concluída em 24/11/2026: fluxo em knowledge/processos/fluxos/agente-ia.md; triagem passa a 7 tipos e 6 perguntas, com o tipo e o módulo híbrido. O fluxo exige harness (VTX-177), evals (VTX-178), telemetria de custo (VTX-179) e privacidade (VTX-150). Teto contratual permanece dependência externa. Em 26/11/2026 (revisão do Tzu na 8ba2379, itens 3 e 4): seção 3 e exemplo alinhados a "todo deploy em produção é A2"; teto da F14 do piloto interno com valor e link (1,5 h/semana da VTX-196, dentro das 5 h/semana do SCHEMA); link relativo da política de hospedagem depois do merge do #26.'
+  notas: 'Auditoria §7 item 14 (id sugerido VTX-195, mapeado para VTX-198). Objetivo: dar a esse tipo de projeto um fluxo próprio na triagem. Arquivos afetados: knowledge/processos/fluxos/agente-ia.md, knowledge/processos/fluxos/triagem.md. Critério de aceite: a triagem classifica o tipo; o fluxo exige harness (VTX-177), evals (VTX-178), telemetria de custo (VTX-179) e privacidade (VTX-150). Teto de custo no contrato é dependência externa (agentes de vendas), não aceite desta tarefa. Concluída em 24/11/2026: fluxo em knowledge/processos/fluxos/agente-ia.md; triagem passa a 7 tipos e 6 perguntas, com o tipo e o módulo híbrido. O fluxo exige harness (VTX-177), evals (VTX-178), telemetria de custo (VTX-179) e privacidade (VTX-150). Teto contratual permanece dependência externa. Em 26/11/2026 (revisão do Tzu na 8ba2379, itens 3 e 4): seção 3 e exemplo alinhados a "todo deploy em produção é A2"; teto da F14 do piloto interno com valor e link (1,5 h/semana da VTX-196, dentro das 5 h/semana do SCHEMA); link relativo da política de hospedagem depois do merge do #26. Mesclada no PR #27 em 26/11/2026 (HEAD 6bd08bc): etapa 4 aponta a porta para produção e a VTX-214 no backlog; todo deploy em produção é A2.'
 
 - id: VTX-199
   titulo: Pacote técnico de manutenção, SLA e suporte
@@ -2039,7 +2054,7 @@ tarefas:
   prioridade: 66
   status: a fazer
   entregavel: scripts/mesclar_pr.sh
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 12), importada em 26/11/2026. Tarefa: o repositório privado no plano gratuito não aceita required checks (API 403). Criar scripts/mesclar_pr.sh <n> que só chama gh pr merge se gh pr checks <n> estiver todo verde e a HEAD tiver a aprovação registrada, e tornar esse script o único caminho de merge previsto no AGENTS.md. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, AGENTS.md. Aceite: teste com gh simulado (stub no PATH) mostra que o script sai com código diferente de 0 e não chama merge quando há check vermelho ou pendente, e chama merge quando tudo está verde. Relacionada à VTX-172 (aguardando decisão do Samuel), que esta tarefa contorna sem custo. Ampliação de 26/11/2026 (orientações do Samuel, item 4; knowledge/processos/porta-para-producao.md): a aprovação conferida é o veredito do revisor de IA escrito no PR com o SHA da HEAD final (Aprovado, ou Aprovado com ressalvas só de itens não bloqueantes, depois de aplicadas as ressalvas bloqueantes e de um veredito novo nessa HEAD); PR com a etiqueta precisa do Samuel exige também o OK do Samuel no PR; o script usa --match-head-commit. Depois dela, decidir com o Samuel se PR trivial pode mesclar só com CI verde.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 12), importada em 26/11/2026. Tarefa: o repositório privado no plano gratuito não aceita required checks (API 403). Criar scripts/mesclar_pr.sh <n> que só chama gh pr merge se gh pr checks <n> estiver todo verde e a HEAD tiver a aprovação registrada, e tornar esse script o único caminho de merge previsto no AGENTS.md. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, AGENTS.md. Aceite: teste com gh simulado (stub no PATH) mostra que o script sai com código diferente de 0 e não chama merge quando há check vermelho ou pendente, e chama merge quando tudo está verde. Relacionada à VTX-172 (aguardando decisão do Samuel), que esta tarefa contorna sem custo. Ampliação de 26/11/2026 (orientações do Samuel, item 4; knowledge/processos/porta-para-producao.md): a aprovação conferida é o veredito do revisor de IA escrito no PR com o SHA da HEAD final (Aprovado, ou Aprovado com ressalvas só de itens não bloqueantes, depois de aplicadas as ressalvas bloqueantes e de um veredito novo nessa HEAD); PR com a etiqueta precisa do Samuel exige o veredito «Aprovado (aval do Samuel delegado ao Tzu)» do revisor de IA na HEAD final, sem consultar o Samuel; o script usa --match-head-commit. Depois dela, decidir com o Samuel se PR trivial pode mesclar só com CI verde.'
 
 - id: VTX-215
   titulo: Lint e tipos em Python no CI
@@ -2055,36 +2070,36 @@ tarefas:
   fase: F1
   area: Processo
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: knowledge/processos/topologia-de-agentes.md + knowledge/processos/orientacoes-agentes-ia.md
-  notas: 'Orientações de agentes de IA do Samuel (itens 1 e 2), adaptadas à VTX. Mapeamento orientação → estado → ação em knowledge/processos/orientacoes-agentes-ia.md. Topologia: orquestrador + subagentes verificadores, critério agente novo × subagente × ferramenta, modelos por perfil dentro da cota semanal, tabela de escopos AGENTS.md / .mdc / agents/ / SKILL.md / DESIGN.md. Texto de origem truncado (item 2 parcial, item 3 ausente): revisar quando aparecer. Status efetivo no diário.'
+  notas: 'Orientações de agentes de IA do Samuel (itens 1 e 2), adaptadas à VTX. Mapeamento orientação → estado → ação em knowledge/processos/orientacoes-agentes-ia.md. Topologia: orquestrador + subagentes verificadores, critério agente novo × subagente × ferramenta, modelos por perfil dentro da cota semanal, tabela de escopos AGENTS.md / .mdc / agents/ / SKILL.md / DESIGN.md. Texto de origem truncado (item 2 parcial, item 3 ausente): revisar quando aparecer. Concluída em 26/11/2026 no PR #29.'
 
 - id: VTX-222
   titulo: Porta para produção com revisão calibrada por risco
   fase: F1
   area: Processo
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: knowledge/processos/porta-para-producao.md
-  notas: 'Orientações do Samuel, item 4. CI com autofix pelo agente (até 3 tentativas), revisão cruzada por IA com contexto limpo e veredito na HEAD, classes de risco (trivial, normal, sensível, crítica) com smoke test em preview ou staging. Merge de PR trivial sem revisor adiado até a VTX-214. Status efetivo no diário.'
+  notas: 'Orientações do Samuel, item 4. CI com autofix pelo agente (até 3 tentativas), revisão cruzada por IA com contexto limpo e veredito na HEAD, classes de risco (trivial, normal, sensível, crítica) com smoke test em preview ou staging. Merge de PR trivial sem revisor adiado até a VTX-214. Concluída em 26/11/2026 no PR #29.'
 
 - id: VTX-223
   titulo: Checklist de auditoria de skills, regras e MCPs de terceiros
   fase: F3
   area: Segurança
   prioridade: 57
-  status: a fazer
+  status: concluído
   entregavel: knowledge/seguranca/auditoria-de-skills.md
-  notas: 'Orientações do Samuel, item 5 (auditar skills de terceiros como dependências). Fluxo pin → revisão de todo código e Markdown → cópia com NOTICE.md → recursos.yaml; skill nova é mudança sensível (precisa do Samuel). Status efetivo no diário.'
+  notas: 'Orientações do Samuel, item 5 (auditar skills de terceiros como dependências). Fluxo pin → revisão de todo código e Markdown → cópia com NOTICE.md → recursos.yaml; skill nova é mudança sensível (precisa do Samuel). Concluída em 26/11/2026 no PR #29.'
 
 - id: VTX-224
   titulo: Deny rules do Cursor e segredos fora do contexto do agente
   fase: F9
   area: Integração Cursor
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: .cursor/cli.json
-  notas: 'Orientações do Samuel, item 5 (deny rules explícitas). .cursor/cli.json só com permissions.deny (ler ou escrever .env e chaves, ~/.ssh, sudo, rm -r, push --force, push direto para main, apagar branch remota, reset --hard, clean, --no-verify, gh repo delete, gh secret, gh auth token; --force-with-lease em branch própria liberado), .cursorignore escondendo .env e chaves (raiz e knowledge/templates/cursor/), correção do cursor.md §8 e tests/test_permissoes_cursor.py. Executada no PR #28 com a etiqueta precisa do Samuel (mexe em permissões de agente). Depois do #25: levar .cursorignore e cli.json ao projeto gerado pelo bootstrap.'
+  notas: 'Orientações do Samuel, item 5 (deny rules explícitas). .cursor/cli.json só com permissions.deny (ler ou escrever .env e chaves, ~/.ssh, sudo, rm -r, push --force, push direto para main, apagar branch remota, reset --hard, clean, --no-verify, gh repo delete, gh secret, gh auth token; --force-with-lease em branch própria liberado), .cursorignore escondendo .env e chaves (raiz e knowledge/templates/cursor/), correção do cursor.md §8 e tests/test_permissoes_cursor.py. Executada no PR #28 com a etiqueta precisa do Samuel (mexe em permissões de agente). Depois do #25: levar .cursorignore e cli.json ao projeto gerado pelo bootstrap. Concluída em 26/11/2026 no PR #28.'
 
 - id: VTX-225
   titulo: Proteção real da branch main (ruleset ou hook de pre-push)
@@ -2094,3 +2109,79 @@ tarefas:
   status: a fazer
   entregavel: .githooks/pre-push
   notas: 'Seguimento da revisão do Tzu no PR #28 (item 1), 26/11/2026. O repositório privado no plano gratuito não tem proteção de branch (API 403); o .cursor/cli.json é hoje a única barreira técnica contra push direto em main, e não cobre git push sem argumentos nem contorno via Shell. Tarefa: hook de pre-push local que rejeita push para main (incluindo refspec e git push sem argumentos quando o upstream é main) e, quando o plano do GitHub permitir, ruleset de proteção. Arquivos: .githooks/pre-push (ou caminho equivalente documentado no AGENTS.md), teste do hook, knowledge/ferramentas/ia-dev/cursor.md §8. Aceite: o hook rejeita git push origin main, git push origin HEAD:main e git push sem argumentos com upstream em main, e deixa passar push da branch do PR; documentar o limite se o hook puder ser contornado com --no-verify (já negado no cli.json). Relacionada à VTX-214 (script de merge).'
+
+- id: VTX-211
+  titulo: Fluxo ponta a ponta de referência no template web
+  fase: F13
+  area: Templates
+  prioridade: 62
+  status: a fazer
+  entregavel: templates/web-next/app/api/agentes/[agente]/route.ts
+  depende_de:
+  - VTX-194
+  - VTX-177
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 5), importada em 26/11/2026. Tarefa: criar POST /api/agentes/[agente] com o caminho completo (Zod da entrada, serviço, harness, tool que chama regra em src/dominio/, resposta Zod + trace_id) e uma tela mínima que consome o endpoint com tipos compartilhados. Arquivos: templates/web-next/app/api/agentes/[agente]/route.ts, src/dominio/exemplo/, src/agentes/, app/assistente/page.tsx, tests/integracao/rota-agente.test.ts, tests/e2e/assistente.spec.ts. Aceite: teste de integração (Vitest, modelo falso) chama o handler; entrada válida devolve 200 com corpo que passa no schema de saída, com trace_id e pelo menos 1 chamada de tool; entrada inválida devolve 422 em formato RFC 9457; erro de tool devolve corpo estruturado e nunca stack trace; npm run test:e2e passa localmente com modelo falso.'
+
+- id: VTX-213
+  titulo: Human-in-the-loop para tools críticas no template web
+  fase: F13
+  area: Templates
+  prioridade: 68
+  status: a fazer
+  entregavel: templates/web-next/app/api/agentes/acoes/
+  depende_de:
+  - VTX-177
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 8), importada em 26/11/2026. Tarefa: flag critica: true na definição da tool; o harness devolve PENDENTE_APROVACAO com acao_id, persiste a ação pendente e só executa via POST /api/agentes/acoes/[id]/aprovar, com usuário autenticado e registro de auditoria. Arquivos: templates/web-next/src/agentes/harness/, app/api/agentes/acoes/, supabase/migrations/, tests/integracao/aprovacao.test.ts. Aceite: a tool crítica não executa sem aprovação; executa uma única vez após aprovar (idempotente); grava auditoria com usuário e horário.'
+
+- id: VTX-216
+  titulo: Estado e memória de sessão do agente
+  fase: F13
+  area: Templates
+  prioridade: 69
+  status: a fazer
+  entregavel: templates/web-next/src/agentes/memoria/
+  depende_de:
+  - VTX-177
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 10), importada em 26/11/2026. Tarefa: tabelas execucoes_agente e mensagens_agente com migração SQL e RLS por usuário, e repositório em src/agentes/memoria/ para retomar uma sessão. Arquivos: templates/web-next/supabase/migrations/, src/agentes/memoria/, tests/integracao/memoria.test.ts. Aceite: com supabase start local (gratuito), supabase db reset aplica a migração sem erro; o usuário A não lê a sessão do usuário B (RLS); retomar a sessão recupera as mensagens anteriores.'
+
+- id: VTX-217
+  titulo: e2e no CI do template web
+  fase: F14
+  area: Templates
+  prioridade: 72
+  status: a fazer
+  entregavel: templates/web-next/.github/workflows/ci.yml
+  depende_de:
+  - VTX-211
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 15), importada em 26/11/2026. Tarefa: rodar npm run test:e2e (Playwright + axe-core) no ci.yml do template com npx playwright install --with-deps chromium. Arquivos: templates/web-next/.github/workflows/ci.yml, tests/e2e/. Aceite: o passo e2e verde no CI do projeto gerado, incluindo assistente.spec.ts com modelo falso. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+
+- id: VTX-218
+  titulo: Alinhar stack de referência e template web
+  fase: F4
+  area: Tecnologia
+  prioridade: 73
+  status: a fazer
+  entregavel: knowledge/tecnologia/stack-de-referencia.md
+  depende_de:
+  - VTX-194
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 17), importada em 26/11/2026. Tarefa: decidir entre pnpm e npm, entre ter shadcn/ui ou retirar da tabela, e fixar as versões de Node, Tailwind e Zod. Ajustar knowledge/tecnologia/stack-de-referencia.md e o template para dizerem o mesmo. Arquivos: knowledge/tecnologia/stack-de-referencia.md, templates/web-next/package.json, templates/web-next/.github/workflows/ci.yml. Aceite: um teste compara o gerenciador e a versão de Node citados no documento com package.json (packageManager/engines) e com o ci.yml, e passa.'
+
+- id: VTX-219
+  titulo: .cursorignore sem esconder fixtures usadas por skills
+  fase: F9
+  area: Integração Cursor
+  prioridade: 74
+  status: a fazer
+  entregavel: .cursorignore
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 19), importada em 26/11/2026. Tarefa: adicionar as exceções !.cursor/skills/ifc-web/fixtures/*.ifc e equivalentes. Arquivos: .cursorignore, knowledge/templates/cursor/.cursorignore. Aceite: um teste verifica que todo arquivo citado num SKILL.md não casa com nenhum padrão ativo do .cursorignore.'
+
+- id: VTX-220
+  titulo: Padrão assíncrono de consumo de agente
+  fase: F13
+  area: Templates
+  prioridade: 75
+  status: a fazer
+  entregavel: templates/web-next/src/agentes/jobs/
+  depende_de:
+  - VTX-177
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 16), importada em 26/11/2026. Tarefa: exemplo de execução longa via tabela de jobs (ou pgmq) no Supabase, com worker em Edge Function e status consultável pela UI. Arquivos: templates/web-next/supabase/functions/, src/agentes/jobs/, tests/integracao/jobs.test.ts. Aceite: um teste local cria o job, o worker processa com modelo falso, o status passa de pendente para concluido e o resultado valida no schema.'
