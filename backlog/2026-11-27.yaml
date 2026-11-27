@@ -12,3 +12,15 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "PR #37 mesclado em 27/11/2026, depois das correções do veredito do Tzu: ruff.toml no template, ruff rodando de verdade no teste do bootstrap, None mantido em _materiais, VTX-228 registrada. Skills: verification-before-completion (reprodução do RUF100 no template isolado, unittest 89 ok). Ferramentas: git, gh, ruff, mypy. Como foi: ajudou; a revisão achou um bug real no template."
+  - id: VTX-209
+    titulo: "CI do vtx-core rodar o pipeline npm do template web"
+    area: "Qualidade"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Entregue no PR #39 (fica em andamento até o merge): job web-gerado no testes.yml roda bootstrap --tipo web e npm ci/lint/typecheck/test/evals/build no projeto gerado; CI verde. Skills: writing-plans (docs/planos/2026-11-27-vtx-209-228.md), verification-before-completion (pipeline local saiu 0, CI verde). Ferramentas: git, gh, npm, bootstrap_projeto.sh. Como foi: ajudou; tarefa pequena, custo baixo."
+  - id: VTX-228
+    titulo: "permissions: contents: read no job unittest do CI do vtx-core"
+    area: "Processo"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Entregue no PR #39 junto com a VTX-209 (mesmo arquivo). Skills: writing-plans, verification-before-completion. Ferramentas: git, gh. Como foi: ajudou; uma linha."
