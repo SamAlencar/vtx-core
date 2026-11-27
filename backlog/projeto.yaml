@@ -1934,7 +1934,7 @@ tarefas:
   fase: F14
   area: Operação
   prioridade: 7
-  status: a fazer
+  status: em andamento
   entregavel: knowledge/operacao/suporte-e-sla.md
   notas: 'Auditoria §7 item 15 (id sugerido VTX-196, mapeado para VTX-199), só o lado técnico. Objetivo: suporte previsível e operação com SLA. Arquivos afetados: knowledge/operacao/suporte-e-sla.md, knowledge/processos/fluxos/manutencao-evolucao.md, templates/web-next/docs/runbook.md. Critério de aceite: dois níveis de SLA com tempo de resposta e horas incluídas; canal de suporte (e-mail ou formulário, triado por agente); monitor de disponibilidade gratuito configurado no template; incidentes viram postmortem curto no repositório do cliente. Preço e venda do plano de manutenção são dependência externa (agentes de vendas), não aceite desta tarefa.'
 

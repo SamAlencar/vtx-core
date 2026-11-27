@@ -1,9 +1,10 @@
 # Fluxo de projeto: manutenção e evolução de sistema existente
 
-> VTX-071 · Fase F1 · Base de Conhecimento. Especializa o [SOP entre agentes](../fluxo-entre-agentes.md) para sistemas que já estão em produção (nossos ou de terceiros). Vale quando a [triagem](triagem.md) define `tipo_principal: manutencao-evolucao`; o fluxo do tipo original ([SaaS](sistema-web-saas.md), [app](app-mobile.md), [API](api-integracoes.md), [site](site-landing-page.md)) entra como módulo técnico.
+> VTX-071 · Fase F1 · Base de Conhecimento. Especializa o [SOP entre agentes](../fluxo-entre-agentes.md) para sistemas que já estão em produção (nossos ou de terceiros). Vale quando a [triagem](triagem.md) define `tipo_principal: manutencao-evolucao`; o fluxo do tipo original ([SaaS](sistema-web-saas.md), [app](app-mobile.md), [API](api-integracoes.md), [site](site-landing-page.md)) entra como módulo técnico. SLA, canal de suporte, monitor gratuito e postmortem no repo do cliente: [suporte-e-sla.md](../../operacao/suporte-e-sla.md) (VTX-199).
 
 ## 1. Conceitos
 - **Tipos de manutenção (ISO/IEC/IEEE 14764):** *corretiva* (bug), *adaptativa* (mudança de ambiente: SO, lib, lei, API externa), *perfectiva* (nova função, desempenho, UX) e *preventiva* (dívida técnica, atualização de dependências, refatoração).
+- **SLA técnico:** tempo de 1ª resposta e horas incluídas por nível (Essencial / Evolução) — ver [suporte-e-sla.md](../../operacao/suporte-e-sla.md); não confundir com SLO de disponibilidade em [devops-sre.md](../../operacao/devops-sre.md).
 - **Primeiro entender, depois mudar:** em código herdado, o risco está no que ninguém documentou. O diagnóstico vem antes de qualquer estimativa firme.
 - **Testes de caracterização:** testes que registram o comportamento *atual* (certo ou errado) antes de alterar o código; viram rede de segurança (Feathers).
 - **Mudança pequena e reversível:** PRs curtos, feature flags, rollback testado. Substituição grande é gradual (padrão *Strangler Fig*), nunca reescrita "big bang".

@@ -1,6 +1,6 @@
 # DevOps e SRE (IaC, SLOs, incidentes)
 
-> VTX-021 · Fase F3 · Base de Conhecimento. O que o **DevOps/SRE** ([devops-sre.md](../../agents/devops-sre.md)) mantém depois do merge. Continua [Git e CI/CD](../engenharia/git-e-ci-cd.md) (pipeline e DORA) e se apoia em [segurança](../seguranca/desenvolvimento-seguro.md). Observabilidade detalhada: [observabilidade.md](observabilidade.md) (VTX-022).
+> VTX-021 · Fase F3 · Base de Conhecimento. O que o **DevOps/SRE** ([devops-sre.md](../../agents/devops-sre.md)) mantém depois do merge. Continua [Git e CI/CD](../engenharia/git-e-ci-cd.md) (pipeline e DORA) e se apoia em [segurança](../seguranca/desenvolvimento-seguro.md). Observabilidade detalhada: [observabilidade.md](observabilidade.md) (VTX-022). SLA de suporte ao cliente (tempos de resposta, horas, canal e monitor): [suporte-e-sla.md](suporte-e-sla.md) (VTX-199).
 
 ## 1. Conceitos
 - **Infraestrutura como código (IaC):** todo ambiente é descrito em arquivo versionado e revisado por PR; nada é configurado "na mão" no painel sem virar código ou runbook.

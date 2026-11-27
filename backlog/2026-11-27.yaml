@@ -42,3 +42,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Neste PR (#44): RepositorioAcoes via RPCs acoes_criar/reivindicar/concluir/rejeitar com service_role (lib/supabase-admin.ts, acoes-supabase.ts, acoes-padrao.ts). Sem a chave, o padrão cai em memória (falha segura, 404). auditar() no cliente Supabase é no-op porque as RPCs já auditam e o harness ainda chama auditar após criar. A chave não entra em lib/env.ts (EnvPublico). Correção da revisão: acaoDaRpc trata o composto nulo do PostgREST (`return null` numa função que devolve acoes_pendentes chega como objeto com id null, não como data vazio). Testes de contrato com mock nesse formato e teste ao vivo em scripts/teste-rpc-acoes-composto-nulo.sh. RLS ao vivo das tabelas permanece na VTX-216. Skills: verification-before-completion. Ferramentas: git, gh, npm, vitest, eslint, tsc, postgres 17 local."
+  - id: VTX-199
+    titulo: "Pacote técnico de manutenção, SLA e suporte"
+    area: "Operação"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Em andamento neste PR: knowledge/operacao/suporte-e-sla.md (documento principal), ponteiros em knowledge/INDEX.md (#63), knowledge/operacao/devops-sre.md e knowledge/processos/fluxos/manutencao-evolucao.md, e o runbook do template web-next (health/monitor, canal e postmortem). Material de um share do Grok adaptado à base: postmortem em docs/postmortems/ no repo do cliente (não em projects/ no vtx-core); exemplo de rollback no padrão Cloudflare Pages, não Vercel; Exemplo antes do Checklist (formato do INDEX); nota de que /api/health ainda não existe no template (o monitor usa /). Preço/venda ficam de fora. Sem etiqueta precisa do Samuel (só documentação). Skills: verification-before-completion (unittest, validar_backlog, verificar_links). Ferramentas: git, gh, python."

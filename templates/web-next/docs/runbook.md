@@ -1,6 +1,7 @@
 # Runbook — __NOME_DO_PROJETO__
 
 Operação, preview e resposta a incidente (DevOps/SRE).
+SLA técnico e canal de suporte: [suporte-e-sla.md](../../../knowledge/operacao/suporte-e-sla.md) (VTX-199).
 
 ## Preview em hospedagem gratuita com uso comercial permitido
 
@@ -18,9 +19,18 @@ Como publicar um preview:
 
 GitHub Pages serve página estática; este template é Next.js, então não é o padrão.
 
-## Saúde e logs
+## Saúde, monitor e logs
 
-No preview da Cloudflare: logs do Pages/Workers no painel (retenção curta no Free).
+- **Health:** `GET /api/health` (ou `/` se ainda não houver rota de health) deve responder **200** sem autenticação. Neste template a rota `/api/health` ainda não existe; o monitor usa `/` até ela ser criada.
+- **Monitor gratuito:** UptimeRobot ou Better Stack Uptime (tier free), intervalo 5 min, alerta para o e-mail do canal de suporte abaixo. Registrar aqui a URL do monitor após o go-live.
+- **URL do monitor:** _preencher no go-live_
+- Logs do preview Cloudflare: painel Pages/Workers (retenção curta no Free).
+
+## Canal de suporte
+
+- **Entrada:** e-mail `suporte+__NOME_DO_PROJETO__@…` *ou* formulário do projeto (um canal só).
+- **Triagem:** agente classifica Sev e tipo; 1ª resposta no prazo do [SLA](../../../knowledge/operacao/suporte-e-sla.md).
+- **Nível de SLA deste projeto:** Essencial (4 h/mês) / Evolução (12 h/mês) — _marcar um_.
 
 ## Rollback
 
@@ -28,4 +38,10 @@ Republicar o deploy anterior no painel da Cloudflare (ou o commit anterior no br
 
 ## Incidentes
 
-Quem avisar, o que registrar, o que é A2 (apagar dados, cobrança, falar com o cliente, plano pago).
+| Sev | Ação imediata | A2? |
+|---|---|---|
+| SEV1 | Rollback ou desligar flag; avisar Samuel em seguida | Depois do mitigar, se envolver dados/cobrança/cliente |
+| SEV2 | Corrigir ou workaround; registrar no ticket | Comunicação externa e gasto |
+| SEV3 | Backlog ou resposta no canal | — |
+
+SEV1 e SEV2 geram postmortem curto em `docs/postmortems/` neste repositório (modelo em [suporte-e-sla.md](../../../knowledge/operacao/suporte-e-sla.md)). Apagar dados, cobrança, falar com o cliente ou plano pago continuam A2.
