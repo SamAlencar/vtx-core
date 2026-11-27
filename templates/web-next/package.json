@@ -11,7 +11,8 @@
     "regras:check": "node scripts/extrair-exemplos-regras.mjs --check",
     "typecheck": "node scripts/extrair-exemplos-regras.mjs --check && tsc --noEmit",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "evals": "vitest run --config evals/vitest.config.mts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.2",

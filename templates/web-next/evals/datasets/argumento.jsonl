@@ -1,0 +1,4 @@
+{"id": "argumento-01", "tipo": "argumento", "objetivo": "Some os números", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": "x", "b": 2}}], "esperado": {"codigo": "PARAMETRO_INVALIDO", "schema": false}}
+{"id": "argumento-02", "tipo": "argumento", "objetivo": "Some os números", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": 1, "b": "y"}}], "esperado": {"codigo": "PARAMETRO_INVALIDO", "schema": false}}
+{"id": "argumento-03", "tipo": "argumento", "objetivo": "Some os números", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": null, "b": 3}}], "esperado": {"codigo": "PARAMETRO_INVALIDO", "schema": false}}
+{"id": "argumento-04", "tipo": "argumento", "objetivo": "Some os números", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {}}], "esperado": {"codigo": "PARAMETRO_INVALIDO", "schema": false}}
