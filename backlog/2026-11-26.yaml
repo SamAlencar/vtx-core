@@ -33,9 +33,9 @@ tarefas:
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Importada da auditoria técnica e ampliada: o script confere o veredito do revisor na HEAD e o OK do Samuel em PR sensível. Ver mestre."
+    notas: "Concluída em 26/11/2026 neste PR: scripts/mesclar_pr.sh e testes com gh simulado. Skills: writing-plans (docs/planos/2026-11-26-vtx-214.md), verification-before-completion. Ferramentas: git, gh, python."
   - id: VTX-215
     titulo: "Lint e tipos em Python no CI"
     area: "Qualidade"
