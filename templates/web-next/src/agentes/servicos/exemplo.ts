@@ -3,7 +3,6 @@ import { definicaoSomar } from "@/src/agentes/tools/exemplo";
 import {
   ErroAgente,
   executarAgente,
-  modeloFalsoSomar,
   type ModeloAgente,
   type ResultadoAgente,
   type ToolRegistro,
@@ -16,9 +15,17 @@ export type PedidoExemplo = {
   modelo?: ModeloAgente;
 };
 
-export function modeloPadrao(): ModeloAgente {
-  if (process.env.AGENT_MODELO_FALSO === "1") {
-    return modeloFalsoSomar();
+export async function modeloPadrao(): Promise<ModeloAgente> {
+  if (process.env.NODE_ENV !== "production") {
+    if (process.env.AGENT_MODELO_FALSO === "1") {
+      const { modeloFalsoSomar } = await import("@/src/agentes/harness/modelo-falso");
+      return modeloFalsoSomar();
+    }
+  } else if (process.env.AGENT_MODELO_FALSO === "1") {
+    throw new ErroAgente(
+      "ERRO_INTERNO",
+      "AGENT_MODELO_FALSO não é permitido em produção.",
+    );
   }
   throw new ErroAgente(
     "ERRO_INTERNO",
@@ -34,7 +41,7 @@ export async function executarExemplo(
 
 ${pedido.objetivo}`,
     tools: pedido.tools ?? [definicaoSomar],
-    modelo: pedido.modelo ?? modeloPadrao(),
+    modelo: pedido.modelo ?? (await modeloPadrao()),
     saida: dadosAssistente,
   });
 }

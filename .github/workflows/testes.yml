@@ -56,7 +56,7 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Lint, tipos e testes do template
-        run: npm run lint && npm run typecheck && npm test
+        run: npm run lint && npm run typecheck && npm test && npm run build
 
   qualidade:
     runs-on: ubuntu-latest

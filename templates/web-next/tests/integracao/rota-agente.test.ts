@@ -1,9 +1,9 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { saidaAssistente } from "@/src/agentes/contrato";
-import { modeloFalsoSomar } from "@/src/agentes/harness";
+import { modeloFalsoSomar } from "@/src/agentes/harness/modelo-falso";
+import { criarPost } from "@/src/agentes/rotas/agente";
 import { executarExemplo } from "@/src/agentes/servicos/exemplo";
 import { definicaoSomar } from "@/src/agentes/tools/exemplo";
-import { criarPost } from "@/app/api/agentes/[agente]/route";
 
 function pedido(corpo: string, agente = "exemplo") {
   return {
@@ -25,6 +25,7 @@ describe("POST /api/agentes/[agente]", () => {
     } else {
       process.env.AGENT_MODELO_FALSO = anterior;
     }
+    vi.unstubAllEnvs();
   });
 
   it("entrada válida devolve 200 com schema, trace_id e tool", async () => {
@@ -56,7 +57,7 @@ describe("POST /api/agentes/[agente]", () => {
     expect(corpo.detail.startsWith("[")).toBe(false);
   });
 
-  it("erro de tool devolve corpo estruturado e nunca stack trace", async () => {
+  it("erro de tool devolve corpo estruturado, genérico e nunca stack trace", async () => {
     process.env.AGENT_MODELO_FALSO = "1";
     const falha = new Error("falha na tool");
     falha.stack = "Error: falha na tool\n    at foo.ts:1:1\n    at bar.ts:2:2";
@@ -85,13 +86,30 @@ describe("POST /api/agentes/[agente]", () => {
       title: "Falha no agente",
       status: 500,
       codigo: "ERRO_INTERNO",
-      detail: "falha na tool",
     });
     expect(typeof corpo.trace_id).toBe("string");
+    expect(corpo.detail).toBe(
+      `Falha interna. Informe o trace_id ${corpo.trace_id} se precisar de suporte.`,
+    );
     expect(corpo).not.toHaveProperty("stack");
+    expect(bruto).not.toContain("falha na tool");
     expect(bruto).not.toContain("foo.ts");
     expect(bruto).not.toContain("bar.ts");
     expect(bruto).not.toContain("at foo");
     expect(bruto).not.toMatch(/\n\s*at /);
+  });
+
+  it("recusa AGENT_MODELO_FALSO em produção e ainda devolve trace_id", async () => {
+    process.env.AGENT_MODELO_FALSO = "1";
+    vi.stubEnv("NODE_ENV", "production");
+    const POST = criarPost();
+    const { req, ctx } = pedido(JSON.stringify({ objetivo: "Some 1 e 2" }));
+    const res = await POST(req, ctx);
+    expect(res.status).toBe(500);
+    const corpo = await res.json();
+    expect(corpo.codigo).toBe("ERRO_INTERNO");
+    expect(typeof corpo.trace_id).toBe("string");
+    expect(corpo.detail).not.toContain("AGENT_MODELO_FALSO");
+    expect(corpo.detail).toContain(corpo.trace_id);
   });
 });
