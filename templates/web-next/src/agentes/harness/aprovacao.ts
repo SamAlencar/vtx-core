@@ -70,8 +70,9 @@ export async function aprovarAcao<Saida = unknown>(
   pedido: PedidoAprovacao<Saida>,
 ): Promise<ResultadoAprovacao<Saida>> {
   const { repositorio, acaoId, usuarioId } = pedido;
+  const timeoutMs = pedido.timeoutMs ?? lerTimeoutMs();
   const em = new Date().toISOString();
-  const acao = await repositorio.reivindicar(acaoId, usuarioId, em);
+  const acao = await repositorio.reivindicar(acaoId, usuarioId, em, timeoutMs);
   if (!acao) {
     const atual = await repositorio.buscar(acaoId, usuarioId);
     if (!atual) {
@@ -86,7 +87,7 @@ export async function aprovarAcao<Saida = unknown>(
     if (!def) {
       throw new ErroAgente("FUNCAO_DESCONHECIDA", `Tool crítica desconhecida: ${acao.tool}.`);
     }
-    const resultado = await rodarComPrazo(def, acao.input, pedido.timeoutMs ?? lerTimeoutMs());
+    const resultado = await rodarComPrazo(def, acao.input, timeoutMs);
     final = await repositorio.concluir(acaoId, { status: "executada", resultado });
   } catch (erro) {
     const atual = await repositorio.buscar(acaoId, usuarioId);

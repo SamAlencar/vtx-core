@@ -103,7 +103,13 @@ export interface RepositorioAcoes {
    * `pendente`, expirou o TTL ou o lease de `executando` venceu (nesses dois
    * últimos casos a linha é marcada `expirada` ou `falhou` e auditada).
    */
-  reivindicar(id: string, usuarioId: string, em: string): Promise<AcaoPendente | null>;
+  reivindicar(
+    id: string,
+    usuarioId: string,
+    em: string,
+    /** Timeout da tool nesta aprovação; o lease deriva daqui (fonte única). */
+    timeoutMs?: number,
+  ): Promise<AcaoPendente | null>;
   /**
    * Só aceita ação `pendente` ainda no prazo. Devolve a ação `rejeitada` ou
    * `null` (não encontrada, de outro usuário, já decidida ou expirada).
@@ -120,8 +126,8 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
   const registros: RegistroAuditoria[] = [];
   const agora = opts.agora ?? (() => new Date());
   const ttlMs = opts.ttlMs ?? ACAO_TTL_PADRAO_MS;
-  const leaseAtual = (): number =>
-    opts.leaseMs ?? leaseMsDeTimeout(opts.timeoutMs ?? timeoutAtualMs());
+  const leaseAtual = (timeoutMs?: number): number =>
+    opts.leaseMs ?? leaseMsDeTimeout(timeoutMs ?? opts.timeoutMs ?? timeoutAtualMs());
   const copia = (a: AcaoPendente): AcaoPendente => structuredClone(a);
 
   const doDono = (id: string, usuarioId: string): AcaoPendente | undefined => {
@@ -145,11 +151,11 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
     return true;
   };
 
-  const encerrarLeaseVencido = (a: AcaoPendente, em: string): boolean => {
+  const encerrarLeaseVencido = (a: AcaoPendente, em: string, timeoutMs?: number): boolean => {
     if (a.status !== "executando" || !a.executando_em) {
       return false;
     }
-    if (Date.parse(a.executando_em) + leaseAtual() > Date.parse(em)) {
+    if (Date.parse(a.executando_em) + leaseAtual(timeoutMs) > Date.parse(em)) {
       return false;
     }
     a.status = "falhou";
@@ -168,13 +174,13 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
       const a = doDono(id, usuarioId);
       return a ? copia(a) : null;
     },
-    async reivindicar(id, usuarioId) {
+    async reivindicar(id, usuarioId, _em, timeoutMs) {
       const em = agora().toISOString();
       const a = doDono(id, usuarioId);
       if (!a) {
         return null;
       }
-      if (expirarSeVencida(a, em) || encerrarLeaseVencido(a, em)) {
+      if (expirarSeVencida(a, em) || encerrarLeaseVencido(a, em, timeoutMs)) {
         return null;
       }
       if (a.status !== "pendente") {

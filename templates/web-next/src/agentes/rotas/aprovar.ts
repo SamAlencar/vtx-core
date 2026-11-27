@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { usuarioDaRequisicao, type Usuario } from "@/lib/auth";
 import { problema } from "@/lib/http/problema";
-import { aprovarAcao, ErroAgente, type PedidoRetomada, type ToolRegistro } from "@/src/agentes/harness";
+import { aprovarAcao, ErroAgente, lerTimeoutMs, type PedidoRetomada, type ToolRegistro } from "@/src/agentes/harness";
 import { repositorioAcoesPadrao, type AcaoPendente, type RepositorioAcoes } from "@/src/agentes/memoria/acoes";
 import { catalogoTools } from "@/src/agentes/tools/catalogo";
 
@@ -45,9 +45,9 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
   const repositorio = deps.repositorio ?? repositorioAcoesPadrao;
   const tools = deps.tools ?? catalogoTools;
   const retomada = deps.retomada;
-  const timeoutMs = deps.timeoutMs;
 
   return async function POST(req: Request, ctx: ContextoRota): Promise<Response> {
+    const timeoutMs = deps.timeoutMs ?? lerTimeoutMs();
     const usuario = await autenticar(req);
     if (!usuario) {
       return NextResponse.json(

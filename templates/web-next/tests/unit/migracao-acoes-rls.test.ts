@@ -35,11 +35,33 @@ describe("migração acoes_pendentes: RLS e escrita só no servidor", () => {
     expect(sql).not.toMatch(/create policy\s+\S+\s+on public\.acoes_auditoria\s+for (insert|update|delete)/i);
   });
 
-  it("não concede SELECT da tabela acoes_pendentes; a leitura vai pela view sem contexto_retomada", () => {
+  it("concede SELECT por coluna (sem contexto_retomada) e mantém a view de leitura", () => {
     expect(sql).toMatch(
       /revoke all on table public\.acoes_pendentes from public, anon, authenticated/i,
     );
     expect(sql).not.toMatch(/grant select on table public\.acoes_pendentes to authenticated/i);
+    const colunas = sql.match(
+      /grant select \(([\s\S]*?)\) on table public\.acoes_pendentes to authenticated/i,
+    )?.[1];
+    expect(colunas).toBeTruthy();
+    expect(colunas).not.toMatch(/contexto_retomada/i);
+    for (const col of [
+      "id",
+      "usuario_id",
+      "tool",
+      "input",
+      "status",
+      "trace_id",
+      "criado_em",
+      "expira_em",
+      "executando_em",
+      "aprovado_por",
+      "aprovado_em",
+      "resultado",
+      "erro",
+    ]) {
+      expect(colunas).toMatch(new RegExp(`\\b${col}\\b`));
+    }
     expect(sql).toMatch(
       /create or replace view public\.acoes_pendentes_leitura\s+with \(security_invoker = true\)/i,
     );
@@ -48,8 +70,6 @@ describe("migração acoes_pendentes: RLS e escrita só no servidor", () => {
     )?.[0] ?? "";
     expect(view).toBeTruthy();
     expect(view).not.toMatch(/contexto_retomada/i);
-    expect(view).toMatch(/\btool\b/);
-    expect(view).toMatch(/\bstatus\b/);
     expect(sql).toMatch(/grant select on public\.acoes_pendentes_leitura to authenticated/i);
 
     expect(sql).toMatch(

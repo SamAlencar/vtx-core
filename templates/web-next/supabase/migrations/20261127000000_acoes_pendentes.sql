@@ -1,9 +1,10 @@
 -- VTX-213: ações pendentes de tools críticas e auditoria.
 -- Escrita só no servidor: service_role (bypassa RLS) ou RPC security definer
 -- com search_path fixo e EXECUTE só para service_role.
--- O papel authenticated só faz SELECT das próprias linhas. Sem isso, um
--- usuário inseriria uma ação pendente pelo PostgREST e a "aprovaria" com
--- input arbitrário, forjando também a auditoria.
+-- O papel authenticated só faz SELECT das colunas permitidas das próprias
+-- linhas (sem contexto_retomada). Sem o revoke de escrita, um usuário
+-- inseriria uma ação pendente pelo PostgREST e a "aprovaria" com input
+-- arbitrário, forjando também a auditoria.
 
 create table if not exists public.acoes_pendentes (
   id uuid primary key,
@@ -34,9 +35,26 @@ create policy acoes_pendentes_select on public.acoes_pendentes
   using (usuario_id = (select auth.uid()));
 
 revoke all on table public.acoes_pendentes from public, anon, authenticated;
--- Sem GRANT SELECT na tabela: contexto_retomada (prompt de sistema e
--- histórico) não vaza pelo PostgREST. A leitura do usuário vai pela view.
 grant all on table public.acoes_pendentes to service_role;
+
+-- SELECT por coluna: o dono lê as próprias ações (RLS), mas não
+-- contexto_retomada (prompt de sistema e histórico). SELECT * na tabela
+-- falha; use as colunas permitidas ou a view abaixo.
+grant select (
+  id,
+  usuario_id,
+  tool,
+  input,
+  status,
+  trace_id,
+  criado_em,
+  expira_em,
+  executando_em,
+  aprovado_por,
+  aprovado_em,
+  resultado,
+  erro
+) on table public.acoes_pendentes to authenticated;
 
 create or replace view public.acoes_pendentes_leitura
   with (security_invoker = true)
