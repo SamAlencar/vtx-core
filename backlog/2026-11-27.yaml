@@ -39,6 +39,6 @@ tarefas:
   - id: VTX-230
     titulo: "Repositório Supabase de ações pendentes (escrita no servidor)"
     area: "Templates"
-    status: "a fazer"
+    status: "em andamento"
     responsavel: "agente-orquestrador"
-    notas: "Aberta neste PR (#42) como follow-up da revisão do Tzu: implementar RepositorioAcoes com service_role/RPC, nunca JWT do usuário. O aceite de RLS ao vivo das tabelas de ação entra na VTX-216. Skills: writing-plans, verification-before-completion. Ferramentas: git, gh."
+    notas: "Em andamento neste PR: RepositorioAcoes via RPCs acoes_criar/reivindicar/concluir/rejeitar com service_role (lib/supabase-admin.ts, acoes-supabase.ts, acoes-padrao.ts). Sem a chave, o padrão cai em memória (falha segura, 404). auditar() no cliente Supabase é no-op porque as RPCs já auditam e o harness ainda chama auditar após criar. A chave não entra em lib/env.ts (EnvPublico). Testes de contrato com mock do cliente. RLS ao vivo das tabelas permanece na VTX-216. Skills: verification-before-completion. Ferramentas: git, gh, npm, vitest, eslint, tsc."

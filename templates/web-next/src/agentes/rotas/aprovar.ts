@@ -3,7 +3,8 @@ import { z } from "zod";
 import { usuarioDaRequisicao, type Usuario } from "@/lib/auth";
 import { problema } from "@/lib/http/problema";
 import { aprovarAcao, ErroAgente, lerTimeoutMs, type PedidoRetomada, type ToolRegistro } from "@/src/agentes/harness";
-import { repositorioAcoesPadrao, type AcaoPendente, type RepositorioAcoes } from "@/src/agentes/memoria/acoes";
+import { type AcaoPendente, type RepositorioAcoes } from "@/src/agentes/memoria/acoes";
+import { repositorioAcoesPadrao } from "@/src/agentes/memoria/acoes-padrao";
 import { catalogoTools } from "@/src/agentes/tools/catalogo";
 
 type ContextoRota = { params: Promise<{ id: string }> };

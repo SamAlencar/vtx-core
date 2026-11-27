@@ -1,12 +1,13 @@
 /**
- * Ações pendentes de tools críticas (VTX-213).
+ * Ações pendentes de tools críticas (VTX-213 / VTX-230).
  *
  * A tabela está em `supabase/migrations/20261127000000_acoes_pendentes.sql`.
  * Quem escreve (insert/update/delete e auditoria) é o servidor, via
  * service_role ou RPC `security definer` com search_path fixo e EXECUTE só
  * para service_role. O RLS do papel `authenticated` protege só a leitura
- * (SELECT das próprias linhas). O repositório Supabase (cliente) fica na
- * VTX-230; aqui o padrão é memória por processo.
+ * (SELECT das próprias linhas). A implementação Supabase está em
+ * `acoes-supabase.ts`; o padrão das rotas (`acoes-padrao.ts`) escolhe
+ * Supabase se houver service_role, senão memória por processo.
  */
 export type StatusAcao =
   | "pendente"
@@ -241,10 +242,7 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
 }
 
 /**
- * Repositório padrão da rota de aprovação. Em memória por processo. Em
- * produção troque pelo repositório Supabase da VTX-230, que escreve com
- * service_role (ou RPC security definer) e nunca com o JWT do usuário.
- * Sem persistência, a ação some com o processo e a aprovação responde 404
- * — falha segura, nunca executa.
+ * O repositório padrão das rotas de aprovação/rejeição vive em
+ * `acoes-padrao.ts` (`criarRepositorioPadrao`): Supabase com service_role
+ * quando a chave existe; senão memória por processo (falha segura, 404).
  */
-export const repositorioAcoesPadrao: RepositorioAcoes = repositorioAcoesEmMemoria();
