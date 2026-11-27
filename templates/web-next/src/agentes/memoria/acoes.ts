@@ -1,8 +1,36 @@
 /**
- * Ações pendentes de tools críticas (VTX-213). A tabela em Supabase está em
- * `supabase/migrations/20261127000000_acoes_pendentes.sql`, com RLS por usuário.
+ * Ações pendentes de tools críticas (VTX-213).
+ *
+ * A tabela está em `supabase/migrations/20261127000000_acoes_pendentes.sql`.
+ * Quem escreve (insert/update/delete e auditoria) é o servidor, via
+ * service_role ou RPC `security definer` com search_path fixo e EXECUTE só
+ * para service_role. O RLS do papel `authenticated` protege só a leitura
+ * (SELECT das próprias linhas). O repositório Supabase (cliente) fica na
+ * VTX-230; aqui o padrão é memória por processo.
  */
-export type StatusAcao = "pendente" | "executando" | "executada" | "falhou";
+export type StatusAcao =
+  | "pendente"
+  | "executando"
+  | "executada"
+  | "falhou"
+  | "rejeitada"
+  | "expirada";
+
+export type ContextoRetomada = {
+  mensagens: unknown[];
+  mensagensAssistente: unknown[];
+  resultadosParciais: Array<{
+    type: "tool-result";
+    toolCallId: string;
+    toolName: string;
+    output: unknown;
+  }>;
+  toolCallId: string;
+  passo: number;
+  toolsChamadas: string[];
+  maxIteracoes: number;
+  sistema?: string;
+};
 
 export type AcaoPendente = {
   id: string;
@@ -12,13 +40,22 @@ export type AcaoPendente = {
   status: StatusAcao;
   trace_id: string;
   criado_em: string;
+  expira_em: string;
+  executando_em?: string;
+  contexto_retomada?: ContextoRetomada;
   aprovado_por?: string;
   aprovado_em?: string;
   resultado?: unknown;
   erro?: string;
 };
 
-export type EventoAuditoria = "criada" | "aprovada" | "executada" | "falhou";
+export type EventoAuditoria =
+  | "criada"
+  | "aprovada"
+  | "executada"
+  | "falhou"
+  | "rejeitada"
+  | "expirada";
 
 export type RegistroAuditoria = {
   acao_id: string;
@@ -31,48 +68,131 @@ export type DesfechoAcao =
   | { status: "executada"; resultado: unknown }
   | { status: "falhou"; erro: string };
 
+export const ACAO_TTL_PADRAO_MS = 24 * 60 * 60 * 1000;
+export const ACAO_LEASE_PADRAO_MS = 60_000;
+
+export type OpcoesRepositorioAcoes = {
+  /** Relógio injetável, para testes de TTL e de lease. */
+  agora?: () => Date;
+  ttlMs?: number;
+  leaseMs?: number;
+};
+
 export interface RepositorioAcoes {
-  criar(acao: AcaoPendente): Promise<void>;
-  /** Só devolve a ação do próprio usuário (o RLS faz o mesmo no banco). */
+  criar(acao: Omit<AcaoPendente, "expira_em"> & { expira_em?: string }): Promise<void>;
+  /** Só devolve a ação do próprio usuário (o RLS faz o mesmo na leitura). */
   buscar(id: string, usuarioId: string): Promise<AcaoPendente | null>;
   /**
    * Troca `pendente` por `executando` de forma atômica. Devolve a ação se esta
-   * chamada ganhou; `null` se não existe, é de outro usuário ou já saiu de `pendente`.
+   * chamada ganhou; `null` se não existe, é de outro usuário, já saiu de
+   * `pendente`, expirou o TTL ou o lease de `executando` venceu (nesses dois
+   * últimos casos a linha é marcada `expirada` ou `falhou` e auditada).
    */
   reivindicar(id: string, usuarioId: string, em: string): Promise<AcaoPendente | null>;
+  /**
+   * Só aceita ação `pendente` ainda no prazo. Devolve a ação `rejeitada` ou
+   * `null` (não encontrada, de outro usuário, já decidida ou expirada).
+   */
+  rejeitar(id: string, usuarioId: string, em: string): Promise<AcaoPendente | null>;
   concluir(id: string, desfecho: DesfechoAcao): Promise<AcaoPendente>;
   auditar(registro: RegistroAuditoria): Promise<void>;
   auditoria(acaoId: string): Promise<RegistroAuditoria[]>;
 }
 
 /** Implementação em memória, para testes e para o modelo falso em desenvolvimento. */
-export function repositorioAcoesEmMemoria(): RepositorioAcoes {
+export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): RepositorioAcoes {
   const acoes = new Map<string, AcaoPendente>();
   const registros: RegistroAuditoria[] = [];
+  const agora = opts.agora ?? (() => new Date());
+  const ttlMs = opts.ttlMs ?? ACAO_TTL_PADRAO_MS;
+  const leaseMs = opts.leaseMs ?? ACAO_LEASE_PADRAO_MS;
   const copia = (a: AcaoPendente): AcaoPendente => structuredClone(a);
+
+  const doDono = (id: string, usuarioId: string): AcaoPendente | undefined => {
+    const a = acoes.get(id);
+    return a && a.usuario_id === usuarioId ? a : undefined;
+  };
+
+  const auditarSync = (registro: RegistroAuditoria) => {
+    registros.push({ ...registro });
+  };
+
+  const expirarSeVencida = (a: AcaoPendente, em: string): boolean => {
+    if (a.status !== "pendente") {
+      return false;
+    }
+    if (Date.parse(a.expira_em) > Date.parse(em)) {
+      return false;
+    }
+    a.status = "expirada";
+    auditarSync({ acao_id: a.id, usuario_id: a.usuario_id, evento: "expirada", em });
+    return true;
+  };
+
+  const encerrarLeaseVencido = (a: AcaoPendente, em: string): boolean => {
+    if (a.status !== "executando" || !a.executando_em) {
+      return false;
+    }
+    if (Date.parse(a.executando_em) + leaseMs > Date.parse(em)) {
+      return false;
+    }
+    a.status = "falhou";
+    a.erro = "execução interrompida (timeout da reivindicação)";
+    auditarSync({ acao_id: a.id, usuario_id: a.usuario_id, evento: "falhou", em });
+    return true;
+  };
 
   return {
     async criar(acao) {
-      acoes.set(acao.id, copia(acao));
+      const expira_em = acao.expira_em ?? new Date(agora().getTime() + ttlMs).toISOString();
+      const criada = copia({ ...acao, expira_em });
+      acoes.set(criada.id, criada);
     },
     async buscar(id, usuarioId) {
-      const a = acoes.get(id);
-      return a && a.usuario_id === usuarioId ? copia(a) : null;
+      const a = doDono(id, usuarioId);
+      return a ? copia(a) : null;
     },
-    async reivindicar(id, usuarioId, em) {
-      const a = acoes.get(id);
-      if (!a || a.usuario_id !== usuarioId || a.status !== "pendente") {
+    async reivindicar(id, usuarioId) {
+      const em = agora().toISOString();
+      const a = doDono(id, usuarioId);
+      if (!a) {
+        return null;
+      }
+      if (expirarSeVencida(a, em) || encerrarLeaseVencido(a, em)) {
+        return null;
+      }
+      if (a.status !== "pendente") {
         return null;
       }
       a.status = "executando";
       a.aprovado_por = usuarioId;
       a.aprovado_em = em;
+      a.executando_em = em;
+      return copia(a);
+    },
+    async rejeitar(id, usuarioId) {
+      const em = agora().toISOString();
+      const a = doDono(id, usuarioId);
+      if (!a) {
+        return null;
+      }
+      if (expirarSeVencida(a, em) || encerrarLeaseVencido(a, em)) {
+        return null;
+      }
+      if (a.status !== "pendente") {
+        return null;
+      }
+      a.status = "rejeitada";
+      auditarSync({ acao_id: a.id, usuario_id: usuarioId, evento: "rejeitada", em });
       return copia(a);
     },
     async concluir(id, desfecho) {
       const a = acoes.get(id);
       if (!a) {
         throw new Error(`ação ${id} não existe`);
+      }
+      if (a.status !== "executando") {
+        throw new Error(`ação ${id} não está em executando`);
       }
       a.status = desfecho.status;
       if (desfecho.status === "executada") {
@@ -83,7 +203,7 @@ export function repositorioAcoesEmMemoria(): RepositorioAcoes {
       return copia(a);
     },
     async auditar(registro) {
-      registros.push({ ...registro });
+      auditarSync(registro);
     },
     async auditoria(acaoId) {
       return registros.filter((r) => r.acao_id === acaoId).map((r) => ({ ...r }));
@@ -92,8 +212,10 @@ export function repositorioAcoesEmMemoria(): RepositorioAcoes {
 }
 
 /**
- * Repositório padrão da rota de aprovação. Em memória por processo: em produção
- * troque por um repositório Supabase com o cliente do usuário (RLS). Sem isso,
- * a ação some com o processo e a aprovação responde 404 — falha segura, nunca executa.
+ * Repositório padrão da rota de aprovação. Em memória por processo. Em
+ * produção troque pelo repositório Supabase da VTX-230, que escreve com
+ * service_role (ou RPC security definer) e nunca com o JWT do usuário.
+ * Sem persistência, a ação some com o processo e a aprovação responde 404
+ * — falha segura, nunca executa.
  */
 export const repositorioAcoesPadrao: RepositorioAcoes = repositorioAcoesEmMemoria();

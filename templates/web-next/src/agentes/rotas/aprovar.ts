@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { usuarioDaRequisicao, type Usuario } from "@/lib/auth";
 import { problema } from "@/lib/http/problema";
-import { aprovarAcao, ErroAgente, type ToolRegistro } from "@/src/agentes/harness";
+import { aprovarAcao, ErroAgente, type PedidoRetomada, type ToolRegistro } from "@/src/agentes/harness";
 import { repositorioAcoesPadrao, type AcaoPendente, type RepositorioAcoes } from "@/src/agentes/memoria/acoes";
 import { catalogoTools } from "@/src/agentes/tools/catalogo";
 
@@ -12,13 +12,14 @@ export type DepsRotaAprovar = {
   autenticar?: (req: Request) => Promise<Usuario | null>;
   repositorio?: RepositorioAcoes;
   tools?: ToolRegistro[];
+  retomada?: PedidoRetomada;
 };
 
 const entrada = z.object({ id: z.string().uuid() });
 
 export const saidaAprovar = z.object({
   acao_id: z.string().uuid(),
-  status: z.enum(["pendente", "executando", "executada", "falhou"]),
+  status: z.enum(["pendente", "executando", "executada", "falhou", "rejeitada", "expirada"]),
   tool: z.string(),
   aprovado_por: z.string().optional(),
   aprovado_em: z.string().optional(),
@@ -42,6 +43,7 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
   const autenticar = deps.autenticar ?? usuarioDaRequisicao;
   const repositorio = deps.repositorio ?? repositorioAcoesPadrao;
   const tools = deps.tools ?? catalogoTools;
+  const retomada = deps.retomada;
 
   return async function POST(req: Request, ctx: ContextoRota): Promise<Response> {
     const usuario = await autenticar(req);
@@ -66,6 +68,7 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
         acaoId: lido.data.id,
         usuarioId: usuario.id,
         tools,
+        retomada,
       });
       if (r.tipo === "ja_decidida") {
         return NextResponse.json(
@@ -76,7 +79,22 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
           { status: 409 },
         );
       }
-      return NextResponse.json(corpoAcao(r.acao));
+      return NextResponse.json({
+        ...corpoAcao(r.acao),
+        ...(r.agente
+          ? {
+              agente: {
+                status: r.agente.status,
+                texto: r.agente.texto,
+                acao_id: r.agente.acao_id,
+                passos: r.agente.passos,
+                toolsChamadas: r.agente.toolsChamadas,
+                dados: r.agente.dados,
+              },
+            }
+          : {}),
+        ...(r.erro_retomada ? { erro_retomada: r.erro_retomada } : {}),
+      });
     } catch (erro) {
       if (erro instanceof ErroAgente && erro.codigo === "ELEMENTO_NAO_ENCONTRADO") {
         return NextResponse.json(problema(404, "Ação não encontrada"), { status: 404 });

@@ -2,14 +2,21 @@ import { describe, expect, it } from "vitest";
 import { z } from "zod";
 import { executarAgente, type ToolDefinicao } from "@/src/agentes/harness";
 import { modeloGravado } from "@/src/agentes/harness/modelo-falso";
-import { repositorioAcoesEmMemoria } from "@/src/agentes/memoria/acoes";
+import { repositorioAcoesEmMemoria, type OpcoesRepositorioAcoes } from "@/src/agentes/memoria/acoes";
 import { criarPostAprovar, saidaAprovar } from "@/src/agentes/rotas/aprovar";
+import { criarPostRejeitar } from "@/src/agentes/rotas/rejeitar";
+import { aprovarAcao } from "@/src/agentes/harness";
 
 const USUARIO_A = "11111111-1111-4111-8111-111111111111";
 const USUARIO_B = "22222222-2222-4222-8222-222222222222";
 
-function cenario(opts: { executar?: ToolDefinicao<{ valor: number }, string>["executar"] } = {}) {
-  const repositorio = repositorioAcoesEmMemoria();
+function cenario(
+  opts: {
+    executar?: ToolDefinicao<{ valor: number }, string>["executar"];
+    repo?: OpcoesRepositorioAcoes;
+  } = {},
+) {
+  const repositorio = repositorioAcoesEmMemoria(opts.repo);
   const execucoes: number[] = [];
   const pagar: ToolDefinicao<{ valor: number }, string> = {
     nome: "pagar",
@@ -52,7 +59,22 @@ function cenario(opts: { executar?: ToolDefinicao<{ valor: number }, string>["ex
       timeoutMs: 2000,
       aprovacao: { repositorio, usuarioId: USUARIO_A },
     });
-  return { repositorio, execucoes, aprovar, pedirPagamento };
+  const POST_REJ = criarPostRejeitar({
+    repositorio,
+    autenticar: async (req) => {
+      const id = req.headers.get("x-usuario-teste");
+      return id ? { id } : null;
+    },
+  });
+  const rejeitar = (id: string, usuario: string | null = USUARIO_A) =>
+    POST_REJ(
+      new Request(`http://localhost/api/agentes/acoes/${id}/rejeitar`, {
+        method: "POST",
+        headers: usuario ? { "x-usuario-teste": usuario } : {},
+      }),
+      { params: Promise.resolve({ id }) },
+    );
+  return { repositorio, execucoes, aprovar, rejeitar, pedirPagamento, pagar };
 }
 
 describe("aprovação de tool crítica (VTX-213)", () => {
@@ -156,5 +178,76 @@ describe("aprovação de tool crítica (VTX-213)", () => {
         process.env.AGENT_TIMEOUT_MS = anterior;
       }
     }
+  });
+
+  it("rejeitar marca rejeitada, audita e impede a execução posterior", async () => {
+    const { repositorio, execucoes, aprovar, rejeitar, pedirPagamento } = cenario();
+    const { acao_id } = await pedirPagamento();
+    const res = await rejeitar(acao_id!);
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ status: "rejeitada" });
+    expect((await repositorio.auditoria(acao_id!)).map((t) => t.evento)).toEqual(["criada", "rejeitada"]);
+    const segunda = await aprovar(acao_id!);
+    expect(segunda.status).toBe(409);
+    expect((await segunda.json()).acao).toMatchObject({ status: "rejeitada" });
+    expect(execucoes).toEqual([]);
+  });
+
+  it("ação com TTL vencido fica expirada e não executa", async () => {
+    let agora = Date.parse("2026-11-27T12:00:00.000Z");
+    const { execucoes, aprovar, pedirPagamento, repositorio } = cenario({
+      repo: { agora: () => new Date(agora), ttlMs: 1_000 },
+    });
+    const { acao_id } = await pedirPagamento();
+    agora += 2_000;
+    const res = await aprovar(acao_id!);
+    expect(res.status).toBe(409);
+    expect((await res.json()).acao).toMatchObject({ status: "expirada" });
+    expect(execucoes).toEqual([]);
+    expect((await repositorio.auditoria(acao_id!)).map((t) => t.evento)).toContain("expirada");
+  });
+
+  it("executando com lease vencido vira falhou e não reexecuta a tool", async () => {
+    let agora = Date.parse("2026-11-27T12:00:00.000Z");
+    const { execucoes, aprovar, pedirPagamento, repositorio } = cenario({
+      repo: { agora: () => new Date(agora), leaseMs: 50 },
+    });
+    const { acao_id } = await pedirPagamento();
+    const ganhou = await repositorio.reivindicar(acao_id!, USUARIO_A, new Date(agora).toISOString());
+    expect(ganhou?.status).toBe("executando");
+    agora += 100;
+    const res = await aprovar(acao_id!);
+    expect(res.status).toBe(409);
+    expect((await res.json()).acao).toMatchObject({
+      status: "falhou",
+      erro: "execução interrompida (timeout da reivindicação)",
+    });
+    expect(execucoes).toEqual([]);
+  });
+
+  it("depois de aprovar, o harness retoma o fluxo e devolve a resposta do modelo", async () => {
+    const { repositorio, execucoes, pedirPagamento, pagar } = cenario();
+    const r = await pedirPagamento();
+    expect(r.status).toBe("PENDENTE_APROVACAO");
+    const aprovado = await aprovarAcao({
+      repositorio,
+      acaoId: r.acao_id!,
+      usuarioId: USUARIO_A,
+      tools: [pagar],
+      retomada: {
+        tools: [pagar],
+        // o mesmo modelo gravado do pedirPagamento já consumiu o passo da tool;
+        // um modelo novo com só o texto cobre a retomada isolada.
+        modelo: (await import("@/src/agentes/harness/modelo-falso")).modeloGravado([
+          { tipo: "texto", texto: "pagamento concluído" },
+        ]),
+      },
+    });
+    expect(aprovado.tipo).toBe("aprovada");
+    expect(execucoes).toEqual([50]);
+    expect(aprovado.tipo === "aprovada" && aprovado.agente).toMatchObject({
+      status: "CONCLUIDO",
+      texto: "pagamento concluído",
+    });
   });
 });

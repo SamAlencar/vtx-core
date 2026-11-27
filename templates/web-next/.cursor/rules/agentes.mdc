@@ -10,7 +10,8 @@ alwaysApply: false
 - Toda tool tem schema Zod e vive em `src/agentes/tools/`.
 - Chamada ao modelo só via `src/agentes/harness/` (função `executarAgente`, implementada na VTX-177). Não instancie o SDK de modelo em outro lugar. O `timeoutMs` vale para a execução inteira, inclusive tools. Se o modelo principal falhar (também em erro não transitório, como 401), usa-se o `fallback` quando houver; retry com backoff fica só para erro transitório.
 - A tool recebe `{ signal }` no segundo argumento de `executar` e deve parar quando ele disparar (TIMEOUT ou fim da execução). Depois de 401/403 do principal, a execução usa só o `fallback` até o fim (circuit breaker).
-- Tool crítica (gasto, dado pessoal, publicação, efeito irreversível) leva `critica: true`. O harness não a executa: grava a ação em `pedido.aprovacao.repositorio` e devolve `status: "PENDENTE_APROVACAO"` com `acao_id`. Só `POST /api/agentes/acoes/[id]/aprovar`, com usuário autenticado, executa (uma vez, com auditoria). Sem `aprovacao` no pedido, a chamada crítica falha com `REGRA_VIOLADA`.
+- Tool crítica (gasto, dado pessoal, publicação, efeito irreversível) leva `critica: true`. O harness não a executa: grava a ação (com contexto de retomada, inclusive resultados não críticos do mesmo passo) e devolve `status: "PENDENTE_APROVACAO"` com `acao_id`. `POST /api/agentes/acoes/[id]/aprovar` (usuário autenticado) executa uma vez, com auditoria, e retoma o loop se `retomada` for passada. `POST .../rejeitar` marca `rejeitada`. Ação `pendente` tem TTL; `executando` travado vira `falhou` quando o lease vence (não reexecuta a tool). Sem `aprovacao` no pedido, a chamada crítica falha com `REGRA_VIOLADA`.
+- Escrita em `acoes_pendentes` e `acoes_auditoria` é só do servidor (service_role ou RPC security definer). O RLS do usuário autenticado cobre apenas o SELECT das próprias linhas. Nunca escreva com o JWT do usuário.
 
 ```ts
 import { z } from "zod";
