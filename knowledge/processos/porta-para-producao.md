@@ -22,7 +22,7 @@ O repositório privado no plano gratuito do GitHub não tem proteção de branch
 - O revisor é outra sessão, com **contexto limpo** (lê o diff, a descrição e os documentos citados, não a conversa de quem escreveu) e, quando o plano oferecer, **modelo diferente** do autor ([topologia §4](topologia-de-agentes.md)).
 - O veredito fica escrito no PR, com a HEAD revisada: **Aprovado**, **Aprovado com ressalvas** ou **Mudanças necessárias**, e a lista de achados com arquivo e linha.
 - O veredito vale para aquele commit. Push novo (inclusive rebase) pede veredito novo.
-- **Aprovado com ressalvas:** o autor aplica as ressalvas que o revisor marcou como "corrigir antes do merge", registra no PR o que mudou e pede veredito novo na HEAD final. O merge só acontece com veredito do revisor de IA nessa HEAD (**Aprovado**, ou **Aprovado com ressalvas** só de itens não bloqueantes). Não se consulta o Samuel sobre as ressalvas nem sobre o merge. Em PR com a etiqueta "precisa do Samuel", o veredito na HEAD final precisa ser **Aprovado (aval do Samuel delegado ao Tzu)** (além do CI verde). Ressalva não bloqueante vira tarefa de acompanhamento.
+- **Aprovado com ressalvas:** o autor aplica as ressalvas que o revisor marcou como "corrigir antes do merge", registra no PR o que mudou e pede veredito novo na HEAD final. O merge só acontece com veredito do revisor de IA nessa HEAD (**Aprovado**, ou **Aprovado com ressalvas** só de itens não bloqueantes). O autor (Sys) não pede aprovação ao Samuel; o revisor de IA pode consultar a opinião dele antes de dar o aval. Em PR com a etiqueta "precisa do Samuel", o veredito na HEAD final precisa ser **Aprovado (aval do Samuel delegado ao Tzu)** (além do CI verde). Ressalva não bloqueante vira tarefa de acompanhamento.
 - Autor e revisor nunca são a mesma sessão. Aprovar o próprio trabalho é A3.
 
 ## 4. Classes de risco
@@ -35,12 +35,12 @@ O repositório privado no plano gratuito do GitHub não tem proteção de branch
 | **Crítica** | Produção de cliente, dado pessoal, pagamento, migração de banco, auth | Tudo da classe sensível (incluindo «Aprovado (aval do Samuel delegado ao Tzu)» na HEAD final) | Smoke test em staging e deploy em produção com A2 |
 
 - Na dúvida entre duas classes, vale a mais alta (mesma regra da governança).
-- **Trivial sem revisor** (merge só com CI verde) fica **adiado**: só depois que a VTX-214 conferir os checks por script e houver aceite no mesmo modo dos PRs sensíveis (veredito delegado do revisor de IA). Até lá, todo PR tem veredito do revisor. Não se consulta o Samuel.
+- **Trivial sem revisor** (merge só com CI verde) fica **adiado**: só depois que a VTX-214 conferir os checks por script e houver aceite no mesmo modo dos PRs sensíveis (veredito delegado do revisor de IA). Até lá, todo PR tem veredito do revisor. O autor (Sys) não pede aprovação ao Samuel; o revisor de IA pode consultar a opinião dele antes de dar o aval.
 - **Smoke test:** o mínimo que prova que o sistema sobe e o caminho principal responde (abrir a página inicial, chamar o endpoint de saúde, fazer login de teste). Fica no runbook do projeto e roda no preview ou no staging, nunca contra dado real de cliente.
 
 ## 5. Exemplo
 
-PR que adiciona um job ao `.github/workflows/testes.yml`: classe sensível. O agente roda os testes locais, abre o PR com a etiqueta "precisa do Samuel", espera o CI, corrige um erro de YAML (1ª tentativa), recebe «Aprovado (aval do Samuel delegado ao Tzu)» do revisor de IA na HEAD nova e deixa o PR pronto. O merge acontece com CI verde e esse veredito, sem consultar o Samuel.
+PR que adiciona um job ao `.github/workflows/testes.yml`: classe sensível. O agente roda os testes locais, abre o PR com a etiqueta "precisa do Samuel", espera o CI, corrige um erro de YAML (1ª tentativa), recebe «Aprovado (aval do Samuel delegado ao Tzu)» do revisor de IA na HEAD nova e deixa o PR pronto. O merge acontece com CI verde e esse veredito. O autor (Sys) não pede aprovação ao Samuel; o revisor de IA pode consultar a opinião dele antes de dar o aval.
 
 ## 6. Checklist
 
