@@ -42,3 +42,27 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Neste PR (#44): RepositorioAcoes via RPCs acoes_criar/reivindicar/concluir/rejeitar com service_role (lib/supabase-admin.ts, acoes-supabase.ts, acoes-padrao.ts). Sem a chave, o padrão cai em memória (falha segura, 404). auditar() no cliente Supabase é no-op porque as RPCs já auditam e o harness ainda chama auditar após criar. A chave não entra em lib/env.ts (EnvPublico). Correção da revisão: acaoDaRpc trata o composto nulo do PostgREST (`return null` numa função que devolve acoes_pendentes chega como objeto com id null, não como data vazio). Testes de contrato com mock nesse formato e teste ao vivo em scripts/teste-rpc-acoes-composto-nulo.sh. RLS ao vivo das tabelas permanece na VTX-216. Skills: verification-before-completion. Ferramentas: git, gh, npm, vitest, eslint, tsc, postgres 17 local."
+  - id: VTX-199
+    titulo: "Pacote técnico de manutenção, SLA e suporte"
+    area: "Operação"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Em andamento neste PR (#45): knowledge/operacao/suporte-e-sla.md, ponteiros no INDEX (#63), devops-sre e manutencao-evolucao, runbook autossuficiente do template web-next e modelo docs/postmortems/0000-modelo.md. Correções da revisão do Tzu: links relativos para knowledge/ saíram do runbook (valores de SLA inline); alinhamento com devops-sre.md (compromisso contratual vs meta interna; Samuel avisado no SEV2 no mesmo dia; postmortem em AAAA-MM-DD-titulo.md). Follow-ups abertos, sem implementar: VTX-231 (rollback ainda citado na Vercel no devops-sre), VTX-232 (rota /api/health) e VTX-233 (monitor só descrito). Skills: verification-before-completion (unittest, validar_backlog, verificar_links, bootstrap --tipo web). Ferramentas: git, gh, python."
+  - id: VTX-231
+    titulo: "Alinhar o rollback do devops-sre.md ao padrão Cloudflare Pages"
+    area: "Operação"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."
+  - id: VTX-232
+    titulo: "Rota GET /api/health no template web-next"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."
+  - id: VTX-233
+    titulo: "Monitor de disponibilidade gratuito configurado no template web"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."

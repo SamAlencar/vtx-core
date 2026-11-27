@@ -225,6 +225,7 @@ class TestBootstrapProjeto(unittest.TestCase):
                 "tests/unit/env.test.ts",
                 ".github/workflows/ci.yml",
                 "docs/runbook.md",
+                "docs/postmortems/0000-modelo.md",
                 "AGENTS.md",
                 "DESIGN.md",
                 ".env.example",

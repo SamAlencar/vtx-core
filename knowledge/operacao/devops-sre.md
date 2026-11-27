@@ -1,6 +1,6 @@
 # DevOps e SRE (IaC, SLOs, incidentes)
 
-> VTX-021 · Fase F3 · Base de Conhecimento. O que o **DevOps/SRE** ([devops-sre.md](../../agents/devops-sre.md)) mantém depois do merge. Continua [Git e CI/CD](../engenharia/git-e-ci-cd.md) (pipeline e DORA) e se apoia em [segurança](../seguranca/desenvolvimento-seguro.md). Observabilidade detalhada: [observabilidade.md](observabilidade.md) (VTX-022).
+> VTX-021 · Fase F3 · Base de Conhecimento. O que o **DevOps/SRE** ([devops-sre.md](../../agents/devops-sre.md)) mantém depois do merge. Continua [Git e CI/CD](../engenharia/git-e-ci-cd.md) (pipeline e DORA) e se apoia em [segurança](../seguranca/desenvolvimento-seguro.md). Observabilidade detalhada: [observabilidade.md](observabilidade.md) (VTX-022). SLA de suporte ao cliente (tempos de resposta, horas, canal e monitor): [suporte-e-sla.md](suporte-e-sla.md) (VTX-199).
 
 ## 1. Conceitos
 - **Infraestrutura como código (IaC):** todo ambiente é descrito em arquivo versionado e revisado por PR; nada é configurado "na mão" no painel sem virar código ou runbook.
@@ -36,7 +36,9 @@
 | SEV2 | funcionalidade principal degradada | ≤ 1 h | no mesmo dia |
 | SEV3 | defeito com contorno | próximo ciclo | relatório semanal |
 
-Fluxo: detectar (alerta) → declarar severidade e um responsável → mitigar (rollback na Vercel, *feature flag* desligada, migração de reversão) → comunicar → **postmortem em até 5 dias úteis** para SEV1/2 em `docs/postmortems/AAAA-MM-DD-titulo.md` (linha do tempo, impacto, causa, o que ajudou, ações com dono e prazo).
+A tabela acima é a **meta interna de mitigação** e o prazo para avisar o Samuel. O **compromisso contratual de 1ª resposta** e as horas incluídas (níveis Essencial e Evolução) estão em [suporte-e-sla.md](suporte-e-sla.md) e não substituem esta meta. Os exemplos de Sev, o aviso ao Samuel e o nome do arquivo de postmortem (`docs/postmortems/AAAA-MM-DD-titulo.md`) são os mesmos nos dois documentos.
+
+Fluxo: detectar (alerta) → declarar severidade e um responsável → mitigar (rollback na Vercel, *feature flag* desligada, migração de reversão) → comunicar → **postmortem em até 5 dias úteis** para SEV1/2 em `docs/postmortems/AAAA-MM-DD-titulo.md` (linha do tempo, impacto, causa, o que ajudou, ações com dono e prazo; no template web-next o modelo é `docs/postmortems/0000-modelo.md`).
 
 ## 5. Runbook mínimo por projeto (`docs/runbook.md`)
 Como fazer deploy e rollback · como restaurar backup do banco (testado 1×/trimestre) · onde ver logs e alertas · contatos e limites de escalonamento · SLOs vigentes.

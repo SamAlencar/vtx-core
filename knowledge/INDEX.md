@@ -33,6 +33,7 @@ Um tema por arquivo, curto e autocontido. Próximos temas: ver [ROADMAP.md](ROAD
 | 62 | [Auditoria de skills, regras e MCPs de terceiros](seguranca/auditoria-de-skills.md) | Segurança | v1 | 2026-11-26 |
 | 25 | [DevOps e SRE (IaC, SLOs, incidentes)](operacao/devops-sre.md) | Operação | v1 | 2026-10-23 |
 | 26 | [Observabilidade (logs, métricas, traces)](operacao/observabilidade.md) | Operação | v1 | 2026-10-24 |
+| 63 | [Pacote técnico de manutenção, SLA e suporte](operacao/suporte-e-sla.md) | Operação | v1 | 2026-11-27 |
 | 27 | [Stack de referência da VTX](tecnologia/stack-de-referencia.md) | Tecnologia | v1 | 2026-10-24 |
 | 28 | [Design de APIs](tecnologia/design-de-apis.md) | Tecnologia | v1 | 2026-10-25 |
 | 29 | [Modelagem de dados e bancos de dados](tecnologia/modelagem-de-dados.md) | Tecnologia | v1 | 2026-10-25 |

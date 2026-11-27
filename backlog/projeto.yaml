@@ -1934,7 +1934,7 @@ tarefas:
   fase: F14
   area: Operação
   prioridade: 7
-  status: a fazer
+  status: em andamento
   entregavel: knowledge/operacao/suporte-e-sla.md
   notas: 'Auditoria §7 item 15 (id sugerido VTX-196, mapeado para VTX-199), só o lado técnico. Objetivo: suporte previsível e operação com SLA. Arquivos afetados: knowledge/operacao/suporte-e-sla.md, knowledge/processos/fluxos/manutencao-evolucao.md, templates/web-next/docs/runbook.md. Critério de aceite: dois níveis de SLA com tempo de resposta e horas incluídas; canal de suporte (e-mail ou formulário, triado por agente); monitor de disponibilidade gratuito configurado no template; incidentes viram postmortem curto no repositório do cliente. Preço e venda do plano de manutenção são dependência externa (agentes de vendas), não aceite desta tarefa.'
 
@@ -2237,3 +2237,37 @@ tarefas:
   depende_de:
   - VTX-213
   notas: 'Follow-up da revisão do Tzu no PR #42 (VTX-213), 27/11/2026. A migração já restringe a escrita ao servidor (service_role ou RPC security definer com search_path fixo e grants mínimos); o authenticated só faz SELECT das próprias linhas. Tarefa: implementar RepositorioAcoes em Supabase no template web, usando service_role (ou as RPCs acoes_criar/reivindicar/concluir/rejeitar/auditar) nas rotas e no harness — nunca o JWT do usuário para insert/update/delete. Arquivos: templates/web-next/src/agentes/memoria/acoes-supabase.ts (ou equivalente), ligação nas rotas de aprovar/rejeitar, testes de contrato com o repositório em memória. Aceite: o repositório persiste ação e auditoria; reivindicar é atômico; rejeitar, expirar e o lease de executando (derivado de AGENT_TIMEOUT_MS + margem, passado em p_lease) seguem o contrato; a leitura do usuário é GRANT SELECT por coluna (nunca contexto_retomada) e/ou a view acoes_pendentes_leitura; as RPCs já auditam criar/reivindicar/concluir/rejeitar — não chamar acoes_auditar de novo nesses caminhos; falha segura se o service_role não estiver configurado (não executa a tool). Mexe em autenticação e dado de agente: PR com etiqueta precisa do Samuel.'
+
+- id: VTX-231
+  titulo: Alinhar o rollback do devops-sre.md ao padrão Cloudflare Pages
+  fase: F14
+  area: Operação
+  prioridade: 75
+  status: a fazer
+  entregavel: knowledge/operacao/devops-sre.md
+  depende_de:
+  - VTX-199
+  notas: 'Follow-up da revisão do Tzu no PR #45 (VTX-199), 27/11/2026. O runbook do template e o suporte-e-sla.md adotam Cloudflare Pages como padrão; knowledge/operacao/devops-sre.md ainda cita rollback na Vercel (§4, ambientes e fontes). Tarefa: alinhar o texto ao padrão atual de hospedagem, sem apagar a orientação de que Vercel só entra com Pro/A2. Aceite: devops-sre.md não apresenta Vercel como o caminho padrão de rollback; o padrão Cloudflare Pages (e a ressalva do Hobby) fica explícito; links relativos e o INDEX continuam válidos.'
+
+- id: VTX-232
+  titulo: Rota GET /api/health no template web-next
+  fase: F14
+  area: Templates
+  prioridade: 76
+  status: a fazer
+  entregavel: templates/web-next/app/api/health/route.ts
+  depende_de:
+  - VTX-199
+  notas: 'Follow-up da revisão do Tzu no PR #45 (VTX-199), 27/11/2026. O aceite de monitor no template ficou só como instrução; o runbook admite que GET /api/health ainda não existe e o monitor usa /. Tarefa: criar a rota de health no template, sem autenticação, com teste no CI. Aceite: GET /api/health responde 200 no template e no projeto gerado pelo bootstrap; o runbook deixa de dizer que a rota não existe.'
+
+- id: VTX-233
+  titulo: Monitor de disponibilidade gratuito configurado no template web
+  fase: F14
+  area: Templates
+  prioridade: 77
+  status: a fazer
+  entregavel: templates/web-next/docs/runbook.md
+  depende_de:
+  - VTX-199
+  - VTX-232
+  notas: 'Follow-up da revisão do Tzu no PR #45 (VTX-199), 27/11/2026. Hoje o monitor (UptimeRobot ou Better Stack, tier free, a cada 5 min) está só descrito, com "_preencher no go-live_". Tarefa: deixar no template um modo reproduzível de configurar o monitor (passos e artefato versionável, sem plano pago). Aceite: um projeto gerado pelo bootstrap tem instrução operacional completa e um lugar explícito para registrar a URL do monitor; não depende de SMS pago nem de dezenas de monitores extras.'
