@@ -11,3 +11,4 @@ export {
   type ToolDefinicao,
   type ToolRegistro,
 } from "./executar";
+export { modeloFalsoSomar } from "./modelo-falso";

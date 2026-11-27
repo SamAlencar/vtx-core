@@ -2115,7 +2115,7 @@ tarefas:
   fase: F13
   area: Templates
   prioridade: 62
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/app/api/agentes/[agente]/route.ts
   depende_de:
   - VTX-194
@@ -2131,7 +2131,7 @@ tarefas:
   entregavel: templates/web-next/app/api/agentes/acoes/
   depende_de:
   - VTX-177
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 8), importada em 26/11/2026. Tarefa: flag critica: true na definição da tool; o harness devolve PENDENTE_APROVACAO com acao_id, persiste a ação pendente e só executa via POST /api/agentes/acoes/[id]/aprovar, com usuário autenticado e registro de auditoria. Arquivos: templates/web-next/src/agentes/harness/, app/api/agentes/acoes/, supabase/migrations/, tests/integracao/aprovacao.test.ts. Aceite: a tool crítica não executa sem aprovação; executa uma única vez após aprovar (idempotente); grava auditoria com usuário e horário.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 8), importada em 26/11/2026. Tarefa: flag critica: true na definição da tool; o harness devolve PENDENTE_APROVACAO com acao_id, persiste a ação pendente e só executa via POST /api/agentes/acoes/[id]/aprovar, com usuário autenticado e registro de auditoria. Arquivos: templates/web-next/src/agentes/harness/, app/api/agentes/acoes/, supabase/migrations/, tests/integracao/aprovacao.test.ts. Aceite: a tool crítica não executa sem aprovação; executa uma única vez após aprovar (idempotente); grava auditoria com usuário e horário. Follow-ups da revisão do harness (VTX-177): (a) a tool não recebe AbortSignal e segue em segundo plano após TIMEOUT — no escopo desta tarefa, repasse o signal à tool (inclusive crítica); (b) o modelo principal é chamado de novo a cada iteração mesmo após 401 — precisa de circuit breaker / marcar o provedor como inválido na mesma execução.'
 
 - id: VTX-216
   titulo: Estado e memória de sessão do agente
