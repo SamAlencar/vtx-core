@@ -252,6 +252,23 @@ class TestStatusNovos(unittest.TestCase):
         self.assertNotIn("VTX-B", saida.split("Próxima:")[-1])
         self.assertNotIn("VTX-C", saida.split("Próxima:")[-1])
 
+    def test_proxima_tarefa_pula_depende_de_nao_concluida(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as pasta:
+            gravar_yaml(pasta, "projeto.yaml", {
+                "projeto": "Fila",
+                "fases": [{"id": "F1", "nome": "Fase"}],
+                "tarefas": [
+                    {"id": "VTX-A", "titulo": "Bloqueada", "fase": "F1", "area": "Qualidade", "prioridade": 1, "status": "a fazer", "depende_de": ["VTX-B"]},
+                    {"id": "VTX-B", "titulo": "Pendente", "fase": "F1", "area": "Qualidade", "prioridade": 2, "status": "a fazer"},
+                    {"id": "VTX-C", "titulo": "Feita", "fase": "F1", "area": "Qualidade", "prioridade": 3, "status": "concluído"},
+                ],
+            })
+            script = os.path.join(RAIZ, "scripts", "proxima_tarefa.py")
+            saida = subprocess.check_output(["python3", script, pasta], text=True)
+        self.assertIn("Próxima: VTX-B", saida)
+        self.assertNotIn("VTX-A", saida.split("Próxima:")[-1])
+
 
 if __name__ == "__main__":
     unittest.main()
