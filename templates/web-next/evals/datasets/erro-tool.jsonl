@@ -1,0 +1,4 @@
+{"id": "erro-tool-01", "tipo": "erro-tool", "objetivo": "Some 1 e 1", "ferramenta": "falha", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": 1, "b": 1}}], "esperado": {"codigo": "ERRO_INTERNO", "schema": false}}
+{"id": "erro-tool-02", "tipo": "erro-tool", "objetivo": "Some 2 e 2", "ferramenta": "falha", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": 2, "b": 2}}], "esperado": {"codigo": "ERRO_INTERNO", "schema": false}}
+{"id": "erro-tool-03", "tipo": "erro-tool", "objetivo": "Some 3 e 3", "ferramenta": "falha", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": 3, "b": 3}}], "esperado": {"codigo": "ERRO_INTERNO", "schema": false}}
+{"id": "erro-tool-04", "tipo": "erro-tool", "objetivo": "Some 4 e 4", "ferramenta": "falha", "roteiro": [{"tipo": "tool", "nome": "somar", "input": {"a": 4, "b": 4}}], "esperado": {"codigo": "ERRO_INTERNO", "schema": false}}

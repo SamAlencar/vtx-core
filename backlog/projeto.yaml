@@ -1696,11 +1696,11 @@ tarefas:
   fase: F13
   area: Qualidade
   prioridade: 64
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/evals/
   depende_de:
   - VTX-177
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto). Auditoria técnica de 25/11/2026 (§4, P0 item 6): a suíte de evals e o portão no CI passam a viver no template web (`evals/`, `npm run evals`, passo no ci.yml do template). Entregável e aceite seguem essa auditoria. Mexe em workflow do template: PR com etiqueta precisa do Samuel.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto). Auditoria técnica de 25/11/2026 (§4, P0 item 6): a suíte de evals e o portão no CI passam a viver no template web (`evals/`, `npm run evals`, passo no ci.yml do template). Entregável e aceite seguem essa auditoria. Mexe em workflow do template: PR com etiqueta precisa do Samuel. Entrega de 26/11/2026: 20 casos com respostas gravadas. Tokens no relatório e modo com modelo real ficam fora desta entrega (tokens na VTX-179; modelo real é follow-up com A2 e dependência da VTX-226).'
 
 - id: VTX-179
   titulo: Log estruturado por execução de agente e custo
@@ -2120,7 +2120,7 @@ tarefas:
   depende_de:
   - VTX-194
   - VTX-177
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 5), importada em 26/11/2026. Tarefa: criar POST /api/agentes/[agente] com o caminho completo (Zod da entrada, serviço, harness, tool que chama regra em src/dominio/, resposta Zod + trace_id) e uma tela mínima que consome o endpoint com tipos compartilhados. Arquivos: templates/web-next/app/api/agentes/[agente]/route.ts, src/dominio/exemplo/, src/agentes/, app/assistente/page.tsx, tests/integracao/rota-agente.test.ts, tests/e2e/assistente.spec.ts. Aceite: teste de integração (Vitest, modelo falso) chama o handler; entrada válida devolve 200 com corpo que passa no schema de saída, com trace_id e pelo menos 1 chamada de tool; entrada inválida devolve 422 em formato RFC 9457; erro de tool devolve corpo estruturado e nunca stack trace; npm run test:e2e passa localmente com modelo falso. Follow-up: autenticação e limite de taxa em POST /api/agentes/[agente] antes de ligar um provedor real.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 5), importada em 26/11/2026. Tarefa: criar POST /api/agentes/[agente] com o caminho completo (Zod da entrada, serviço, harness, tool que chama regra em src/dominio/, resposta Zod + trace_id) e uma tela mínima que consome o endpoint com tipos compartilhados. Arquivos: templates/web-next/app/api/agentes/[agente]/route.ts, src/dominio/exemplo/, src/agentes/, app/assistente/page.tsx, tests/integracao/rota-agente.test.ts, tests/e2e/assistente.spec.ts. Aceite: teste de integração (Vitest, modelo falso) chama o handler; entrada válida devolve 200 com corpo que passa no schema de saída, com trace_id e pelo menos 1 chamada de tool; entrada inválida devolve 422 em formato RFC 9457; erro de tool devolve corpo estruturado e nunca stack trace; npm run test:e2e passa localmente com modelo falso. Follow-up: autenticação e limite de taxa em POST /api/agentes/[agente] antes de ligar um provedor real (VTX-226; dependência de qualquer tarefa que ligue provedor real).'
 
 - id: VTX-213
   titulo: Human-in-the-loop para tools críticas no template web
@@ -2153,7 +2153,7 @@ tarefas:
   entregavel: templates/web-next/.github/workflows/ci.yml
   depende_de:
   - VTX-211
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 15), importada em 26/11/2026. Tarefa: rodar npm run test:e2e (Playwright + axe-core) no ci.yml do template com npx playwright install --with-deps chromium. Arquivos: templates/web-next/.github/workflows/ci.yml, tests/e2e/. Aceite: o passo e2e verde no CI do projeto gerado, incluindo assistente.spec.ts com modelo falso. Mexe em workflow: PR com etiqueta precisa do Samuel.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 15), importada em 26/11/2026. Tarefa: rodar npm run test:e2e (Playwright + axe-core) no ci.yml do template com npx playwright install --with-deps chromium. Arquivos: templates/web-next/.github/workflows/ci.yml, tests/e2e/. Aceite: o passo e2e verde no CI do projeto gerado, incluindo assistente.spec.ts com modelo falso. Mexe em workflow: PR com etiqueta precisa do Samuel. Confirmado na revisão da VTX-211 (PR #34): o e2e permanece fora do CI até esta tarefa.'
 
 - id: VTX-218
   titulo: Alinhar stack de referência e template web
@@ -2185,3 +2185,14 @@ tarefas:
   depende_de:
   - VTX-177
   notas: 'Auditoria técnica de 25/11/2026 (§4, P2 item 16), importada em 26/11/2026. Tarefa: exemplo de execução longa via tabela de jobs (ou pgmq) no Supabase, com worker em Edge Function e status consultável pela UI. Arquivos: templates/web-next/supabase/functions/, src/agentes/jobs/, tests/integracao/jobs.test.ts. Aceite: um teste local cria o job, o worker processa com modelo falso, o status passa de pendente para concluido e o resultado valida no schema.'
+
+- id: VTX-226
+  titulo: Autenticação e limite de taxa na rota de agentes
+  fase: F13
+  area: Templates
+  prioridade: 71
+  status: a fazer
+  entregavel: templates/web-next/app/api/agentes/[agente]/route.ts
+  depende_de:
+  - VTX-211
+  notas: 'Follow-up da revisão da VTX-211 (PR #34, 26/11/2026). A rota POST /api/agentes/[agente] hoje não tem autenticação nem limite de taxa; com modelo falso não há custo, mas ligar um provedor real abre gasto. Tarefa: autenticar o chamador e aplicar rate limit antes de qualquer uso de modelo pago. Esta tarefa é dependência de qualquer item que ligue um provedor real (A2). Arquivos: app/api/agentes/[agente]/, testes de integração. Aceite: pedido sem autenticação é rejeitado; excesso de chamadas devolve erro estruturado; o modelo real não é acionado nesses casos.'

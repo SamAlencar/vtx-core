@@ -18,9 +18,10 @@ npm run lint
 npm run typecheck
 npm test
 npm run build
+npm run evals
 ```
 
-`npm test` é o Vitest (unitário). O Playwright (`npm run test:e2e`) é opcional e o CI não o exige no caminho mínimo.
+`npm test` é o Vitest (unitário). `npm run evals` é o portão da suíte de agentes (respostas gravadas, sem rede). O Playwright (`npm run test:e2e`) é opcional e o CI ainda não o exige no caminho mínimo (VTX-217).
 
 ## Estrutura
 

@@ -24,6 +24,12 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-177): POST /api/agentes/[agente], contrato Zod compartilhado, serviço, tool de domínio, tela /assistente, testes de integração e e2e com AGENT_MODELO_FALSO=1. Skills: writing-plans (docs/planos/2026-11-26-vtx-211.md), verification-before-completion. Ferramentas: git, gh, npm. Follow-up no mestre: autenticação e limite de taxa na rota do agente. O job web-next agora roda npm run build."
+  - id: VTX-178
+    titulo: "Suíte de evals mínima com portão no CI"
+    area: "Qualidade"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Concluída em 26/11/2026 neste PR: 20 casos JSONL, npm run evals com respostas gravadas, limiares, resultado.json e passo no job web do ci.yml do template. Follow-ups da #34 registrados no mestre (e2e no CI = VTX-217; autenticação e limite de taxa = VTX-226, dependência de provedor real). Skills: writing-plans (docs/planos/2026-11-26-vtx-178.md), verification-before-completion. Ferramentas: git, gh, npm."
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"

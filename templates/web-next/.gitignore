@@ -13,3 +13,5 @@ test-results/
 *.sqlite
 .DS_Store
 *.tsbuildinfo
+
+evals/resultado.json
