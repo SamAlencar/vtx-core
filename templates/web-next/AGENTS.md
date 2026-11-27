@@ -29,3 +29,4 @@ Passagem por artefato, um dono por etapa, quem produz não aprova. PR com testes
 
 - Sem segredo ou dado pessoal em prompt, commit ou chat. Use `.env` (veja [`.env.example`](.env.example)).
 - Sem produção e sem serviço pago sem A2.
+- O assistente de referência (`/assistente`) só funciona com `AGENT_MODELO_FALSO=1`; veja o [README](README.md#assistente-de-referência).

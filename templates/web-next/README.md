@@ -30,6 +30,12 @@ npm run build
 - `docs/produto/PRD.md`, `docs/arquitetura.md`, `docs/adr/`, `docs/plano.md`, `testes/plano.md`, `docs/runbook.md`
 - Preview e hospedagem: [docs/runbook.md](docs/runbook.md)
 
+## Assistente de referência
+
+A tela [`/assistente`](app/assistente/page.tsx) e o `POST /api/agentes/exemplo` só respondem com o modelo falso, ligando `AGENT_MODELO_FALSO=1` no `.env` (desenvolvimento, testes e e2e). Sem o flag, a rota devolve 500. Não use o flag em produção: com `NODE_ENV=production` ele é recusado.
+
+Para um provedor real, implemente a obtenção do modelo em `src/agentes/servicos/exemplo.ts` (`modeloPadrao`), instanciando o SDK só em `src/agentes/harness/`, com a chave só no servidor (veja [`.env.example`](.env.example)). Ligar um provedor real é A2.
+
 ## Isolamento e segredos
 
 Este é o repositório do cliente: código, dados e *GitHub Secrets* ficam aqui, não no vtx-core. Use `.env` local e nunca o commite. Política: no vtx-core, `knowledge/seguranca/isolamento-clientes.md`.

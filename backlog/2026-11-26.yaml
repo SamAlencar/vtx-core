@@ -18,6 +18,12 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-212): executarAgente no AI SDK com modelo injetável, maxIteracoes, timeout, retry/fallback, códigos FUNCAO_DESCONHECIDA/PARAMETRO_INVALIDO/ERRO_INTERNO. Testes com MockLanguageModelV4, inclusive unshare -rn. Skills: writing-plans (docs/planos/2026-11-26-vtx-177.md), verification-before-completion. Ferramentas: git, gh, npm."
+  - id: VTX-211
+    titulo: "Fluxo ponta a ponta de referência no template web"
+    area: "Templates"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-177): POST /api/agentes/[agente], contrato Zod compartilhado, serviço, tool de domínio, tela /assistente, testes de integração e e2e com AGENT_MODELO_FALSO=1. Skills: writing-plans (docs/planos/2026-11-26-vtx-211.md), verification-before-completion. Ferramentas: git, gh, npm. Follow-up no mestre: autenticação e limite de taxa na rota do agente. O job web-next agora roda npm run build."
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"
