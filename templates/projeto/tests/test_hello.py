@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from hello import hello  # noqa: E402
+from hello import hello
 
 
 class TestHello(unittest.TestCase):

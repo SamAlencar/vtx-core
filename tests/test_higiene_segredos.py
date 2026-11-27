@@ -10,7 +10,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 
 def _linhas_gitignore() -> set[str]:
     texto = (RAIZ / ".gitignore").read_text(encoding="utf-8")
-    return {l.strip() for l in texto.splitlines() if l.strip() and not l.strip().startswith("#")}
+    return {linha.strip() for linha in texto.splitlines() if linha.strip() and not linha.strip().startswith("#")}
 
 
 def _ignorado(rel: str) -> bool:

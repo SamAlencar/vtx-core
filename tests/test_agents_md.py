@@ -1,7 +1,6 @@
 """VTX-169: caminhos citados no AGENTS.md e nas regras por papel existem."""
 from __future__ import annotations
 
-import os
 import re
 import unittest
 from pathlib import Path

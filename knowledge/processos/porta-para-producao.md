@@ -17,7 +17,7 @@ Limitações do portão, nesta versão:
 
 ## 2. CI com autofix
 
-- Antes de abrir o PR, o agente roda localmente o que o CI roda. No vtx-core: `pip install -e .`, `python -m unittest discover -s tests`, `python scripts/validar_backlog.py`, `python scripts/verificar_links.py`. Com a [VTX-215](../../backlog/projeto.yaml): `ruff check --fix` e `mypy`.
+- Antes de abrir o PR, o agente roda localmente o que o CI roda. No vtx-core: `pip install -e ".[dev]"`, `ruff check --fix core scripts tests`, `mypy core/vtx_ifc`, `python -m unittest discover -s tests`, `python scripts/validar_backlog.py`, `python scripts/verificar_links.py`. O CI só verifica (`ruff check` e `mypy`, sem `--fix`).
 - CI vermelho: quem abriu o PR lê o log (`gh run view <id> --log-failed`), corrige na mesma branch e espera de novo. Até **3 tentativas**; na quarta, para, registra no PR o que tentou e escala ao orquestrador.
 - O autofix é feito pelo agente, não por um bot de CI com permissão de escrita (isso seria `contents: write` no workflow, mudança sensível).
 - Nunca "consertar" CI apagando teste, baixando limiar ou pulando check. Se o teste estiver errado, isso vai explícito na descrição do PR.

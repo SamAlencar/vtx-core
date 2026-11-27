@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -103,6 +104,15 @@ class TestBootstrapProjeto(unittest.TestCase):
             ci = (dest / ".github/workflows/ci.yml").read_text(encoding="utf-8")
             self.assertIn("permissions:", ci)
             self.assertIn("contents: read", ci)
+            self.assertIn("ruff check src tests", ci)
+            ruff = shutil.which("ruff")
+            if ruff:
+                # Roda o Lint real do CI do projeto gerado, fora do vtx-core.
+                r_ruff = _rodar([ruff, "check", "src", "tests"], cwd=str(dest))
+                self.assertEqual(r_ruff.returncode, 0, r_ruff.stdout + r_ruff.stderr)
+            elif os.environ.get("CI"):
+                self.fail("ruff ausente no CI: instale o extra dev")
+            self.assertNotIn("compileall -q src tests", ci)
             # bootstrap deve copiar as regras atuais da raiz, não uma cópia velha.
             for nome in ("eficiencia-de-tokens.mdc", "economia-de-contexto.mdc"):
                 self.assertEqual(

@@ -1,0 +1,11 @@
+# Config do ruff do projeto gerado (VTX-215). Fixa as regras para o Lint do CI
+# não depender dos padrões de cada versão do ruff.
+target-version = "py312"
+src = ["src", "tests"]
+
+[lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "RUF"]
+
+[lint.per-file-ignores]
+# os testes inserem src/ no sys.path antes de importar o código.
+"tests/*" = ["E402"]

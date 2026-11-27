@@ -3,13 +3,14 @@
 
 Uso: python scripts/proxima_tarefa.py [dir_backlog]
 
-Ignora tarefas canceladas e aguardando, e as que têm depende_de ainda não concluída. O progresso é concluídas / (total − canceladas).
+Ignora tarefas canceladas e aguardando, e as que têm depende_de ainda não concluída. O progresso é concluídas / (total - canceladas).
 """
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from backlog_lib import carregar  # noqa: E402
+from backlog_lib import carregar
+
 
 def _deps_ok(t, por_id):
     """Uma tarefa só entra na fila quando todas as depende_de estão concluídas."""

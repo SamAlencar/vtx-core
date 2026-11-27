@@ -31,7 +31,7 @@ def _ref(e):
     return {"globalid": e.GlobalId, "nome": e.Name} if e is not None else None
 
 
-def _materiais(e) -> list[str]:
+def _materiais(e) -> list[str | None]:
     m = ue.get_material(e, should_inherit=True)
     if m is None:
         return []
@@ -40,7 +40,8 @@ def _materiais(e) -> list[str]:
     for attr, filho in (("MaterialLayers", "Material"), ("MaterialConstituents", "Material"),
                         ("MaterialProfiles", "Material")):
         if hasattr(m, attr):
-            return [getattr(x, filho).Name if getattr(x, filho) else None for x in getattr(m, attr)]
+            # None mantém a posição da camada sem material, alinhada ao IFC.
+            return [mat.Name if (mat := getattr(x, filho)) else None for x in getattr(m, attr)]
     if m.is_a("IfcMaterialList"):
         return [x.Name for x in m.Materials]
     return [m.Name] if m.is_a("IfcMaterial") else []
@@ -52,8 +53,9 @@ def _grupos(e) -> list[dict]:
 
 
 def _objeto(e) -> dict:
-    proprios = lambda **k: {n: {p: _json(v) for p, v in d.items() if p != "id"}
-                            for n, d in ue.get_psets(e, should_inherit=False, **k).items()}
+    def proprios(**k):
+        return {n: {p: _json(v) for p, v in d.items() if p != "id"}
+                for n, d in ue.get_psets(e, should_inherit=False, **k).items()}
     return {
         "globalid": e.GlobalId, "classe": e.is_a(), "nome": e.Name,
         "tipo": _ref(ue.get_type(e)) if not e.is_a("IfcTypeObject") else None,

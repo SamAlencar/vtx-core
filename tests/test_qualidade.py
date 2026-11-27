@@ -8,9 +8,10 @@ import yaml
 
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 import sys
+
 sys.path.insert(0, os.path.join(RAIZ, "scripts"))
-from validar_backlog import validar  # noqa: E402
-from verificar_links import verificar  # noqa: E402
+from validar_backlog import validar
+from verificar_links import verificar
 
 
 def _escrever(raiz: Path, rel: str, texto: str):

@@ -55,7 +55,7 @@ def _deny(texto: str) -> list[str]:
 
 def _ativos(path: Path) -> list[str]:
     linhas = path.read_text(encoding="utf-8").splitlines()
-    return [l.strip() for l in linhas if l.strip() and not l.strip().startswith("#")]
+    return [linha.strip() for linha in linhas if linha.strip() and not linha.strip().startswith("#")]
 
 
 def _ignorado(padroes: list[str], nome: str) -> bool:

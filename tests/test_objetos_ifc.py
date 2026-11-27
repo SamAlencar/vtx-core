@@ -1,15 +1,23 @@
 """Testes da camada de objetos IFC <-> JSON (VTX-152, parte 1)."""
-import json, pathlib, tempfile, unittest
+import json
+import pathlib
+import tempfile
+import unittest
 
 TEK_MODEL = pathlib.Path("/workspace/repos/tekto-model/tests/dados/catalogo_parede_exemplo.ifc")
 from importlib.resources import files as _files
+
 from vtx_ifc import objetos, receitas
 
 EXEMPLO_IDS = pathlib.Path(_files("vtx_ifc").joinpath("exemplo.ids"))
 
 try:
-    import ifcopenshell, ifcopenshell.api.group, ifcopenshell.api.material, ifcopenshell.api.type  # noqa: F401
-    import ifcopenshell.validate, ifctester  # noqa: F401
+    import ifcopenshell
+    import ifcopenshell.api.group
+    import ifcopenshell.api.material
+    import ifcopenshell.api.type
+    import ifcopenshell.validate
+    import ifctester  # noqa: F401
     TEM = True
 except ImportError:
     TEM = False
@@ -41,6 +49,16 @@ class TestObjetos(unittest.TestCase):
 
     def por_id(self, objs):
         return {x["globalid"]: x for x in objs}
+
+    def test_camada_sem_material_mantem_posicao(self):
+        api = ifcopenshell.api
+        cam = api.material.add_material_set(self.f, name="Misto", set_type="IfcMaterialLayerSet")
+        api.material.add_layer(self.f, layer_set=cam, material=api.material.add_material(self.f, name="Reboco"))
+        vazia = api.material.add_layer(self.f, layer_set=cam, material=api.material.add_material(self.f, name="tmp"))
+        vazia.Material = None
+        api.material.assign_material(self.f, products=[self.p2], material=cam)
+        b = self.por_id(self.o.extrair(self.f))[self.p2.GlobalId]
+        self.assertEqual(b["materiais"], ["Reboco", None])
 
     def test_extrai_campos(self):
         o = self.por_id(self.o.extrair(self.f))

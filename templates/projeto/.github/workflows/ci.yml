@@ -18,12 +18,12 @@ jobs:
           python-version: "3.12"
 
       - name: Lint
-        run: python -m compileall -q src tests
+        run: pip install ruff==0.17.6 && ruff check src tests
 
       - name: Testes
         run: python -m unittest discover -s tests -v
 
-      # Provisório no template hello: o "build" repete o compileall do lint
+      # Provisório no template hello: o "build" só compila o código (compileall)
       # até o projeto ter um passo de build próprio (bundle, wheel, etc.).
       - name: Build
         run: python -m compileall -q src

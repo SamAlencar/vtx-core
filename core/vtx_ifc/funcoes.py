@@ -9,7 +9,9 @@ de geometria usam a unidade do arquivo, por isso o fator `calculate_unit_scale`.
 """
 from __future__ import annotations
 
-import numpy as np
+from collections.abc import Callable
+from typing import Any, TypedDict
+
 import ifcopenshell.api.feature
 import ifcopenshell.api.geometry
 import ifcopenshell.api.profile
@@ -19,8 +21,16 @@ import ifcopenshell.util.element
 import ifcopenshell.util.placement
 import ifcopenshell.util.unit
 import jsonschema
+import numpy as np
 
 from . import receitas
+
+
+class _Funcao(TypedDict):
+    descricao: str
+    schema: dict[str, Any]
+    executar: Callable[..., Any]
+
 
 VERSAO_ESQUEMA = "0.1.0"
 MM = 0.001
@@ -100,7 +110,7 @@ def _obj(props: dict, obrig: list[str]) -> dict:
     return {"type": "object", "properties": props, "required": obrig, "additionalProperties": False}
 
 
-FUNCOES = {
+FUNCOES: dict[str, _Funcao] = {
     "criar_parede": {
         "descricao": "Cria parede reta no pavimento térreo, origem (0,0), ao longo de X.",
         "schema": _obj({"nome": {"type": "string", "minLength": 1, "maxLength": 80}, "comprimento_mm": _pos,
@@ -150,5 +160,5 @@ def chamar(f, nome: str, args: dict) -> dict:
         return {"ok": True, "resultado": FUNCOES[nome]["executar"](f, args)}
     except ErroDominio as e:
         return _erro(e.codigo, e.mensagem, e.campo)
-    except Exception as e:  # falha interna: registra, não vaza stack para a IA
+    except Exception as e:  # noqa: BLE001 — falha interna: registra, não vaza stack para a IA
         return _erro("ERRO_INTERNO", f"{type(e).__name__}: {e}")

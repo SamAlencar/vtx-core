@@ -33,15 +33,15 @@ tarefas:
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Em correção no PR #36 após Mudanças necessárias. Teste real em 26/11 (America/Sao_Paulo): bash scripts/mesclar_pr.sh 36 recusou (exit 1) com CI verde na HEAD ba5c196 porque o veredito era «Mudanças necessárias», não o aval delegado. O script classifica checks por bucket (campo real do gh pr checks), pagina comentários, só aceita o formato **Veredito:** do revisor e Aprovado (não ressalvas) na HEAD de merge. Status volta a a fazer até o merge. Limitação da conta compartilhada documentada; VTX-227 aberta. Skills: writing-plans (docs/planos/2026-11-26-vtx-214.md), verification-before-completion. Ferramentas: git, gh, python."
+    notas: "Mesclada no PR #36 em 26/11/2026 (HEAD afa58b3) com scripts/mesclar_pr.sh, depois do veredito «Aprovado (aval do Samuel delegado ao Tzu)» e CI verde. O portão foi exercitado contra o GitHub real (recusou na revisão e aceitou no merge). Skills: writing-plans (docs/planos/2026-11-26-vtx-214.md), verification-before-completion. Ferramentas: git, gh, python."
   - id: VTX-215
     titulo: "Lint e tipos em Python no CI"
     area: "Qualidade"
-    status: "a fazer"
+    status: "em andamento"
     responsavel: "agente-orquestrador"
-    notas: "Importada da auditoria técnica e ampliada: autofix (ruff --fix) é do agente, CI só verifica. Ver mestre."
+    notas: "Entregue no PR #37 (fica em andamento até o merge, como no #36): ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff. Skills: writing-plans (docs/planos/2026-11-26-vtx-215.md), verification-before-completion. Ferramentas: git, gh, python, ruff, mypy."
   - id: VTX-147
     titulo: "Execução isolada de código gerado por IA (sandbox)"
     area: "Segurança"

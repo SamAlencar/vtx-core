@@ -55,7 +55,7 @@ log = base / "gh.log"
 payload = json.loads((base / "payload.json").read_text())
 log.write_text((log.read_text() if log.exists() else "") + " ".join(sys.argv[1:]) + "\\n")
 args = sys.argv[1:]
-campos = {repr(sorted(CAMPOS_PR_CHECKS))}
+campos = {sorted(CAMPOS_PR_CHECKS)!r}
 if args[:2] == ["repo", "view"]:
     print(json.dumps({{"nameWithOwner": "SamAlencar/vtx-core"}}))
     sys.exit(0)
@@ -112,6 +112,7 @@ def _rodar(dir_tmp: Path) -> subprocess.CompletedProcess[str]:
     env["GH_CONFIG_DIR"] = str(dir_tmp / "ghconfig")
     return subprocess.run(
         ["bash", str(SCRIPT), "1"],
+        check=False,
         cwd=str(RAIZ),
         env=env,
         text=True,
@@ -138,6 +139,7 @@ class TestMesclarPr(unittest.TestCase):
             _gh_stub(d, checks=CHECKS_PASS, labels=[], comments=[])
             r = subprocess.run(
                 [str(d / "gh"), "pr", "checks", "1", "--json", "name,state,conclusion"],
+                check=False,
                 capture_output=True,
                 text=True,
             )
