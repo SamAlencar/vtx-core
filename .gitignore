@@ -12,3 +12,6 @@ dist/
 *.egg-info/
 .eggs/
 build/
+
+# VTX-179: log de execução de agente (pode ter dado de cliente)
+logs/
