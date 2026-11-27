@@ -57,6 +57,7 @@ const config = [
       "src/agentes/harness/**",
       "src/dominio/**",
       "tests/fronteiras/violacao.ts",
+      "tests/unit/**",
     ],
     rules: {
       "no-restricted-imports": [

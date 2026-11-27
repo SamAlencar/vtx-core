@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.119.2",
+    "ai": "^7.0.183",
     "next": "^15.5.29",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

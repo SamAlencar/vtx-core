@@ -1685,11 +1685,11 @@ tarefas:
   fase: F13
   area: Engenharia
   prioridade: 61
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/src/agentes/harness/
   depende_de:
   - VTX-194
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma). Reescopo da auditoria: não depende mais da VTX-176 (já concluída e o BIM da plataforma-projetos foi adiado). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5). Auditoria técnica de 25/11/2026 (§4, P0 item 4): o harness de referência passa a ser TypeScript no template web (`executarAgente` sobre o AI SDK, modelo injetável, testes sem rede). Entregável e aceite desta tarefa seguem essa auditoria, não o loop Python original.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 8. Transforma em código o que a VTX-148 descreve: max_iteracoes, timeout_s, retry com backoff, fallback de modelo, parada em ERRO_INTERNO. Testes com cliente LLM falso (sem rede e sem custo). A VTX-148 continua a fazer (orquestração completa na plataforma). Reescopo da auditoria: não depende mais da VTX-176 (já concluída e o BIM da plataforma-projetos foi adiado). Auditoria de backlog 24/11/2026 (auditoria-backlog-vtx-core.md, §5). Auditoria técnica de 25/11/2026 (§4, P0 item 4): o harness de referência passa a ser TypeScript no template web (`executarAgente` sobre o AI SDK, modelo injetável, testes sem rede). Entregável e aceite desta tarefa seguem essa auditoria, não o loop Python original. Concluída em 26/11/2026 neste PR: executarAgente no AI SDK, modelo injetável, testes sem rede.'
 
 - id: VTX-178
   titulo: Suíte de evals mínima com portão no CI

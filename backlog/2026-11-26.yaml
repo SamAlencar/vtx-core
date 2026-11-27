@@ -12,6 +12,12 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-210): no-restricted-imports, AGENTS.md em src/dominio e src/agentes, esboços de memoria e evals, fixture tests/fronteiras/violacao.ts. Skills: writing-plans (docs/planos/2026-11-26-vtx-212.md), verification-before-completion. Ferramentas: git, gh, npm."
+  - id: VTX-177
+    titulo: "Harness de agente de referência (loop de tool-calling)"
+    area: "Engenharia"
+    status: "concluído"
+    responsavel: "agente-orquestrador"
+    notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-212): executarAgente no AI SDK com modelo injetável, maxIteracoes, timeout, retry/fallback, códigos FUNCAO_DESCONHECIDA/PARAMETRO_INVALIDO/ERRO_INTERNO. Testes com MockLanguageModelV4, inclusive unshare -rn. Skills: writing-plans (docs/planos/2026-11-26-vtx-177.md), verification-before-completion. Ferramentas: git, gh, npm."
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"
