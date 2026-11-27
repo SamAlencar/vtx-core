@@ -50,6 +50,16 @@ class TestObjetos(unittest.TestCase):
     def por_id(self, objs):
         return {x["globalid"]: x for x in objs}
 
+    def test_camada_sem_material_mantem_posicao(self):
+        api = ifcopenshell.api
+        cam = api.material.add_material_set(self.f, name="Misto", set_type="IfcMaterialLayerSet")
+        api.material.add_layer(self.f, layer_set=cam, material=api.material.add_material(self.f, name="Reboco"))
+        vazia = api.material.add_layer(self.f, layer_set=cam, material=api.material.add_material(self.f, name="tmp"))
+        vazia.Material = None
+        api.material.assign_material(self.f, products=[self.p2], material=cam)
+        b = self.por_id(self.o.extrair(self.f))[self.p2.GlobalId]
+        self.assertEqual(b["materiais"], ["Reboco", None])
+
     def test_extrai_campos(self):
         o = self.por_id(self.o.extrair(self.f))
         a, b = o[self.p1.GlobalId], o[self.p2.GlobalId]

@@ -2061,9 +2061,9 @@ tarefas:
   fase: F8
   area: Qualidade
   prioridade: 67
-  status: concluído
+  status: em andamento
   entregavel: pyproject.toml + .github/workflows/testes.yml + templates/projeto/.github/workflows/ci.yml
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 13), importada em 26/11/2026. Tarefa: corrigir os 14 achados do ruff e os 3 erros do mypy, configurar ruff e mypy no pyproject.toml, adicionar o passo no CI e trocar o Lint falso (compileall) do templates/projeto/.github/workflows/ci.yml por ruff. Arquivos: pyproject.toml, core/vtx_ifc/, scripts/, tests/, .github/workflows/testes.yml, templates/projeto/.github/workflows/ci.yml. Aceite: ruff check core scripts tests e mypy core/vtx_ifc saem com 0 localmente e no CI. Ampliação de 26/11/2026 (orientações do Samuel, item 4): o autofix é do agente, não do CI. ruff check --fix e ruff format entram na verificação local antes do PR (porta-para-producao.md §2); o CI só verifica, com permissions: contents: read. Mexe em workflow: PR com etiqueta precisa do Samuel. Concluída em 26/11/2026 neste PR: ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P1 item 13), importada em 26/11/2026. Tarefa: corrigir os 14 achados do ruff e os 3 erros do mypy, configurar ruff e mypy no pyproject.toml, adicionar o passo no CI e trocar o Lint falso (compileall) do templates/projeto/.github/workflows/ci.yml por ruff. Arquivos: pyproject.toml, core/vtx_ifc/, scripts/, tests/, .github/workflows/testes.yml, templates/projeto/.github/workflows/ci.yml. Aceite: ruff check core scripts tests e mypy core/vtx_ifc saem com 0 localmente e no CI. Ampliação de 26/11/2026 (orientações do Samuel, item 4): o autofix é do agente, não do CI. ruff check --fix e ruff format entram na verificação local antes do PR (porta-para-producao.md §2); o CI só verifica, com permissions: contents: read. Mexe em workflow: PR com etiqueta precisa do Samuel. Entregue no PR #37 (fica em andamento até o merge, como no #36): ruff e mypy no pyproject (extra dev), job lint-python no CI, achados corrigidos, lint do template Python trocado de compileall por ruff.'
 
 - id: VTX-221
   titulo: Topologia de agentes, critérios de agente novo e modelos por perfil
