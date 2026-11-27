@@ -1,0 +1,34 @@
+---
+description: Prompts, tools com Zod, harness e aprovação de tool crítica — VTX-210
+globs: src/agentes/**/*.ts,src/dominio/**/*.ts
+alwaysApply: false
+---
+
+# Agentes
+
+- Prompt em `src/agentes/prompts/`. Regra de negócio nunca vai no prompt: a tool chama `src/dominio/`.
+- Toda tool tem schema Zod e vive em `src/agentes/tools/`.
+- Chamada ao modelo só via `src/agentes/harness/` (função `executarAgente`). Não instancie o SDK de modelo em outro lugar.
+- Tool crítica (gasto, dado pessoal, publicação, efeito irreversível) exige aprovação antes de executar. O mecanismo de aprovação entra na VTX-213; o harness de referência entra na VTX-177. O esboço em `src/agentes/harness/executar.ts` ainda não implementa aprovação nem chamada a modelo — não trate esse stub como se a aprovação já existisse.
+
+```ts
+import { z } from "zod";
+import { promptExemplo } from "@/src/agentes/prompts/exemplo";
+import { somar } from "@/src/dominio/exemplo";
+import { executarAgente } from "@/src/agentes/harness/executar";
+
+const esquemaSomar = z.object({ a: z.number(), b: z.number() });
+
+export function toolSomar(input: unknown): number {
+  const dados = esquemaSomar.parse(input);
+  return somar(dados.a, dados.b);
+}
+
+export async function demonstracaoHarness() {
+  return executarAgente({
+    prompt: promptExemplo,
+    mensagem: "some 1 e 2",
+    tools: { somar: toolSomar },
+  });
+}
+```

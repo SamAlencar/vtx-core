@@ -1,0 +1,15 @@
+---
+description: Ponteiro para as regras de engenharia e de agentes do template web — VTX-210
+globs: templates/web-next/**/*
+alwaysApply: false
+---
+
+# Regras do template web
+
+O texto normativo não fica aqui. Edite no template:
+
+- `templates/web-next/.cursor/rules/stack.mdc`
+- `templates/web-next/.cursor/rules/api.mdc`
+- `templates/web-next/.cursor/rules/agentes.mdc`
+- `templates/web-next/DESIGN.md`
+- `templates/web-next/AGENTS.md`

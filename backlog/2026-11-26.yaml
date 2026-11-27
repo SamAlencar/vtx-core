@@ -3,9 +3,9 @@ tarefas:
   - id: VTX-210
     titulo: "Regras do Cursor de engenharia e de agentes no template web"
     area: "Integração Cursor"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Importada da auditoria técnica de 25/11 e ampliada com DESIGN.md (orientações do Samuel, item 2). Ver mestre."
+    notas: "Concluída em 26/11/2026 neste PR: stack.mdc, api.mdc, agentes.mdc, DESIGN.md, ponteiro no vtx-core, esboços dos caminhos citados e testes (globs, caminhos no projeto gerado, exemplos extraídos em tests/regras/). Skills: writing-plans (docs/planos/2026-11-26-vtx-210.md), verification-before-completion. Ferramentas: git, gh, npm."
   - id: VTX-212
     titulo: "Fronteira de camadas imposta por lint no template web"
     area: "Templates"
