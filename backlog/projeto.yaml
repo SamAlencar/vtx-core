@@ -2041,11 +2041,11 @@ tarefas:
   fase: F13
   area: Templates
   prioridade: 60
-  status: a fazer
+  status: concluído
   entregavel: templates/web-next/eslint.config.mjs
   depende_de:
   - VTX-194
-  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 3), importada em 26/11/2026. Tarefa: criar src/dominio/, src/agentes/{prompts,tools,harness,memoria}/, app/api/ e evals/ no template, e regras ESLint (no-restricted-imports ou eslint-plugin-boundaries) que proíbam src/dominio/** de importar src/agentes/** e o SDK de modelo, e proíbam importar o SDK de modelo fora de src/agentes/harness/. Arquivos: templates/web-next/src/, templates/web-next/eslint.config.mjs, templates/web-next/tests/fronteiras/. Aceite: npm run lint passa no template; um fixture que importa ai dentro de src/dominio/ faz npx eslint tests/fronteiras/violacao.ts sair com código diferente de 0 (verificado por teste). Ampliação de 26/11/2026 (orientações do Samuel, item 2): cada camada ganha um AGENTS.md curto (src/dominio/ e src/agentes/) com o que pode e o que não pode importar, e o teste confere que os dois arquivos existem no projeto gerado.'
+  notas: 'Auditoria técnica de 25/11/2026 (§4, P0 item 3), importada em 26/11/2026. Tarefa: criar src/dominio/, src/agentes/{prompts,tools,harness,memoria}/, app/api/ e evals/ no template, e regras ESLint (no-restricted-imports ou eslint-plugin-boundaries) que proíbam src/dominio/** de importar src/agentes/** e o SDK de modelo, e proíbam importar o SDK de modelo fora de src/agentes/harness/. Arquivos: templates/web-next/src/, templates/web-next/eslint.config.mjs, templates/web-next/tests/fronteiras/. Aceite: npm run lint passa no template; um fixture que importa ai dentro de src/dominio/ faz npx eslint tests/fronteiras/violacao.ts sair com código diferente de 0 (verificado por teste). Ampliação de 26/11/2026 (orientações do Samuel, item 2): cada camada ganha um AGENTS.md curto (src/dominio/ e src/agentes/) com o que pode e o que não pode importar, e o teste confere que os dois arquivos existem no projeto gerado. Concluída em 26/11/2026 neste PR: ESLint no-restricted-imports, AGENTS.md por camada, fixture de violação e testes.'
 
 - id: VTX-214
   titulo: Portão de merge sem proteção de branch

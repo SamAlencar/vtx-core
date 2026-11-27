@@ -9,9 +9,9 @@ tarefas:
   - id: VTX-212
     titulo: "Fronteira de camadas imposta por lint no template web"
     area: "Templates"
-    status: "a fazer"
+    status: "concluído"
     responsavel: "agente-orquestrador"
-    notas: "Importada da auditoria técnica e ampliada com AGENTS.md por camada. Ver mestre."
+    notas: "Concluída em 26/11/2026 neste PR (empilhada na VTX-210): no-restricted-imports, AGENTS.md em src/dominio e src/agentes, esboços de memoria e evals, fixture tests/fronteiras/violacao.ts. Skills: writing-plans (docs/planos/2026-11-26-vtx-212.md), verification-before-completion. Ferramentas: git, gh, npm."
   - id: VTX-214
     titulo: "Portão de merge sem proteção de branch"
     area: "Qualidade"

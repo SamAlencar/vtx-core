@@ -6,6 +6,10 @@ const compat = new FlatCompat({
   baseDirectory: dirname(fileURLToPath(import.meta.url)),
 });
 
+const msgDominio =
+  "src/dominio não importa src/agentes nem o SDK de modelo.";
+const msgSdk = "SDK de modelo só em src/agentes/harness/.";
+
 const config = [
   {
     ignores: [
@@ -19,6 +23,53 @@ const config = [
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    files: ["src/dominio/**/*.{ts,tsx}", "tests/fronteiras/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            { name: "ai", message: msgDominio },
+          ],
+          patterns: [
+            {
+              group: [
+                "ai/*",
+                "@ai-sdk/*",
+                "**/agentes/**",
+                "@/src/agentes",
+                "@/src/agentes/**",
+              ],
+              message: msgDominio,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["**/*.{ts,tsx}"],
+    ignores: [
+          "src/agentes/harness/**",
+          "src/dominio/**",
+          "tests/fronteiras/**",
+        ],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [{ name: "ai", message: msgSdk }],
+          patterns: [
+            {
+              group: ["ai/*", "@ai-sdk/*"],
+              message: msgSdk,
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 export default config;
