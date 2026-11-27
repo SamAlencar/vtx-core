@@ -32,6 +32,8 @@ DENY_OBRIGATORIOS = (
     "Shell(rm:-r*)",
     "Shell(rm:*--recursive*)",
     "Shell(rm:* -r*)",
+    "Shell(rm:-fR*)",
+    "Shell(rm:* -R*)",
     "Shell(find:* -delete*)",
     "Shell(find:-delete*)",
     "Shell(git:push --force)",
@@ -39,7 +41,8 @@ DENY_OBRIGATORIOS = (
     "Shell(git:push -f *)",
     "Shell(git:push * main)",
     "Shell(git:push *:main)",
-    "Shell(git:push *refs/heads/main*)",
+    "Shell(git:push *refs/heads/main)",
+    "Shell(git:push *refs/heads/main:*)",
     "Shell(git:push * --delete *)",
     "Shell(git:reset --hard*)",
     "Shell(gh:repo delete*)",
@@ -112,14 +115,33 @@ class TestPermissoesCursor(unittest.TestCase):
             "push origin main",
         ):
             self.assertTrue(_casa(comando, padroes), comando)
-        # Branch de PR continua liberada; git push sem argumentos não casa (limite documentado no §8).
-        self.assertFalse(_casa("push origin vtx-224-deny-rules-cursor", padroes))
-        self.assertFalse(_casa("push", padroes))
+        # Branch de PR e nomes que só começam com main (main-hotfix, maintenance) continuam liberados.
+        # git push sem argumentos não casa (limite documentado no §8).
+        for comando in (
+            "push origin vtx-224-deny-rules-cursor",
+            "push origin main-hotfix",
+            "push origin HEAD:main-hotfix",
+            "push origin HEAD:refs/heads/main-hotfix",
+            "push origin refs/heads/main-hotfix",
+            "push origin refs/heads/maintenance",
+            "push",
+        ):
+            self.assertFalse(_casa(comando, padroes), comando)
 
     def test_rm_recursivo_e_find_delete_sao_bloqueados(self):
         # Contornos apontados na revisão do Tzu (PR #28): -Rf, -r -f, --recursive, find -delete.
         rm = _padroes_shell(_deny(CLI.read_text(encoding="utf-8")), "Shell(rm:")
-        for args in ("-rf /tmp/x", "-fr /tmp/x", "-r /tmp/x", "-Rf /tmp/x", "-r -f /tmp/x", "--recursive /tmp/x", "-f -r /tmp/x"):
+        for args in (
+            "-rf /tmp/x",
+            "-fr /tmp/x",
+            "-r /tmp/x",
+            "-Rf /tmp/x",
+            "-r -f /tmp/x",
+            "--recursive /tmp/x",
+            "-f -r /tmp/x",
+            "-fR /tmp/x",
+            "-f -R /tmp/x",
+        ):
             self.assertTrue(_casa(args, rm), args)
         self.assertFalse(_casa("-f arquivo.txt", rm))
         find = _padroes_shell(_deny(CLI.read_text(encoding="utf-8")), "Shell(find:")
