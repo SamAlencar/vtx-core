@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+# VTX-229: padrão do workflow. unittest, ifc-web, qualidade e os demais
+# herdam contents: read (jobs que já declaram o mesmo ficam explícitos).
+permissions:
+  contents: read
+
 jobs:
   unittest:
     runs-on: ubuntu-latest

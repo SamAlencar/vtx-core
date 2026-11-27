@@ -85,6 +85,12 @@ class TestPortaoNoRepoReal(unittest.TestCase):
     def test_links_relativos_atuais(self):
         self.assertEqual(verificar(RAIZ), [])
 
+    def test_testes_yml_permissions_no_topo(self) -> None:
+        caminho = Path(RAIZ, ".github", "workflows", "testes.yml")
+        wf = yaml.safe_load(caminho.read_text(encoding="utf-8"))
+        self.assertEqual(wf["permissions"], {"contents": "read"})
+
+
 class TestPipelinePainelAposentado(unittest.TestCase):
     def test_workflow_e_citacoes_ativas_ausentes(self):
         self.assertFalse(
