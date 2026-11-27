@@ -7,16 +7,25 @@ import {
   type LanguageModel,
 } from "ai";
 import { z } from "zod";
+import type { RepositorioAcoes } from "@/src/agentes/memoria/acoes";
 import { ErroAgente } from "./erros";
 
 export type ModeloAgente = LanguageModel;
+
+/** Contexto repassado à tool: o signal dispara no TIMEOUT e ao fim da execução. */
+export type ContextoTool = { signal: AbortSignal };
 
 export type ToolDefinicao<Entrada = unknown, Saida = unknown> = {
   nome: string;
   descricao: string;
   entrada: z.ZodType<Entrada>;
   saida: z.ZodType<Saida>;
-  executar: (input: Entrada) => Promise<Saida> | Saida;
+  /**
+   * Gasto, dado pessoal, publicação ou efeito irreversível. O harness não executa:
+   * grava a ação pendente e devolve PENDENTE_APROVACAO (VTX-213).
+   */
+  critica?: boolean;
+  executar: (input: Entrada, ctx: ContextoTool) => Promise<Saida> | Saida;
 };
 
 /** Versão apagada para listas heterogêneas (parâmetro de executar é contravariante). */
@@ -25,7 +34,14 @@ export type ToolRegistro = {
   descricao: string;
   entrada: z.ZodType;
   saida: z.ZodType;
-  executar: (input: never) => Promise<unknown> | unknown;
+  critica?: boolean;
+  executar: (input: never, ctx: ContextoTool) => Promise<unknown> | unknown;
+};
+
+/** Onde gravar a ação pendente de tool crítica e de quem ela é. */
+export type AprovacaoAgente = {
+  repositorio: RepositorioAcoes;
+  usuarioId: string;
 };
 
 export type PedidoAgente<Saida = unknown> = {
@@ -44,11 +60,16 @@ export type PedidoAgente<Saida = unknown> = {
    */
   fallback?: ModeloAgente;
   saida?: z.ZodType<Saida>;
+  /** Obrigatório se alguma tool for crítica; sem ele a chamada crítica falha com REGRA_VIOLADA. */
+  aprovacao?: AprovacaoAgente;
   /** Só para testes: substitui o atraso do backoff. */
   esperar?: (ms: number) => Promise<void>;
 };
 
 export type ResultadoAgente<Saida = unknown> = {
+  status: "CONCLUIDO" | "PENDENTE_APROVACAO";
+  /** Presente quando status é PENDENTE_APROVACAO. */
+  acao_id?: string;
   texto: string;
   trace_id: string;
   passos: number;
@@ -96,6 +117,11 @@ function campoDe(erro: unknown): string {
     return m[1];
   }
   return "entrada";
+}
+
+/** 401/403: credencial inválida; não adianta chamar o mesmo provedor de novo. */
+function ehErroDeAutenticacao(erro: unknown): boolean {
+  return APICallError.isInstance(erro) && (erro.statusCode === 401 || erro.statusCode === 403);
 }
 
 function ehTransitorio(erro: unknown): boolean {
@@ -167,6 +193,8 @@ async function gerarPasso(args: {
   esperar?: (ms: number) => Promise<void>;
   fallback?: ModeloAgente;
   sistema?: string;
+  /** Circuit breaker da execução: true depois de 401/403 do principal. */
+  disjuntor: { principalInvalido: boolean };
 }) {
   const tentar = async (modelo: ModeloAgente) =>
     generateText({
@@ -197,9 +225,16 @@ async function gerarPasso(args: {
     throw ultimo;
   };
 
+  const principalLiberado = !(args.disjuntor.principalInvalido && args.fallback);
   try {
+    if (!principalLiberado) {
+      throw new Error("Modelo principal desligado nesta execução (erro de autenticação).");
+    }
     return await chamarComRetry(args.modelo);
   } catch (erro) {
+    if (ehErroDeAutenticacao(erro)) {
+      args.disjuntor.principalInvalido = true;
+    }
     if (erro instanceof ErroAgente) {
       throw erro;
     }
@@ -256,6 +291,7 @@ export async function executarAgente<Saida = unknown>(
   const inicio = Date.now();
   const controlador = new AbortController();
   const temporizador = setTimeout(() => controlador.abort(), timeoutMs);
+  const disjuntor = { principalInvalido: false };
 
   const mensagens: Mensagem[] = [
     { role: "user", content: pedido.objetivo } as Mensagem,
@@ -274,6 +310,7 @@ export async function executarAgente<Saida = unknown>(
         esperar: pedido.esperar,
         fallback: pedido.fallback,
         sistema: pedido.sistema,
+        disjuntor,
       });
 
       const chamadas = gerado.toolCalls ?? [];
@@ -299,7 +336,7 @@ export async function executarAgente<Saida = unknown>(
       if (chamadas.length === 0) {
         const texto = gerado.text;
         const dados = validarSaida(texto, pedido.saida);
-        return { texto, trace_id, passos: passo, toolsChamadas, dados };
+        return { status: "CONCLUIDO", texto, trace_id, passos: passo, toolsChamadas, dados };
       }
 
       const resultados: Array<{
@@ -318,9 +355,23 @@ export async function executarAgente<Saida = unknown>(
           );
         }
         toolsChamadas.push(chamada.toolName);
+        if (def.critica) {
+          const acao_id = await registrarPendente(def, chamada.input, trace_id, pedido.aprovacao);
+          return {
+            status: "PENDENTE_APROVACAO",
+            acao_id,
+            texto: `A ação ${def.nome} aguarda aprovação (acao_id ${acao_id}).`,
+            trace_id,
+            passos: passo,
+            toolsChamadas,
+          };
+        }
         try {
-          const executar = def.executar as (input: unknown) => Promise<unknown> | unknown;
-          const bruto = await comTimeout(Promise.resolve(executar(chamada.input)), controlador.signal);
+          const executar = def.executar as (input: unknown, ctx: ContextoTool) => Promise<unknown> | unknown;
+          const bruto = await comTimeout(
+            Promise.resolve(executar(chamada.input, { signal: controlador.signal })),
+            controlador.signal,
+          );
           const saidaTool = def.saida.parse(bruto);
           resultados.push({
             type: "tool-result",
@@ -368,7 +419,41 @@ export async function executarAgente<Saida = unknown>(
     );
   } finally {
     clearTimeout(temporizador);
+    // Encerra tool que ainda esteja rodando (erro, timeout ou pendência).
+    controlador.abort();
   }
+}
+
+async function registrarPendente(
+  def: ToolRegistro,
+  input: unknown,
+  trace_id: string,
+  aprovacao?: AprovacaoAgente,
+): Promise<string> {
+  if (!aprovacao) {
+    throw new ErroAgente(
+      "REGRA_VIOLADA",
+      `A tool ${def.nome} é crítica e exige aprovação; configure pedido.aprovacao.`,
+    );
+  }
+  const id = crypto.randomUUID();
+  const em = new Date().toISOString();
+  await aprovacao.repositorio.criar({
+    id,
+    usuario_id: aprovacao.usuarioId,
+    tool: def.nome,
+    input,
+    status: "pendente",
+    trace_id,
+    criado_em: em,
+  });
+  await aprovacao.repositorio.auditar({
+    acao_id: id,
+    usuario_id: aprovacao.usuarioId,
+    evento: "criada",
+    em,
+  });
+  return id;
 }
 
 export type { CodigoErro } from "./erros";

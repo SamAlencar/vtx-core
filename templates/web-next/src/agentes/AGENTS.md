@@ -8,6 +8,7 @@ Orquestração de agente: prompts, tools, harness e memória.
 - `src/agentes/tools/`: schema Zod e chamada a `src/dominio/`.
 - `src/agentes/harness/`: único lugar que importa o SDK de modelo.
 - `src/agentes/memoria/`: sessão e histórico (a VTX-216 completa).
+- `src/agentes/memoria/acoes.ts`: ações pendentes de tool crítica (`critica: true`), aprovadas só em `app/api/agentes/acoes/[id]/aprovar/` (VTX-213).
 
 ## Não pode
 

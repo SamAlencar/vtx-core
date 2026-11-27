@@ -319,4 +319,106 @@ describe("executarAgente", () => {
       false,
     );
   });
+  it("repassa AbortSignal à tool, que para no TIMEOUT em vez de seguir em segundo plano", async () => {
+    let sinal: AbortSignal | undefined;
+    let efeito = false;
+    const lenta: typeof somar = {
+      ...somar,
+      executar: (_dados, { signal }) => {
+        sinal = signal;
+        return new Promise<number>((resolve, reject) => {
+          const t = setTimeout(() => {
+            efeito = true;
+            resolve(0);
+          }, 150);
+          signal.addEventListener("abort", () => {
+            clearTimeout(t);
+            reject(new Error("abortada"));
+          });
+        });
+      },
+    };
+    const modelo = modeloSequencia([{ tipo: "tool", nome: "somar", input: { a: 1, b: 2 } }]);
+    await expect(
+      executarAgente({ objetivo: "some devagar", tools: [lenta], modelo, maxIteracoes: 3, timeoutMs: 40 }),
+    ).rejects.toMatchObject({ codigo: "TIMEOUT" } satisfies Partial<ErroAgente>);
+    expect(sinal?.aborted).toBe(true);
+    await new Promise((ok) => setTimeout(ok, 200));
+    expect(efeito).toBe(false);
+  });
+
+  it("circuit breaker: após 401 o principal não é chamado de novo na mesma execução", async () => {
+    let chamadasPrincipal = 0;
+    const principal = new MockLanguageModelV4({
+      doGenerate: async () => {
+        chamadasPrincipal += 1;
+        throw new APICallError({
+          message: "unauthorized",
+          url: "http://exemplo.local/modelo",
+          requestBodyValues: {},
+          statusCode: 401,
+          isRetryable: false,
+        });
+      },
+    });
+    const fallback = modeloSequencia([
+      { tipo: "tool", nome: "somar", input: { a: 1, b: 2 } },
+      { tipo: "tool", nome: "somar", input: { a: 1, b: 2 } },
+      { tipo: "texto", texto: '{"total":3}' },
+    ]);
+    const r = await executarAgente({
+      objetivo: "some 1 e 2",
+      tools: [somar],
+      modelo: principal,
+      fallback,
+      maxIteracoes: 4,
+      timeoutMs: 2000,
+      esperar: async () => undefined,
+      saida: saidaFinal,
+    });
+    expect(r.dados).toEqual({ total: 3 });
+    expect(r.passos).toBe(3);
+    expect(chamadasPrincipal).toBe(1);
+  });
+
+  it("erro transitório não desliga o principal", async () => {
+    let chamadasPrincipal = 0;
+    const principal = new MockLanguageModelV4({
+      doGenerate: async () => {
+        chamadasPrincipal += 1;
+        throw erroTransitorio();
+      },
+    });
+    const fallback = modeloSequencia([
+      { tipo: "tool", nome: "somar", input: { a: 1, b: 2 } },
+      { tipo: "texto", texto: '{"total":3}' },
+    ]);
+    await executarAgente({
+      objetivo: "some 1 e 2",
+      tools: [somar],
+      modelo: principal,
+      fallback,
+      maxIteracoes: 3,
+      timeoutMs: 2000,
+      esperar: async () => undefined,
+    });
+    expect(chamadasPrincipal).toBe(6);
+  });
+
+  it("tool crítica sem aprovação configurada falha com REGRA_VIOLADA e não executa", async () => {
+    let executou = false;
+    const critica: typeof somar = {
+      ...somar,
+      critica: true,
+      executar: ({ a, b }) => {
+        executou = true;
+        return a + b;
+      },
+    };
+    const modelo = modeloSequencia([{ tipo: "tool", nome: "somar", input: { a: 1, b: 2 } }]);
+    await expect(
+      executarAgente({ objetivo: "some", tools: [critica], modelo, maxIteracoes: 2, timeoutMs: 2000 }),
+    ).rejects.toMatchObject({ codigo: "REGRA_VIOLADA" } satisfies Partial<ErroAgente>);
+    expect(executou).toBe(false);
+  });
 });

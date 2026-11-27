@@ -2127,7 +2127,7 @@ tarefas:
   fase: F13
   area: Templates
   prioridade: 68
-  status: a fazer
+  status: em andamento
   entregavel: templates/web-next/app/api/agentes/acoes/
   depende_de:
   - VTX-177

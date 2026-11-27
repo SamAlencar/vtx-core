@@ -30,3 +30,9 @@ tarefas:
     status: "concluído"
     responsavel: "agente-orquestrador"
     notas: "PR #38 mesclado em 27/11/2026 (HEAD bee55c1, merge b812895): core/agente/telemetria.py (JSONL por execução, redação de PII, soma por cliente/dia, orçamento como limite brando na entrada), tests/test_telemetria.py, §5b em knowledge/operacao/observabilidade.md, logs/ no .gitignore. Ressalvas do Tzu aplicadas. Notas não bloqueantes no mestre: 14 dígitos como [CNPJ], CPF sem máscara no log, teste de gitignore fora de checkout git. Skills: writing-plans (docs/planos/2026-11-27-vtx-179.md), verification-before-completion (unittest, ruff, mypy, validadores). Ferramentas: git, gh, python, ruff, mypy. Como foi: ajudou; só biblioteca padrão, custo baixo."
+  - id: VTX-213
+    titulo: "Human-in-the-loop para tools críticas no template web"
+    area: "Templates"
+    status: "em andamento"
+    responsavel: "agente-orquestrador"
+    notas: "Entregue no PR #42 (fica em andamento até o merge): flag critica na ToolDefinicao; o harness grava a ação pendente e devolve PENDENTE_APROVACAO com acao_id; execução só via POST /api/agentes/acoes/[id]/aprovar (usuário autenticado, reivindicação atômica, 409 com o resultado gravado na segunda aprovação, auditoria criada/aprovada/executada); migração supabase/migrations/20261127000000_acoes_pendentes.sql (acoes_pendentes e acoes_auditoria com RLS por usuário); follow-ups da VTX-177: AbortSignal repassado às tools e circuit breaker após 401/403 do principal. Repositório Supabase fica para a VTX-216 (padrão em memória falha seguro com 404). Skills: writing-plans (docs/planos/2026-11-27-vtx-213.md), verification-before-completion (lint, typecheck, test, evals, build; unittest, ruff, mypy, validadores). Ferramentas: git, gh, npm, vitest, eslint, tsc, next build, AI SDK MockLanguageModelV4, zod, python, ruff, mypy. Como foi: ajudou; red-green conferido nos testes de signal, circuit breaker e idempotência."
