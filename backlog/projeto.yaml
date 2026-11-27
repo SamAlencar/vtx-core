@@ -2019,7 +2019,7 @@ tarefas:
   fase: F14
   area: Templates
   prioridade: 14
-  status: a fazer
+  status: em andamento
   entregavel: .github/workflows/testes.yml
   depende_de:
   - VTX-194
@@ -2212,7 +2212,7 @@ tarefas:
   fase: F1
   area: Processo
   prioridade: 72
-  status: a fazer
+  status: em andamento
   entregavel: .github/workflows/testes.yml
   depende_de:
   - VTX-215
