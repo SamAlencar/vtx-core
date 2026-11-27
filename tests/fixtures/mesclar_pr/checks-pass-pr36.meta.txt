@@ -1,0 +1,7 @@
+comando: gh pr checks 36 --json state,bucket,name
+repositorio: SamAlencar/vtx-core
+head: ba5c196daf7cd03281293aa8e0f9dfd557d7af46
+gh: 2.103.0 (2026-10-21)
+capturado: 2026-11-26 23:31 America/Sao_Paulo
+campos_validos: bucket, completedAt, description, event, link, name, startedAt, state, workflow
+nota: captura real, sem o campo conclusion (gh responde "Unknown JSON field: conclusion").
