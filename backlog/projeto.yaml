@@ -2207,3 +2207,13 @@ tarefas:
   depende_de:
   - VTX-214
   notas: 'Follow-up da revisão da VTX-214 (PR #36, 26/11/2026). Sys (autor) e Tzu (revisor) publicam comentários com a mesma conta GitHub (SamAlencar), então filtrar por user.login não autentica o revisor; um comentário do próprio autor no formato de veredito passaria no portão. Tarefa: dar ao revisor uma identidade própria (conta GitHub ou GitHub App) e fazer scripts/mesclar_pr.sh aceitar o veredito só dessa identidade. Arquivos: scripts/mesclar_pr.sh, tests/test_mesclar_pr.py, knowledge/processos/porta-para-producao.md, AGENTS.md. Aceite: um comentário no formato de veredito publicado por outra identidade é recusado; o veredito da identidade do revisor na HEAD exata é aceito.'
+- id: VTX-228
+  titulo: 'permissions: contents: read no job unittest do CI do vtx-core'
+  fase: F1
+  area: Processo
+  prioridade: 72
+  status: a fazer
+  entregavel: .github/workflows/testes.yml
+  depende_de:
+  - VTX-215
+  notas: 'Follow-up adiado da revisão do Tzu no PR #37 (VTX-215), 27/11/2026. Os jobs lint-python e web-next já declaram permissions: contents: read; o job unittest de .github/workflows/testes.yml ainda herda as permissões padrão. Tarefa: declarar o menor privilégio no job unittest (ou no workflow inteiro, conferindo que nenhum job precisa de mais). Arquivos: .github/workflows/testes.yml. Aceite: o job unittest declara permissions: contents: read e o CI segue verde. Mexe em workflow: PR com etiqueta precisa do Samuel.'
