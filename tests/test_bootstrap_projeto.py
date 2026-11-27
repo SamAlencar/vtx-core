@@ -216,10 +216,16 @@ class TestBootstrapProjeto(unittest.TestCase):
                 ".github/workflows/ci.yml",
                 "docs/runbook.md",
                 "AGENTS.md",
+                "DESIGN.md",
                 ".env.example",
                 ".cursor/rules/papeis/planejamento.mdc",
+                ".cursor/rules/stack.mdc",
+                ".cursor/rules/api.mdc",
+                ".cursor/rules/agentes.mdc",
             ):
                 self.assertTrue((dest / rel).is_file(), rel)
+            agents_web = (dest / "AGENTS.md").read_text(encoding="utf-8")
+            self.assertIn("DESIGN.md", agents_web)
             self.assertFalse((dest / "node_modules").exists())
             self.assertFalse((dest / ".next").exists())
             readme = (dest / "README.md").read_text(encoding="utf-8")

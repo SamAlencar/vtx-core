@@ -9,9 +9,12 @@ Repositório de cliente da VTX. Idioma: pt-BR. Trabalho vira artefato aqui; não
    [ADRs](docs/adr/0000-modelo.md), [plano](docs/plano.md), [testes](testes/plano.md) e
    [runbook](docs/runbook.md).
 3. Regras do Cursor em [`.cursor/rules/`](.cursor/rules/), inclusive
-   [planejamento](.cursor/rules/papeis/planejamento.mdc) e
-   [execução](.cursor/rules/papeis/execucao.mdc). Memory bank em `docs/memoria/` e
-   mapa de codebase em `docs/CODEBASE_MAP.md` (crie quando o código existir); leitura sob demanda.
+   [planejamento](.cursor/rules/papeis/planejamento.mdc),
+   [execução](.cursor/rules/papeis/execucao.mdc),
+   [stack](.cursor/rules/stack.mdc), [api](.cursor/rules/api.mdc) e
+   [agentes](.cursor/rules/agentes.mdc). Interface: [DESIGN.md](DESIGN.md).
+   Memory bank em `docs/memoria/` e mapa de codebase em `docs/CODEBASE_MAP.md`
+   (crie quando o código existir); leitura sob demanda.
 
 ## Governança A0–A3
 
