@@ -1700,7 +1700,7 @@ tarefas:
   entregavel: templates/web-next/evals/
   depende_de:
   - VTX-177
-  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto). Auditoria técnica de 25/11/2026 (§4, P0 item 6): a suíte de evals e o portão no CI passam a viver no template web (`evals/`, `npm run evals`, passo no ci.yml do template). Entregável e aceite seguem essa auditoria. Mexe em workflow do template: PR com etiqueta precisa do Samuel.'
+  notas: 'Auditoria 24/11/2026 (parecer-vtx-core.md, main 8d4e29a, nota 3/10), P1 item 9. Pelo menos 20 casos, relatório com taxa de acerto e tokens, CI determinístico com respostas gravadas, workflow_dispatch contra modelo real, PR falha abaixo do limiar. Relacionada à VTX-163, que continua a fazer (evals de modelagem IFC do piloto). Auditoria técnica de 25/11/2026 (§4, P0 item 6): a suíte de evals e o portão no CI passam a viver no template web (`evals/`, `npm run evals`, passo no ci.yml do template). Entregável e aceite seguem essa auditoria. Mexe em workflow do template: PR com etiqueta precisa do Samuel. Entrega de 26/11/2026: 20 casos com respostas gravadas. Tokens no relatório e modo com modelo real ficam fora desta entrega (tokens na VTX-179; modelo real é follow-up com A2 e dependência da VTX-226).'
 
 - id: VTX-179
   titulo: Log estruturado por execução de agente e custo

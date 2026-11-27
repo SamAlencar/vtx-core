@@ -183,17 +183,3 @@ export async function rodarEvals(opts?: { limiares?: string; saida?: string }) {
   return { relatorio, caminhoSaida };
 }
 
-async function main() {
-  const { relatorio, caminhoSaida } = await rodarEvals();
-  console.log(`evals: ${relatorio.casos} casos → ${caminhoSaida}`);
-  console.log(JSON.stringify(relatorio.metricas, null, 2));
-  if (!relatorio.ok) {
-    console.error("evals abaixo do limiar ou com caso falho:", relatorio.falhas);
-    process.exitCode = 1;
-  }
-}
-
-const invocacao = process.argv[1] ? path.resolve(process.argv[1]) : "";
-if (invocacao === fileURLToPath(import.meta.url)) {
-  void main();
-}

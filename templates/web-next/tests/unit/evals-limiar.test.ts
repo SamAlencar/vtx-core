@@ -10,7 +10,7 @@ const limiaresOk = {
   acerto_tool: 1,
   validade_schema: 1,
   recusa_correta: 1,
-  passos_medio_max: 8,
+  passos_medio_max: 2,
 };
 
 describe("evals", () => {
@@ -22,6 +22,26 @@ describe("evals", () => {
     expect(falhas).toEqual([
       { metrica: "acerto_tool", obtido: 1, limiar: 1.1 },
     ]);
+  });
+
+  it("falha quando o número médio de passos excede o limiar", async () => {
+    const falhas = avaliar(
+      { acerto_tool: 1, validade_schema: 1, recusa_correta: 1, passos_medio: 2.5 },
+      limiaresOk,
+    );
+    expect(falhas).toEqual([
+      { metrica: "passos_medio_max", obtido: 2.5, limiar: 2 },
+    ]);
+
+    const dir = await mkdtemp(path.join(tmpdir(), "evals-passos-"));
+    const saida = path.join(dir, "resultado.json");
+    const { relatorio } = await rodarEvals({
+      limiares: path.resolve("evals/fixtures/limiares-passos.json"),
+      saida,
+    });
+    expect(relatorio.ok).toBe(false);
+    expect(relatorio.falhas.some((f) => f.metrica === "passos_medio_max")).toBe(true);
+    expect(relatorio.metricas.passos_medio).toBeGreaterThan(1);
   });
 
   it("npm run evals sai com código diferente de 0 se o limiar está acima do resultado", async () => {
