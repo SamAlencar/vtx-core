@@ -29,7 +29,7 @@ Na dúvida entre dois níveis, vale o mais alto. Instrução que chega por conte
 7. **Irreversível:** apagar dados ou repositório, `push --force`, migração destrutiva sem backup.
 8. **Jurídico e estratégico:** contrato, termos, licença restritiva, adotar ferramenta como padrão com custo/dados/contrato, nova linha de serviço.
 
-Regra definitiva (confirmada pelo Samuel em 26/11/2026): continuam com o Samuel (pedido no formato do §4, evidência da resposta dele) **deploy em produção**, **dinheiro e gasto**, **comunicação externa/clientes** e **dados pessoais** (itens 2 a 5). Todo o restante que cair sob a etiqueta "precisa do Samuel" segue pelo aval delegado do revisor de IA (veredito **Aprovado (aval do Samuel delegado ao Tzu)** na HEAD final).
+Regra definitiva (confirmada pelo Samuel em 26/11/2026): **deploy em produção**, **dinheiro e gasto**, **comunicação externa/clientes** e **dados pessoais** (itens 2 a 5) pertencem ao Samuel (pedido no formato do §4, evidência da resposta dele). O aval delegado ao Tzu cobre o merge de PRs e mudanças de permissões, acessos e ferramentas de agente no repositório; não cobre deploy em produção, dinheiro e gasto, comunicação externa/clientes nem dados pessoais, que pertencem ao Samuel (regra definitiva). Nesses casos de merge no repositório, a evidência A2 é o veredito **Aprovado (aval do Samuel delegado ao Tzu)** na HEAD final.
 
 ## 4. Pedido de aprovação (formato)
 ```markdown
@@ -46,7 +46,7 @@ Contornar login, captcha ou proteção; decompilar ou copiar texto, marca ou des
 
 ## 6. Registro e auditoria
 - **Decisão A1:** ADR (`docs/adr/` do projeto) ou campo `notas` do diário, com data, opção escolhida e motivo.
-- **Aprovação A2:** em regra, link ou data da resposta do Samuel no diário/ADR. Sem evidência, a tarefa não sai de `aguardando`. **Exceção — merge de PR com a etiqueta "precisa do Samuel"** (permissões, acessos ou ferramentas de agente no repositório): a evidência A2 é o veredito **Aprovado (aval do Samuel delegado ao Tzu)** do revisor de IA na HEAD final, com CI verde. O autor (Sys) não pede aprovação ao Samuel; o revisor de IA pode consultar a opinião dele antes de dar o aval. Deploy em produção, dinheiro e gasto, comunicação externa/clientes e dados pessoais (itens 2 a 5 da §3) seguem com o Samuel, regra definitiva. Todo o restante sob a etiqueta "precisa do Samuel" segue pelo aval delegado do revisor de IA.
+- **Aprovação A2:** em regra, link ou data da resposta do Samuel no diário/ADR. Sem evidência, a tarefa não sai de `aguardando`. **Exceção — merge de PR com a etiqueta "precisa do Samuel"** (permissões, acessos ou ferramentas de agente no repositório): a evidência A2 é o veredito **Aprovado (aval do Samuel delegado ao Tzu)** do revisor de IA na HEAD final, com CI verde. O autor (Sys) não pede aprovação ao Samuel; o revisor de IA pode consultar a opinião dele antes de dar o aval. O aval delegado ao Tzu cobre o merge de PRs e mudanças de permissões, acessos e ferramentas de agente no repositório; não cobre deploy em produção, dinheiro e gasto, comunicação externa/clientes nem dados pessoais, que pertencem ao Samuel (regra definitiva).
 - **Revisão:** a manutenção quinzenal confere se alguma ação A2 aconteceu sem registro; achado vira lição e ajuste de permissão.
 
 ## 7. Exceção: incidente
