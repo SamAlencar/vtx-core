@@ -16,3 +16,5 @@ Orquestração de agente: prompts, tools, harness e memória.
 - `src/dominio/` importar esta pasta (veja `src/dominio/AGENTS.md`).
 
 A fronteira é imposta pelo ESLint (`eslint.config.mjs`).
+
+A referência em `/assistente` só responde com `AGENT_MODELO_FALSO=1` (nunca em produção). O provedor real entra em `servicos/exemplo.ts`, com o SDK só neste `harness/`.

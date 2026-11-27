@@ -260,4 +260,63 @@ describe("executarAgente", () => {
     });
     expect(r.dados).toEqual({ total: 3 });
   });
+
+  it("envia o prompt como system e o objetivo como user", async () => {
+    let visto: unknown;
+    const modelo = new MockLanguageModelV4({
+      doGenerate: async (opts) => {
+        visto = opts;
+        return {
+          content: [{ type: "text", text: '{"total":3}' }],
+          finishReason: { unified: "stop" as const, raw: undefined },
+          usage: uso,
+          warnings: [],
+        };
+      },
+    });
+    await executarAgente({
+      sistema: "Prompt de sistema.",
+      objetivo: "Some 1 e 2",
+      tools: [somar],
+      modelo,
+      maxIteracoes: 1,
+      timeoutMs: 2000,
+      saida: saidaFinal,
+    });
+    const bruto = JSON.stringify(visto);
+    expect(bruto).toContain("Prompt de sistema.");
+    expect(bruto).toContain("Some 1 e 2");
+    const papeis: string[] = [];
+    const textos: string[] = [];
+    const andar = (valor: unknown) => {
+      if (!valor || typeof valor !== "object") {
+        return;
+      }
+      const rec = valor as Record<string, unknown>;
+      if (typeof rec.role === "string") {
+        papeis.push(rec.role);
+      }
+      if (typeof rec.content === "string") {
+        textos.push(rec.content);
+      }
+      if (typeof rec.text === "string") {
+        textos.push(rec.text);
+      }
+      for (const item of Object.values(rec)) {
+        if (Array.isArray(item)) {
+          item.forEach(andar);
+        } else if (item && typeof item === "object") {
+          andar(item);
+        }
+      }
+    };
+    andar(visto);
+    expect(papeis).toContain("system");
+    expect(papeis).toContain("user");
+    expect(textos).toContain("Prompt de sistema.");
+    expect(textos).toContain("Some 1 e 2");
+    expect(textos.some((t) => t.includes("Prompt de sistema.") && t.includes("Some 1 e 2"))).toBe(
+      false,
+    );
+  });
 });

@@ -30,6 +30,8 @@ export type ToolRegistro = {
 
 export type PedidoAgente<Saida = unknown> = {
   objetivo: string;
+  /** Prompt de sistema, enviado em `instructions` do generateText — nunca concatenado ao objetivo. */
+  sistema?: string;
   tools: ToolRegistro[];
   modelo: ModeloAgente;
   maxIteracoes?: number;
@@ -164,11 +166,13 @@ async function gerarPasso(args: {
   signal: AbortSignal;
   esperar?: (ms: number) => Promise<void>;
   fallback?: ModeloAgente;
+  sistema?: string;
 }) {
   const tentar = async (modelo: ModeloAgente) =>
     generateText({
       model: modelo,
       messages: args.mensagens,
+      ...(args.sistema ? { instructions: args.sistema } : {}),
       tools: ferramentasSdk(args.tools),
       abortSignal: args.signal,
       maxRetries: 0,
@@ -269,6 +273,7 @@ export async function executarAgente<Saida = unknown>(
         signal: controlador.signal,
         esperar: pedido.esperar,
         fallback: pedido.fallback,
+        sistema: pedido.sistema,
       });
 
       const chamadas = gerado.toolCalls ?? [];

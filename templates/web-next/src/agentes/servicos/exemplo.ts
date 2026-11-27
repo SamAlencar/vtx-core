@@ -37,9 +37,8 @@ export async function executarExemplo(
   pedido: PedidoExemplo,
 ): Promise<ResultadoAgente<{ total: number }>> {
   return executarAgente({
-    objetivo: `${promptExemplo}
-
-${pedido.objetivo}`,
+    sistema: promptExemplo,
+    objetivo: pedido.objetivo,
     tools: pedido.tools ?? [definicaoSomar],
     modelo: pedido.modelo ?? (await modeloPadrao()),
     saida: dadosAssistente,

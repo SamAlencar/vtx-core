@@ -33,7 +33,8 @@ export const definicaoSomar: ToolDefinicao<{ a: number; b: number }, number> = {
 
 export async function demonstracaoHarness(modelo: ModeloAgente) {
   return executarAgente({
-    objetivo: `${promptExemplo}\n\nSome 1 e 2.`,
+    sistema: promptExemplo,
+    objetivo: "Some 1 e 2.",
     tools: [definicaoSomar],
     modelo,
     saida: z.object({ total: z.number() }),
