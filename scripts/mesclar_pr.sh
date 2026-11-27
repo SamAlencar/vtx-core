@@ -66,8 +66,8 @@ comentarios="$(gh api --paginate "repos/${REPO}/issues/${PR}/comments" | jq -s '
 # merge só passa **Aprovado** (ou o aval delegado em PR sensível).
 veredito="$(printf '%s' "$comentarios" | jq -r --arg sha "$sha" '
   [ .[]
-    | .body
-    | capture("(?s)\\*\\*Veredito:\\s*(?<v>[^*\\n]+)\\*\\*[^\\n]*HEAD[ `]*`(?<h>[0-9a-f]{7,40})`")
+    | (.body | split("\n")[0])
+    | capture("^\\*\\*Veredito:\\s*(?<v>[^*]+)\\*\\*[^\\n]*HEAD[ `]*`(?<h>[0-9a-f]{7,40})`")
     | select(.h as $h | $sha | startswith($h))
     | .v
     | gsub("^\\s+|\\s+$";"")

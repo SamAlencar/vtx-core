@@ -230,6 +230,25 @@ class TestMesclarPr(unittest.TestCase):
             self.assertFalse((d / "merged").exists())
             self.assertIn("formato", r.stderr)
 
+    def test_veredito_fora_da_primeira_linha_nao_mescla(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp)
+            _gh_stub(
+                d,
+                checks=CHECKS_PASS,
+                labels=[],
+                comments=[{
+                    "body": (
+                        "Cito um veredito antigo no meio do texto.\n\n"
+                        f"**Veredito: Aprovado** (HEAD `{CURTO}`)\n"
+                    )
+                }],
+            )
+            r = _rodar(d)
+            self.assertNotEqual(r.returncode, 0, r.stderr)
+            self.assertFalse((d / "merged").exists())
+            self.assertIn("formato", r.stderr)
+
     def test_aprovado_com_ressalvas_nao_mescla(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             d = Path(tmp)
