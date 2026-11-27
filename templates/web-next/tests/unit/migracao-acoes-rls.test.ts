@@ -35,17 +35,31 @@ describe("migração acoes_pendentes: RLS e escrita só no servidor", () => {
     expect(sql).not.toMatch(/create policy\s+\S+\s+on public\.acoes_auditoria\s+for (insert|update|delete)/i);
   });
 
-  it("revoga escrita de authenticated e anon; concede só SELECT", () => {
-    for (const tabela of ["acoes_pendentes", "acoes_auditoria"]) {
-      expect(sql).toMatch(
-        new RegExp(`revoke all on table public\\.${tabela} from public, anon, authenticated`, "i"),
-      );
-      expect(sql).toMatch(new RegExp(`grant select on table public\\.${tabela} to authenticated`, "i"));
-      expect(sql).not.toMatch(new RegExp(`grant (all|insert|update|delete).*${tabela} to authenticated`, "i"));
-    }
+  it("não concede SELECT da tabela acoes_pendentes; a leitura vai pela view sem contexto_retomada", () => {
+    expect(sql).toMatch(
+      /revoke all on table public\.acoes_pendentes from public, anon, authenticated/i,
+    );
+    expect(sql).not.toMatch(/grant select on table public\.acoes_pendentes to authenticated/i);
+    expect(sql).toMatch(
+      /create or replace view public\.acoes_pendentes_leitura\s+with \(security_invoker = true\)/i,
+    );
+    const view = sql.match(
+      /create or replace view public\.acoes_pendentes_leitura[\s\S]*?;/i,
+    )?.[0] ?? "";
+    expect(view).toBeTruthy();
+    expect(view).not.toMatch(/contexto_retomada/i);
+    expect(view).toMatch(/\btool\b/);
+    expect(view).toMatch(/\bstatus\b/);
+    expect(sql).toMatch(/grant select on public\.acoes_pendentes_leitura to authenticated/i);
+
+    expect(sql).toMatch(
+      /revoke all on table public\.acoes_auditoria from public, anon, authenticated/i,
+    );
+    expect(sql).toMatch(/grant select on table public\.acoes_auditoria to authenticated/i);
+    expect(sql).not.toMatch(/grant (all|insert|update|delete).*acoes_auditoria to authenticated/i);
   });
 
-  it("RPCs de escrita são security definer com search_path fixo e EXECUTE só para service_role", () => {
+  it("RPCs de escrita são security definer com search_path fixo, EXECUTE só para service_role, e auditam reivindicar e concluir", () => {
     const nomes = [
       "acoes_auditar",
       "acoes_criar",
@@ -59,6 +73,11 @@ describe("migração acoes_pendentes: RLS e escrita só no servidor", () => {
       expect(fn).toMatch(/security definer/i);
       expect(fn).toMatch(/set search_path = pg_catalog, public/i);
     }
+    const reivindicar = fns.find((f) => /function public\.acoes_reivindicar/i.test(f)) ?? "";
+    expect(reivindicar).toMatch(/acoes_auditar\([^)]*'aprovada'/i);
+    const concluir = fns.find((f) => /function public\.acoes_concluir/i.test(f)) ?? "";
+    expect(concluir).toMatch(/acoes_auditar\(/i);
+    expect(concluir).toMatch(/p_status/);
     for (const nome of nomes) {
       expect(sql).toMatch(
         new RegExp(`revoke all on function public\\.${nome}\\([^)]*\\) from public, anon, authenticated`, "i"),

@@ -34,8 +34,30 @@ create policy acoes_pendentes_select on public.acoes_pendentes
   using (usuario_id = (select auth.uid()));
 
 revoke all on table public.acoes_pendentes from public, anon, authenticated;
-grant select on table public.acoes_pendentes to authenticated;
+-- Sem GRANT SELECT na tabela: contexto_retomada (prompt de sistema e
+-- histórico) não vaza pelo PostgREST. A leitura do usuário vai pela view.
 grant all on table public.acoes_pendentes to service_role;
+
+create or replace view public.acoes_pendentes_leitura
+  with (security_invoker = true)
+  as select
+    id,
+    usuario_id,
+    tool,
+    input,
+    status,
+    trace_id,
+    criado_em,
+    expira_em,
+    executando_em,
+    aprovado_por,
+    aprovado_em,
+    resultado,
+    erro
+  from public.acoes_pendentes;
+
+revoke all on public.acoes_pendentes_leitura from public, anon;
+grant select on public.acoes_pendentes_leitura to authenticated;
 
 create table if not exists public.acoes_auditoria (
   id bigint generated always as identity primary key,
@@ -61,6 +83,10 @@ grant all on table public.acoes_auditoria to service_role;
 grant usage, select on sequence public.acoes_auditoria_id_seq to service_role;
 
 -- RPCs de escrita: security definer, search_path fixo, grants mínimos.
+-- acoes_reivindicar e acoes_concluir auditam aprovada/executada/falhou;
+-- o repositório não deve chamar acoes_auditar de novo nesses caminhos.
+-- p_lease deve ser timeout da tool + margem (leaseMsDeTimeout); o padrão
+-- de 40s só cobre AGENT_TIMEOUT_MS=30s + 10s de folga.
 -- O servidor autentica o usuário e passa o id; as funções não usam auth.uid()
 -- porque o service_role não carrega o JWT do usuário.
 
@@ -114,7 +140,7 @@ create or replace function public.acoes_reivindicar(
   p_id uuid,
   p_usuario_id uuid,
   p_em timestamptz,
-  p_lease interval default interval '60 seconds'
+  p_lease interval default interval '40 seconds'
 )
 returns public.acoes_pendentes
 language plpgsql
@@ -149,6 +175,7 @@ begin
           executando_em = p_em
       where id = p_id
       returning * into a;
+    perform public.acoes_auditar(p_id, p_usuario_id, 'aprovada', p_em);
     return a;
   end if;
 
@@ -194,6 +221,7 @@ begin
   if not found then
     raise exception 'ação % não está em executando', p_id;
   end if;
+  perform public.acoes_auditar(p_id, a.usuario_id, p_status, clock_timestamp());
   return a;
 end;
 $$;

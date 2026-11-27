@@ -14,6 +14,7 @@ function cenario(
   opts: {
     executar?: ToolDefinicao<{ valor: number }, string>["executar"];
     repo?: OpcoesRepositorioAcoes;
+    timeoutMs?: number;
   } = {},
 ) {
   const repositorio = repositorioAcoesEmMemoria(opts.repo);
@@ -34,6 +35,7 @@ function cenario(
   const POST = criarPostAprovar({
     repositorio,
     tools: [pagar],
+    timeoutMs: opts.timeoutMs,
     autenticar: async (req) => {
       const id = req.headers.get("x-usuario-teste");
       return id ? { id } : null;
@@ -249,5 +251,43 @@ describe("aprovação de tool crítica (VTX-213)", () => {
       status: "CONCLUIDO",
       texto: "pagamento concluído",
     });
+  });
+
+  it("segundo clique durante a execução recebe 409 e não perde o desfecho nem a auditoria", async () => {
+    let agora = Date.parse("2026-11-27T12:00:00.000Z");
+    const timeoutMs = 70_000;
+    let liberar!: (valor: string) => void;
+    const barreiro = new Promise<string>((resolve) => {
+      liberar = resolve;
+    });
+    let comecou!: () => void;
+    const iniciou = new Promise<void>((resolve) => {
+      comecou = resolve;
+    });
+    const { aprovar, pedirPagamento, repositorio } = cenario({
+      timeoutMs,
+      repo: { agora: () => new Date(agora), timeoutMs },
+      executar: async ({ valor }) => {
+        comecou();
+        return barreiro.then(() => `pago ${valor}`);
+      },
+    });
+    const { acao_id } = await pedirPagamento();
+    const primeira = aprovar(acao_id!);
+    await iniciou;
+    // O lease antigo (60 s) venceria aqui; o lease derivado (timeout + 10 s) não.
+    agora += 60_000;
+    const segunda = await aprovar(acao_id!);
+    expect(segunda.status).toBe(409);
+    expect((await segunda.json()).acao).toMatchObject({ status: "executando" });
+    liberar("ok");
+    const res = await primeira;
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ status: "executada", resultado: "pago 50" });
+    expect((await repositorio.auditoria(acao_id!)).map((ev) => ev.evento)).toEqual([
+      "criada",
+      "aprovada",
+      "executada",
+    ]);
   });
 });

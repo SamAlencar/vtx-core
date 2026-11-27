@@ -69,12 +69,27 @@ export type DesfechoAcao =
   | { status: "falhou"; erro: string };
 
 export const ACAO_TTL_PADRAO_MS = 24 * 60 * 60 * 1000;
-export const ACAO_LEASE_PADRAO_MS = 60_000;
+/** Folga além do timeout da tool, para o segundo clique não encerrar a execução ainda em curso. */
+export const ACAO_LEASE_MARGEM_MS = 10_000;
+const TIMEOUT_PADRAO_MS = 30_000;
+
+/** Lease = timeout da tool (AGENT_TIMEOUT_MS ou o informado) + margem. */
+export function leaseMsDeTimeout(timeoutMs: number): number {
+  return timeoutMs + ACAO_LEASE_MARGEM_MS;
+}
+
+function timeoutAtualMs(): number {
+  const bruto = Number(process.env.AGENT_TIMEOUT_MS);
+  return Number.isFinite(bruto) && bruto > 0 ? bruto : TIMEOUT_PADRAO_MS;
+}
 
 export type OpcoesRepositorioAcoes = {
   /** Relógio injetável, para testes de TTL e de lease. */
   agora?: () => Date;
   ttlMs?: number;
+  /** Timeout da tool; o lease vira timeout + margem, salvo `leaseMs`. */
+  timeoutMs?: number;
+  /** Só para testes de vencimento do lease; em produção derive com `leaseMsDeTimeout`. */
   leaseMs?: number;
 };
 
@@ -105,7 +120,8 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
   const registros: RegistroAuditoria[] = [];
   const agora = opts.agora ?? (() => new Date());
   const ttlMs = opts.ttlMs ?? ACAO_TTL_PADRAO_MS;
-  const leaseMs = opts.leaseMs ?? ACAO_LEASE_PADRAO_MS;
+  const leaseAtual = (): number =>
+    opts.leaseMs ?? leaseMsDeTimeout(opts.timeoutMs ?? timeoutAtualMs());
   const copia = (a: AcaoPendente): AcaoPendente => structuredClone(a);
 
   const doDono = (id: string, usuarioId: string): AcaoPendente | undefined => {
@@ -133,7 +149,7 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
     if (a.status !== "executando" || !a.executando_em) {
       return false;
     }
-    if (Date.parse(a.executando_em) + leaseMs > Date.parse(em)) {
+    if (Date.parse(a.executando_em) + leaseAtual() > Date.parse(em)) {
       return false;
     }
     a.status = "falhou";
@@ -168,6 +184,7 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
       a.aprovado_por = usuarioId;
       a.aprovado_em = em;
       a.executando_em = em;
+      auditarSync({ acao_id: a.id, usuario_id: usuarioId, evento: "aprovada", em });
       return copia(a);
     },
     async rejeitar(id, usuarioId) {
@@ -200,6 +217,12 @@ export function repositorioAcoesEmMemoria(opts: OpcoesRepositorioAcoes = {}): Re
       } else {
         a.erro = desfecho.erro;
       }
+      auditarSync({
+        acao_id: a.id,
+        usuario_id: a.usuario_id,
+        evento: desfecho.status,
+        em: agora().toISOString(),
+      });
       return copia(a);
     },
     async auditar(registro) {

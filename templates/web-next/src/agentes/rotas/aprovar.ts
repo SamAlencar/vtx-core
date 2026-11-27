@@ -13,6 +13,7 @@ export type DepsRotaAprovar = {
   repositorio?: RepositorioAcoes;
   tools?: ToolRegistro[];
   retomada?: PedidoRetomada;
+  timeoutMs?: number;
 };
 
 const entrada = z.object({ id: z.string().uuid() });
@@ -44,6 +45,7 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
   const repositorio = deps.repositorio ?? repositorioAcoesPadrao;
   const tools = deps.tools ?? catalogoTools;
   const retomada = deps.retomada;
+  const timeoutMs = deps.timeoutMs;
 
   return async function POST(req: Request, ctx: ContextoRota): Promise<Response> {
     const usuario = await autenticar(req);
@@ -68,6 +70,7 @@ export function criarPostAprovar(deps: DepsRotaAprovar = {}) {
         acaoId: lido.data.id,
         usuarioId: usuario.id,
         tools,
+        timeoutMs,
         retomada,
       });
       if (r.tipo === "ja_decidida") {

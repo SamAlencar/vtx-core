@@ -79,7 +79,6 @@ export async function aprovarAcao<Saida = unknown>(
     }
     return { tipo: "ja_decidida", acao: atual };
   }
-  await repositorio.auditar({ acao_id: acaoId, usuario_id: usuarioId, evento: "aprovada", em });
 
   const def = pedido.tools.find((t) => t.nome === acao.tool && t.critica);
   let final: AcaoPendente;
@@ -90,20 +89,28 @@ export async function aprovarAcao<Saida = unknown>(
     const resultado = await rodarComPrazo(def, acao.input, pedido.timeoutMs ?? lerTimeoutMs());
     final = await repositorio.concluir(acaoId, { status: "executada", resultado });
   } catch (erro) {
+    const atual = await repositorio.buscar(acaoId, usuarioId);
+    if (atual && atual.status !== "executando") {
+      // Outra via já fechou (lease, segundo clique mal cronometrado, etc.).
+      // Não chama concluir de novo: evita 500 e auditoria duplicada ou perdida.
+      return { tipo: "ja_decidida", acao: atual };
+    }
     const mensagem =
       erro instanceof z.ZodError
         ? z.prettifyError(erro)
         : erro instanceof Error
           ? erro.message
           : "Falha ao executar a tool.";
-    final = await repositorio.concluir(acaoId, { status: "falhou", erro: mensagem });
+    try {
+      final = await repositorio.concluir(acaoId, { status: "falhou", erro: mensagem });
+    } catch {
+      const depois = await repositorio.buscar(acaoId, usuarioId);
+      if (!depois) {
+        throw naoEncontrada();
+      }
+      return { tipo: "ja_decidida", acao: depois };
+    }
   }
-  await repositorio.auditar({
-    acao_id: acaoId,
-    usuario_id: usuarioId,
-    evento: final.status === "executada" ? "executada" : "falhou",
-    em: new Date().toISOString(),
-  });
 
   if (final.status !== "executada" || !pedido.retomada) {
     return { tipo: "aprovada", acao: final };
