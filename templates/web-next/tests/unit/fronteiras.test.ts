@@ -12,10 +12,26 @@ function eslint(alvo: string) {
   });
 }
 
+function saida(r: ReturnType<typeof eslint>): string {
+  return `${r.stdout}\n${r.stderr}`;
+}
+
 describe("fronteiras de camada", () => {
-  it("npx eslint tests/fronteiras/violacao.ts sai com código diferente de 0", () => {
+  it("npx eslint tests/fronteiras/violacao.ts acusa as duas importações", () => {
     const r = eslint("tests/fronteiras/violacao.ts");
-    expect(r.status, r.stdout + r.stderr).not.toBe(0);
-    expect(`${r.stdout}\n${r.stderr}`).toMatch(/no-restricted-imports/);
+    const texto = saida(r);
+    expect(r.status, texto).not.toBe(0);
+    const erros = (texto.match(/no-restricted-imports/g) ?? []).length;
+    expect(erros, texto).toBeGreaterThanOrEqual(2);
+    expect(texto).toMatch(/@\/src\/agentes/);
+    expect(texto).toMatch(/\bai\b/);
+  });
+
+  it("npx eslint tests/fronteiras/sdk-fora-harness.ts barra o SDK fora do harness", () => {
+    const r = eslint("tests/fronteiras/sdk-fora-harness.ts");
+    const texto = saida(r);
+    expect(r.status, texto).not.toBe(0);
+    expect(texto).toMatch(/no-restricted-imports/);
+    expect(texto).toMatch(/src\/agentes\/harness/);
   });
 });

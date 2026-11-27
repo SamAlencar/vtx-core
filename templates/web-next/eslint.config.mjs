@@ -10,6 +10,8 @@ const msgDominio =
   "src/dominio não importa src/agentes nem o SDK de modelo.";
 const msgSdk = "SDK de modelo só em src/agentes/harness/.";
 
+const ext = "ts,tsx,js,jsx,mjs";
+
 const config = [
   {
     ignores: [
@@ -24,7 +26,7 @@ const config = [
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    files: ["src/dominio/**/*.{ts,tsx}", "tests/fronteiras/**/*.{ts,tsx}"],
+    files: [`src/dominio/**/*.{${ext}}`, "tests/fronteiras/violacao.ts"],
     rules: {
       "no-restricted-imports": [
         "error",
@@ -49,12 +51,12 @@ const config = [
     },
   },
   {
-    files: ["**/*.{ts,tsx}"],
+    files: [`**/*.{${ext}}`],
     ignores: [
-          "src/agentes/harness/**",
-          "src/dominio/**",
-          "tests/fronteiras/**",
-        ],
+      "src/agentes/harness/**",
+      "src/dominio/**",
+      "tests/fronteiras/violacao.ts",
+    ],
     rules: {
       "no-restricted-imports": [
         "error",

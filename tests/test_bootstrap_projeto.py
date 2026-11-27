@@ -227,6 +227,7 @@ class TestBootstrapProjeto(unittest.TestCase):
                 "src/agentes/memoria/index.ts",
                 "evals/README.md",
                 "tests/fronteiras/violacao.ts",
+                "tests/fronteiras/sdk-fora-harness.ts",
             ):
                 self.assertTrue((dest / rel).is_file(), rel)
             agents_web = (dest / "AGENTS.md").read_text(encoding="utf-8")
