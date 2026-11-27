@@ -55,16 +55,17 @@ export function register() { registerOTel({ serviceName: "app-web" }); }
 
 ## 5b. Execução de agente: log e custo (VTX-179)
 Cada execução de agente grava **uma linha JSON** com run_id, trace_id, cliente, agente, modelo, tokens_entrada, tokens_saida, custo_usd, duracao_ms, status, erro e ts (UTC). A implementação de referência é [core/agente/telemetria.py](../../core/agente/telemetria.py) e usa só a biblioteca padrão:
-- `redigir()` troca CPF, e-mail e tokens (`sk-`, `ghp_`, JWT, `Bearer`) por marcadores antes de gravar. A redação vale também para a mensagem de erro.
-- `custo_usd()` calcula o custo pelo preço por milhão de tokens. `custo_por_cliente_dia()` soma por cliente e dia, em UTC.
-- `Telemetria.execucao()` confere o orçamento diário do cliente **antes** de começar. Se ele estiver esgotado, levanta `OrcamentoExcedido` e nada roda. A linha é gravada mesmo quando a execução falha.
+- `redigir()` troca e-mail, tokens (`sk-`, `ghp_`, JWT, `Bearer`), CPF e CNPJ com máscara, CNPJ de 14 dígitos e telefone com máscara por marcadores. Vale para a mensagem de erro e outros campos livres. **Não** redige `cliente`, `agente`, `run_id` nem `trace_id` (um cliente que é um e-mail precisa continuar batendo com o orçamento). Fica de fora, de propósito: CPF e telefone com 11 dígitos sem máscara (um celular como `11987654321` não deve virar `[CPF]`).
+- `custo_usd()` calcula o custo pelo preço por milhão de tokens. `custo_por_cliente_dia()` soma por cliente e dia, em UTC. Linhas JSON corrompidas são ignoradas e contadas em `ler_detalhado()`.
+- `Telemetria.execucao()` aplica um **limite brando**: o orçamento diário do cliente é conferido só na entrada. Se já estiver esgotado, levanta `OrcamentoExcedido` e nada roda. Uma execução já iniciada pode passar do limite, e execuções paralelas podem ler o mesmo gasto e passar juntas. `gasto_hoje()` relê o arquivo inteiro a cada conferência; em produção isso pede rotação por dia ou um agregado. A linha é gravada mesmo quando a execução falha (inclusive `BaseException`, repropagada).
+- O caminho de referência é `logs/agentes.jsonl`. A pasta `logs/` está no `.gitignore` do vtx-core: log com dado de cliente não entra no repositório.
 ```python
 t = Telemetria(Path("logs/agentes.jsonl"), orcamento_dia={"cliente-a": 2.0})
 with t.execucao("cliente-a", "dev", "modelo-x", trace_id=trace_id) as ex:
     resp = chamar_modelo(...)
     ex.somar(resp.in_tok, resp.out_tok, custo_usd(resp.in_tok, resp.out_tok, 3.0, 15.0))
 ```
-Os testes estão em `tests/test_telemetria.py` e cobrem os campos, a PII, a soma e o orçamento. Franquia por cliente e BYOK ficam na VTX-149.
+Os testes estão em `tests/test_telemetria.py` e cobrem os campos, a PII, a soma, o orçamento, cliente-e-mail, linha corrompida e interrupção. Franquia por cliente e BYOK ficam na VTX-149.
 
 ## 6. Checklist
 - [ ] Logs em JSON com `service`, `env`, `trace_id`, `request_id`; nível `info` em produção.

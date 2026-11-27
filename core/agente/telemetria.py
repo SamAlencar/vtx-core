@@ -1,8 +1,8 @@
 """Telemetria por execução de agente (VTX-179).
 
 Uma linha JSON por execução (run_id, trace_id, cliente, tokens, custo, duração),
-com redação de PII, soma de custo por cliente e dia e orçamento diário que
-interrompe a execução antes de gastar. Só biblioteca padrão.
+com redação de PII, soma de custo por cliente e dia e orçamento diário aplicado
+como limite brando (checado na entrada da execução). Só biblioteca padrão.
 """
 from __future__ import annotations
 
@@ -18,19 +18,28 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-# Ordem importa: tokens antes de números longos.
+# Identificadores da linha: não passam por redigir(), senão e-mail como
+# cliente vira [EMAIL] e o orçamento deixa de achar o gasto.
+_CAMPOS_IDENTIDADE = frozenset({"cliente", "agente", "run_id", "trace_id"})
+
+# Ordem importa: tokens antes de números. CPF/telefone sem máscara (11 dígitos)
+# ficam de fora de propósito, para não tratar celular como CPF.
 _PADROES = [
     (re.compile(r"(?i)\bbearer\s+[a-z0-9._~+/=-]{8,}"), "Bearer [TOKEN]"),
     (re.compile(r"\b(?:sk|pk|rk)-[A-Za-z0-9_-]{16,}"), "[TOKEN]"),
     (re.compile(r"\b(?:ghp|gho|ghs|github_pat)_[A-Za-z0-9_]{20,}"), "[TOKEN]"),
     (re.compile(r"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"), "[TOKEN]"),
     (re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+"), "[EMAIL]"),
-    (re.compile(r"\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b"), "[CPF]"),
+    (re.compile(r"\b\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}\b"), "[CNPJ]"),
+    (re.compile(r"\b\d{14}\b"), "[CNPJ]"),
+    (re.compile(r"\b\d{3}\.\d{3}\.\d{3}-\d{2}\b"), "[CPF]"),
+    (re.compile(r"\(\d{2}\)\s*\d{4,5}-\d{4}"), "[TELEFONE]"),
+    (re.compile(r"\b\d{2}\s\d{4,5}-\d{4}\b"), "[TELEFONE]"),
 ]
 
 
 def redigir(valor: Any) -> Any:
-    """Troca CPF, e-mail e tokens por marcadores, em str, dict e list."""
+    """Troca CPF/CNPJ com máscara, telefone com máscara, e-mail e tokens por marcadores."""
     if isinstance(valor, str):
         for padrao, troca in _PADROES:
             valor = padrao.sub(troca, valor)
@@ -49,7 +58,7 @@ def custo_usd(tokens_entrada: int, tokens_saida: int, preco_entrada_mtok: float,
 
 
 class OrcamentoExcedido(RuntimeError):
-    """O cliente já gastou o orçamento do dia: a execução não começa."""
+    """O cliente já atingiu o orçamento do dia na última conferência de entrada."""
 
 
 @dataclass
@@ -74,21 +83,51 @@ class Execucao:
 
 
 def ler(caminho: Path) -> list[dict]:
+    """Linhas JSON válidas. Linhas corrompidas são ignoradas (ver ler_detalhado)."""
+    linhas, _ = ler_detalhado(caminho)
+    return linhas
+
+
+def ler_detalhado(caminho: Path) -> tuple[list[dict], int]:
+    """Devolve (linhas válidas, quantidade de linhas com JSON inválido)."""
     if not caminho.exists():
-        return []
-    return [json.loads(x) for x in caminho.read_text(encoding="utf-8").splitlines() if x.strip()]
+        return [], 0
+    ok: list[dict] = []
+    invalidas = 0
+    for x in caminho.read_text(encoding="utf-8").splitlines():
+        if not x.strip():
+            continue
+        try:
+            item = json.loads(x)
+        except json.JSONDecodeError:
+            invalidas += 1
+            continue
+        if isinstance(item, dict):
+            ok.append(item)
+        else:
+            invalidas += 1
+    return ok, invalidas
 
 
 def custo_por_cliente_dia(linhas: Iterable[dict]) -> dict[tuple[str, str], float]:
     """Soma custo_usd por (cliente, dia UTC AAAA-MM-DD)."""
     total: dict[tuple[str, str], float] = defaultdict(float)
     for x in linhas:
-        total[(x["cliente"], x["ts"][:10])] += x["custo_usd"]
+        try:
+            total[(x["cliente"], x["ts"][:10])] += x["custo_usd"]
+        except (KeyError, TypeError):
+            continue
     return {k: round(v, 6) for k, v in total.items()}
 
 
 class Telemetria:
-    """Grava execuções em JSONL e aplica orçamento diário por cliente (US$)."""
+    """Grava execuções em JSONL e aplica orçamento diário por cliente (US$).
+
+    O orçamento é um limite brando: só é conferido na entrada de `execucao()`.
+    Uma execução já iniciada pode passar do limite, e execuções paralelas podem
+    ler o mesmo gasto e passar juntas. `gasto_hoje` relê o arquivo inteiro a
+    cada conferência; em produção isso pede rotação diária ou um agregado.
+    """
 
     def __init__(self, caminho: Path, orcamento_dia: dict[str, float] | None = None,
                  orcamento_padrao: float | None = None,
@@ -109,7 +148,8 @@ class Telemetria:
 
     def registrar(self, ex: Execucao) -> dict:
         ex.ts = ex.ts or self.agora().isoformat()
-        linha = redigir(asdict(ex))
+        bruto = asdict(ex)
+        linha = {k: (v if k in _CAMPOS_IDENTIDADE else redigir(v)) for k, v in bruto.items()}
         self.caminho.parent.mkdir(parents=True, exist_ok=True)
         with self.caminho.open("a", encoding="utf-8") as f:
             f.write(json.dumps(linha, ensure_ascii=False) + "\n")
@@ -118,14 +158,14 @@ class Telemetria:
     @contextmanager
     def execucao(self, cliente: str, agente: str, modelo: str = "",
                  trace_id: str = "") -> Iterator[Execucao]:
-        """Checa o orçamento, mede a duração e grava uma linha mesmo se falhar."""
+        """Checa o orçamento na entrada, mede a duração e grava uma linha mesmo se falhar."""
         self.checar_orcamento(cliente)
         ex = Execucao(cliente=cliente, agente=agente, modelo=modelo,
                       trace_id=trace_id or uuid.uuid4().hex)
         inicio = time.monotonic()
         try:
             yield ex
-        except Exception as e:
+        except BaseException as e:
             ex.status, ex.erro = "erro", f"{type(e).__name__}: {e}"
             raise
         finally:

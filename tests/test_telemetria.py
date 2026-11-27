@@ -1,5 +1,6 @@
 """VTX-179: telemetria por execução de agente."""
 import json
+import subprocess
 import tempfile
 import unittest
 from datetime import UTC, datetime
@@ -11,10 +12,12 @@ from agente.telemetria import (
     custo_por_cliente_dia,
     custo_usd,
     ler,
+    ler_detalhado,
     redigir,
 )
 
 DIA = datetime(2026, 11, 27, 12, tzinfo=UTC)
+RAIZ = Path(__file__).resolve().parents[1]
 
 
 class TestTelemetria(unittest.TestCase):
@@ -38,12 +41,21 @@ class TestTelemetria(unittest.TestCase):
         self.assertEqual((x["trace_id"], x["custo_usd"], x["status"]), ("t1", 0.006, "ok"))
 
     def test_redacao_de_pii(self):
-        texto = "cpf 123.456.789-09 e 12345678909, mail ana@ex.com.br, sk-abcdefghijklmnop1234, Bearer abc.def.ghi123"
+        texto = (
+            "cpf 123.456.789-09, mail ana@ex.com.br, cnpj 12.345.678/0001-90 e 12345678000190, "
+            "tel (11) 98765-4321, sk-abcdefghijklmnop1234, Bearer abc.def.ghi123"
+        )
         r = redigir({"msg": texto, "lista": ["ghp_" + "a" * 36]})
-        for vazado in ("123.456.789-09", "12345678909", "ana@ex.com.br", "sk-abcdef", "abc.def.ghi123", "ghp_"):
-            self.assertNotIn(vazado, json.dumps(r))
+        dumped = json.dumps(r)
+        for vazado in ("123.456.789-09", "ana@ex.com.br", "12.345.678/0001-90",
+                       "12345678000190", "(11) 98765-4321", "sk-abcdef", "abc.def.ghi123", "ghp_"):
+            self.assertNotIn(vazado, dumped)
         self.assertIn("[CPF]", r["msg"])
         self.assertIn("[EMAIL]", r["msg"])
+        self.assertIn("[CNPJ]", r["msg"])
+        self.assertIn("[TELEFONE]", r["msg"])
+        # 11 dígitos sem máscara (celular ou CPF) ficam de fora.
+        self.assertEqual(redigir("celular 11987654321"), "celular 11987654321")
 
     def test_erro_grava_linha_redigida_e_repropaga(self):
         with self.assertRaises(ValueError), self.t.execucao("acme", "dev"):
@@ -51,6 +63,38 @@ class TestTelemetria(unittest.TestCase):
         x = ler(self.caminho)[0]
         self.assertEqual(x["status"], "erro")
         self.assertIn("[EMAIL]", x["erro"])
+
+    def test_baseexception_grava_erro_e_repropaga(self):
+        with self.assertRaises(KeyboardInterrupt), self.t.execucao("acme", "dev"):
+            raise KeyboardInterrupt()
+        x = ler(self.caminho)[0]
+        self.assertEqual(x["status"], "erro")
+        self.assertIn("KeyboardInterrupt", x["erro"])
+
+    def test_cliente_email_nao_e_redigido_e_orcamento_barra(self):
+        cliente = "ana@ex.com"
+        t = Telemetria(self.caminho, orcamento_dia={cliente: 0.01}, agora=lambda: DIA)
+        with t.execucao(cliente, "dev") as ex:
+            ex.somar(0, 0, 0.5)
+        x = ler(self.caminho)[0]
+        self.assertEqual(x["cliente"], cliente)
+        rodou = []
+        with self.assertRaises(OrcamentoExcedido), t.execucao(cliente, "dev"):
+            rodou.append(1)
+        self.assertEqual(rodou, [])
+
+    def test_linha_corrompida_nao_bloqueia_e_e_contada(self):
+        self.caminho.write_text(
+            '{"cliente": "acme", "ts": "2026-11-27T10:00:00+00:00", "custo_usd": 0.001}\n'
+            "{isto nao e json\n",
+            encoding="utf-8",
+        )
+        linhas, invalidas = ler_detalhado(self.caminho)
+        self.assertEqual(len(linhas), 1)
+        self.assertEqual(invalidas, 1)
+        with self.t.execucao("acme", "dev"):
+            pass
+        self.assertEqual(len(ler(self.caminho)), 2)
 
     def test_soma_por_cliente_e_dia(self):
         linhas = [
@@ -70,10 +114,16 @@ class TestTelemetria(unittest.TestCase):
             rodou.append(1)
         self.assertEqual(rodou, [])
         self.assertEqual(len(ler(self.caminho)), 1)
-        # Outro cliente sem limite segue.
         with self.t.execucao("beta", "dev"):
             pass
         self.assertEqual(len(ler(self.caminho)), 2)
+
+    def test_logs_de_agente_estao_no_gitignore(self):
+        r = subprocess.run(
+            ["git", "-C", str(RAIZ), "check-ignore", "-q", "logs/agentes.jsonl"],
+            check=False,
+        )
+        self.assertEqual(r.returncode, 0)
 
 
 if __name__ == "__main__":
