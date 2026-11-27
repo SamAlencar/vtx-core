@@ -7,6 +7,8 @@ on:
 jobs:
   unittest:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
@@ -75,6 +77,26 @@ jobs:
 
       - name: Lint, tipos e testes do template
         run: npm run lint && npm run typecheck && npm test && npm run evals && npm run build
+
+  web-gerado:
+    # VTX-209: gera um projeto pelo bootstrap e roda o pipeline dele, para pegar
+    # quebra que só aparece no projeto gerado (nome, cópia de arquivos, lock).
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Gerar projeto web pelo bootstrap
+        run: bash scripts/bootstrap_projeto.sh --tipo web demo "$RUNNER_TEMP/demo"
+
+      - name: Pipeline do projeto gerado
+        working-directory: ${{ runner.temp }}/demo
+        run: npm ci --no-audit --no-fund && npm run lint && npm run typecheck && npm test && npm run evals && npm run build
 
   qualidade:
     runs-on: ubuntu-latest
