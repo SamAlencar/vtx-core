@@ -10,7 +10,7 @@
 #   PG_BIN  diretório com initdb e pg_ctl
 #   PSQL    cliente psql
 #   DADOS   data dir temporário (padrão: /workspace/pg-acoes-rpc-nulo-tmp, ou mktemp).
-#          Só aceita /workspace/<subdir> ou ${TMPDIR:-/tmp}/pg-acoes-*; recusa vazio, / e o resto.
+#          Só aceita /workspace/pg-acoes-* ou ${TMPDIR:-/tmp}/pg-acoes-*; recusa o resto.
 #   PORTA   porta de escuta (padrão: 55433; recusa 5432)
 set -euo pipefail
 
@@ -56,46 +56,13 @@ if [[ -z "${PSQL:-}" ]]; then
 fi
 
 NOME="teste-rpc-acoes-composto-nulo"
-
-# DADOS só pode ser um subdir de /workspace/ ou ${TMPDIR:-/tmp}/pg-acoes-*.
-# Recusa vazio, /, ou caminho que (depois de resolver '..') saia desses prefixos.
-validar_dados() {
-  local bruto="${1-}"
-  if [[ -z "$bruto" || "$bruto" == "/" ]]; then
-    echo "$NOME: recuso DADOS vazio ou /." >&2
-    exit 2
-  fi
-  local canon
-  canon="$(realpath -m -- "$bruto")" || {
-    echo "$NOME: não consegui normalizar DADOS." >&2
-    exit 2
-  }
-  if [[ -z "$canon" || "$canon" == "/" ]]; then
-    echo "$NOME: recuso DADOS vazio ou /." >&2
-    exit 2
-  fi
-  if [[ "$canon" == *evolution-pgdata* ]]; then
-    echo "$NOME: recuso usar o data dir da Evolution." >&2
-    exit 2
-  fi
-  local tmp
-  tmp="$(realpath -m -- "${TMPDIR:-/tmp}")"
-  if [[ "$canon" == /workspace/* ]]; then
-    DADOS="$canon"
-    return 0
-  fi
-  if [[ "$canon" == "$tmp"/pg-acoes-* ]]; then
-    DADOS="$canon"
-    return 0
-  fi
-  echo "$NOME: recuso DADOS fora de /workspace/ ou ${tmp}/pg-acoes-*: $canon" >&2
+LIB_GUARDA="$(cd "$(dirname "$0")" && pwd)/lib/guarda_dados_pg.sh"
+if [[ ! -f "$LIB_GUARDA" ]]; then
+  echo "teste-rpc-acoes-composto-nulo: não achei $LIB_GUARDA" >&2
   exit 2
-}
-
-remover_dados() {
-  validar_dados "$DADOS"
-  rm -rf -- "$DADOS"
-}
+fi
+# shellcheck source=lib/guarda_dados_pg.sh
+source "$LIB_GUARDA"
 
 if [[ -d /workspace ]]; then
   DADOS="${DADOS:-/workspace/pg-acoes-rpc-nulo-tmp}"
