@@ -24,13 +24,13 @@ Valores iniciais da VTX; o contrato do cliente pode apertar, nunca afrouxar sem 
 - **Horário útil VTX:** dias úteis, 9h–18h (America/Sao_Paulo), salvo acordo explícito no PRD.
 - **Estouro de horas:** agente registra no diário do projeto, classifica A2 e *para* trabalho não-SEV1 até o Samuel autorizar hora extra ou próximo ciclo.
 - **Resposta ≠ resolução:** a 1ª resposta confirma recebimento, severidade e próximo passo; o prazo de correção segue o diagnóstico (fluxo de manutenção).
-- **Severidade (alinha a [devops-sre.md](devops-sre.md)):**
+- **Dois relógios, uma verdade:** os *tempos da tabela de níveis* acima são o **compromisso contratual de 1ª resposta** com o cliente (fonte deste documento). A **meta interna de mitigação** fica em [devops-sre.md](devops-sre.md): SEV1 imediata, SEV2 em ≤ 1 h, SEV3 no próximo ciclo. A equipe persegue a meta interna primeiro; o SLA contratual é o teto que o cliente pode cobrar. Os *exemplos* de Sev e o aviso ao Samuel são os mesmos nos dois documentos.
 
-| Sev | Exemplo | Quem age |
-|---|---|---|
-| SEV1 | Produção fora do ar, perda de dados, vazamento | DevOps/SRE + Dev; rollback sem esperar; avisa Samuel |
-| SEV2 | Função crítica degradada, workaround difícil | Dev + QA |
-| SEV3 | Bug menor, dúvida operacional, pedido de melhoria | Triagem → backlog ou resposta direta |
+| Sev | Exemplo | Quem age | Avisar Samuel |
+|---|---|---|---|
+| SEV1 | Produção fora do ar, perda de dados, vazamento | DevOps/SRE + Dev; rollback sem esperar | na hora |
+| SEV2 | Função crítica degradada, workaround difícil | Dev + QA | no mesmo dia |
+| SEV3 | Bug menor, dúvida operacional, pedido de melhoria | Triagem → backlog ou resposta direta | relatório semanal |
 
 ## 3. Canal de suporte e triagem por agente
 
@@ -74,9 +74,11 @@ O template web-next ainda não tem a rota `/api/health`. Até ela existir, o mon
 
 ## 5. Incidentes → postmortem curto no repo do cliente
 
-Obrigatório após SEV1 e SEV2 (e SEV3 se repetir ≥ 3 vezes no mês). O arquivo fica no **repositório do cliente** (não em `projects/` no vtx-core):
+Obrigatório após SEV1 e SEV2 (e SEV3 se repetir ≥ 3 vezes no mês), em até 5 dias úteis (prazo em [devops-sre.md](devops-sre.md)). O arquivo fica no **repositório do cliente** (não em `projects/` no vtx-core):
 
-`docs/postmortems/YYYY-MM-DD-<slug>.md`
+`docs/postmortems/AAAA-MM-DD-titulo.md`
+
+O modelo no template web-next é `templates/web-next/docs/postmortems/0000-modelo.md`; no repositório gerado, `docs/postmortems/0000-modelo.md`.
 
 Modelo mínimo:
 

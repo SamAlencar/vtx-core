@@ -47,4 +47,22 @@ tarefas:
     area: "Operação"
     status: "em andamento"
     responsavel: "agente-orquestrador"
-    notas: "Em andamento neste PR: knowledge/operacao/suporte-e-sla.md (documento principal), ponteiros em knowledge/INDEX.md (#63), knowledge/operacao/devops-sre.md e knowledge/processos/fluxos/manutencao-evolucao.md, e o runbook do template web-next (health/monitor, canal e postmortem). Material de um share do Grok adaptado à base: postmortem em docs/postmortems/ no repo do cliente (não em projects/ no vtx-core); exemplo de rollback no padrão Cloudflare Pages, não Vercel; Exemplo antes do Checklist (formato do INDEX); nota de que /api/health ainda não existe no template (o monitor usa /). Preço/venda ficam de fora. Sem etiqueta precisa do Samuel (só documentação). Skills: verification-before-completion (unittest, validar_backlog, verificar_links). Ferramentas: git, gh, python."
+    notas: "Em andamento neste PR (#45): knowledge/operacao/suporte-e-sla.md, ponteiros no INDEX (#63), devops-sre e manutencao-evolucao, runbook autossuficiente do template web-next e modelo docs/postmortems/0000-modelo.md. Correções da revisão do Tzu: links relativos para knowledge/ saíram do runbook (valores de SLA inline); alinhamento com devops-sre.md (compromisso contratual vs meta interna; Samuel avisado no SEV2 no mesmo dia; postmortem em AAAA-MM-DD-titulo.md). Follow-ups abertos, sem implementar: VTX-231 (rollback ainda citado na Vercel no devops-sre), VTX-232 (rota /api/health) e VTX-233 (monitor só descrito). Skills: verification-before-completion (unittest, validar_backlog, verificar_links, bootstrap --tipo web). Ferramentas: git, gh, python."
+  - id: VTX-231
+    titulo: "Alinhar o rollback do devops-sre.md ao padrão Cloudflare Pages"
+    area: "Operação"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."
+  - id: VTX-232
+    titulo: "Rota GET /api/health no template web-next"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."
+  - id: VTX-233
+    titulo: "Monitor de disponibilidade gratuito configurado no template web"
+    area: "Templates"
+    status: "a fazer"
+    responsavel: "agente-orquestrador"
+    notas: "Follow-up da revisão do Tzu no PR #45 (VTX-199). Ver notas no mestre."
